@@ -46,7 +46,7 @@ public class PlayerMove : MonoBehaviour
 			if (Input.GetKey(KeyCode.Space)){
 				anim.SetTrigger("Attack"); 
 			}
-		} //else playerDie();
+		} //else playerDie(); //run this function from the GameHandler instead
     }
 
 
@@ -73,7 +73,7 @@ public class PlayerMove : MonoBehaviour
 	}
 
 	public void playerDie(){
-		anim.SetTrigger("Dead");
+		anim.SetBool("isDead", true);
 		if (isAlive == false) {
 			//Debug.Log("I'm already dead");
 		}
