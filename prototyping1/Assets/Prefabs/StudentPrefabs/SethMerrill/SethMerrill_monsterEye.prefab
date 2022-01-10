@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6710991542162814940}
   - component: {fileID: 6710991542162814941}
   - component: {fileID: 6710991542162814942}
-  - component: {fileID: -4582386175225499678}
   - component: {fileID: 4005441344218218543}
   - component: {fileID: 6287539208517157784}
+  - component: {fileID: 8905207464685949158}
   m_Layer: 0
   m_Name: SethMerrill_monsterEye
   m_TagString: Untagged
@@ -83,23 +83,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-4582386175225499678
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6710991542162814943}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f9985a9105d6704f9ad622a2a307284, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  beamPrefab: {fileID: 4402205038157868770, guid: ffdfbab8ec3951d4db44d3edc97dbcc7,
-    type: 3}
-  speed: 0.005
-  direction: {x: 0, y: 0, z: 0}
-  hunger: 0.5
 --- !u!82 &4005441344218218543
 AudioSource:
   m_ObjectHideFlags: 0
@@ -208,6 +191,23 @@ AudioEchoFilter:
   m_DecayRatio: 0.5
   m_WetMix: 1
   m_DryMix: 1
+--- !u!114 &8905207464685949158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6710991542162814943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f9985a9105d6704f9ad622a2a307284, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beamPrefab: {fileID: 4402205038157868770, guid: ffdfbab8ec3951d4db44d3edc97dbcc7,
+    type: 3}
+  speed: 1
+  direction: {x: 0, y: 0, z: 0}
+  hunger: 0
 --- !u!1 &6710991542897530346
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +219,6 @@ GameObject:
   - component: {fileID: 6710991542897530344}
   - component: {fileID: 6710991542897530345}
   - component: {fileID: 6710991542897530343}
-  - component: {fileID: 6710991542897530342}
   m_Layer: 0
   m_Name: EyeArt
   m_TagString: Untagged
@@ -312,18 +311,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &6710991542897530342
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6710991542897530346}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 3f0a88a24c2963245968024c67049914, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0

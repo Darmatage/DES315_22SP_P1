@@ -30,6 +30,6 @@ public class SethMerrill_eyeScript : MonoBehaviour
 		direction.x = (Vector3.Normalize(playerPos - pos) * hunger).x + ((float)RNG.NextDouble() - 0.5f) * (1.0f - hunger);
 		direction.y = (Vector3.Normalize(playerPos - pos) * hunger).y + ((float)RNG.NextDouble() - 0.5f) * (1.0f - hunger);
 		
-		transform.position += Vector3.Normalize(direction) * speed;
+		transform.position += Vector3.Normalize(direction) * speed * Time.deltaTime;
     }
 }
