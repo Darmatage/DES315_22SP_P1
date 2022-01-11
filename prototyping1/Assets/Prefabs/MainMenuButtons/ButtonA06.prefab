@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.78431374, g: 0.972549, b: 0.85214955, a: 1}
+  m_Color: {r: 0.9528302, g: 0.7696555, b: 0.16629584, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -99,7 +99,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.7759663, g: 0.8207547, b: 0.6852527, a: 1}
+    m_NormalColor: {r: 0.95294124, g: 0.7686275, b: 0.16470589, a: 1}
     m_HighlightedColor: {r: 0.9528302, g: 0.77177787, b: 0.6067551, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416fef9a3c48a9140b58169f4f8dce8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoToScene: StudentA01
+  GoToScene: BenMowryScene
 --- !u!1 &1683015118017406729
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 35
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -225,4 +225,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[A06]'
+  m_Text: Ben Mowry
