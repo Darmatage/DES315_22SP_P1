@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TeacherScenes/TeacherSampleScene.unity
     guid: 23fe6c7a21e0b7d469bf3feda13f2734
   - enabled: 1
-    path: Assets/Scenes/TeacherScenes/StudentSampleScene.unity
+    path: Assets/Scenes/StudentScenes/WonjuJoScene.unity
     guid: 505721ee2d56b5549ba095945e303ebd
   - enabled: 1
     path: Assets/Scenes/StudentScenes/ChaseGraves.unity
