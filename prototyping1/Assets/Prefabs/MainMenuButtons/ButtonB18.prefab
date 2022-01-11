@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7647059, g: 0.6273585, b: 1, a: 1}
+  m_Color: {r: 0.5235849, g: 0.67652375, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 416fef9a3c48a9140b58169f4f8dce8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GoToScene: StudentA01
+  GoToScene: AlexJalonenScene
 --- !u!1 &1683015118017406729
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 32
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -225,4 +225,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '[B18]'
+  m_Text: Alex Jalonen
