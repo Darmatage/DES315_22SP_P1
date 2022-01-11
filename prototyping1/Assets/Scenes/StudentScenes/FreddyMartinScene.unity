@@ -17789,7 +17789,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -19229,12 +19229,7 @@ PrefabInstance:
     - target: {fileID: 7783233679475157304, guid: da20567aee1ca7f4c8b8b7c2a7ff2670,
         type: 3}
       propertyPath: m_Text
-      value: Cole Schwinghammer
-      objectReference: {fileID: 0}
-    - target: {fileID: 7783233679475157304, guid: da20567aee1ca7f4c8b8b7c2a7ff2670,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 30
+      value: Freddy Martin
       objectReference: {fileID: 0}
     - target: {fileID: 9206448110116329667, guid: da20567aee1ca7f4c8b8b7c2a7ff2670,
         type: 3}
