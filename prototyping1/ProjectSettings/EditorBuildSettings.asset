@@ -74,6 +74,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StudentScenes/WonjuJoScene.unity
     guid: 505721ee2d56b5549ba095945e303ebd
+  - enabled: 1
+    path: Assets/Scenes/StudentScenes/JonathanHamlingScene.unity
+    guid: e4fb91ecfee103b45b41758ffcb1e2af
+  - enabled: 1
+    path: Assets/Scenes/StudentScenes/RileyBirdScene.unity
+    guid: 939d0d7ddd997aa41a160bca2ae8a71b
+  - enabled: 1
+    path: Assets/Scenes/StudentScenes/LilyanMonrroyScene.unity
+    guid: 2f99fbb4c46db0b44ba6c492994b4181
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
