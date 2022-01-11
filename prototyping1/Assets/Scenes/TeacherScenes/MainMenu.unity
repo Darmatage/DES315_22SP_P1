@@ -2382,6 +2382,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonB10
       objectReference: {fileID: 0}
+    - target: {fileID: 4470194261508753837, guid: bb9b02d28b2a5f947b056a5eab606d15,
+        type: 3}
+      propertyPath: m_Text
+      value: Jackson Fischer
+      objectReference: {fileID: 0}
     - target: {fileID: 7371410899088442534, guid: bb9b02d28b2a5f947b056a5eab606d15,
         type: 3}
       propertyPath: m_Pivot.x
