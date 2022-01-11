@@ -1615,6 +1615,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonB15
       objectReference: {fileID: 0}
+    - target: {fileID: 2663822705096873391, guid: 265ab9ae29caff2489adfb168513623b,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663822705096873391, guid: 265ab9ae29caff2489adfb168513623b,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2663822705096873391, guid: 265ab9ae29caff2489adfb168513623b,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4470194261508753837, guid: 265ab9ae29caff2489adfb168513623b,
         type: 3}
       propertyPath: m_Text
@@ -1624,6 +1639,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470194261508753837, guid: 265ab9ae29caff2489adfb168513623b,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470194261508753837, guid: 265ab9ae29caff2489adfb168513623b,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4470194261508753837, guid: 265ab9ae29caff2489adfb168513623b,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7371410899088442534, guid: 265ab9ae29caff2489adfb168513623b,
         type: 3}
