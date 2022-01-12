@@ -18,6 +18,18 @@ EditorBuildSettings:
     path: Assets/Scenes/TeacherScenes/TeacherSampleScene.unity
     guid: 23fe6c7a21e0b7d469bf3feda13f2734
   - enabled: 1
+    path: Assets/Scenes/StudentScenes/BraedanNeversScene.unity
+    guid: adfeeb29ad9ddb942ae3c96fa702276d
+  - enabled: 1
+    path: Assets/Scenes/StudentScenes/DamianRouseScene.unity
+    guid: 63080e4b717fc6442b235d6d1801a826
+  - enabled: 1
+    path: Assets/Scenes/StudentScenes/TaherKagziScene.unity
+    guid: 67591dd593815bb42a4536afb7478bf8
+  - enabled: 1
+    path: Assets/Scenes/StudentScenes/TaroKumagaiScene.unity
+    guid: 14d587b48ec30ba4bb7a9c6cbc980c69
+  - enabled: 1
     path: Assets/Scenes/StudentScenes/AlexJalonenScene.unity
     guid: 49be16221957bb447bc194795a2141ef
   - enabled: 1
@@ -41,9 +53,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StudentScenes/ErinScribnerScene.unity
     guid: 28222f3d1d1adfa4fbe19c11afe255f4
-  - enabled: 1
-    path: Assets/Scenes/TeacherScenes/StudentSampleScene.unity
-    guid: 962101ce4056f1d4ea15ab64cc8bf373
   - enabled: 1
     path: Assets/Scenes/StudentScenes/EunjinHong.unity
     guid: 6e4e23e02a0a04147afa59856f2fa19d
@@ -71,9 +80,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StudentScenes/SethMerrillScene.unity
     guid: b3d6a7debfcfae548a2009875f42e3c3
-  - enabled: 1
-    path: Assets/Scenes/TeacherScenes/StudentSampleScene.unity
-    guid: 962101ce4056f1d4ea15ab64cc8bf373
   - enabled: 1
     path: Assets/Scenes/StudentScenes/TyJanisScene.unity
     guid: 1de0f172dc0074940b2c6122d03c5c7c
@@ -140,6 +146,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StudentScenes/ScottFado-BristowScene.unity
     guid: 649b398dad0132f46bcd7805af186ba6
+  - enabled: 1
+    path: Assets/Scenes/StudentScenes/KobeDennisScene.unity
+    guid: bd572cbf53df55e418581e0f6912173e
+  - enabled: 1
+    path: Assets/Scenes/StudentScenes/DeanteJamesScene.unity
+    guid: 101cb138f2a92754d916bca525fd6f76
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
@@ -194,6 +206,9 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/TeacherScenes/StudentSampleScene.unity
+    guid: 962101ce4056f1d4ea15ab64cc8bf373
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
