@@ -43,10 +43,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -114,7 +116,7 @@ GameObject:
   - component: {fileID: 6441616174296519306}
   - component: {fileID: 3686576375771877054}
   - component: {fileID: 6577643807790627255}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MonsterSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
