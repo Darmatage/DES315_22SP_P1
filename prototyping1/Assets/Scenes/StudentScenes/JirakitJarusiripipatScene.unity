@@ -17807,6 +17807,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MonsterSkull
       objectReference: {fileID: 0}
+    - target: {fileID: 4078256246479289528, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 370f8cfdc2b46a14ea799b5e0116b058, type: 3}
 --- !u!4 &848809620 stripped
@@ -20829,8 +20834,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
+      propertyPath: maxSkillGauge
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
+        type: 3}
       propertyPath: timeToAttackCooldown
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
@@ -20974,6 +20984,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6577643807790627255, guid: 117912aae34130e45b11eedfbd1d4b41,
+        type: 3}
+      propertyPath: EnemyLives
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8795562353032092023, guid: 117912aae34130e45b11eedfbd1d4b41,
         type: 3}

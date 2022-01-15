@@ -10,10 +10,14 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     private float currentSkillDuration;
     private bool isUsingSkill = false;
     public bool canUseSkill = true;
+    [SerializeField]
+    private int maxSkillGauge;
+    private int skillGauge;
     [Header("Melee")]
     private float timeToAttack;
     [SerializeField]
     private float timeToAttackCooldown;
+    private float defaultTimeToAttackCooldown;
     [SerializeField]
     private Transform attackPos;
     [SerializeField]
@@ -29,6 +33,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        defaultTimeToAttackCooldown = timeToAttackCooldown;
         playermove = GetComponent<PlayerMove>();
         defaultPlayerSpeed = playermove.speed;
     }
@@ -43,10 +48,23 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
             {
                 if(enemies[i].GetComponent<MonsterMoveHit>() != null)
                 {
-                    Debug.Log("Check Collision");
+                    //Debug.Log("Check Collision");
                     enemies[i].GetComponent<MonsterMoveHit>().StopCoroutine("GetHit");
                     enemies[i].GetComponent<MonsterMoveHit>().StartCoroutine("GetHit");
+                    if(skillGauge < maxSkillGauge && !isUsingSkill)
+                    {
+                        skillGauge++;
+                    }
                 }
+                //if(enemies[i].GetComponent<MonsterShootMove>() != null)
+                //{
+                //    enemies[i].GetComponent<MonsterShootMove>().StopCoroutine("GetHit");
+                //    enemies[i].GetComponent<MonsterShootMove>().StartCoroutine("GetHit");
+                //    if (skillGauge < maxSkillGauge && !isUsingSkill)
+                //    {
+                //        skillGauge++;
+                //    }
+                //}
                 
             }
             timeToAttack = timeToAttackCooldown;
@@ -63,6 +81,11 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         {
             CheckDurationSkill();
         }
+        if(skillGauge == maxSkillGauge)
+        {
+            canUseSkill = true;
+        }
+        Debug.Log("Skill Gauge = " + skillGauge);
     }
     private void OnDrawGizmos()
     {
@@ -74,6 +97,16 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         isUsingSkill = true;
         currentSkillDuration = skillDuration;
         playermove.speed = skillPlayerSpeed;
+        timeToAttackCooldown = 0.3f;
+        skillGauge = 0;
+    }
+
+    private void AfterSkill()
+    {
+        isUsingSkill = false;
+        canUseSkill = false;
+        playermove.speed = defaultPlayerSpeed;
+        timeToAttackCooldown = defaultTimeToAttackCooldown;
     }
 
     private void CheckDurationSkill()
@@ -84,9 +117,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         }
         else if (currentSkillDuration <= 0.0f)
         {
-            isUsingSkill = false;
-            canUseSkill = false;
-            playermove.speed = defaultPlayerSpeed;
+            AfterSkill();
         }
     }
 }
