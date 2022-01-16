@@ -58,15 +58,15 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
                         skillGauge++;
                     }
                 }
-                //if(enemies[i].GetComponent<MonsterShootMove>() != null)
-                //{
-                //    enemies[i].GetComponent<MonsterShootMove>().StopCoroutine("GetHit");
-                //    enemies[i].GetComponent<MonsterShootMove>().StartCoroutine("GetHit");
-                //    if (skillGauge < maxSkillGauge && !isUsingSkill)
-                //    {
-                //        skillGauge++;
-                //    }
-                //}
+                if(enemies[i].GetComponent<JirakitJarusiripipat_ShootMove>() != null)
+                {
+                    enemies[i].GetComponent<JirakitJarusiripipat_ShootMove>().StopCoroutine("HitEnemy");
+                    enemies[i].GetComponent<JirakitJarusiripipat_ShootMove>().StartCoroutine("HitEnemy");
+                    if (skillGauge < maxSkillGauge && !isUsingSkill)
+                    {
+                        skillGauge++;
+                    }
+                }
                 
             }
             timeToAttack = timeToAttackCooldown;

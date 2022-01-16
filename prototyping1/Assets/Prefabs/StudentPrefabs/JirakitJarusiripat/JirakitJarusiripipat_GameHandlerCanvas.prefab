@@ -89,7 +89,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8451585964067353413}
   m_Layer: 0
-  m_Name: Jirakit_Jarusiripipat_GameHandlerCanvas
+  m_Name: JirakitJarusiripipat_GameHandlerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
