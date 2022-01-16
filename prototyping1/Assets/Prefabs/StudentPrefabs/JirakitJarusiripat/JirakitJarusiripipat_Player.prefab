@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2157544512098251132}
   - component: {fileID: 489439866839605985}
   - component: {fileID: 4738596172473925985}
-  - component: {fileID: 3286508268217270085}
+  - component: {fileID: 2391722290754411632}
   m_Layer: 0
   m_Name: JirakitJarusiripipat_Player
   m_TagString: Player
@@ -97,14 +97,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillDuration: 5
   canUseSkill: 1
-  timeToAttackCooldown: 0
-  attackPos: {fileID: 0}
-  attackRange: 0
+  maxSkillGauge: 5
+  timeToAttack: 0
+  timeToAttackCooldown: 1
+  attackPos: {fileID: 6045001830298869459}
+  attackRange: 0.85
   skillPlayerSpeed: 10
   whatIsEnemies:
     serializedVersion: 2
-    m_Bits: 0
---- !u!114 &3286508268217270085
+    m_Bits: 32
+--- !u!114 &2391722290754411632
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,10 +115,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1505835795932395057}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f07c7fbb8e4f0244847517cf57ff856, type: 3}
+  m_Script: {fileID: 11500000, guid: ca2ab170f5aad5d408a91818ad5dd46f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  anim: {fileID: 0}
 --- !u!1 &2761940305271077010
 GameObject:
   m_ObjectHideFlags: 0

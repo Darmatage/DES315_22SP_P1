@@ -14,7 +14,8 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     private int maxSkillGauge;
     private int skillGauge;
     [Header("Melee")]
-    private float timeToAttack;
+    [HideInInspector]
+    public float timeToAttack;
     [SerializeField]
     private float timeToAttackCooldown;
     private float defaultTimeToAttackCooldown;
@@ -26,7 +27,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     private float defaultPlayerSpeed;
     [SerializeField]
     private float skillPlayerSpeed;
-    private PlayerMove playermove;
+    private JirakitJarusiripipat_PlayerMove playermove;
 
     public LayerMask whatIsEnemies;
     List<GameObject> allEnemies = new List<GameObject>();
@@ -34,7 +35,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     void Start()
     {
         defaultTimeToAttackCooldown = timeToAttackCooldown;
-        playermove = GetComponent<PlayerMove>();
+        playermove = GetComponent<JirakitJarusiripipat_PlayerMove>();
         defaultPlayerSpeed = playermove.speed;
     }
 
@@ -43,14 +44,15 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space) && timeToAttack <= 0)
         {
+            playermove.anim.SetTrigger("Attack");
             Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPos.transform.position, attackRange, whatIsEnemies);
             for (int i = 0; i < enemies.Length; i++)
             {
-                if(enemies[i].GetComponent<MonsterMoveHit>() != null)
+                if(enemies[i].GetComponent<JirakitJarusiripipat_MonsterMoveHit>() != null)
                 {
                     //Debug.Log("Check Collision");
-                    enemies[i].GetComponent<MonsterMoveHit>().StopCoroutine("GetHit");
-                    enemies[i].GetComponent<MonsterMoveHit>().StartCoroutine("GetHit");
+                    enemies[i].GetComponent<JirakitJarusiripipat_MonsterMoveHit>().StopCoroutine("GetHit");
+                    enemies[i].GetComponent<JirakitJarusiripipat_MonsterMoveHit>().StartCoroutine("GetHit");
                     if(skillGauge < maxSkillGauge && !isUsingSkill)
                     {
                         skillGauge++;
@@ -69,7 +71,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
             }
             timeToAttack = timeToAttackCooldown;
         }
-        else
+        else if(timeToAttack > 0)
         {
             timeToAttack -= Time.deltaTime;
         }
@@ -85,7 +87,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         {
             canUseSkill = true;
         }
-        Debug.Log("Skill Gauge = " + skillGauge);
+        //Debug.Log("Skill Gauge = " + skillGauge);
     }
     private void OnDrawGizmos()
     {
