@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1604228919311886654}
   - component: {fileID: 1604228919311886653}
   - component: {fileID: 1604228919311886652}
-  m_Layer: 0
+  - component: {fileID: 500937804315096776}
+  m_Layer: 5
   m_Name: JirakitJarusiripipat_MonsterSkull
-  m_TagString: Untagged
+  m_TagString: monsterShooter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -93,13 +94,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1aca401f238b64c834b18db34d6a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1.5
   stoppingDistance: 4
   retreatDistance: 3
-  startTimeBtwShots: 2
+  startTimeBtwShots: 4
   projectile: {fileID: 2897097587681159296, guid: d019e43e5285d3741921e202d6cba632,
     type: 3}
-  EnemyLives: 30
+  EnemyLives: 1
+  knockbackPower: 800
+  playerInArea: 0
+  detectionTag: Player
+--- !u!58 &500937804315096776
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604228919311886650}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 6.23
 --- !u!1 &1604228919788185259
 GameObject:
   m_ObjectHideFlags: 0

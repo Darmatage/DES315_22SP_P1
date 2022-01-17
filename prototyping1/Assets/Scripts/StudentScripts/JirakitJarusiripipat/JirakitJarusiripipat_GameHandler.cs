@@ -14,7 +14,7 @@ public class JirakitJarusiripipat_GameHandler : MonoBehaviour
 	private bool isDead = false;
 	private float deathTime = 10.0f;
 	private float deathTimer = 0f;
-
+	[SerializeField]
 	public static bool GameisPaused = false;
 	public GameObject pauseMenuUI;
 
@@ -92,7 +92,7 @@ public class JirakitJarusiripipat_GameHandler : MonoBehaviour
 		}
 		UpdateHealth();
 	}
-
+	
 	public void UpdateHealth()
 	{
 		Text healthTextTemp = healthText.GetComponent<Text>();

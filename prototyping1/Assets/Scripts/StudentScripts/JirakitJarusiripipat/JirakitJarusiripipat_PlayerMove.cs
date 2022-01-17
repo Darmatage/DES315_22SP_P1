@@ -12,7 +12,8 @@ public class JirakitJarusiripipat_PlayerMove : MonoBehaviour
 	private bool isAlive = true;
 
 	public static JirakitJarusiripipat_PlayerMove instance;
-	private JirakitJarusiripipat_PlayerAction playerAction;
+	[HideInInspector]
+	public JirakitJarusiripipat_PlayerAction playerAction;
 	private Renderer rend;
 
 	// Start is called before the first frame update

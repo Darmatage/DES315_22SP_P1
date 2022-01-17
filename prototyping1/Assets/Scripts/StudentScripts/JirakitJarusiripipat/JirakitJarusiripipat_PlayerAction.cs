@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     [SerializeField]
     private float skillDuration;
     private float currentSkillDuration;
-    private bool isUsingSkill = false;
+    [HideInInspector]
+    public bool isUsingSkill = false;
     public bool canUseSkill = true;
     [SerializeField]
     private int maxSkillGauge;
-    private int skillGauge;
+    [HideInInspector]
+    public int skillGauge;
     [Header("Melee")]
     [HideInInspector]
     public float timeToAttack;
@@ -30,7 +33,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     private JirakitJarusiripipat_PlayerMove playermove;
 
     public LayerMask whatIsEnemies;
-    List<GameObject> allEnemies = new List<GameObject>();
+    public Text skillGaugeText;
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +68,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
                     if (skillGauge < maxSkillGauge && !isUsingSkill)
                     {
                         skillGauge++;
+                        //Debug.Log("SkillGauge = " + skillGauge);
                     }
                 }
                 
@@ -88,6 +92,12 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
             canUseSkill = true;
         }
         //Debug.Log("Skill Gauge = " + skillGauge);
+        UpdateSkillGauge();
+    }
+    private void UpdateSkillGauge()
+    {
+        //Debug.Log(playerObj.GetComponent<JirakitJarusiripipat_PlayerAction>().skillGauge);
+        skillGaugeText.text = skillGauge.ToString();
     }
     private void OnDrawGizmos()
     {

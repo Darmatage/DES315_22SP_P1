@@ -17,7 +17,7 @@ public class JirakitJarusiripipat_Projectile : MonoBehaviour
 	{
 		//transform gets location, but we need Vector2 to get direction, so we can moveTowards.
 		playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
-		target = new Vector2(playerTrans.position.x, playerTrans.position.y);
+		target = new Vector2(playerTrans.position.x, playerTrans.position.y - 0.6f);
 
 		GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
 		if (gameHandlerLocation != null)
@@ -29,12 +29,20 @@ public class JirakitJarusiripipat_Projectile : MonoBehaviour
 	void Update()
 	{
 		transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+		if(JirakitJarusiripipat_PlayerMove.instance.playerAction.isUsingSkill)
+        {
+			speed = 5;
+        }
+		else
+        {
+			speed = 10;
+        }
 	}
 
 	//if bullet hits a collider, play explosion animation, then destroy effect and bullet
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.tag != "monsterShooter")
+		if (other.gameObject.tag != "monsterShooter" && other.gameObject.tag != "lava")
 		{
 			if (other.gameObject.tag == "Player")
 			{

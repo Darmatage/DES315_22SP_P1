@@ -5,7 +5,7 @@ using UnityEngine;
 public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 {
 	public float speed = 4f;
-	private Transform target;
+	public Transform target;
 	public int damage = 1;
 	public int EnemyLives = 3;
 	private Renderer rend;
@@ -18,15 +18,18 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 
 	public float knockbackPower;
 
+	public bool playerInArea = false;
+	public string detectionTag = "Player";
+
 	void Start()
 	{
 		anim = gameObject.GetComponentInChildren<Animator>();
 		rend = GetComponentInChildren<Renderer>();
 
-		if (GameObject.FindGameObjectWithTag("Player") != null)
-		{
-			target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-		}
+		//if (GameObject.FindGameObjectWithTag("Player") != null)
+		//{
+		//	target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+		//}
 		GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
 		if (gameHandlerLocation != null)
 		{
@@ -37,7 +40,7 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 	void Update()
 	{
 		//int playerHealth = GameHandler.PlayerHealth; //access script directly in the case of a static variable 
-		if (target != null)
+		if (target != null && playerInArea)
 		{
 			//if ((attackPlayer == true) && (playerHealth >= 1)){
 			if (attackPlayer == true)
@@ -78,6 +81,16 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 			//Destroy(gameObject);
 		}
 	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.CompareTag(detectionTag))
+		{
+			playerInArea = true;
+			target = collision.gameObject.transform;
+		}
+	}
+	
 
 	IEnumerator GetHit()
 	{

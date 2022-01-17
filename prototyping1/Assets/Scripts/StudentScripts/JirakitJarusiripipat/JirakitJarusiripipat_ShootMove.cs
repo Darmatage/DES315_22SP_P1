@@ -13,7 +13,7 @@ public class JirakitJarusiripipat_ShootMove : MonoBehaviour
 
 	private Animator anim;
 	private Rigidbody2D rb;
-	private Transform player;
+	public Transform player;
 	private Vector2 PlayerVect;
 
 	public int EnemyLives = 30;
@@ -22,6 +22,9 @@ public class JirakitJarusiripipat_ShootMove : MonoBehaviour
 	[SerializeField]
 	private int knockbackPower;
 
+
+	public bool playerInArea = false;
+	public string detectionTag = "Player";
 	void Start()
 	{
 		Physics2D.queriesStartInColliders = false;
@@ -43,7 +46,7 @@ public class JirakitJarusiripipat_ShootMove : MonoBehaviour
 
 	void Update()
 	{
-		if (player != null)
+		if (player != null && playerInArea)
 		{
 
 			// approach player
@@ -98,8 +101,8 @@ public class JirakitJarusiripipat_ShootMove : MonoBehaviour
             StartCoroutine("HitEnemy");
         }
     }
-
-    IEnumerator HitEnemy()
+	
+	IEnumerator HitEnemy()
     {
 		// color values are R, G, B, and alpha, each divided by 100
 		StartCoroutine(JirakitJarusiripipat_PlayerMove.instance.Knockback(knockbackPower, this.gameObject));
