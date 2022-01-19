@@ -5,6 +5,15 @@ using UnityEngine;
 
 public class B21_ProjectileTeleport : MonoBehaviour
 {
+    /*
+     * When using this script the only thing you need to assign is the
+     * "teleportPrefab" which is called B21_TeleportPrefab.
+     *
+     * cooldownDuration when set to 0.0f means there is no cooldown.
+     *
+     * All the values you should care about modifying are exposed onto the
+     * editor for ease of use.
+     */
     [SerializeField] private GameObject teleportObjectPrefab;
     [SerializeField] [Range(1.0f, 10.0f)] private float projectileSpeed = 1.0f;
     [SerializeField] [Range(0.1f, 10.0f)] private float travelDuration = 0.1f;
@@ -14,8 +23,9 @@ public class B21_ProjectileTeleport : MonoBehaviour
     private GameObject playerObject;
     private GameObject projectile;
     
-    [SerializeField] private bool projectileHasBeenShot = false;
-    [SerializeField] private float projectileDistanceCounter = 0.0f;
+    private bool projectileHasBeenShot = false;
+    private float projectileDistanceCounter = 0.0f;
+    private float cooldownTimer = 0.0f;
     
     // Start is called before the first frame update
     void Start()
@@ -42,7 +52,7 @@ public class B21_ProjectileTeleport : MonoBehaviour
         
         if (Input.GetKeyDown(shootKeybind))
         {
-            if (!projectileHasBeenShot && projectile == null)
+            if (!projectileHasBeenShot && projectile == null && cooldownTimer <= 0.0f)
             {
                 projectile = Instantiate(teleportObjectPrefab, playerObject.transform.position,
                     playerObject.transform.rotation);
@@ -65,9 +75,5 @@ public class B21_ProjectileTeleport : MonoBehaviour
             }
         }
         
-    }
-
-    private void OnCollisionEnter(Collision other)
-    {
     }
 }
