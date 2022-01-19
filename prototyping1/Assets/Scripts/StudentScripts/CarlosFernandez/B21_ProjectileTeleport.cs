@@ -13,6 +13,11 @@ public class B21_ProjectileTeleport : MonoBehaviour
      *
      * All the values you should care about modifying are exposed onto the
      * editor for ease of use.
+     *
+     * if the projectile doesnt bounce, for some reason the physics material 2d
+     * doesnt get pushed into git correctly. Change B21_ProjectileBounce Friction to 0
+     * and Bounciness to 1.
+     * 
      */
     [SerializeField] private GameObject teleportObjectPrefab;
     [SerializeField] [Range(1.0f, 10.0f)] private float projectileSpeed = 1.0f;
