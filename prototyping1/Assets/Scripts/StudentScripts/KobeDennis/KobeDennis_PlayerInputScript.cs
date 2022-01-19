@@ -21,7 +21,7 @@ public class KobeDennis_PlayerInputScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var lavaBall = Instantiate(Lavaball_prefab, gameObject.transform.position, Quaternion.identity) as GameObject;
+            var lavaBall = Instantiate(Lavaball_prefab, gameObject.transform.position + lastFireDirection, Quaternion.identity) as GameObject;
             lavaBall.GetComponent<KobeDennis_LavaBallScript>().SetDirection(lastFireDirection);
 
         }
