@@ -29,9 +29,12 @@ public class DestructibleObject : MonoBehaviour
     {
         if (IsColliding)
 		{
+            // Only display the prompt to destroy the object if
+            // the player is facing the object (or was moving 
+            // towards the object with the last player input)
             if (ShouldDisplayDestroyPrompt())
 			{
-                if (Input.GetKey(KeyCode.E))
+                if (Input.GetKey(KeyCode.E)) // "E" destroys the object
 				{
                     if (ContainedObject != null)
                         GameObject.Instantiate(ContainedObject, transform.position, Quaternion.identity);
@@ -48,12 +51,10 @@ public class DestructibleObject : MonoBehaviour
 				}
                 else if (!IsDisplayingPrompt)
 				{
-                    // display the prompt
+                    // The prompt should be displaying
                     UIPromptInstance = Instantiate(PromptObjectUI, transform, false);
-
                     IsDisplayingPrompt = true;
 				}
-
 			}
             else if (IsDisplayingPrompt)
 			{
