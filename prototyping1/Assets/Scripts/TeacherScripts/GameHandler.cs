@@ -78,6 +78,14 @@ public class GameHandler : MonoBehaviour
 		UpdateHealth();
 	}
 
+	public void Heal(int healing){
+		PlayerHealth += healing;
+ 		if (PlayerHealth >= PlayerHealthStart){
+			PlayerHealth = PlayerHealthStart;
+		}
+		UpdateHealth();
+	}
+
 	public void UpdateHealth(){
 		Text healthTextTemp = healthText.GetComponent<Text>();
 		healthTextTemp.text = "HEALTH: " + PlayerHealth;

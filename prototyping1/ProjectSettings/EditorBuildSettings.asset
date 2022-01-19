@@ -158,6 +158,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StudentScenes/DeanteJamesScene.unity
     guid: 101cb138f2a92754d916bca525fd6f76
+  - enabled: 1
+    path: Assets/Scenes/StudentScenes/HemieChoiScene.unity
+    guid: b0db6ababe3d89640b941d417b2a7fab
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
@@ -278,4 +281,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TeacherScenes/StudentSampleScene.unity
     guid: 962101ce4056f1d4ea15ab64cc8bf373
+  - enabled: 1
+    path: Assets/Scenes/StudentScenes/MatthewMikhinScene.unity
+    guid: b8195b67ed220af40a2609d6cda9e889
   m_configObjects: {}
