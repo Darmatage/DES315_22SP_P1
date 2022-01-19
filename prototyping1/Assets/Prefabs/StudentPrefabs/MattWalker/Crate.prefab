@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ContainedObject: {fileID: 0}
-  PromptObjectUI: {fileID: 0}
+  PromptObjectUI: {fileID: 8668018610563058627, guid: 8591d67ea2cc24048a1d3c4bf339d15d,
+    type: 3}
   ExplosionPrefab: {fileID: 4715384974309689237, guid: 2f678479dde80ff44be35d96e9d0c0ae,
     type: 3}
 --- !u!61 &3856461115586835715
