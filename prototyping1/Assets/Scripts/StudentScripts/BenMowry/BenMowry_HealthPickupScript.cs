@@ -15,14 +15,10 @@ public class BenMowry_HealthPickupScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(gameHandler.PlayerHealth < gameHandler.PlayerHealthStart)
+        if(GameHandler.PlayerHealth < gameHandler.PlayerHealthStart)
         {
             Destroy(gameObject);
-
-            if((gameHandler.PlayerHealth + healthAmount) > gameHandler.PlayerHealthStart)
-                gameHandler.PlayerHealth = gameHandler.PlayerHealthStart;
-            else
-                gameHandler.PlayerHealth += healthAmount;
+            gameHandler.Heal(healthAmount);
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class GameHandler : MonoBehaviour
 {
 	public GameObject healthText;
-	public int PlayerHealth = 100;
+	public static int PlayerHealth = 100;
 	public int PlayerHealthStart = 100;
 	private GameObject playerObj;
 	private bool isDead = false;
