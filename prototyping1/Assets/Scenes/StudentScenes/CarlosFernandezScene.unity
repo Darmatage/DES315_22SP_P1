@@ -20590,6 +20590,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   damageTime: 0.5
+--- !u!1 &1946782324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 852736819979555607, guid: f15318afe2a4d8741a715281e186ed04,
+    type: 3}
+  m_PrefabInstance: {fileID: 6853139540415881831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1946782329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1946782324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53152c13186baee4c9a77d51ceb272fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teleportObjectPrefab: {fileID: 6316615293460003396, guid: 3c12e5e387317704291811cabf241239,
+    type: 3}
+  projectileSpeed: 1.45
+  travelDuration: 3.49
+  cooldownDuration: 0
+  shootKeybind: 101
 --- !u!1 &1961287840 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3530746435627036704, guid: 401a933dbd2195744a4fb43f251707d7,
