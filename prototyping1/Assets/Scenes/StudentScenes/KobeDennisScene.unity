@@ -29852,3 +29852,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f15318afe2a4d8741a715281e186ed04, type: 3}
+--- !u!1 &6853139540415881832 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 852736819979555607, guid: f15318afe2a4d8741a715281e186ed04,
+    type: 3}
+  m_PrefabInstance: {fileID: 6853139540415881831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6853139540415881833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853139540415881832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e305dba0f104991459748a579a494e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireDirection: {x: 0, y: 0, z: 0}
+  lastFireDirection: {x: 0, y: 0, z: 0}
+  Lavaball_prefab: {fileID: 2405859245124332049, guid: 84b6c0d8a94eaa14ba59c98db0734c96,
+    type: 3}
