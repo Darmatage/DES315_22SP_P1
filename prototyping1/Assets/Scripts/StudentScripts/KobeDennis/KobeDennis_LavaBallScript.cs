@@ -31,9 +31,45 @@ public class KobeDennis_LavaBallScript : MonoBehaviour
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         Destroy(gameObject, LifeTime);
+        IsThereLavaTileMap();
 
-        lavaTilemap = GameObject.Find("TilemapLava").GetComponent<Tilemap>();
         
+
+    }
+    private void IsThereLavaTileMap()
+    {
+        GameObject o = GameObject.Find("TilemapLava");
+        if (o)
+            lavaTilemap = o.GetComponent<Tilemap>();
+
+        //There wasn't a lava tilemap in scene
+        if (!o)
+        {
+            GameObject obj = new GameObject();
+
+            obj.name = "TilemapLava";
+
+            obj.AddComponent<Tilemap>();
+            obj.AddComponent<TilemapRenderer>();
+            obj.AddComponent<Rigidbody2D>();
+            obj.AddComponent<TilemapCollider2D>();
+            obj.AddComponent<CompositeCollider2D>();
+            obj.AddComponent<Lava>();
+
+            obj.transform.parent = GameObject.Find("Grid").transform;
+            obj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+
+            obj.GetComponent<TilemapRenderer>().sortingOrder = 5;
+            obj.GetComponent<TilemapCollider2D>().usedByComposite = true;
+            obj.GetComponent<CompositeCollider2D>().isTrigger = true;
+            obj.GetComponent<CompositeCollider2D>().geometryType = CompositeCollider2D.GeometryType.Polygons;
+
+            obj.GetComponent<CompositeCollider2D>().generationType = CompositeCollider2D.GenerationType.Synchronous;
+
+
+            lavaTilemap = obj.GetComponent<Tilemap>();
+
+        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
