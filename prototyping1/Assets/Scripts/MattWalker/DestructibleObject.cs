@@ -6,6 +6,7 @@ public class DestructibleObject : MonoBehaviour
 {
     public GameObject ContainedObject;
     public GameObject PromptObjectUI;
+    public GameObject ExplosionPrefab;
 
     private GameObject Player;
     private Transform PlayerTrans;
@@ -33,6 +34,14 @@ public class DestructibleObject : MonoBehaviour
 				{
                     if (ContainedObject != null)
                         GameObject.Instantiate(ContainedObject, transform.position, Quaternion.identity);
+
+                    if (IsDisplayingPrompt)
+                    {
+                        RemovePrompt();
+                    }
+
+                    if (ExplosionPrefab != null)
+                        GameObject.Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
 
                     Destroy(gameObject);
 				}
