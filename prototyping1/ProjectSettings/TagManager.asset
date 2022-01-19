@@ -25,6 +25,7 @@ TagManager:
   - Debuff
   - CrabWalkBoss
   - Walls
+  - BenThompsonBoat
   layers:
   - Default
   - TransparentFX
@@ -38,8 +39,8 @@ TagManager:
   - Lava
   - Player
   - Bullet
-  - 
-  - 
+  - WaterSafe
+  - IgnorePlayer
   - 
   - 
   - 
