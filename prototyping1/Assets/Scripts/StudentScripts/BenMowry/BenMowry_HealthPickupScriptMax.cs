@@ -15,7 +15,10 @@ public class BenMowry_HealthPickupScriptMax : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Destroy(gameObject);
-        gameHandler.Heal(gameHandler.PlayerHealthStart);
+        if (col.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+            gameHandler.Heal(gameHandler.PlayerHealthStart);
+        }
     }
 }
