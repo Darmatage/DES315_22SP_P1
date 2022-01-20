@@ -6,11 +6,15 @@ using UnityEngine;
 public class DeanteJames_TimerLogic : MonoBehaviour
 {
     private Text timerText;
+    private List<GameObject> allEnemiesInScene;
 
+    public Color startColor = Color.green;
+    public Color endColor = Color.red;
     // Start is called before the first frame update
     void Start()
     {
         timerText = gameObject.GetComponent<Text>();
+        timerText.color = startColor;
     }
 
     // Update is called once per frame
@@ -36,5 +40,6 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
 
         timerText.text = minutes + ":" + seconds + ":" + milliSeconds;
+        timerText.color = Color.Lerp(timerText.color, endColor, 0.05f * Time.deltaTime);
     }
 }
