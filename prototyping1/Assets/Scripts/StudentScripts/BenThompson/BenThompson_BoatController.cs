@@ -31,6 +31,11 @@ public class BenThompson_BoatController : MonoBehaviour
     [SerializeField]
     float minThrust = 25.0f;
 
+    // Is the player in the boat at this momement?
+    private bool playerInBoat = false;
+
+    private Quaternion playerRotationBeforeBoat = new Quaternion();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,13 +45,15 @@ public class BenThompson_BoatController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Rotate the boat if necessary
-        CheckRotate();
+        // If the player is in the boat
+        if(playerInBoat)
+        {
+            // Rotate the boat if necessary
+            CheckRotate();
 
-        // Move the boat forward
-        CheckDrive();
-
-        DebugBoatRide();
+            // Move the boat forward
+            CheckDrive();
+        }
     }
 
     private void CheckRotate()
@@ -125,35 +132,57 @@ public class BenThompson_BoatController : MonoBehaviour
         }
     }
 
-    private void DebugBoatRide()
+    public void EnterBoat()
     {
-        // If the user presses Ctrl + P
-        if(Input.GetKey(KeyCode.LeftControl) && Input.GetKey(KeyCode.Period))
-        {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if(player)
-            {
-                BoxCollider2D collider = player.GetComponent<BoxCollider2D>();
-                if(collider)
-                {
-                    collider.enabled = false;
-                }
+       GameObject player = GameObject.FindGameObjectWithTag("Player");
+       if(player)
+       {
+           // Get the player's original rotation
+           playerRotationBeforeBoat = player.transform.rotation;
 
-                player.transform.parent = transform;
-                player.transform.position = transform.position;
+           CircleCollider2D collider = player.GetComponent<CircleCollider2D>();
+           if(collider)
+           {
+               collider.enabled = false;
+           }
 
-                PlayerMove pm = player.GetComponent<PlayerMove>();
-                if(pm)
-                {
-                    pm.enabled = false;
-                }
+           player.transform.parent = transform;
+           player.transform.position = transform.position;
 
-                Rigidbody2D playerRigid = player.GetComponent<Rigidbody2D>();
-                if(playerRigid)
-                {
-                    fixedJointPlayer.connectedBody = playerRigid;
-                }
-            }
-        }
+           PlayerMove pm = player.GetComponent<PlayerMove>();
+           if(pm)
+           {
+               pm.enabled = false;
+           }
+
+           Rigidbody2D playerRigid = player.GetComponent<Rigidbody2D>();
+           if(playerRigid)
+           {
+               fixedJointPlayer.connectedBody = playerRigid;
+           }
+
+           Transform playerArt = player.transform.Find("Player_art");
+           if(playerArt)
+           {
+               SpriteRenderer sp = playerArt.gameObject.GetComponent<SpriteRenderer>();
+               if(sp)
+               {
+                   sp.enabled = false;
+               }
+           }
+
+           // Player is now in the boat
+           playerInBoat = true;
+       }
+    }
+
+    public void SetPlayerInBoat(bool value)
+    {
+        playerInBoat = value;
+    }
+
+    public Quaternion GetPlayerRotationBeforeEnteringBoat()
+    {
+        return playerRotationBeforeBoat;
     }
 }
