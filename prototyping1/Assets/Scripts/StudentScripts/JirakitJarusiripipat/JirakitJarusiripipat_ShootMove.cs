@@ -5,6 +5,7 @@ using UnityEngine;
 public class JirakitJarusiripipat_ShootMove : MonoBehaviour
 {
 	public float speed = 2f;
+	public float defalutSpeed = 2f;
 	public float stoppingDistance = 4f; // when enemy stops moving towards player
 	public float retreatDistance = 3f; // when enemy moves away from approaching player
 	private float timeBtwShots;
@@ -83,6 +84,14 @@ public class JirakitJarusiripipat_ShootMove : MonoBehaviour
 			{
 				timeBtwShots -= Time.deltaTime;
 			}
+			if(player.GetComponent<JirakitJarusiripipat_PlayerAction>().isUsingSkill)
+            {
+				speed = 1;
+            }
+			else
+            {
+				speed = defalutSpeed;
+            }
 		}
 	}
 

@@ -100,6 +100,7 @@ MonoBehaviour:
   startTimeBtwShots: 4
   projectile: {fileID: 2897097587681159296, guid: d019e43e5285d3741921e202d6cba632,
     type: 3}
+  player: {fileID: 0}
   EnemyLives: 1
   knockbackPower: 800
   playerInArea: 0

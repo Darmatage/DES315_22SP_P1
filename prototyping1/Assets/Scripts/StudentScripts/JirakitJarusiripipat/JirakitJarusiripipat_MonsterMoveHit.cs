@@ -5,6 +5,7 @@ using UnityEngine;
 public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 {
 	public float speed = 4f;
+	public float defaultSpeed = 4f;
 	public Transform target;
 	public int damage = 1;
 	public int EnemyLives = 3;
@@ -51,7 +52,16 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 			{
 				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * -1 * Time.deltaTime);
 			}
+			if (target.gameObject.GetComponent<JirakitJarusiripipat_PlayerAction>().isUsingSkill)
+            {
+				speed = 1;
+            }
+			else
+            {
+				speed = defaultSpeed;
+            }
 		}
+		
 	}
 
 	void FixedUpdate()
