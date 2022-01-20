@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class TimerLogic : MonoBehaviour
+public class DeanteJames_TimerLogic : MonoBehaviour
 {
-    public Text timerText;
-    private float startTime;
+    private Text timerText;
+
     // Start is called before the first frame update
     void Start()
     {
-        startTime = Time.time;
+        timerText = gameObject.GetComponent<Text>();
     }
 
     // Update is called once per frame
