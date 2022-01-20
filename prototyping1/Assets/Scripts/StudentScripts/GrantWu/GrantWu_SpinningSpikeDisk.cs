@@ -25,5 +25,7 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
             transform.position = new Vector3(transform.position.x, y_center + -(Mathf.PingPong(Time.time * speed, y_dist) - y_dist / 2f), transform.position.z);
         else
             transform.position = new Vector3(transform.position.x, y_center + Mathf.PingPong(Time.time * speed, y_dist) - y_dist / 2f, transform.position.z);
+
+        transform.Rotate(new Vector3(0, 0, 10000) * Time.deltaTime);
     }
 }
