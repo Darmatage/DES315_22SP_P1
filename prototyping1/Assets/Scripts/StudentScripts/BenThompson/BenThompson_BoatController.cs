@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BenThompson_BoatController : MonoBehaviour
 {
+    public GameObject boatSprite;
+    public GameObject playerSprite;
+
     // How much the angle should change when rotating the boat
     [SerializeField]
     float rotationChange = 0.35f;
@@ -39,7 +42,7 @@ public class BenThompson_BoatController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerSprite.SetActive(false);
     }
 
     // Update is called once per frame
@@ -173,6 +176,8 @@ public class BenThompson_BoatController : MonoBehaviour
 
            // Player is now in the boat
            playerInBoat = true;
+
+           playerSprite.SetActive(true);
        }
     }
 
@@ -184,5 +189,15 @@ public class BenThompson_BoatController : MonoBehaviour
     public Quaternion GetPlayerRotationBeforeEnteringBoat()
     {
         return playerRotationBeforeBoat;
+    }
+
+    //public GameObject GetPlayer()
+    //{
+    //    return player;
+    //}
+
+    public void HidePlayer()
+    {
+        playerSprite.SetActive(false);
     }
 }
