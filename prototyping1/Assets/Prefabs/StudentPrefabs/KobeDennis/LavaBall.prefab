@@ -84,9 +84,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  LifeTime: 5
+  LifeTime: 3
   lavaTile: {fileID: 11400000, guid: 54047f8100659b646baba20e1699ea29, type: 2}
-  map: {fileID: 0}
 --- !u!1 &2405859245569233940
 GameObject:
   m_ObjectHideFlags: 0

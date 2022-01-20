@@ -11,17 +11,19 @@ public class KobeDennis_PlayerInputScript : MonoBehaviour
     private Vector3 lastFireDirection;
 
     public GameObject Lavaball_prefab;
+    private Transform playerTransform;
     // Start is called before the first frame update
     void Start()
     {
         fireDirection = Vector3.zero;
+        playerTransform = GameObject.FindWithTag("Player").transform;
 
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var lavaBall = Instantiate(Lavaball_prefab, gameObject.transform.position + lastFireDirection, Quaternion.identity) as GameObject;
+            var lavaBall = Instantiate(Lavaball_prefab, playerTransform.position + lastFireDirection, Quaternion.identity) as GameObject;
             lavaBall.GetComponent<KobeDennis_LavaBallScript>().SetDirection(lastFireDirection);
 
         }

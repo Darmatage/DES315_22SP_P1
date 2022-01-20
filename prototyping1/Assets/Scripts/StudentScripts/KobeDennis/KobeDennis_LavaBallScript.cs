@@ -73,12 +73,19 @@ public class KobeDennis_LavaBallScript : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        //If it collide with an enenmy or another lava ball destory itself
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy") || collision.gameObject.CompareTag("bullet"))
         {
-            //StartCoroutine(collision.collider.gameObject.GetComponent<MonsterMoveHit>().GetHit);
 
             Destroy(gameObject);
         }
-        
+        //For now destory this object if it collide with anything
+        if (!collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+
+        }
+
+
     }
 }
