@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.04, y: 0.115}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -71,10 +71,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6fd9c57ab4beb4aa5c2349b99eb188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointA: {x: 0, y: 0, z: 0}
-  pointB: {x: 0, y: 0, z: 0}
+  y_dist: 0
+  x_dist: 0
+  y_center: 0
+  x_center: 0
   speed: 0
   reverse_speed: 0
+  damage: 1
 --- !u!1 &6528443641007065563
 GameObject:
   m_ObjectHideFlags: 0
