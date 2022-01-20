@@ -142,7 +142,7 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
         // Gotta lerp this real quick
         for (; i < timeLerped; i += shootSpeed * Time.deltaTime)
         {
-            newPos = Vector2.Lerp(transform.position, target, i / timeLerped);
+            newPos = Vector2.Lerp(transform.position, targetObj.transform.position, i / timeLerped);
 
             line.SetPosition(0, transform.position);
             line.SetPosition(1, newPos);
