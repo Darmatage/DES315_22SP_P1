@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5340632940280364478}
   - component: {fileID: 6402252391694699014}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PickupJewel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,10 +101,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
