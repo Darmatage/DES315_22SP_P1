@@ -57,7 +57,7 @@ public class B21_ProjectileTeleport : MonoBehaviour
                 }
             }
         }
-        
+
         if (Input.GetKeyDown(cancelShootKeybind))
         {
             if(projectile)
@@ -76,7 +76,7 @@ public class B21_ProjectileTeleport : MonoBehaviour
                     shootDirection = Input.mousePosition;
                     shootDirection.z = 0.0f;
                     shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
-                    shootDirection = shootDirection - playerObject.transform.position;
+                    shootDirection = shootDirection - projectile.transform.position;
 
                     projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(shootDirection.x * projectileSpeed,
                         shootDirection.y * projectileSpeed);
@@ -88,20 +88,18 @@ public class B21_ProjectileTeleport : MonoBehaviour
                 Destroy(projectile);
             }
         }
-
-
-        lastVelocity = gameObject.GetComponent<Rigidbody2D>().velocity;
         
     }
+    
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (!other.gameObject.CompareTag("Player") && other.gameObject.layer != LayerMask.NameToLayer("Enemy"))
-        {
-            Vector2 reflectedPosition = Vector2.Reflect(lastVelocity, other.contacts[0].normal);
-            Vector2 newVelocity = reflectedPosition.normalized * projectileSpeed;
-            GetComponent<Rigidbody2D>().velocity = newVelocity;
-
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D other)
+    //{
+    //    if (!other.gameObject.CompareTag("Player") && other.gameObject.layer != LayerMask.NameToLayer("Enemy"))
+    //    {
+    //        Vector2 reflectedPosition = Vector2.Reflect(gameObject.GetComponent<Rigidbody2D>().velocity.normalized, other.contacts[0].normal);
+    //        GetComponent<Rigidbody2D>().velocity = new Vector2(reflectedPosition.x * projectileSpeed,
+    //            reflectedPosition.y * projectileSpeed);
+    //
+    //    }
+    //}
 }
