@@ -25,6 +25,10 @@ public class DanielNunes_Crate : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().sprite = shatter;
             GetComponent<BoxCollider2D>().enabled = false;
+
+            //reset all cannon contacts briefly (in the event a crate was shot right next to us)
+            DanielNunes_Cannon cannonThatShotTheBallAtMe = collision.gameObject.transform.parent.GetComponent<DanielNunes_Cannon>();
+            cannonThatShotTheBallAtMe.ResetContacts();
         }
     }
 }
