@@ -27,6 +27,9 @@ TagManager:
   - Walls
   - Grappleable
   - Pullable
+  - DN_Cannonball
+  - BenThompsonBoat
+  - Bucket
   layers:
   - Default
   - TransparentFX
@@ -40,15 +43,15 @@ TagManager:
   - Lava
   - Player
   - Bullet
-  - 
-  - 
+  - WaterSafe
+  - IgnorePlayer
   - 
   - 
   - 
   - BorderLayer_CEGP
   - BlockLayer_CEGP
   - FogOfWarMain
-  - ForOfWarSecondary
+  - FogOfWarSecondary
   - 
   - 
   - 
