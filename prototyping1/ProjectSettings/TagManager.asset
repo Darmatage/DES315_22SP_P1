@@ -25,6 +25,8 @@ TagManager:
   - Debuff
   - CrabWalkBoss
   - Walls
+  - Grappleable
+  - Pullable
   layers:
   - Default
   - TransparentFX
