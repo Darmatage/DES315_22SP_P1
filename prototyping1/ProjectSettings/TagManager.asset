@@ -25,6 +25,7 @@ TagManager:
   - Debuff
   - CrabWalkBoss
   - Walls
+  - Bucket
   layers:
   - Default
   - TransparentFX
