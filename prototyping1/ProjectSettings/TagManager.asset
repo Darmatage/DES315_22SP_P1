@@ -26,6 +26,7 @@ TagManager:
   - CrabWalkBoss
   - Walls
   - DN_Cannonball
+  - BenThompsonBoat
   layers:
   - Default
   - TransparentFX
@@ -39,8 +40,8 @@ TagManager:
   - Lava
   - Player
   - Bullet
-  - 
-  - 
+  - WaterSafe
+  - IgnorePlayer
   - 
   - 
   - 
