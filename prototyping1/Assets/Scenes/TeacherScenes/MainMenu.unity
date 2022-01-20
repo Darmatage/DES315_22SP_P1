@@ -890,6 +890,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonB24
       objectReference: {fileID: 0}
+    - target: {fileID: 1062738705829005531, guid: 621c5c3e8e4395c4f9884bbef1d94422,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4470194261508753837, guid: 621c5c3e8e4395c4f9884bbef1d94422,
         type: 3}
       propertyPath: m_Text
