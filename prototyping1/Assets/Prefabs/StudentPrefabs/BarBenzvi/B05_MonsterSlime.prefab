@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4638059096841816839}
   - component: {fileID: 2899359058929925134}
   m_Layer: 6
-  m_Name: B05i_MonsterSlime
+  m_Name: B05_MonsterSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
