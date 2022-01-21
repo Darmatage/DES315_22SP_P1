@@ -2,6 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    Hey, you! You're finally awake. You were trying to cross the border, right?
+ 
+    Using my script is pretty easy.
+        - Give a RigidBody2D to the grabbable object (don't forget about friction either).
+        - Add 'GRAB_' to the start of the object name.
+ */
+
 public class JakobShumway_grabObject : MonoBehaviour
 {
     public enum direction
@@ -14,9 +22,12 @@ public class JakobShumway_grabObject : MonoBehaviour
 
     public KeyCode grabButton;
 
+    public float throwIntensity = 15;
+
     [HideInInspector]
     public bool holding = false;
 
+    [HideInInspector]
     public direction playerDirection = direction.right;
 
     [HideInInspector]
@@ -71,29 +82,39 @@ public class JakobShumway_grabObject : MonoBehaviour
         {
             if (holding)
             {
-                int throwX = 0;
-                int throwY = 0;
+                float throwX = 0;
+                float throwY = 0;
 
                 // check if moving or not
                 if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
                 {
-                    throwY = 15;
+                    throwY = throwIntensity;
                 }
                 else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
                 {
-                    throwY = -15;
+                    throwY = -throwIntensity;
                 }
 
                 if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
                 {
-                    throwX = -15;
+                    throwX = -throwIntensity;
                 }
                 else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
                 {
-                    throwX = 15;
+                    throwX = throwIntensity;
+                }
+
+                if (throwX != 0 && throwY != 0)
+                {
+                    throwX /= 2;
+                    throwY /= 2;
                 }
 
                 grabbedObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(throwX, throwY), ForceMode2D.Impulse);
+
+                throwX /= 2;
+                throwY /= 2;
+                playerTrans.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-throwX, -throwY), ForceMode2D.Impulse);
 
                 // Set object down
                 grabbedObject = null;
