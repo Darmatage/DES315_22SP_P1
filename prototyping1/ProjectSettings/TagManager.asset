@@ -30,6 +30,7 @@ TagManager:
   - DN_Cannonball
   - BenThompsonBoat
   - Bucket
+  - JasonHuntBreakable
   layers:
   - Default
   - TransparentFX
@@ -53,7 +54,7 @@ TagManager:
   - FogOfWarMain
   - FogOfWarSecondary
   - 
-  - 
+  - GrateOpen
   - 
   - 
   - 

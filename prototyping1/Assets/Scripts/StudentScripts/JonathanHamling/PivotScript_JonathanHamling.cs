@@ -23,11 +23,26 @@ public class PivotScript_JonathanHamling : MonoBehaviour
         {
             if (PlayerPosition.transform.eulerAngles.y == 0)
             {
-                transform.localRotation = Quaternion.Euler(180, 0, -rotationZ);
+                //transform.localRotation = Quaternion.Euler(180, 0, -rotationZ);
+                this.GetComponentInChildren<SpriteRenderer>().flipY = true;
             }
             else if (PlayerPosition.transform.eulerAngles.y == 180)
             {
-                transform.localRotation = Quaternion.Euler(180, 180, -rotationZ);
+                //transform.localRotation = Quaternion.Euler(180, 180, -rotationZ);
+                this.GetComponentInChildren<SpriteRenderer>().flipY = true;
+            }
+        }
+        else if (rotationZ > -90 || rotationZ < 90)
+        {
+            if (PlayerPosition.transform.eulerAngles.y == 0)
+            {
+                //transform.localRotation = Quaternion.Euler(180, 0, -rotationZ);
+                this.GetComponentInChildren<SpriteRenderer>().flipY = false;
+            }
+            else if (PlayerPosition.transform.eulerAngles.y == 180)
+            {
+                //transform.localRotation = Quaternion.Euler(180, 180, -rotationZ);
+                this.GetComponentInChildren<SpriteRenderer>().flipY = false;
             }
         }
     }
