@@ -25,6 +25,8 @@ TagManager:
   - Debuff
   - CrabWalkBoss
   - Walls
+  - Grappleable
+  - Pullable
   - DN_Cannonball
   - BenThompsonBoat
   - Bucket

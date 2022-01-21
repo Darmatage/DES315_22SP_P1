@@ -65,6 +65,14 @@ public class BenThompson_DockingBehavior : MonoBehaviour
                 {
                     // Set the status of the in boat flag to false because the player is no longer in the boat
                     boatController.SetPlayerInBoat(false);
+
+                    //GameObject controllerPlayer = boatController.GetPlayer();
+                    //if(controllerPlayer)
+                    //{
+                    //    controllerPlayer.SetActive(false);
+                    //}
+
+                    boatController.GetComponent<BenThompson_BoatController>().HidePlayer();
                 }
 
                 // Unparent the player
