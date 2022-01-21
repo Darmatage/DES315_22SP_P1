@@ -101,18 +101,20 @@ public class ExplosiveBarrel : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.GetType() == typeof(BoxCollider2D))
-        {
-            TakeDamage(1);
-        }
-        else if (collision.collider.GetType() == typeof(CircleCollider2D))
-        {
-            // Deal Damage
-            if (collision.otherCollider.tag == "Player")
-            {
-                m_handler.TakeDamage(m_stats.m_damage);
-            }
-        }
+        
+        TakeDamage(1);
+
+        //if (collision.collider.GetType().ToString() == "BoxCollider2D")
+        //{
+        //}
+        //else if (collision.collider.GetType() == typeof(CircleCollider2D))
+        //{
+        //    // Deal Damage
+        //    if (collision.otherCollider.tag == "Player")
+        //    {
+        //        m_handler.TakeDamage(m_stats.m_damage);
+        //    }
+        //}
     }
 
 
@@ -144,6 +146,7 @@ public class ExplosiveBarrel : MonoBehaviour
         m_exlosivetrigger.enabled = true;
         m_rb.mass = 100f; // Set mass so it wont move lmao
         m_rb.drag = 100f;
+        m_rb.constraints = RigidbodyConstraints2D.FreezePosition;
         Invoke("DestroySelf", .1f);
 
         //var hit = Physics2D.CircleCastAll(transform.position, m_stats.m_explosiveRadius, dir, 0, m_damageMask, Mathf.NegativeInfinity, Mathf.Infinity);
