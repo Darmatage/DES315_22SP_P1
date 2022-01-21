@@ -8957,6 +8957,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3868697310306763520, guid: d7736b4914ea50443bfc25468f6a9f97,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3825126630261024793, guid: d7736b4914ea50443bfc25468f6a9f97,
         type: 3}
       propertyPath: m_RootOrder
@@ -9021,6 +9026,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ColoredCircle (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825126630261024805, guid: d7736b4914ea50443bfc25468f6a9f97,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7736b4914ea50443bfc25468f6a9f97, type: 3}
@@ -9212,6 +9222,11 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultCooldown
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932705004059494151, guid: 4d2d957fcba00bd4d89fe77514f03579,
+        type: 3}
+      propertyPath: defaultRevealTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2932705004059494151, guid: 4d2d957fcba00bd4d89fe77514f03579,
         type: 3}
@@ -11034,7 +11049,7 @@ PrefabInstance:
     - target: {fileID: 5068055484113892002, guid: 1b99b23316a9cc0478ea67da14d36152,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.92
+      value: 10.96
       objectReference: {fileID: 0}
     - target: {fileID: 5068055484113892002, guid: 1b99b23316a9cc0478ea67da14d36152,
         type: 3}
@@ -11551,12 +11566,12 @@ PrefabInstance:
     - target: {fileID: 3825126630261024793, guid: d7736b4914ea50443bfc25468f6a9f97,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.32
+      value: 11.13
       objectReference: {fileID: 0}
     - target: {fileID: 3825126630261024793, guid: d7736b4914ea50443bfc25468f6a9f97,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.07
+      value: -5.94
       objectReference: {fileID: 0}
     - target: {fileID: 3825126630261024793, guid: d7736b4914ea50443bfc25468f6a9f97,
         type: 3}
@@ -12061,6 +12076,11 @@ PrefabInstance:
       propertyPath: NextScene
       value: TeacherSampleScene
       objectReference: {fileID: 0}
+    - target: {fileID: 6551937145445057747, guid: 401a933dbd2195744a4fb43f251707d7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 401a933dbd2195744a4fb43f251707d7, type: 3}
 --- !u!1001 &2932705003507471626
@@ -12236,6 +12256,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ColoredCircle
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825126630261024805, guid: d7736b4914ea50443bfc25468f6a9f97,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7736b4914ea50443bfc25468f6a9f97, type: 3}

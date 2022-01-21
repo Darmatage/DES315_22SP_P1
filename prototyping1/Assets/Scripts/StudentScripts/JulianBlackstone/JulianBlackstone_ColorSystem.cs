@@ -14,7 +14,7 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
     {
         if (hideOnActivation == false)
         {
-           // GetComponent<Collider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
         }
     }
@@ -39,6 +39,7 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
         {
             internalTimer = 0.0f;
             //GetComponent<Collider2D>().enabled = !(GetComponent<Collider2D>().enabled); // change this later
+            GetComponent<BoxCollider2D>().enabled = !(GetComponent<Collider2D>().enabled);
             GetComponent<SpriteRenderer>().enabled = !(GetComponent<SpriteRenderer>().enabled);
 
         }
@@ -49,7 +50,7 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
     private void Reveal(float xSeconds)
     {
         internalTimer = xSeconds;
-        //GetComponent<Collider2D>().enabled = true; 
+        GetComponent<BoxCollider2D>().enabled = true; 
         GetComponent<SpriteRenderer>().enabled = true;
     }
 
@@ -57,12 +58,8 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
     public void Hide(float xSeconds)
     {
         internalTimer = xSeconds;
-        //GetComponent<Collider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-    }
 }
