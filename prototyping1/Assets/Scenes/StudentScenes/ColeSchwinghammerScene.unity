@@ -17754,7 +17754,7 @@ GameObject:
   - component: {fileID: 915919628}
   - component: {fileID: 915919627}
   - component: {fileID: 915919626}
-  m_Layer: 12
+  m_Layer: 31
   m_Name: TilemapWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19317,7 +19317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HookShot_Wall:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 2147487744
   hookshot_speed: 20
   hookshot_launch_speed: 10
   hookshot_distance: 20
