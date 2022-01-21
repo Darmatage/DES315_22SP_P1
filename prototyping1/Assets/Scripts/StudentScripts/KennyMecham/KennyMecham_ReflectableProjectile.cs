@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class KennyMecham_ReflectableProjectile : MonoBehaviour
 {
-    private GameObject m_parent;
-    private GameObject m_target;
-    private GameHandler m_gameHandler;
+    private GameObject m_parent = null;
+    private GameObject m_target = null;
+    private Vector3 m_target_direction;
+    private GameHandler m_gameHandler = null;
     private float lifeTimer;
-    [SerializeField] private GameObject hitAnimation;
+    [SerializeField] private GameObject hit_animation;
     [SerializeField] private float speed;
     [SerializeField] private float lifetime;
     [SerializeField] private int damage;
     // Start is called before the first frame update
     void Start()
     {
-        m_parent = gameObject.gameObject;
+        if(m_parent is null)
+        {
+            m_parent = gameObject.gameObject;
+        }
+
         GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
         if (gameHandlerLocation != null)
         {
@@ -26,7 +31,10 @@ public class KennyMecham_ReflectableProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, m_target.transform.position, speed * Time.deltaTime);
+        if(!(m_target is null))
+        {
+            transform.position = transform.position + m_target_direction * speed * Time.deltaTime;
+        }
     }
 
     public void FireProjectile(GameObject target, GameObject parent)
@@ -34,8 +42,9 @@ public class KennyMecham_ReflectableProjectile : MonoBehaviour
         lifeTimer = lifetime;
         m_parent = parent;
         m_target = target;
+        m_target_direction = (target.transform.position - transform.position).normalized;
     }
-
+    
     public void ReflectTowardsParent(GameObject newParent)
     {
         FireProjectile(m_parent, newParent);
@@ -57,10 +66,14 @@ public class KennyMecham_ReflectableProjectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         KennyMecham_Teams teams = other.gameObject.GetComponent<KennyMecham_Teams>();
-        if (teams is null || !teams.DoTeamsOverlap(m_parent.GetComponent<KennyMecham_Teams>()))
+        if (!(teams is null) && !teams.DoTeamsOverlap(m_parent.GetComponent<KennyMecham_Teams>()))
         {
-            m_gameHandler.TakeDamage(damage);
-            GameObject animEffect = Instantiate(hitAnimation, transform.position, Quaternion.identity);
+            if(other.gameObject == m_target)
+            {
+                m_gameHandler.TakeDamage(damage);
+            }
+
+            GameObject animEffect = Instantiate(hit_animation, transform.position, Quaternion.identity);
             Destroy(animEffect, 0.5f);
             Destroy(gameObject);
         }
