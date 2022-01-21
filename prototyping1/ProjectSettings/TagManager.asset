@@ -25,6 +25,15 @@ TagManager:
   - Debuff
   - CrabWalkBoss
   - Walls
+  - Grappleable
+  - Pullable
+  - DN_Cannonball
+  - BenThompsonBoat
+  - Bucket
+  - JasonHuntBreakable
+  - Spikes
+  - Weapons
+  - JulianBlackstone_Totem
   layers:
   - Default
   - TransparentFX
@@ -32,19 +41,23 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - PickUp
   - Bridge
   - Lava
   - Player
   - Bullet
-  - 
-  - 
-  - 
+  - WaterSafe
+  - IgnorePlayer
+  - IgnorePlayerAndEnemy
   - 
   - 
   - BorderLayer_CEGP
   - BlockLayer_CEGP
+  - FogOfWarMain
+  - FogOfWarSecondary
+  - 
+  - GrateOpen
   - 
   - 
   - 
@@ -53,14 +66,13 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - HookShot_Wall
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: FogOfWar
+    uniqueID: 3427076239
     locked: 0
   - name: UI
     uniqueID: 1382494675
