@@ -63,6 +63,6 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Hi");
+
     }
 }
