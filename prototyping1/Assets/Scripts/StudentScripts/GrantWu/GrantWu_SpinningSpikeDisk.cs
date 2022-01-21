@@ -13,7 +13,7 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
     public int damage = 1;     // player damage of disk 
     public bool y_dir;
     public bool x_dir;
-
+    public bool switch_diagonal_dir;
 
     private GameHandler gameHandlerObj; // player takes damage
 
@@ -33,7 +33,24 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
         // Mathf.PingPong returns an incrementing and decrementing value between 0 and length (distance here).
         // Center position is used and offsetted by PingPong's return value
         // Subtract half the length so that it moves +/- length/2 e.g. length = 7 -> moves 3.5 units up and 3.5 down
-        if (y_dir)
+        if (x_dir && y_dir)
+        {
+            if (switch_diagonal_dir)
+            {
+                if (reverse_speed)
+                    transform.position = new Vector3(x_center + (Mathf.PingPong(Time.time * speed, x_dist) - x_dist / 2f), y_center + -(Mathf.PingPong(Time.time * speed, y_dist) - y_dist / 2f), transform.position.z);
+                else
+                    transform.position = new Vector3(x_center + -(Mathf.PingPong(Time.time * speed, x_dist) - x_dist / 2f), y_center + Mathf.PingPong(Time.time * speed, y_dist) - y_dist / 2f, transform.position.z);
+            }
+            else
+            {
+                if (reverse_speed)
+                    transform.position = new Vector3(x_center + -(Mathf.PingPong(Time.time * speed, x_dist) - x_dist / 2f), y_center + -(Mathf.PingPong(Time.time * speed, y_dist) - y_dist / 2f), transform.position.z);
+                else
+                    transform.position = new Vector3(x_center + (Mathf.PingPong(Time.time * speed, x_dist) - x_dist / 2f), y_center + Mathf.PingPong(Time.time * speed, y_dist) - y_dist / 2f, transform.position.z);
+            }
+        }
+        else if (y_dir)
         {
             if (reverse_speed)
                 transform.position = new Vector3(transform.position.x, y_center + -(Mathf.PingPong(Time.time * speed, y_dist) - y_dist / 2f), transform.position.z);
