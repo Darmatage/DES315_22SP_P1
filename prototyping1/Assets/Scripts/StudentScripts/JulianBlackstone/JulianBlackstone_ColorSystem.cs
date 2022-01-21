@@ -4,15 +4,65 @@ using UnityEngine;
 
 public class JulianBlackstone_ColorSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public string colorTag = "Red";
+    public bool hideOnActivation = false;
+
+    private float internalTimer = 0.0f;
+
+
+    private void Start()
     {
-        
+        if (hideOnActivation == false)
+        {
+           // GetComponent<Collider2D>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ActivateColorEffect(float xSeconds)
     {
-        
+        // <- we add a second to the timer to detect finished state inversion more easily
+        xSeconds += 1.0f;
+        if (hideOnActivation) Hide(xSeconds);
+        if (!hideOnActivation) Reveal(xSeconds);
+    }
+
+    private void FixedUpdate()
+    {
+        if (internalTimer >= 1.0f)
+        {
+            internalTimer -= Time.deltaTime;
+            return;
+        }
+
+        if ((internalTimer > 0.0f) && (internalTimer < 1.0f))
+        {
+            internalTimer = 0.0f;
+            //GetComponent<Collider2D>().enabled = !(GetComponent<Collider2D>().enabled); // change this later
+            GetComponent<SpriteRenderer>().enabled = !(GetComponent<SpriteRenderer>().enabled);
+
+        }
+
+
+    }
+
+    private void Reveal(float xSeconds)
+    {
+        internalTimer = xSeconds;
+        //GetComponent<Collider2D>().enabled = true; 
+        GetComponent<SpriteRenderer>().enabled = true;
+    }
+
+
+    public void Hide(float xSeconds)
+    {
+        internalTimer = xSeconds;
+        //GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Hi");
     }
 }

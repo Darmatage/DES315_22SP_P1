@@ -51,9 +51,13 @@ public class JulianBlackstone_ColorWaveScript : MonoBehaviour
 
         if (colorSys == null) return;
 
-
-
-
+        if (colorSys.colorTag == colorTag)
+        {
+            colorSys.ActivateColorEffect(objectRevealTime);
+        }
+        
 
     }
+
+   
 }
