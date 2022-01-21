@@ -12,6 +12,8 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
     private Rigidbody2D playerRigidbody;
     private Transform playerTransform;
     private float playerMaxSpeed;
+    private float playerMaxYScale;
+    private Vector3 change;
 
     //Quicksand variables.
     public float slowDownFactor = .5f; 
@@ -41,9 +43,11 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             playerRigidbody = player.GetComponent<Rigidbody2D>();
             playerTransform = player.GetComponent<Transform>();
             playerMaxSpeed = player.GetComponent<PlayerMove>().speed;
+            playerMaxYScale = playerTransform.localScale.y;
         }
     }
 
+    //Trigger event start
     void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("LilyanMonrroy_Quicksand Log: Trigger start!");
@@ -51,7 +55,11 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             inQuicksand = true;
-            //oldPlayerPos = new Vector3(playerTransform.localPosition.x, playerTransform.localPosition.y, playerTransform.localPosition.z);
+
+            //Get move direction that player was first going to.
+            change = Vector3.zero;
+            change.x = Input.GetAxisRaw("Horizontal");
+            change.y = Input.GetAxisRaw("Vertical");
         }
         else
         {
@@ -60,15 +68,20 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
         }
     }
 
+    //Trigger event exit
     void OnTriggerExit2D(Collider2D other)
     {
         inQuicksand = false;
 
         //Give player back normal movement speed before entering quicksand.
-        player.GetComponent<PlayerMove>().speed = playerMaxSpeed; 
+        player.GetComponent<PlayerMove>().speed = playerMaxSpeed;
+        playerTransform.localScale = new Vector3(playerTransform.localScale.x, playerMaxYScale, playerTransform.localScale.z);
         Debug.Log("LilyanMonrroy_Quicksand Log: Trigger end!");
+
+
     }
 
+    //Update loop
     void FixedUpdate()
     {
         if (inQuicksand)
@@ -81,15 +94,18 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
                 player.GetComponent<PlayerMove>().speed = 0.0f;
             }
 
+            //If there is any input, scale the player down and do damage.
             if (Input.anyKey)
             {
                 gameHandlerObj.TakeDamage(damage);
+                float newScale = Mathf.Lerp(0, playerTransform.localScale.y, .95f);
+                playerTransform.localScale = new Vector3(playerTransform.localScale.x, newScale, playerTransform.localScale.z);
             }
-
-            // if buttons are down
-            // then sink and decrease players health.
-            //else 
-            //move player
+            else
+            {
+                //not moving then move the player out of the sand.
+                playerRigidbody.MovePosition(playerTransform.position + change *moveSpeed * Time.deltaTime);
+            }
         }
     }
 }
