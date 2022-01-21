@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 3627973008209755129}
   - component: {fileID: 347643308722511402}
   m_Layer: 0
-  m_Name: IceBlock
+  m_Name: ErinScribner_IceBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
