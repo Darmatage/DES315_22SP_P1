@@ -37,7 +37,7 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isGrappled)
+        if (Input.GetButtonDown("Fire1") && !isGrappled)
         {
             Grapple();
         }
@@ -74,12 +74,16 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
 
             line.SetPosition(1, targetObj.transform.position);
 
-            if (Vector2.Distance(transform.position, targetObj.transform.position) < .5f)
+            if ((Vector2.Distance(transform.position, targetObj.transform.position) < .5f) && !Input.GetButton("Fire1"))
             {
                 isPull = false;
                 isGrappled = false;
 
                 // are we ready to stop the rope?
+                line.enabled = false;
+            }
+            else if (Vector2.Distance(transform.position, targetObj.transform.position) < .5f)
+            {
                 line.enabled = false;
             }
         }
@@ -131,18 +135,18 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
     IEnumerator Pull()
     {
         float i = 0;
-        float timeLerped = 10;
 
         // Wooo its a line!
         line.SetPosition(0, transform.position);
         line.SetPosition(1, transform.position);
 
         Vector2 newPos;
+        Vector2 distance = transform.position - targetObj.transform.position;
 
         // Gotta lerp this real quick
-        for (; i < timeLerped; i += shootSpeed * Time.deltaTime)
+        for (; i < distance.magnitude; i += shootSpeed * Time.deltaTime)
         {
-            newPos = Vector2.Lerp(transform.position, targetObj.transform.position, i / timeLerped);
+            newPos = Vector2.Lerp(transform.position, targetObj.transform.position, i / distance.magnitude);
 
             line.SetPosition(0, transform.position);
             line.SetPosition(1, newPos);
@@ -157,18 +161,18 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
     IEnumerator Retract()
     {
         float i = 0;
-        float timeLerped = 10;
 
         // Wooo its a line!
         line.SetPosition(0, transform.position);
         line.SetPosition(1, transform.position);
 
         Vector2 newPos;
+        Vector2 distance = new Vector2(transform.position.x, transform.position.y) - target;
 
         // Gotta lerp this real quick
-        for (; i < timeLerped; i += shootSpeed * Time.deltaTime)
+        for (; i < distance.magnitude; i += shootSpeed * Time.deltaTime)
         {
-            newPos = Vector2.Lerp(transform.position, target, i / timeLerped);
+            newPos = Vector2.Lerp(transform.position, target, i / distance.magnitude);
 
             line.SetPosition(0, transform.position);
             line.SetPosition(1, newPos);
