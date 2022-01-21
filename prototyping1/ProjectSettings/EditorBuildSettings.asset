@@ -60,7 +60,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StudentScenes/ErinScribnerScene.unity
     guid: 28222f3d1d1adfa4fbe19c11afe255f4
   - enabled: 1
-    path: Assets/Scenes/StudentScenes/EunjinHong.unity
+    path: Assets/Scenes/StudentScenes/EunjinHongScene.unity
     guid: 6e4e23e02a0a04147afa59856f2fa19d
   - enabled: 1
     path: Assets/Scenes/StudentScenes/FrankieCamarilloScene.unity
@@ -122,9 +122,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StudentScenes/GarryChenScene.unity
     guid: ca7468d1bc381b54db5ed577b9295437
-  - enabled: 1
-    path: Assets/Scenes/StudentScenes/HyungseobKimScene.unity
-    guid: a66501ce0e0b87340b350fdb2ad4f5e1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/StudentScenes/JakobShumway2Scene.unity
     guid: fe1350547849de74aaa0dcfd2c0fc18a
@@ -158,6 +158,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StudentScenes/DeanteJamesScene.unity
     guid: 101cb138f2a92754d916bca525fd6f76
+  - enabled: 1
+    path: Assets/Scenes/StudentScenes/HemieChoiScene.unity
+    guid: b0db6ababe3d89640b941d417b2a7fab
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
