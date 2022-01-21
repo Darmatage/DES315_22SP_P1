@@ -30,6 +30,7 @@ TagManager:
   - DN_Cannonball
   - BenThompsonBoat
   - Bucket
+  - JasonHuntBreakable
   - JulianBlackstone_Totem
   layers:
   - Default
@@ -46,7 +47,7 @@ TagManager:
   - Bullet
   - WaterSafe
   - IgnorePlayer
-  - 
+  - IgnorePlayerAndEnemy
   - 
   - 
   - BorderLayer_CEGP
@@ -54,6 +55,7 @@ TagManager:
   - FogOfWarMain
   - FogOfWarSecondary
   - 
+  - GrateOpen
   - 
   - 
   - 
@@ -62,8 +64,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - HookShot_Wall
   m_SortingLayers:
   - name: Default
     uniqueID: 0
