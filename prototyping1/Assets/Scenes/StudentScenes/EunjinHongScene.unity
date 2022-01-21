@@ -20913,7 +20913,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6853139540415881832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55e8d8570f7de124293454183835ff09, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f07c7fbb8e4f0244847517cf57ff856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+--- !u!114 &6853139540415881834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853139540415881832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf71d4cc480db8841aa7634d473c6ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 10
