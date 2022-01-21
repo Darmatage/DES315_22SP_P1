@@ -13,8 +13,8 @@ public class B05_QTETrigger : MonoBehaviour
      * If you want to use mine, set this to the B05_QTEObject in the BarBenzvi folder in StudentPrefabs
     */
     public GameObject QuickTimeEventPrefab = null;
-    //This should be true if your QTE prefab is canvas based
-    public bool ParentToCanvas = true;
+    //This is the parent that will be given to the QTE prefab when spawned. Keep null if you don't want a parent
+    public GameObject SpawnParent = null;
 
     /*
      * Changes global timescale to this value when the QTE is triggered
@@ -46,7 +46,11 @@ public class B05_QTETrigger : MonoBehaviour
         {
             triggeredQTE = true;
             //Spawn QTE object
-            //Call OnQTEStarted event
+            if(QuickTimeEventPrefab != null)
+            {
+                GameObject.Instantiate(QuickTimeEventPrefab, SpawnParent.transform);
+            }
+            Time.timeScale = QTETimescale;
             B05_EventManager.CallQTEStarted();
         }
     }
