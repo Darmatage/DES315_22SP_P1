@@ -30,7 +30,6 @@ TagManager:
   - DN_Cannonball
   - BenThompsonBoat
   - Bucket
-  - JacobBurkePlayerClone
   layers:
   - Default
   - TransparentFX
