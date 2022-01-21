@@ -50,9 +50,9 @@ public class KennyMecham_ReflectableProjectile : MonoBehaviour
         FireProjectile(m_parent, newParent);
     }
 
-    public bool ShouldProjectileBeReflected(KennyMecham_ProjectileReflector reflector)
+    public bool ShouldProjectileBeReflected(GameObject reflectorParent)
     {
-        var reflectorTeams = reflector.gameObject.GetComponent<KennyMecham_Teams>();
+        var reflectorTeams = reflectorParent.GetComponent<KennyMecham_Teams>();
 
         // if the reflector doesn't have any teams, or if the reflector and this do not share any teams
         if (reflectorTeams is null || !reflectorTeams.DoTeamsOverlap(m_parent.GetComponent<KennyMecham_Teams>()))
@@ -65,18 +65,12 @@ public class KennyMecham_ReflectableProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        KennyMecham_Teams teams = other.gameObject.GetComponent<KennyMecham_Teams>();
-        if (!(teams is null) && !teams.DoTeamsOverlap(m_parent.GetComponent<KennyMecham_Teams>()))
-        {
-            if(other.gameObject == m_target)
-            {
-                m_gameHandler.TakeDamage(damage);
-            }
+        HandleCollision(other.gameObject);
+    }
 
-            GameObject animEffect = Instantiate(hit_animation, transform.position, Quaternion.identity);
-            Destroy(animEffect, 0.5f);
-            Destroy(gameObject);
-        }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        HandleCollision(collision.gameObject);
     }
 
     private void FixedUpdate()
@@ -85,6 +79,26 @@ public class KennyMecham_ReflectableProjectile : MonoBehaviour
 
         if(lifeTimer <= 0)
         {
+            Destroy(gameObject);
+        }
+    }
+
+    private void HandleCollision(GameObject other)
+    {
+        KennyMecham_Teams teams = other.GetComponent<KennyMecham_Teams>();
+        if (!(teams is null) && !teams.DoTeamsOverlap(m_parent.GetComponent<KennyMecham_Teams>()))
+        {
+            if (other == m_target)
+            {
+                var combatStats = other.GetComponent<KennyMecham_CombatStats>();
+                if(!(combatStats is null))
+                {
+                    combatStats.Damage(damage);
+                }
+            }
+
+            GameObject animEffect = Instantiate(hit_animation, transform.position, Quaternion.identity);
+            Destroy(animEffect, 0.5f);
             Destroy(gameObject);
         }
     }

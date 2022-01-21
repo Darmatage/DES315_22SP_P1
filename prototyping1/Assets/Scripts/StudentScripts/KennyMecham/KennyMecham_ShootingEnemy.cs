@@ -71,7 +71,7 @@ public class KennyMecham_ShootingEnemy : MonoBehaviour
 			if (timeBtwShots <= 0)
 			{
 				anim.SetTrigger("Attack");
-				var newProj = Instantiate(projectile, transform.position, Quaternion.identity, transform);
+				var newProj = Instantiate(projectile, transform.position, Quaternion.identity);
 				var reflectableProj = newProj.GetComponent<KennyMecham_ReflectableProjectile>();
 				reflectableProj.FireProjectile(player.gameObject, gameObject);
 				timeBtwShots = startTimeBtwShots;
