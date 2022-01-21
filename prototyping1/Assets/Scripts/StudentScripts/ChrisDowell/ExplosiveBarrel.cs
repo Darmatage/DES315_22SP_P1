@@ -34,6 +34,8 @@ public class ExplosiveBarrel : MonoBehaviour
     public LayerMask m_damageMask;
     //public LayerMask m_deleteMask; // Deletes objects if explodes
 
+
+    private CircleCollider2D m_exlosivetrigger;
     private GameHandler m_handler;
     private Vector3 m_initscale = Vector3.one;
     private Vector3 m_newScale;
@@ -51,6 +53,8 @@ public class ExplosiveBarrel : MonoBehaviour
         m_renderer = GetComponent<SpriteRenderer>();
         m_rb = GetComponent<Rigidbody2D>();
         m_handler = FindObjectOfType<GameHandler>();
+        m_exlosivetrigger = GetComponent<CircleCollider2D>();
+        m_exlosivetrigger.enabled = false;
         
     }
 
@@ -97,9 +101,30 @@ public class ExplosiveBarrel : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        TakeDamage(1);
+        if (collision.collider.GetType() == typeof(BoxCollider2D))
+        {
+            TakeDamage(1);
+        }
+        else if (collision.collider.GetType() == typeof(CircleCollider2D))
+        {
+            // Deal Damage
+            if (collision.otherCollider.tag == "Player")
+            {
+                m_handler.TakeDamage(m_stats.m_damage);
+            }
+        }
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        
+    }
     private void Explode()
     {
         m_stats.m_exploded = true;
@@ -116,36 +141,41 @@ public class ExplosiveBarrel : MonoBehaviour
 
         Vector2 dir = m_rb.velocity.normalized;
 
-        var hit = Physics2D.CircleCastAll(transform.position, m_stats.m_explosiveRadius, dir, .2f);
+        m_exlosivetrigger.enabled = true;
+        m_rb.mass = 100f; // Set mass so it wont move lmao
+        m_rb.drag = 100f;
+        Invoke("DestroySelf", .1f);
+
+        //var hit = Physics2D.CircleCastAll(transform.position, m_stats.m_explosiveRadius, dir, 0, m_damageMask, Mathf.NegativeInfinity, Mathf.Infinity);
         
-        foreach (var obj in hit)
-        {
-            // Get vector from object ot target
-            obj.rigidbody.AddForce(obj.normal * m_stats.m_pushforce);
+        //foreach (var obj in hit)
+        //{
+        //    // Get vector from object ot target
+        //    obj.rigidbody.AddForce(obj.normal * m_stats.m_pushforce);
 
-            if (obj.collider.tag == "Player")
-            {
-                m_handler.TakeDamage(m_stats.m_damage);
-                continue;
-            }
-
-
-            // Get come component script and add it here to deal damage since we dont have some externalized health script?!?!?!!?
-            // TODO: figure out how to damage multiple enemies with DIFFERING SCRIPTS LIKE HOLY SHIT WHY
-            if (obj.collider.tag == "Enemy")
-            {
-                // I gotta somehow adjust their hp lol
-
-                // I will add some damage stuff later
-                // If you end up using my prefab please let me know on teams (c.dowell@digipen.edu) or discord (Frost#0006)
-                // DISCORD IS PREFERRED IM MOST LIKELY GOING TO IGNORE TEAMS
+        //    if (obj.collider.tag == "Player")
+        //    {
+        //        m_handler.TakeDamage(m_stats.m_damage);
+        //        continue;
+        //    }
 
 
-            }
+        //    // Get come component script and add it here to deal damage since we dont have some externalized health script?!?!?!!?
+        //    // TODO: figure out how to damage multiple enemies with DIFFERING SCRIPTS LIKE HOLY SHIT WHY
+        //    if (obj.collider.tag == "Enemy")
+        //    {
+        //        // I gotta somehow adjust their hp lol
 
-        }
+        //        // I will add some damage stuff later
+        //        // If you end up using my prefab please let me know on teams (c.dowell@digipen.edu) or discord (Frost#0006)
+        //        // DISCORD IS PREFERRED IM MOST LIKELY GOING TO IGNORE TEAMS
 
-        GameObject.Destroy(this);
+
+        //    }
+
+        //}
+
+        //GameObject.Destroy(gameObject);
 
 
 
@@ -160,5 +190,10 @@ public class ExplosiveBarrel : MonoBehaviour
     {
         m_stats.m_hp = Mathf.Clamp(m_stats.m_hp - damage, 0, m_stats.m_maxHP);
         return m_stats.m_hp;
+    }
+
+    private void DestroySelf()
+    {
+        Destroy(gameObject);
     }
 }
