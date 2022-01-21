@@ -638,7 +638,7 @@ PrefabInstance:
     - target: {fileID: 5289055198004321536, guid: 600a2a549ad9b7f42bde0b604097db64,
         type: 3}
       propertyPath: GoToScene
-      value: A24
+      value: DamianRouseScene
       objectReference: {fileID: 0}
     - target: {fileID: 7371410899088442534, guid: 600a2a549ad9b7f42bde0b604097db64,
         type: 3}
