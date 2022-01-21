@@ -43,7 +43,7 @@ TagManager:
   - Bullet
   - WaterSafe
   - IgnorePlayer
-  - 
+  - IgnorePlayerAndEnemy
   - 
   - 
   - BorderLayer_CEGP
