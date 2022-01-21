@@ -84,7 +84,7 @@ public class MetronomeControllerScript : MonoBehaviour
         {
             if (valid)
             {
-                pMove.UpdateAnimationAndMove(move);
+                pMove.MovePlayer(move);
                 if (preset.text == MetronomeStatusScript.presets[0].text)
                 {
                     audioSources[0].pitch = 1.0f;
