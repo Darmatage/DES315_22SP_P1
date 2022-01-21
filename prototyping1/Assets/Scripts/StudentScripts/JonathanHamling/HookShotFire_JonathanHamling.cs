@@ -49,7 +49,7 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
         // Lets pull back now, (if we can), fixed update becuz reasons.
         if (isRetract)
         {
-            Vector2 grapplePos = Vector2.Lerp(Player.transform.position, target, shootSpeed * Time.deltaTime);
+            Vector2 grapplePos = Vector2.Lerp(Player.transform.position, target, retractSpeed * Time.deltaTime);
 
             // setting new player transform to lerp!
             Player.transform.position = grapplePos;
@@ -68,7 +68,7 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
         }
         else if (isPull)
         {
-            Vector2 grapplePos = Vector2.Lerp(targetObj.transform.position, transform.position, shootSpeed * Time.deltaTime);
+            Vector2 grapplePos = Vector2.Lerp(targetObj.transform.position, transform.position, retractSpeed * Time.deltaTime);
 
             targetObj.transform.position = grapplePos;
 
