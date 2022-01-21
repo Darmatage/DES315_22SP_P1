@@ -17714,7 +17714,7 @@ PrefabInstance:
     - target: {fileID: 8327058575985396620, guid: 1aae148b26d30d443831311a6245fe68,
         type: 3}
       propertyPath: reverse_speed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aae148b26d30d443831311a6245fe68, type: 3}
@@ -17743,12 +17743,12 @@ PrefabInstance:
     - target: {fileID: 5174094196587440800, guid: f15318afe2a4d8741a715281e186ed04,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.52
+      value: -12.92
       objectReference: {fileID: 0}
     - target: {fileID: 5174094196587440800, guid: f15318afe2a4d8741a715281e186ed04,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -7.8
+      value: -13.25
       objectReference: {fileID: 0}
     - target: {fileID: 5174094196587440800, guid: f15318afe2a4d8741a715281e186ed04,
         type: 3}
