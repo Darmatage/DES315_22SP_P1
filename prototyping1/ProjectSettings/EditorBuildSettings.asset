@@ -60,7 +60,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StudentScenes/ErinScribnerScene.unity
     guid: 28222f3d1d1adfa4fbe19c11afe255f4
   - enabled: 1
-    path: Assets/Scenes/StudentScenes/EunjinHong.unity
+    path: Assets/Scenes/StudentScenes/EunjinHongScene.unity
     guid: 6e4e23e02a0a04147afa59856f2fa19d
   - enabled: 1
     path: Assets/Scenes/StudentScenes/FrankieCamarilloScene.unity

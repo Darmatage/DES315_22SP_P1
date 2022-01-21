@@ -1697,6 +1697,11 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 5289055198004321536, guid: 265ab9ae29caff2489adfb168513623b,
+        type: 3}
+      propertyPath: GoToScene
+      value: EunjinHongScene
+      objectReference: {fileID: 0}
     - target: {fileID: 7371410899088442534, guid: 265ab9ae29caff2489adfb168513623b,
         type: 3}
       propertyPath: m_Pivot.x
