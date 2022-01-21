@@ -28,7 +28,7 @@ TagManager:
   - DN_Cannonball
   - BenThompsonBoat
   - Bucket
-  - JasonHuntHammer
+  - JasonHuntBreakable
   layers:
   - Default
   - TransparentFX
