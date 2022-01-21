@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8622996587333277412}
   - component: {fileID: 6854189612802431479}
   - component: {fileID: 7419966506197399658}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MonsterSkull
   m_TagString: monsterShooter
   m_Icon: {fileID: 0}
@@ -143,10 +143,12 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
