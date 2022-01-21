@@ -2,10 +2,10 @@ HowToUse
 
 1) Drop the feature into the scene
 2) In the Inspector Panel there are several settings:
-   a. Y_dist - distance to travel in the y direction
-   b. X_dist - distance to travel in the x direction
-   c. Y_center - midpoint of the Y_dist traveled
-   d. X_center - midpoint of the X_dist traveled
+   a. Y_dist - distance to travel in the y direction (positive value)
+   b. X_dist - distance to travel in the x direction (positive value)
+   c. Y_center - starting position of disk in y direction
+   d. X_center - starting position of disk in x direction
    e. Speed - Movement speed of the disk
    f. Reverse_dir - change direction of disk
    g. Damage - Damage to the player value
@@ -13,7 +13,8 @@ HowToUse
    i. X_dir - Set disk to move on the x-axis
    j. Reverse_diagonal_dir - Change diagonal movement from
       bottom left/top right to bottom right/top left
-3) To have diagonal movement, check both Y_dir and X_dir
+3) To have diagonal movement, check both Y_dir and X_dir 
+   and have X_dist and Y_dist be the same value
 4) Disks must move in some direction with some speed
 5) The "center" values is where the disk will start and 
    the "distance" values tell it how much to move from that 
@@ -21,4 +22,6 @@ HowToUse
    disk will start at 3 and move +/- 3.5, meaning it will go from
    6.5 to -0.5.
 6) This feature requires the user to measure the distances and 
-   to know where they want the disk to start.  
+   to know where they want the disk to start.
+7) Diagonal movement can get pretty wild if X_dist and Y_dist are not the same   
+8) Refer to Grant Wu Scene for implementation details

@@ -16,9 +16,9 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
     public float y_dist;       // length of disk to travel in the y direction
     [Tooltip("length of disk to travel in the x direction")]
     public float x_dist;       // length of disk to travel in the x direction
-    [Tooltip("midpoint of y distance traveled")]
+    [Tooltip("starting position of y direction")]
     public float y_center;     // starting position of y coordinate used to offset PingPong()
-    [Tooltip("midpoint of x distance traveled")]
+    [Tooltip("starting position of x direction")]
     public float x_center;     // starting position of x coordinate used to offset PingPong()
     [Tooltip("speed of disk")]
     public float speed = 2;    // speed of disk
