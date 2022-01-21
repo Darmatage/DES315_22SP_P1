@@ -30,6 +30,8 @@ TagManager:
   - DN_Cannonball
   - BenThompsonBoat
   - Bucket
+  - Spikes
+  - Weapons
   layers:
   - Default
   - TransparentFX
