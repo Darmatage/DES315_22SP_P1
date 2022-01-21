@@ -31,7 +31,11 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     [SerializeField]
     private float skillPlayerSpeed;
     private JirakitJarusiripipat_PlayerMove playermove;
+    [Header("SpawnEffect")]
+    [SerializeField]
+    private GameObject effect1;
 
+    float counter = 0.0f;
     public LayerMask whatIsEnemies;
     public Text skillGaugeText;
     // Start is called before the first frame update
@@ -111,6 +115,9 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         playermove.speed = skillPlayerSpeed;
         timeToAttackCooldown = 0.3f;
         skillGauge = 0;
+
+        GameObject obj = Instantiate(effect1, transform.position, Quaternion.identity);
+        obj.transform.parent = gameObject.transform;
     }
 
     private void AfterSkill()
