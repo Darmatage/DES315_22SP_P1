@@ -14,6 +14,9 @@ public class GrabScript_JonathanHamling : MonoBehaviour
         if (collision.collider.CompareTag("Player"))
         {
             isHeld = true;
+
+            if (isHeld)
+                isHeld = true;
         }
     }
 
