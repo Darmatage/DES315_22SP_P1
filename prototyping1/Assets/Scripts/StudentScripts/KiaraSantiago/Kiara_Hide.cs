@@ -1,3 +1,8 @@
+//Kiara Santiago
+//DES 315
+//Basic Hiding Script (used with the caves)
+//Spring 22
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,6 +28,15 @@ public class Kiara_Hide : MonoBehaviour
         if(col.gameObject.tag == "Player")
         {
             Debug.Log("Player is in cave.");
+
+            GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            
+            foreach (GameObject enemy in Enemies)
+            {
+                Kiara_AlteredMonsterMoveHit tempScript = enemy.GetComponent<Kiara_AlteredMonsterMoveHit>();
+                tempScript.attackPlayer = false;
+                tempScript.canSeePlayer = false;
+            }
         }
     }
 
@@ -31,6 +45,15 @@ public class Kiara_Hide : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             Debug.Log("Player exited cave.");
+
+            GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject enemy in Enemies)
+            {
+                Kiara_AlteredMonsterMoveHit tempScript = enemy.GetComponent<Kiara_AlteredMonsterMoveHit>();
+                tempScript.attackPlayer = true;
+                tempScript.canSeePlayer = true;
+            }
         }
     }
 }
