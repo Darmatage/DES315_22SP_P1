@@ -28,11 +28,11 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 		anim = gameObject.GetComponentInChildren<Animator>();
 		rend = GetComponentInChildren<Renderer>();
 		SFX = GameObject.FindGameObjectWithTag("Respawn").GetComponent<JirakitJarusiripipat_SFX>();
-		//if (GameObject.FindGameObjectWithTag("Player") != null)
-		//{
-		//	target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-		//}
-		GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
+        GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
 		if (gameHandlerLocation != null)
 		{
 			gameHandlerObj = gameHandlerLocation.GetComponent<JirakitJarusiripipat_GameHandler>();
@@ -42,7 +42,7 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 	void Update()
 	{
 		//int playerHealth = GameHandler.PlayerHealth; //access script directly in the case of a static variable 
-		if (target != null && playerInArea)
+		if (target != null /*&& playerInArea*/)
 		{
 			//if ((attackPlayer == true) && (playerHealth >= 1)){
 			if (attackPlayer == true)

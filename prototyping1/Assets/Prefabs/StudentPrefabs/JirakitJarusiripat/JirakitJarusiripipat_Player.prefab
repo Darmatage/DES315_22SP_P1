@@ -98,10 +98,11 @@ MonoBehaviour:
   skillDuration: 15
   isUsingSkill: 0
   canUseSkill: 0
-  maxSkillGauge: 7
+  maxSkillGauge: 10
   skillGauge: 0
   timeToAttack: 0
   timeToAttackCooldown: 0.8
+  rotateParent: {fileID: 7957374624267614764}
   attackPos: {fileID: 6045001830298869459}
   attackRange: 0.85
   skillPlayerSpeed: 7

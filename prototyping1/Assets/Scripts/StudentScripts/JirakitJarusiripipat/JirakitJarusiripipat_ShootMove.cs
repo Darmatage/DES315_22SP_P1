@@ -48,7 +48,7 @@ public class JirakitJarusiripipat_ShootMove : MonoBehaviour
 
 	void Update()
 	{
-		if (player != null && playerInArea)
+		if (player != null /*&& playerInArea*/)
 		{
 
 			// approach player
