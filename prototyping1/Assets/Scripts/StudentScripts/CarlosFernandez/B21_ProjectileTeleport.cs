@@ -73,6 +73,7 @@ public class B21_ProjectileTeleport : MonoBehaviour
                 if (projectile)
                 {
                     projectileHasBeenShot = true;
+                    cooldownTimer = cooldownDuration;
                     shootDirection = Input.mousePosition;
                     shootDirection.z = 0.0f;
                     shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
@@ -88,7 +89,11 @@ public class B21_ProjectileTeleport : MonoBehaviour
                 Destroy(projectile);
             }
         }
-        
+
+        if (cooldownTimer > 0.0f)
+        {
+            cooldownTimer -= Time.deltaTime;
+        }
     }
     
 
