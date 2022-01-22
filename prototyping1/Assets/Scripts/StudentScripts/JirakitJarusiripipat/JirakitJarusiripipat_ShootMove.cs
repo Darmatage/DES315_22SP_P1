@@ -22,7 +22,7 @@ public class JirakitJarusiripipat_ShootMove : MonoBehaviour
 	private JirakitJarusiripipat_GameHandler gameHandlerObj;
 	[SerializeField]
 	private int knockbackPower;
-
+	private JirakitJarusiripipat_SFX SFX;
 
 	public bool playerInArea = false;
 	public string detectionTag = "Player";
@@ -34,6 +34,7 @@ public class JirakitJarusiripipat_ShootMove : MonoBehaviour
 		rend = GetComponentInChildren<Renderer>();
 		rb = GetComponent<Rigidbody2D>();
 		player = GameObject.FindGameObjectWithTag("Player").transform;
+		SFX = GameObject.FindGameObjectWithTag("Respawn").GetComponent<JirakitJarusiripipat_SFX>();
 		PlayerVect = player.transform.position;
 
 		timeBtwShots = startTimeBtwShots;
@@ -117,6 +118,7 @@ public class JirakitJarusiripipat_ShootMove : MonoBehaviour
 		StartCoroutine(JirakitJarusiripipat_PlayerMove.instance.Knockback(knockbackPower, this.gameObject));
 		StopCoroutine(JirakitJarusiripipat_PlayerMove.instance.Knockback(knockbackPower, this.gameObject));
 		EnemyLives -= 1;
+		SFX.Punch.Play();
 		rend.material.color = new Color(2.4f, 0.9f, 0.9f, 0.5f);
         if (EnemyLives < 1)
         {

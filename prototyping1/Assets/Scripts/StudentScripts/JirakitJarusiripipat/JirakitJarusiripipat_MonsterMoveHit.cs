@@ -21,12 +21,13 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 
 	public bool playerInArea = false;
 	public string detectionTag = "Player";
+	private JirakitJarusiripipat_SFX SFX;
 
 	void Start()
 	{
 		anim = gameObject.GetComponentInChildren<Animator>();
 		rend = GetComponentInChildren<Renderer>();
-
+		SFX = GameObject.FindGameObjectWithTag("Respawn").GetComponent<JirakitJarusiripipat_SFX>();
 		//if (GameObject.FindGameObjectWithTag("Player") != null)
 		//{
 		//	target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -109,6 +110,7 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 
 		anim.SetTrigger("Hurt");
 		EnemyLives -= 1;
+		SFX.Punch.Play();
 		// color values are R, G, B, and alpha, each divided by 100
 		rend.material.color = new Color(2.4f, 0.9f, 0.9f, 0.5f);
 		if (EnemyLives < 1)

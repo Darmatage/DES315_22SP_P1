@@ -34,8 +34,14 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     [Header("SpawnEffect")]
     [SerializeField]
     private GameObject effect1;
+    [SerializeField]
+    private GameObject effect2;
+    [Header("SFX")]
+    [SerializeField]
+    JirakitJarusiripipat_SFX SFX;
+    bool soundCheck = false;
 
-    float counter = 0.0f;
+
     public LayerMask whatIsEnemies;
     public Text skillGaugeText;
     // Start is called before the first frame update
@@ -44,6 +50,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         defaultTimeToAttackCooldown = timeToAttackCooldown;
         playermove = GetComponent<JirakitJarusiripipat_PlayerMove>();
         defaultPlayerSpeed = playermove.speed;
+        SFX.BGM.Play();
     }
 
     // Update is called once per frame
@@ -118,6 +125,11 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
 
         GameObject obj = Instantiate(effect1, transform.position, Quaternion.identity);
         obj.transform.parent = gameObject.transform;
+
+        SFX.BGM.Pause();
+        SFX.Clock1.Play();
+        SFX.Skill1.Play();
+        soundCheck = false;
     }
 
     private void AfterSkill()
@@ -126,6 +138,11 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         canUseSkill = false;
         playermove.speed = defaultPlayerSpeed;
         timeToAttackCooldown = defaultTimeToAttackCooldown;
+        SFX.BGM.Play();
+        SFX.Clock2.Stop();
+        SFX.Skill2.Play();
+        GameObject obj = Instantiate(effect1, transform.position, Quaternion.identity);
+        obj.transform.parent = gameObject.transform;
     }
 
     private void CheckDurationSkill()
@@ -137,6 +154,12 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         else if (currentSkillDuration <= 0.0f)
         {
             AfterSkill();
+        }
+        if(currentSkillDuration <= 4.0f && !soundCheck)
+        {
+            SFX.Clock2.Play();
+            SFX.Clock1.Stop();
+            soundCheck = true;
         }
     }
 }
