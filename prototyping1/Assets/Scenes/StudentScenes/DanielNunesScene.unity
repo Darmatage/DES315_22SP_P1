@@ -807,8 +807,9 @@ PrefabInstance:
     - target: {fileID: 4987302773288080149, guid: 5f3bcc3e7855fb04c84acb74635c3fd0,
         type: 3}
       propertyPath: text
-      value: Now there's a box down there! Bring the cannon over again! You can spin
-        it 90 degrees counterclockwise with [P]!
+      value: You can rotate the cannon too! Hold down on it with [O], then press
+        [W] or [S] while on the left or right side of the cannon and [A] or [D] while
+        above or below it.
       objectReference: {fileID: 0}
     - target: {fileID: 4987302773288080150, guid: 5f3bcc3e7855fb04c84acb74635c3fd0,
         type: 3}
