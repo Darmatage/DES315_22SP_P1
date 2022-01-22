@@ -23,6 +23,8 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     private float timeToAttackCooldown;
     private float defaultTimeToAttackCooldown;
     [SerializeField]
+    private Transform rotateParent;
+    [SerializeField]
     private Transform attackPos;
     [SerializeField]
     private float attackRange;
@@ -40,7 +42,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     [SerializeField]
     JirakitJarusiripipat_SFX SFX;
     bool soundCheck = false;
-
+    bool isFaceRight = true;
 
     public LayerMask whatIsEnemies;
     public Text skillGaugeText;
@@ -56,7 +58,53 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && timeToAttack <= 0)
+        if(Input.GetKey(KeyCode.S) && isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, -90f);
+            //rotateParent.Rotate(0.0f, 0.0f, -90.0f, Space.Self);
+            
+        }
+        else if (Input.GetKey(KeyCode.S) && !isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, 90f);
+            //rotateParent.Rotate(0.0f, 0.0f, -90.0f, Space.Self);
+
+        }
+        else if (Input.GetKey(KeyCode.W) && isFaceRight)
+        {
+            //rotateParent.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
+            rotateParent.eulerAngles = new Vector3(0, 0, 90f);
+        }
+        else if (Input.GetKey(KeyCode.W) && !isFaceRight)
+        {
+            //rotateParent.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
+            rotateParent.eulerAngles = new Vector3(0, 0, -90f);
+        }
+        else if (Input.GetKey(KeyCode.A) && isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, 180);
+            isFaceRight = false;
+            //rotateParent.Rotate(0.0f, 0.0f, 180.0f, Space.Self);
+        }
+        else if(Input.GetKey(KeyCode.A) && !isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, 0);
+            isFaceRight = false;
+        }
+        else if (Input.GetKey(KeyCode.D) && !isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, 0f);
+            isFaceRight = true;
+            //rotateParent.Rotate(0.0f, 0.0f, 0.0f, Space.Self);
+        }
+        else if (Input.GetKey(KeyCode.D) && isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, 0f);
+            isFaceRight = true;
+            //rotateParent.Rotate(0.0f, 0.0f, 0.0f, Space.Self);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && timeToAttack <= 0)
         {
             playermove.anim.SetTrigger("Attack");
             Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPos.transform.position, attackRange, whatIsEnemies);

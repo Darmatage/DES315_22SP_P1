@@ -39681,16 +39681,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: JirakitJarusiripipat_Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2391722290754411632, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
-      propertyPath: speed
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4735381613951400496, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 7212e338f6f27de479bc846f8690a278, type: 2}
     - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
       propertyPath: SFX
@@ -39698,53 +39688,37 @@ PrefabInstance:
       objectReference: {fileID: 1103220465}
     - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
-      propertyPath: effect1
+      propertyPath: rotateParent
       value: 
-      objectReference: {fileID: 8488651912210544037, guid: fcf73df4d23e108459a1e2ea3edcb7ba,
-        type: 3}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
-      propertyPath: effect2
-      value: 
-      objectReference: {fileID: 6762759163116901154, guid: e890c2c0258f31348b271bc8b434ce71,
-        type: 3}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
-      propertyPath: canUseSkill
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
-      propertyPath: maxSkillGauge
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
-      propertyPath: skillDuration
-      value: 15
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1815641842646095945}
     - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
       propertyPath: skillGaugeText
       value: 
       objectReference: {fileID: 8451585963909236346}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
+    - target: {fileID: 7957374624267614764, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
-      propertyPath: skillPlayerSpeed
-      value: 7
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
+    - target: {fileID: 7957374624267614764, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
-      propertyPath: timeToAttackCooldown
-      value: 0.8
+      propertyPath: m_LocalRotation.z
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
+    - target: {fileID: 7957374624267614764, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
-      propertyPath: whatIsEnemies.m_Bits
-      value: 64
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd1617fcb9dceb044842abd3e762b080, type: 3}
+--- !u!4 &1815641842646095945 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7957374624267614764, guid: fd1617fcb9dceb044842abd3e762b080,
+    type: 3}
+  m_PrefabInstance: {fileID: 1815641842646095944}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3194199321100419772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39904,6 +39878,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: /7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3889125146178012414, guid: 666c842d52116a04fac306987f744383,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 47.7
       objectReference: {fileID: 0}
     - target: {fileID: 5306616918870166736, guid: 666c842d52116a04fac306987f744383,
         type: 3}
