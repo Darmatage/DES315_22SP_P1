@@ -26,10 +26,24 @@ public class ErinScribner_IcePowers : MonoBehaviour
         {
            // GameObject iceblock = GameObject.Find("IceBlock");
             Vector3 playerFeet = new Vector3(playerTrans.position.x, playerTrans.position.y - .8f, playerTrans.position.z);
-            GameObject iceBlockNew = Instantiate(iceBlock, playerFeet, Quaternion.identity); 
+            GameObject iceBlockNew = Instantiate(iceBlock, playerFeet, Quaternion.identity);
+
+            Vector3 playerFeet2 = new Vector3(playerTrans.position.x - 1.0f, playerTrans.position.y, playerTrans.position.z);
+            GameObject iceBlockNew2 = Instantiate(iceBlock, playerFeet2, Quaternion.identity);
+
+            Vector3 playerFeet3 = new Vector3(playerTrans.position.x + 1.0f, playerTrans.position.y, playerTrans.position.z);
+            GameObject iceBlockNew3 = Instantiate(iceBlock, playerFeet3, Quaternion.identity);
+
+            Vector3 playerFeet4 = new Vector3(playerTrans.position.x, playerTrans.position.y + 1, playerTrans.position.z);
+            GameObject iceBlockNew4 = Instantiate(iceBlock, playerFeet4, Quaternion.identity);
+
+            Vector3 playerFeet5 = new Vector3(playerTrans.position.x, playerTrans.position.y, playerTrans.position.z);
+            GameObject iceBlockNew5 = Instantiate(iceBlock, playerFeet5, Quaternion.identity);
+
             // GameObject player = GameObject.Find("Player");
 
             //iceblock.transform.position = new Vector3(playerTrans.position.x, playerTrans.position.y - .8f, playerTrans.position.z);
         }
-    }
+    } 
+
 }
