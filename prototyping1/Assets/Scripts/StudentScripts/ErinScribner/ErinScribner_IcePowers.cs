@@ -44,6 +44,5 @@ public class ErinScribner_IcePowers : MonoBehaviour
 
             //iceblock.transform.position = new Vector3(playerTrans.position.x, playerTrans.position.y - .8f, playerTrans.position.z);
         }
-    } 
-
+    }
 }

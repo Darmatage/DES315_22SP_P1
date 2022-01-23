@@ -9,8 +9,7 @@ public class ErinScribner_IceHeal : MonoBehaviour
 	private bool isHealing = false;
 	private float damageTimer = 0f;
 	private GameHandler gameHandlerObj;
-
-
+	
 	void Start()
 	{
 
@@ -39,6 +38,7 @@ public class ErinScribner_IceHeal : MonoBehaviour
 		if (other.gameObject.tag == "Player")
 		{
 			isHealing = true;
+			
 		}
 	}
 
@@ -47,6 +47,7 @@ public class ErinScribner_IceHeal : MonoBehaviour
 		if (other.gameObject.tag == "Player")
 		{
 			isHealing = false;
+			
 		}
 	}
 
