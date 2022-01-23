@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JirakitJarusiripipat_GameManager : MonoBehaviour
 {
@@ -34,6 +35,11 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
     public List<GameObject> allEnemy = new List<GameObject>();
     [SerializeField]
     private GameObject door;
+
+    [SerializeField]
+    private Text roundNumberText;
+    [SerializeField]
+    private Text waveParentText;
     // Start is called before the first frame update
     void Start()
     {
@@ -122,6 +128,7 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
         }
         if(currentRound == 5)
         {
+            waveParentText.gameObject.SetActive(false);
             door.GetComponent<Door>().DoorOpen();
             currentRound++;
         }
@@ -196,5 +203,6 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
             }
             
         }
+        roundNumberText.text = currentRound.ToString();
     }
 }
