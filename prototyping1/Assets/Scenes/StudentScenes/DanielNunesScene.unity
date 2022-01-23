@@ -18359,7 +18359,7 @@ PrefabInstance:
         type: 3}
       propertyPath: text
       value: Look at how this pipe is angled! Seems it could change the direction
-        of a projectile! Press [P] to rotate it as well.
+        of a projectile! Press [P] to rotate it.
       objectReference: {fileID: 0}
     - target: {fileID: 4987302773288080150, guid: 5f3bcc3e7855fb04c84acb74635c3fd0,
         type: 3}

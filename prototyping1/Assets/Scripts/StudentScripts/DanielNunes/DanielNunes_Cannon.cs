@@ -92,6 +92,7 @@ public class DanielNunes_Cannon : MonoBehaviour
         RangeAndInputCheck();
 
         //if the cannon is usable, isn't being pushed and/or pulled, and we press the shoot button
+        //we also cannot shoot if there is already an instance of a cannonball
         if (usable && !pushing && !pulling && !rotating && Input.GetKeyDown(shootKey))
         {
             //fire a cannonball
