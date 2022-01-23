@@ -48,10 +48,47 @@ public class Kiara_AlteredMonsterMoveHit : MonoBehaviour
 			if (attackPlayer == true && canSeePlayer)
 			{
 				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+
+				//change enemy color
+				SpriteRenderer enemyRender = GetComponentInChildren<SpriteRenderer>();
+				enemyRender.color = new Color(0.549f, 0.067f, 0.059f);
 			}
 			else if (attackPlayer == false)
 			{
-				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * -1 * Time.deltaTime);
+				if(Vector2.Distance(transform.position, target.position) < 5.0f)
+                {
+					//float tempRandVal = Random.Range(0.5f, 1.5f);
+					transform.position = Vector2.MoveTowards(transform.position, target.position, speed * -1 * Time.deltaTime);
+				}
+                else
+                {
+					Vector2 tempVec = new Vector2(0, 0);
+
+					switch(Random.Range(0, 4))
+                    {
+						case 0:
+							tempVec = Vector2.up;
+							break;
+						case 1:
+							tempVec = Vector2.down;
+							break;
+						case 2:
+							tempVec = Vector2.right;
+							break;
+						case 3:
+							tempVec = Vector2.left;
+							break;
+                    }
+
+					transform.position = Vector2.MoveTowards(transform.position, tempVec, speed * Time.deltaTime);
+
+				}
+				//change enemy color
+				SpriteRenderer enemyRender = GetComponentInChildren<SpriteRenderer>();
+				enemyRender.color = new Color(0.945f, 0.482f, 0.475f);
+
+				
+
 			}
 		}
 	}
