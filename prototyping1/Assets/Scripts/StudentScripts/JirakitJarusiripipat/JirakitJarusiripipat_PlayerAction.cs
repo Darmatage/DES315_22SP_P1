@@ -13,9 +13,9 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     public bool isUsingSkill = false;
     public bool canUseSkill = true;
     [SerializeField]
-    private int maxSkillGauge;
+    private float maxSkillGauge;
     [HideInInspector]
-    public int skillGauge;
+    public float skillGauge;
     [Header("Melee")]
     [HideInInspector]
     public float timeToAttack;
@@ -45,7 +45,15 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     bool isFaceRight = true;
 
     public LayerMask whatIsEnemies;
+    [Header("UI")]
     public Text skillGaugeText;
+    public Text[] readyText;
+    public Text[] notReadyText;
+    public Text[] UsingText;
+
+    public Image cover;
+    public Image skillGaugeImage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,30 +69,25 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         if(Input.GetKey(KeyCode.S) && isFaceRight)
         {
             rotateParent.eulerAngles = new Vector3(0, 0, -90f);
-            //rotateParent.Rotate(0.0f, 0.0f, -90.0f, Space.Self);
             
         }
         else if (Input.GetKey(KeyCode.S) && !isFaceRight)
         {
             rotateParent.eulerAngles = new Vector3(0, 0, 90f);
-            //rotateParent.Rotate(0.0f, 0.0f, -90.0f, Space.Self);
 
         }
         else if (Input.GetKey(KeyCode.W) && isFaceRight)
         {
-            //rotateParent.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
             rotateParent.eulerAngles = new Vector3(0, 0, 90f);
         }
         else if (Input.GetKey(KeyCode.W) && !isFaceRight)
         {
-            //rotateParent.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
             rotateParent.eulerAngles = new Vector3(0, 0, -90f);
         }
         else if (Input.GetKey(KeyCode.A) && isFaceRight)
         {
             rotateParent.eulerAngles = new Vector3(0, 0, 180);
             isFaceRight = false;
-            //rotateParent.Rotate(0.0f, 0.0f, 180.0f, Space.Self);
         }
         else if(Input.GetKey(KeyCode.A) && !isFaceRight)
         {
@@ -95,13 +98,11 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         {
             rotateParent.eulerAngles = new Vector3(0, 0, 0f);
             isFaceRight = true;
-            //rotateParent.Rotate(0.0f, 0.0f, 0.0f, Space.Self);
         }
         else if (Input.GetKey(KeyCode.D) && isFaceRight)
         {
             rotateParent.eulerAngles = new Vector3(0, 0, 0f);
             isFaceRight = true;
-            //rotateParent.Rotate(0.0f, 0.0f, 0.0f, Space.Self);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && timeToAttack <= 0)
@@ -133,10 +134,16 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
                 
             }
             timeToAttack = timeToAttackCooldown;
+            cover.gameObject.SetActive(true);
         }
         else if(timeToAttack > 0)
         {
             timeToAttack -= Time.deltaTime;
+            cover.fillAmount = timeToAttack / timeToAttackCooldown;
+        }
+        else if(timeToAttack < 0.0f)
+        {
+            cover.gameObject.SetActive(false);
         }
         if(Input.GetKeyDown(KeyCode.G) && !isUsingSkill && canUseSkill)
         {
@@ -145,6 +152,12 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         if(isUsingSkill)
         {
             CheckDurationSkill();
+            for (int i = 0; i < readyText.Length; i++)
+            {
+                readyText[i].gameObject.SetActive(false);
+                notReadyText[i].gameObject.SetActive(false);
+                UsingText[i].gameObject.SetActive(true);
+            }
         }
         if(skillGauge == maxSkillGauge)
         {
@@ -152,6 +165,25 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         }
         //Debug.Log("Skill Gauge = " + skillGauge);
         UpdateSkillGauge();
+        if(canUseSkill && !isUsingSkill)
+        {
+            for (int i = 0; i < readyText.Length; i++)
+            {
+                readyText[i].gameObject.SetActive(true);
+                notReadyText[i].gameObject.SetActive(false);
+                UsingText[i].gameObject.SetActive(false);
+            }
+        }
+        else if(!canUseSkill && !isUsingSkill)
+        {
+            for (int i = 0; i < readyText.Length; i++)
+            {
+                readyText[i].gameObject.SetActive(false);
+                UsingText[i].gameObject.SetActive(false);
+                notReadyText[i].gameObject.SetActive(true);
+            }
+        }
+        skillGaugeImage.fillAmount = skillGauge/maxSkillGauge;
     }
     private void UpdateSkillGauge()
     {
@@ -191,6 +223,12 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         SFX.Skill2.Play();
         GameObject obj = Instantiate(effect1, transform.position, Quaternion.identity);
         obj.transform.parent = gameObject.transform;
+        for (int i = 0; i < readyText.Length; i++)
+        {
+            readyText[i].gameObject.SetActive(false);
+            notReadyText[i].gameObject.SetActive(true);
+            UsingText[i].gameObject.SetActive(false);
+        }
     }
 
     private void CheckDurationSkill()

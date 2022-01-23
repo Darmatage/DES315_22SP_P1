@@ -146,7 +146,7 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
         }
         else if (currentRound == 2 && !check[1] && end[0])
         {
-            Debug.Log("Total Slime = " + totalSlimeNumber[1]);
+            //Debug.Log("Total Slime = " + totalSlimeNumber[1]);
             
             int i = 0;
             for (int j = 0; j < totalSlimeNumber[1]; j++)
