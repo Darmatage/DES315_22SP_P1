@@ -40,6 +40,15 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
     private Text roundNumberText;
     [SerializeField]
     private Text waveParentText;
+    [SerializeField]
+    private JirakitJarusiripipat_SFX SFX;
+    [SerializeField]
+    private Text proceed;
+
+    [SerializeField]
+    Image instruction;
+
+    bool gameStart = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,160 +58,174 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(currentRound == 1)
+        if(!gameStart)
         {
-            int count = 0;
-
-            for (int i = 0; i < allEnemy.Count; i++)
+            if(Input.GetKeyDown(KeyCode.Space))
             {
-                if(allEnemy[i] == null)
+                gameStart = true;
+                SFX.BGM.Play();
+                instruction.gameObject.SetActive(false);
+                proceed.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            if (currentRound == 1)
+            {
+                int count = 0;
+
+                for (int i = 0; i < allEnemy.Count; i++)
                 {
-                    count++;
+                    if (allEnemy[i] == null)
+                    {
+                        count++;
+                    }
+
+
+                }
+                if (count == wave1SpawnPoint.Length)
+                {
+                    allEnemy.Clear();
+                    currentRound++;
+                    end[0] = true;
+                }
+            }
+            if (currentRound == 2)
+            {
+                int count = 0;
+
+                for (int i = 0; i < allEnemy.Count; i++)
+                {
+                    if (allEnemy[i] == null)
+                    {
+                        count++;
+                    }
+
+                }
+                if (count == wave2SpawnPoint.Length)
+                {
+                    allEnemy.Clear();
+                    currentRound++;
+                    end[1] = true;
+                }
+            }
+            if (currentRound == 3)
+            {
+                int count = 0;
+
+                for (int i = 0; i < allEnemy.Count; i++)
+                {
+                    if (allEnemy[i] == null)
+                    {
+                        count++;
+                    }
+
+                }
+                if (count == wave3SpawnPoint.Length)
+                {
+                    allEnemy.Clear();
+                    currentRound++;
+                    end[2] = true;
+                }
+            }
+            if (currentRound == 4)
+            {
+                int count = 0;
+
+                for (int i = 0; i < allEnemy.Count; i++)
+                {
+                    if (allEnemy[i] == null)
+                    {
+                        count++;
+                    }
+
+                }
+                if (count == wave4SpawnPoint.Length)
+                {
+                    allEnemy.Clear();
+                    currentRound++;
+                    end[3] = true;
+                }
+            }
+            if (currentRound == 5)
+            {
+                waveParentText.gameObject.SetActive(false);
+                door.GetComponent<Door>().DoorOpen();
+                currentRound++;
+            }
+            if (currentRound == 1 && !check[0])
+            {
+                //for (int i = 0; i < wave1SpawnPoint.Length; i++)
+                //{
+                int i = 0;
+                for (int j = 0; j < totalSlimeNumber[0]; j++)
+                {
+                    allEnemy.Add(Instantiate(slime, wave1SpawnPoint[i].position, Quaternion.identity));
+                    i++;
+                }
+                for (int k = 0; k < totalSkullNumber[0]; k++)
+                {
+                    allEnemy.Add(Instantiate(skull, wave1SpawnPoint[i].position, Quaternion.identity));
+                    i++;
+                }
+                check[0] = true;
+                //}
+
+            }
+            else if (currentRound == 2 && !check[1] && end[0])
+            {
+                //Debug.Log("Total Slime = " + totalSlimeNumber[1]);
+
+                int i = 0;
+                for (int j = 0; j < totalSlimeNumber[1]; j++)
+                {
+                    allEnemy.Add(Instantiate(slime, wave2SpawnPoint[i].position, Quaternion.identity));
+                    i++;
                 }
 
-                
-            }
-            if (count == wave1SpawnPoint.Length)
-            {
-                allEnemy.Clear();
-                currentRound++;
-                end[0] = true;
-            }
-        }
-        if (currentRound == 2)
-        {
-            int count = 0;
-
-            for (int i = 0; i < allEnemy.Count; i++)
-            {
-                if (allEnemy[i] == null)
+                for (int k = 0; k < totalSkullNumber[1]; k++)
                 {
-                    count++;
+                    allEnemy.Add(Instantiate(skull, wave2SpawnPoint[i].position, Quaternion.identity));
+                    i++;
                 }
-               
-            }
-            if (count == wave2SpawnPoint.Length)
-            {
-                allEnemy.Clear();
-                currentRound++;
-                end[1] = true;
-            }
-        }
-        if (currentRound == 3)
-        {
-            int count = 0;
+                check[1] = true;
 
-            for (int i = 0; i < allEnemy.Count; i++)
+            }
+            else if (currentRound == 3 && !check[2] && end[1])
             {
-                if (allEnemy[i] == null)
+                int i = 0;
+                for (int j = 0; j < totalSlimeNumber[2]; j++)
                 {
-                    count++;
+                    allEnemy.Add(Instantiate(slime, wave3SpawnPoint[i].position, Quaternion.identity));
+                    i++;
                 }
-                
-            }
-            if (count == wave3SpawnPoint.Length)
-            {
-                allEnemy.Clear();
-                currentRound++;
-                end[2] = true;
-            }
-        }
-        if (currentRound == 4)
-        {
-            int count = 0;
-
-            for (int i = 0; i < allEnemy.Count; i++)
-            {
-                if (allEnemy[i] == null)
+                for (int k = 0; k < totalSkullNumber[2]; k++)
                 {
-                    count++;
+                    allEnemy.Add(Instantiate(skull, wave3SpawnPoint[i].position, Quaternion.identity));
+                    i++;
+                }
+                check[2] = true;
+
+            }
+            else if (currentRound == totalRound && !check[3] && end[2])
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    allEnemy.Add(Instantiate(boss, wave4SpawnPoint[i].position, Quaternion.identity));
+                }
+                check[3] = true;
+            }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                GameObject[] obj = GameObject.FindGameObjectsWithTag("monsterShooter");
+                foreach (var item in obj)
+                {
+                    Destroy(item);
                 }
 
             }
-            if (count == wave4SpawnPoint.Length)
-            {
-                allEnemy.Clear();
-                currentRound++;
-                end[3] = true;
-            }
+            roundNumberText.text = currentRound.ToString();
         }
-        if(currentRound == 5)
-        {
-            waveParentText.gameObject.SetActive(false);
-            door.GetComponent<Door>().DoorOpen();
-            currentRound++;
-        }
-        if (currentRound == 1 && !check[0])
-        {
-            //for (int i = 0; i < wave1SpawnPoint.Length; i++)
-            //{
-            int i = 0;
-            for (int j = 0; j < totalSlimeNumber[0]; j++)
-            {
-                allEnemy.Add(Instantiate(slime, wave1SpawnPoint[i].position, Quaternion.identity));
-                i++;
-            }
-            for (int k = 0; k < totalSkullNumber[0]; k++)
-            {
-                allEnemy.Add(Instantiate(skull, wave1SpawnPoint[i].position, Quaternion.identity));
-                i++;
-            }
-            check[0] = true;
-            //}
-
-        }
-        else if (currentRound == 2 && !check[1] && end[0])
-        {
-            //Debug.Log("Total Slime = " + totalSlimeNumber[1]);
-            
-            int i = 0;
-            for (int j = 0; j < totalSlimeNumber[1]; j++)
-            {
-                allEnemy.Add(Instantiate(slime, wave2SpawnPoint[i].position, Quaternion.identity));
-                i++;
-            }
-
-            for (int k = 0; k < totalSkullNumber[1]; k++)
-            {
-                allEnemy.Add(Instantiate(skull, wave2SpawnPoint[i].position, Quaternion.identity));
-                i++;
-            }
-            check[1] = true;
-
-        }
-        else if (currentRound == 3 && !check[2] && end[1])
-        {
-            int i = 0;
-            for (int j = 0; j < totalSlimeNumber[2]; j++)
-            {
-                allEnemy.Add(Instantiate(slime, wave3SpawnPoint[i].position, Quaternion.identity));
-                i++;
-            }
-            for (int k = 0; k < totalSkullNumber[2]; k++)
-            {
-                allEnemy.Add(Instantiate(skull, wave3SpawnPoint[i].position, Quaternion.identity));
-                i++;
-            }
-            check[2] = true;
-
-        }
-        else if(currentRound == totalRound && !check[3] && end[2])
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                allEnemy.Add(Instantiate(boss, wave4SpawnPoint[i].position, Quaternion.identity));
-            }
-            check[3] = true;
-        }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            GameObject[] obj = GameObject.FindGameObjectsWithTag("monsterShooter");
-            foreach (var item in obj)
-            {
-                Destroy(item);
-            }
-            
-        }
-        roundNumberText.text = currentRound.ToString();
     }
+        
 }

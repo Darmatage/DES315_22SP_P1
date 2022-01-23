@@ -60,7 +60,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         defaultTimeToAttackCooldown = timeToAttackCooldown;
         playermove = GetComponent<JirakitJarusiripipat_PlayerMove>();
         defaultPlayerSpeed = playermove.speed;
-        SFX.BGM.Play();
+        //SFX.BGM.Play();
     }
 
     // Update is called once per frame
