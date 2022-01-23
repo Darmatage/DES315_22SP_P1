@@ -1,0 +1,28 @@
+//Kiara Santiago
+//Des 315
+//How to Use Hidey Hole Prefabs
+//Spring 22
+---------------------------------------------------
+Current Prefabs:
+
+- Cave A - D
+- Altered Slime
+
+---------------------------------------------------
+How to Use:
+
+Drop in caves like any old object. 
+Caves only work with enemies that have the Altered Enemy script 
+(located on the Altered Slime) and are tagged with the 'Enemy" tag. 
+
+This script has minimal changes to the original enemy script 
+provided so if you wanted to use the caves with your own Enemy 
+script there would not be many changes to make.
+
+Other than that there's not much to it. When player collides with
+the caves collider box the enemies de-aggro.
+
+Start placing caves and have fun. (Only difference between
+caves is design, all function in the same manner.)
+
+---------------------------------------------------
