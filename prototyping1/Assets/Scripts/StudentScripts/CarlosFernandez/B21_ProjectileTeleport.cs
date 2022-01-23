@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
 public class B21_ProjectileTeleport : MonoBehaviour
@@ -32,7 +33,7 @@ public class B21_ProjectileTeleport : MonoBehaviour
     private float cooldownTimer = 0.0f;
     private Vector3 shootDirection;
     private Vector2 lastVelocity;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -73,6 +74,7 @@ public class B21_ProjectileTeleport : MonoBehaviour
                 if (projectile)
                 {
                     projectileHasBeenShot = true;
+                    cooldownTimer = cooldownDuration;
                     shootDirection = Input.mousePosition;
                     shootDirection.z = 0.0f;
                     shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
@@ -84,22 +86,25 @@ public class B21_ProjectileTeleport : MonoBehaviour
             }
             else if (projectile)
             {
+                DrawTeleportLine();
                 playerObject.transform.position = projectile.transform.position;
                 Destroy(projectile);
             }
         }
+
+        if (cooldownTimer > 0.0f)
+        {
+            cooldownTimer -= Time.deltaTime;
+        }
+    }
+
+
+
+    private void DrawTeleportLine()
+    {
+        var lr = gameObject.GetComponent<LineRenderer>();
+        lr.SetPosition(0, playerObject.transform.position);
+        lr.SetPosition(1, projectile.transform.position);
         
     }
-    
-
-    //private void OnCollisionEnter2D(Collision2D other)
-    //{
-    //    if (!other.gameObject.CompareTag("Player") && other.gameObject.layer != LayerMask.NameToLayer("Enemy"))
-    //    {
-    //        Vector2 reflectedPosition = Vector2.Reflect(gameObject.GetComponent<Rigidbody2D>().velocity.normalized, other.contacts[0].normal);
-    //        GetComponent<Rigidbody2D>().velocity = new Vector2(reflectedPosition.x * projectileSpeed,
-    //            reflectedPosition.y * projectileSpeed);
-    //
-    //    }
-    //}
 }
