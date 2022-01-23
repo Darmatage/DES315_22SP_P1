@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 	public float defaultSpeed = 4f;
 	public Transform target;
 	public int damage = 1;
-	public int EnemyLives = 3;
+	public float EnemyLives = 3;
+	public float maxEnemyLives = 3;
 	private Renderer rend;
 	private JirakitJarusiripipat_GameHandler gameHandlerObj;
 	private Animator anim;
@@ -22,6 +24,9 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 	public bool playerInArea = false;
 	public string detectionTag = "Player";
 	private JirakitJarusiripipat_SFX SFX;
+
+	[SerializeField]
+	private Image healthFill;
 
 	void Start()
 	{
@@ -37,6 +42,7 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 		{
 			gameHandlerObj = gameHandlerLocation.GetComponent<JirakitJarusiripipat_GameHandler>();
 		}
+	
 	}
 
 	void Update()
@@ -62,6 +68,7 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 				speed = defaultSpeed;
             }
 		}
+		healthFill.fillAmount = EnemyLives / maxEnemyLives;
 		
 	}
 
