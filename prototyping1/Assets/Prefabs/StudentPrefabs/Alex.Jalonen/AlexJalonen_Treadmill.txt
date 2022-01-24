@@ -1,0 +1,1 @@
+Prefab placed in scene will move anything with a rigidbody when they enter the collider in the direction of 'up' for the prefab.
