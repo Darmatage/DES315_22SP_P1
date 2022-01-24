@@ -1,5 +1,8 @@
 Welcome to the Color Wave README File!
   
+This system allows the player to touch color totems across
+a level in order to reveal or hide objects for short duration.
+
 --- Notes under usage ---
 Keep in contact with me about the featuer if you use it!
 My email is j.blackstone@digipen.edu, and you can always
@@ -16,6 +19,11 @@ COLOR TAG, and then make sure any walls match the COLOR TAG
 specifically. This is important. The current tag colors are
 Red, Blue, and Green. They will output their respective wave
 on player collision.
+
+If you want to hide your object on color wave hit instead
+of reveal it, then hit the respective check marks in the
+details section of the colorsystem script that is attached
+to the object!
 
 -- Side Note --
 If you really want to use the currnet system for making any object 
