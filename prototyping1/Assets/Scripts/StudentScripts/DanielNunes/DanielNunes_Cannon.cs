@@ -290,16 +290,16 @@ public class DanielNunes_Cannon : MonoBehaviour
                 //if we pressed up while above the cannon
                 //if we pressed down while below the cannon
                 //if any of these conditions were met, we are pulling the cannon
-                if (Input.GetKeyDown(KeyCode.A) && whereIsPlayer == Where.eLEFT ||
-                    Input.GetKeyDown(KeyCode.D) && whereIsPlayer == Where.eRIGHT ||
-                    Input.GetKeyDown(KeyCode.W) && whereIsPlayer == Where.eUP ||
-                    Input.GetKeyDown(KeyCode.S) && whereIsPlayer == Where.eDOWN)
+                if (Input.GetKey(KeyCode.A) && whereIsPlayer == Where.eLEFT ||
+                    Input.GetKey(KeyCode.D) && whereIsPlayer == Where.eRIGHT ||
+                    Input.GetKey(KeyCode.W) && whereIsPlayer == Where.eUP ||
+                    Input.GetKey(KeyCode.S) && whereIsPlayer == Where.eDOWN)
                 {
                     //if we tried pulling in a particular direction when there was something up ahead
-                    if ((Input.GetKeyDown(KeyCode.A) && somethingNearLeft ||
-                         Input.GetKeyDown(KeyCode.D) && somethingNearRight ||
-                         Input.GetKeyDown(KeyCode.W) && somethingNearTop ||
-                         Input.GetKeyDown(KeyCode.S) && somethingNearBottom) && playerHere)
+                    if ((Input.GetKey(KeyCode.A) && somethingNearLeft ||
+                         Input.GetKey(KeyCode.D) && somethingNearRight ||
+                         Input.GetKey(KeyCode.W) && somethingNearTop ||
+                         Input.GetKey(KeyCode.S) && somethingNearBottom) && playerHere)
                     {
                         //don't pull the cannon
                         return;
@@ -336,16 +336,16 @@ public class DanielNunes_Cannon : MonoBehaviour
                 //if we pressed up while below the cannon
                 //if we pressed down while above the cannon
                 //if any of these conditions were met, we are pushing the cannon
-                else if (Input.GetKeyDown(KeyCode.A) && whereIsPlayer == Where.eRIGHT ||
-                         Input.GetKeyDown(KeyCode.D) && whereIsPlayer == Where.eLEFT ||
-                         Input.GetKeyDown(KeyCode.W) && whereIsPlayer == Where.eDOWN ||
-                         Input.GetKeyDown(KeyCode.S) && whereIsPlayer == Where.eUP)
+                else if (Input.GetKey(KeyCode.A) && whereIsPlayer == Where.eRIGHT ||
+                         Input.GetKey(KeyCode.D) && whereIsPlayer == Where.eLEFT ||
+                         Input.GetKey(KeyCode.W) && whereIsPlayer == Where.eDOWN ||
+                         Input.GetKey(KeyCode.S) && whereIsPlayer == Where.eUP)
                 {
                     //if we tried pushing in a particular direction when there was something up ahead
-                    if (Input.GetKeyDown(KeyCode.A) && somethingOnLeft ||
-                        Input.GetKeyDown(KeyCode.D) && somethingOnRight ||
-                        Input.GetKeyDown(KeyCode.W) && somethingOnTop ||
-                        Input.GetKeyDown(KeyCode.S) && somethingOnBottom)
+                    if (Input.GetKey(KeyCode.A) && somethingOnLeft ||
+                        Input.GetKey(KeyCode.D) && somethingOnRight ||
+                        Input.GetKey(KeyCode.W) && somethingOnTop ||
+                        Input.GetKey(KeyCode.S) && somethingOnBottom)
                     {
                         //don't push the cannon
                         return;
@@ -420,10 +420,10 @@ public class DanielNunes_Cannon : MonoBehaviour
                 //if the player is to the right of the cannon and presses down
                 //if the player is above the cannon and presses right
                 //if the pllayer is below the cannon and presses left
-                if ((whereIsPlayer == Where.eLEFT && Input.GetKeyDown(KeyCode.W)) ||
-                    (whereIsPlayer == Where.eRIGHT && Input.GetKeyDown(KeyCode.S)) ||
-                    (whereIsPlayer == Where.eUP && Input.GetKeyDown(KeyCode.D)) ||
-                    (whereIsPlayer == Where.eDOWN && Input.GetKeyDown(KeyCode.A)))
+                if ((whereIsPlayer == Where.eLEFT && Input.GetKey(KeyCode.W)) ||
+                    (whereIsPlayer == Where.eRIGHT && Input.GetKey(KeyCode.S)) ||
+                    (whereIsPlayer == Where.eUP && Input.GetKey(KeyCode.D)) ||
+                    (whereIsPlayer == Where.eDOWN && Input.GetKey(KeyCode.A)))
                 {
                     //we are rotating
                     rotating = true;
@@ -440,10 +440,10 @@ public class DanielNunes_Cannon : MonoBehaviour
                 //if the player is to the right of the cannon and presses up
                 //if the player is above the cannon and presses left
                 //if the player is below the cannon and presses right
-                else if ((whereIsPlayer == Where.eLEFT && Input.GetKeyDown(KeyCode.S)) ||
-                         (whereIsPlayer == Where.eRIGHT && Input.GetKeyDown(KeyCode.W)) ||
-                         (whereIsPlayer == Where.eUP && Input.GetKeyDown(KeyCode.A)) ||
-                         (whereIsPlayer == Where.eDOWN && Input.GetKeyDown(KeyCode.D)))
+                else if ((whereIsPlayer == Where.eLEFT && Input.GetKey(KeyCode.S)) ||
+                         (whereIsPlayer == Where.eRIGHT && Input.GetKey(KeyCode.W)) ||
+                         (whereIsPlayer == Where.eUP && Input.GetKey(KeyCode.A)) ||
+                         (whereIsPlayer == Where.eDOWN && Input.GetKey(KeyCode.D)))
                 {
                     //we are rotating
                     rotating = true;

@@ -34,6 +34,7 @@ TagManager:
   - Spikes
   - Weapons
   - JulianBlackstone_Totem
+  - BraedanNeversBreakable
   - MysteriousChest
   layers:
   - Default
