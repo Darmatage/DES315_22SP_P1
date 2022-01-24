@@ -2118,6 +2118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iceBlock: {fileID: 6073257264604299104, guid: 68f977124ae45d048956c7c96236361a,
     type: 3}
+  maxNum: 2
 --- !u!1001 &1657701613
 PrefabInstance:
   m_ObjectHideFlags: 0

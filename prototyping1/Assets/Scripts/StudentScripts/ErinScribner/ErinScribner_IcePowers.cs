@@ -9,6 +9,8 @@ public class ErinScribner_IcePowers : MonoBehaviour
     private GameHandler gameHandlerObj;
     private Transform playerTrans;
     public GameObject iceBlock;
+    public int maxNum = 4;
+    private int limit;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,7 @@ public class ErinScribner_IcePowers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && limit < maxNum)
         {
            // GameObject iceblock = GameObject.Find("IceBlock");
             Vector3 playerFeet = new Vector3(playerTrans.position.x, playerTrans.position.y - .8f, playerTrans.position.z);
@@ -39,6 +41,8 @@ public class ErinScribner_IcePowers : MonoBehaviour
 
             Vector3 playerFeet5 = new Vector3(playerTrans.position.x, playerTrans.position.y, playerTrans.position.z);
             GameObject iceBlockNew5 = Instantiate(iceBlock, playerFeet5, Quaternion.identity);
+
+            limit++;
 
             // GameObject player = GameObject.Find("Player");
 
