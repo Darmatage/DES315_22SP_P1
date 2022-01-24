@@ -8,7 +8,7 @@ public class WonjuJo_Explode : MonoBehaviour
 
     private WonjuJo_PlayerHandler gameHandlerObj;
 
-    private WonjuJo_MonsterHandler MH;
+    //private WonjuJo_MonsterHandler MH;
     // Start is called before the first frame update
 
     private bool Once = false;
@@ -35,17 +35,17 @@ public class WonjuJo_Explode : MonoBehaviour
             {
                 Once = true;
 
-                StartCoroutine("Delay");
-            }
+                StartCoroutine(Delay(1.8f));
+            }            
         }
 
 
     }
 
-    IEnumerator Delay()
+    IEnumerator Delay(float time)
     {
-        yield return new WaitForSeconds(2f);
-
+        yield return new WaitForSeconds(time);
         gameHandlerObj.TakeDamage(20);
+
     }
 }
