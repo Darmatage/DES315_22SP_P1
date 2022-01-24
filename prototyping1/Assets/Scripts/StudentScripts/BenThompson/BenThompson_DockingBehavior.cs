@@ -15,6 +15,9 @@ public class BenThompson_DockingBehavior : MonoBehaviour
     [SerializeField]
     SpriteRenderer prompt;
 
+    [SerializeField]
+    GameObject parkingIndicator;
+
     private bool playerInRange = false;
     private bool boatInRange = false;
     private GameObject boatCollidingWith = null;
@@ -150,6 +153,17 @@ public class BenThompson_DockingBehavior : MonoBehaviour
                     isPlayerInBoat = true;
                 }
             }
+        }
+
+        // If the player is in the boat, enable the parking indicator child
+        if(isPlayerInBoat)
+        {
+            parkingIndicator.SetActive(true);
+        }
+        // Otherwise have it disabled
+        else
+        {
+            parkingIndicator.SetActive(false);
         }
     }
 

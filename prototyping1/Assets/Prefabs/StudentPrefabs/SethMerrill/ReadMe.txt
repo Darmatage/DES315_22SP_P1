@@ -1,0 +1,1 @@
+The monsterEye enemy prefab (hereafter called "the eye") is meant to be placed anywhere in the level. The eye follows the player and damages them when the player comes within a green circle's radius. This is meant to model the player getting hurt when they're seen.

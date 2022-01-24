@@ -31,6 +31,11 @@ TagManager:
   - BenThompsonBoat
   - Bucket
   - JasonHuntBreakable
+  - Spikes
+  - Weapons
+  - JulianBlackstone_Totem
+  - BraedanNeversBreakable
+  - MysteriousChest
   layers:
   - Default
   - TransparentFX
@@ -46,7 +51,7 @@ TagManager:
   - Bullet
   - WaterSafe
   - IgnorePlayer
-  - 
+  - IgnorePlayerAndEnemy
   - 
   - 
   - BorderLayer_CEGP
@@ -54,6 +59,7 @@ TagManager:
   - FogOfWarMain
   - FogOfWarSecondary
   - 
+  - GrateOpen
   - 
   - 
   - 
@@ -62,8 +68,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - HookShot_Wall
   m_SortingLayers:
   - name: Default
     uniqueID: 0

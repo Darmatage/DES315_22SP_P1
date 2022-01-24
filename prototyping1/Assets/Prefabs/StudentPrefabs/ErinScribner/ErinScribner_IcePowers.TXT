@@ -1,0 +1,19 @@
+Hello! This file will explain how to set up my ice power feature.
+
+1) Put ErinScribner_PlaceBlock inside of your level. Make sure
+   its position is (0,0,0) for both this and its attached art asset. 
+
+2) You will see that PlaceBlock has a script 
+   called ErinScribner_IcePowers. I'll go over what each of the 
+   public variables do:
+   Ice Block            -> The attached art asset of the ice block
+   Max Num              -> The max number of times a player can 
+                           use the ice block power
+   Destructable Tilemap -> The tile layer that the ice power is 
+                           able to detroy
+   Range Destroy        -> How many blocks can the ice destroy around
+                           it? (I recommend keeping this set to 1 or 2)
+
+Lastly, when a player presses I, they will use their ice powers. 
+And that's it! If you run into any issues, or have suggestions on
+how to improve this feature, please let me know. 
