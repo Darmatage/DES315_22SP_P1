@@ -86,6 +86,7 @@ MonoBehaviour:
   FireballLife: 2
   Speed: 5
   Damage: 10
+  FireballRenderer: {fileID: 1828181588204856864}
 --- !u!1 &8299196359925183878
 GameObject:
   m_ObjectHideFlags: 0
