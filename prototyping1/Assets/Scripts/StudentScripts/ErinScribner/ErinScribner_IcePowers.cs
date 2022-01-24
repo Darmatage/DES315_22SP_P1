@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Tilemaps;
 //the purpose of this script is to have a walkable block be placed on a block of lava that the
 //player character is looking at
 public class ErinScribner_IcePowers : MonoBehaviour
@@ -11,6 +11,10 @@ public class ErinScribner_IcePowers : MonoBehaviour
     public GameObject iceBlock;
     public int maxNum = 4;
     private int limit = 0;
+
+    public Tilemap destructableTilemap;
+    private List<Vector3> tileWorldLocations;
+    public float rangeDestroy = 2f;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +24,25 @@ public class ErinScribner_IcePowers : MonoBehaviour
         }
         playerTrans = GameObject.FindWithTag("Player").GetComponent<Transform>();
         limit = maxNum;
+
+        Init();
+    }
+
+
+    void Init()
+    {
+        tileWorldLocations = new List<Vector3>();
+
+        foreach (var pos in destructableTilemap.cellBounds.allPositionsWithin)
+        {
+            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
+            Vector3 place = destructableTilemap.CellToWorld(localPlace) + new Vector3(0.5f, 0.5f, 0f);
+
+            if (destructableTilemap.HasTile(localPlace))
+            {
+                tileWorldLocations.Add(place);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -48,6 +71,26 @@ public class ErinScribner_IcePowers : MonoBehaviour
             // GameObject player = GameObject.Find("Player");
 
             //iceblock.transform.position = new Vector3(playerTrans.position.x, playerTrans.position.y - .8f, playerTrans.position.z);
+
+            destroyTileArea();
+        }
+    }
+
+    void destroyTileArea()
+    {
+        foreach (Vector3 tile in tileWorldLocations)
+        {
+            if (Vector2.Distance(tile, playerTrans.position) <= rangeDestroy)
+            {
+                //Debug.Log("in range");
+                Vector3Int localPlace = destructableTilemap.WorldToCell(tile);
+                if (destructableTilemap.HasTile(localPlace))
+                {
+                    //StartCoroutine(BoomVFX(tile));
+                    destructableTilemap.SetTile(destructableTilemap.WorldToCell(tile), null);
+                }
+                //tileWorldLocations.Remove(tile);
+            }
         }
     }
 }
