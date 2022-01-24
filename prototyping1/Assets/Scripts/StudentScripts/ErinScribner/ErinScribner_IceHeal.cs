@@ -10,6 +10,7 @@ public class ErinScribner_IceHeal : MonoBehaviour
 	private float damageTimer = 0f;
 	private GameHandler gameHandlerObj;
 	
+	
 	void Start()
 	{
 
