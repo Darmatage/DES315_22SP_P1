@@ -81,6 +81,9 @@ EditorBuildSettings:
     path: Assets/Scenes/StudentScenes/JulianBlackstoneScene.unity
     guid: cdb1e29756716a2489a1d2ee3b8358b4
   - enabled: 1
+    path: Assets/Scenes/StudentScenes/HyungseobKimScene.unity
+    guid: b4e0c1dfbbef5b249b164384eb0f80e6
+  - enabled: 1
     path: Assets/Scenes/StudentScenes/MattWalkerScene.unity
     guid: 5186a1b37c544ef498994729ebdec6ad
   - enabled: 1

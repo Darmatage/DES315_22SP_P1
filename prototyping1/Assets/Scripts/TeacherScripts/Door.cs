@@ -21,10 +21,15 @@ public class Door : MonoBehaviour
 		gameObject.GetComponent<Collider2D>().enabled = true;
 	}
 
+	public void DoorClose(){
+		DoorClosedArt.SetActive(true);
+		DoorOpenArt.SetActive(false);
+		gameObject.GetComponent<Collider2D>().enabled = false;
+	}
+
     void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag == "Player"){
 			SceneManager.LoadScene(NextScene);
 		}
     }
-
 }

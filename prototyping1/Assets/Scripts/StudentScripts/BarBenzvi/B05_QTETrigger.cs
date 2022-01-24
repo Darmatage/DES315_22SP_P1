@@ -26,7 +26,13 @@ public class B05_QTETrigger : MonoBehaviour
     //Set this to true if you want this specific actor to be destroyed when the player succeeds at the QTE triggered by this actor
     public bool DestroyOnTriggeredQTESuccess = true;
 
+    public float DestroyOnSuccessDelay = 0.5f;
+
     bool triggeredQTE = false;
+    bool destroying = false;
+
+    private Renderer rend;
+    private Animator anim;
 
     private void OnEnable()
     {
@@ -40,9 +46,15 @@ public class B05_QTETrigger : MonoBehaviour
         B05_EventManager.OnQTEFailure -= OnQTEFailure;
     }
 
+    private void Start()
+    {
+        anim = gameObject.GetComponentInChildren<Animator>();
+        rend = GetComponentInChildren<Renderer>();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag(TargetTag))
+        if (collision.gameObject.CompareTag(TargetTag) && !destroying)
         {
             triggeredQTE = true;
             //Spawn QTE object
@@ -62,7 +74,8 @@ public class B05_QTETrigger : MonoBehaviour
         {
             if(DestroyOnTriggeredQTESuccess)
             {
-                Destroy(gameObject);
+                destroying = true;
+                StartCoroutine(DestroyObjectAfterDelay(DestroyOnSuccessDelay));
             }
 
             triggeredQTE = false;
@@ -75,5 +88,19 @@ public class B05_QTETrigger : MonoBehaviour
         //Currently just resets this flag so that multiple enemies don't die at once when succeeding
         //a QTE after failing one on a different enemy
         triggeredQTE = false;
+    }
+
+    IEnumerator DestroyObjectAfterDelay(float delay)
+    {
+        if(anim && rend)
+        {
+            anim.SetTrigger("Hurt");
+            // color values are R, G, B, and alpha, each divided by 100
+            rend.material.color = new Color(2.4f, 0.9f, 0.9f, 0.5f);
+        }
+
+        yield return new WaitForSeconds(delay);
+
+        Destroy(gameObject);
     }
 }

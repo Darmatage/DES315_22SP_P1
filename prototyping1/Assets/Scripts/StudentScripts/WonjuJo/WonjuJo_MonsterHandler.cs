@@ -11,9 +11,13 @@ public class WonjuJo_MonsterHandler : MonoBehaviour
 
     public Renderer Rend;
 
+    public WonjuJo_PlayerMovement PM;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (!PM)
+            Debug.Log("There is no PM");
     }
 
     public void MonsterTakeDamge(int damage)
@@ -37,7 +41,13 @@ public class WonjuJo_MonsterHandler : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "bullet")
+        if(collision.gameObject.tag == "bullet")
+        {
+            StopCoroutine(ChangeColor());
+            StartCoroutine(ChangeColor());
+        }
+
+        if (collision.gameObject.tag == "Player" && PM.GetIsAttack())
         {
             StopCoroutine(ChangeColor());
             StartCoroutine(ChangeColor());
