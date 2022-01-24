@@ -57,7 +57,7 @@ public class WonjuJo_PlayerMovement : MonoBehaviour
 				transform.localScale = newScale;
 			}
 
-			if (Input.GetKey(KeyCode.Space))
+			if (Input.GetKey(KeyCode.Mouse0))
 			{
 				anim.SetTrigger("Attack");
 				IsAttack = true;
@@ -65,7 +65,7 @@ public class WonjuJo_PlayerMovement : MonoBehaviour
 
 			if(Time.time > NextFireballCooldown)
             {
-				if (Input.GetKey(KeyCode.LeftControl))
+				if (Input.GetKey(KeyCode.Mouse1))
 				{
 					Instantiate(Fireball, FireballPosition.position, Quaternion.identity);
 					NextFireballCooldown = Time.time + FireballCooldown;
@@ -138,4 +138,8 @@ public class WonjuJo_PlayerMovement : MonoBehaviour
 		rend.material.color = Color.white;
 	}
 
+	public bool GetIsAttack()
+    {
+		return IsAttack;
+    }
 }
