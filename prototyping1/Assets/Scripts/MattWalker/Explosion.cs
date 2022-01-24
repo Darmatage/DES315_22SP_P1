@@ -11,7 +11,7 @@ public class Explosion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Animation>().Play();
+        //GetComponent<Animation>().Play();
     }
 
     // Update is called once per frame

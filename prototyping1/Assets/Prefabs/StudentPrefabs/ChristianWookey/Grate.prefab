@@ -74,6 +74,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spr_closed: {fileID: 7383698882469793175}
   spr_open: {fileID: 5197970307525731715}
+  open: 0
 --- !u!1 &4528527192585810362
 GameObject:
   m_ObjectHideFlags: 0
