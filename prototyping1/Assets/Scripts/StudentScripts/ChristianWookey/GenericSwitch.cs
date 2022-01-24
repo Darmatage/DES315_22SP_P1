@@ -10,7 +10,10 @@ public class GenericSwitch : MonoBehaviour
 	public GameObject SwitchOnArt;
 
 	// generic event can be assigned to do anything
-	public UnityEvent OnSwitchEvent;
+	public UnityEvent OnSwitchOnEvent;
+
+	// generic event can be assigned to do anything
+	public UnityEvent OnSwitchOffEvent;
 
 	public bool toggle = false;
 
@@ -45,11 +48,15 @@ public class GenericSwitch : MonoBehaviour
 				if (other.gameObject.tag == t)
 				{
 					if (on)
+					{
 						ArtSwitchOn();
+						OnSwitchOnEvent.Invoke();
+					}
 					else
+					{
 						ArtSwitchOff();
-
-					OnSwitchEvent.Invoke();
+						OnSwitchOffEvent.Invoke();
+					}
 
 					break;
 				}
