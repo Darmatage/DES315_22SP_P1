@@ -19,19 +19,17 @@ public class WonjuJo_ExplosionEnemyMoveHit : MonoBehaviour
 	private bool attackPlayer = true;
 
 	public ParticleSystem PS;
+	Rigidbody2D RB;
 
 	WonjuJo_ExplosionEnemy ExplosionEnemy;
 
-	Tilemap tilemap;
-
 	void Start()
 	{
-		
+		RB = GetComponent<Rigidbody2D>();
+
 		rend = GetComponentInChildren<Renderer>();
 
 		ExplosionEnemy = GetComponent<WonjuJo_ExplosionEnemy>();
-
-		//PS = GetComponent<ParticleSystem>();
 		
 		if (!ExplosionEnemy)
 			Debug.Log("There is no explosion enemy");
@@ -70,6 +68,7 @@ public class WonjuJo_ExplosionEnemyMoveHit : MonoBehaviour
 		if (ExplosionEnemy.GetIsDead())
         {
 			target = null;
+			RB.bodyType = RigidbodyType2D.Static;
 			if(!PS.isPlaying)
             {
 				PS.Play();
@@ -85,16 +84,6 @@ public class WonjuJo_ExplosionEnemyMoveHit : MonoBehaviour
 			attackPlayer = true;
 			retreatTimer = 0f;
 		}
-	}
-
-    private void OnParticleCollision(GameObject other)
-    {
-		Debug.Log("Particle Hit");
-
-		if (other.tag == "Player")
-			gameHandlerObj.TakeDamage(20);
-
-		//if()
 	}
 
     void OnCollisionEnter2D(Collision2D collision)
