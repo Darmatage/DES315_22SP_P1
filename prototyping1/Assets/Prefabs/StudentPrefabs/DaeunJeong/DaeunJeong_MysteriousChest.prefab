@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2705200810839189959}
   m_Layer: 0
   m_Name: DaeunJeong_MysteriousChest
-  m_TagString: Untagged
+  m_TagString: MysteriousChest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,6 +79,11 @@ MonoBehaviour:
   - {fileID: 8795562353032092023, guid: 117912aae34130e45b11eedfbd1d4b41, type: 3}
   EffectAnimation: {fileID: 8693219783790132745, guid: 22d010f17e549574cad68a64d715f483,
     type: 3}
+  Canvas: {fileID: 0}
+  UIPanelPrefab: {fileID: 6992962902643755826, guid: 198e1076d01df9d4999a2b9497ba1860,
+    type: 3}
+  shouldSpawnDoor: 0
+  shouldSpawnSwitch: 0
 --- !u!1 &5110714817576088400
 GameObject:
   m_ObjectHideFlags: 0
