@@ -807,8 +807,9 @@ PrefabInstance:
     - target: {fileID: 4987302773288080149, guid: 5f3bcc3e7855fb04c84acb74635c3fd0,
         type: 3}
       propertyPath: text
-      value: Now there's a box down there! Bring the cannon over again! You can spin
-        it 90 degrees counterclockwise with [P]!
+      value: You can rotate the cannon too! Hold down on it with [O], then press
+        [W] or [S] while on the left or right side of the cannon and [A] or [D] while
+        above or below it.
       objectReference: {fileID: 0}
     - target: {fileID: 4987302773288080150, guid: 5f3bcc3e7855fb04c84acb74635c3fd0,
         type: 3}
@@ -18358,7 +18359,7 @@ PrefabInstance:
         type: 3}
       propertyPath: text
       value: Look at how this pipe is angled! Seems it could change the direction
-        of a projectile! Press [P] to rotate it as well.
+        of a projectile! Press [P] to rotate it.
       objectReference: {fileID: 0}
     - target: {fileID: 4987302773288080150, guid: 5f3bcc3e7855fb04c84acb74635c3fd0,
         type: 3}
@@ -23692,6 +23693,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530746435627036704, guid: 401a933dbd2195744a4fb43f251707d7,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3530746435627036704, guid: 401a933dbd2195744a4fb43f251707d7,
+        type: 3}
       propertyPath: m_TagString
       value: Door
       objectReference: {fileID: 0}
@@ -23699,6 +23705,11 @@ PrefabInstance:
         type: 3}
       propertyPath: NextScene
       value: TeacherSampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551937145445057747, guid: 401a933dbd2195744a4fb43f251707d7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 401a933dbd2195744a4fb43f251707d7, type: 3}
@@ -23852,11 +23863,6 @@ PrefabInstance:
         type: 3}
       propertyPath: shootKey
       value: 105
-      objectReference: {fileID: 0}
-    - target: {fileID: 4088271260030370638, guid: d646cacd3b52ac146a6a051522b39ef6,
-        type: 3}
-      propertyPath: proximity
-      value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4088271260030370642, guid: d646cacd3b52ac146a6a051522b39ef6,
         type: 3}

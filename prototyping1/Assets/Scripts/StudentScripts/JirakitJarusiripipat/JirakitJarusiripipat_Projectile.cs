@@ -31,11 +31,11 @@ public class JirakitJarusiripipat_Projectile : MonoBehaviour
 		transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 		if(JirakitJarusiripipat_PlayerMove.instance.playerAction.isUsingSkill)
         {
-			speed = 5;
+			speed = 3;
         }
 		else
         {
-			speed = 10;
+			speed = 6;
         }
 	}
 
