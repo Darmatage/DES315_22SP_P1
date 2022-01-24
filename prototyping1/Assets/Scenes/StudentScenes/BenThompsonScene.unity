@@ -19612,6 +19612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3530746435627036704, guid: 401a933dbd2195744a4fb43f251707d7,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3530746435627036704, guid: 401a933dbd2195744a4fb43f251707d7,
+        type: 3}
       propertyPath: m_TagString
       value: Door
       objectReference: {fileID: 0}
@@ -19619,6 +19624,11 @@ PrefabInstance:
         type: 3}
       propertyPath: NextScene
       value: TeacherSampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551937145445057747, guid: 401a933dbd2195744a4fb43f251707d7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 401a933dbd2195744a4fb43f251707d7, type: 3}
