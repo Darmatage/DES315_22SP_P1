@@ -64,9 +64,8 @@ MonoBehaviour:
   rotateKey: 112
   proximity: 1
   maxRotateTime: 0.5
-  enteredRight: 0
-  enteredUp: 0
-  orientation: 0
+  pipeParticles: {fileID: 2215159933229701388, guid: 4af7e2a61a6d6e549a410389a41f5a42,
+    type: 3}
 --- !u!1 &4776518681503050359
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +137,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 8
+  m_SortingOrder: 95
   m_Sprite: {fileID: 21300000, guid: 7cd8be7f14663764b95824bbaed9cef4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

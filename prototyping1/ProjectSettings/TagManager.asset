@@ -31,6 +31,11 @@ TagManager:
   - BenThompsonBoat
   - Bucket
   - JasonHuntBreakable
+  - Spikes
+  - Weapons
+  - JulianBlackstone_Totem
+  - BraedanNeversBreakable
+  - MysteriousChest
   layers:
   - Default
   - TransparentFX

@@ -8,7 +8,7 @@ public class TyJanis_FlyingSpikes : MonoBehaviour
     public int damage = 10;
 
     Rigidbody2D rb;
-    PolygonCollider2D collider;
+    PolygonCollider2D polycollider;
     public float distance;
     bool isFlying = false;
 
@@ -21,7 +21,7 @@ public class TyJanis_FlyingSpikes : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<PolygonCollider2D>();
+        polycollider = GetComponent<PolygonCollider2D>();
 
         if(flyDirection == Direction.Up)
         {

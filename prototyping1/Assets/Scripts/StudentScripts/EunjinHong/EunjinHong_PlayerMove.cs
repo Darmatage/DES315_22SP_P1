@@ -13,9 +13,18 @@ public class EunjinHong_PlayerMove : MonoBehaviour
 
 	private Renderer rend;
 
+	private float activeMoveSpeed;
+	public float dashSpeed;
+
+	public float dashLength = .5f, dashCooldown = 1f;
+
+	private float dashCounter;
+	private float dashCoolCounter;
 
 	protected virtual void Start()
 	{
+		activeMoveSpeed = speed;
+
 		anim = gameObject.GetComponentInChildren<Animator>();
 		rend = GetComponentInChildren<Renderer>();
 
