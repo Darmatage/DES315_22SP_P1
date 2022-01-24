@@ -6,11 +6,13 @@ public class EunjinHong_DashMove : MonoBehaviour
 {
     private GameObject Player;
     private PlayerMove move;
-    private float timer = 0.0f;
+    public float timer = 0.0f;  //timer for dashing
     private bool isDashing = false;
-    private const float dashTime = 0.25f;
 
-    public float dashSpeed = 3.0f;
+    public int dashCount = 5;
+    public float dashTime = 0.05f;
+
+    public float dashSpeed = 10.0f;
     private float baseSpeed;
     // Start is called before the first frame update
     void Start()
@@ -26,19 +28,25 @@ public class EunjinHong_DashMove : MonoBehaviour
         if (isDashing == false)
         {
             isDashing = Input.GetKey(KeyCode.LeftShift);
-            timer = 0.0f;
-
+            timer = 0.0f;   //set timer to 0 therefore it can start dashing
         }
-        if (isDashing)
+        if (isDashing && dashCount > 0)
         {
             timer += Time.fixedDeltaTime;
             move.speed = dashSpeed;
+
             if (timer >= dashTime)
             {
                 isDashing = false;
                 move.speed = baseSpeed;
+                //DashCount();
             }
         }
+    }
+
+    void DashCount()
+    {
+        dashCount--;
     }
 }
 
