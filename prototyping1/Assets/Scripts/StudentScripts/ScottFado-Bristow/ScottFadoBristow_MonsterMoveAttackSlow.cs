@@ -76,6 +76,7 @@ public class ScottFadoBristow_MonsterMoveAttackSlow : MonoBehaviour
 			//Gets the players move script
 			PlayerMove player = collision.gameObject.GetComponent<PlayerMove>();
 
+			float oldS = player.speed;
 			player.speed = Mathf.Max(speedFloor, player.speed - attackSlow);
 
 
@@ -84,7 +85,7 @@ public class ScottFadoBristow_MonsterMoveAttackSlow : MonoBehaviour
 			ScottFadoBristow_SlimeBoots muddyBoots = collision.gameObject.GetComponent<ScottFadoBristow_SlimeBoots>();
 			if(muddyBoots)
             {
-				muddyBoots.Attatch();
+				muddyBoots.Attatch(collision.gameObject, oldS - player.speed);
 				//Destroy(transform.parent);
 				Destroy(gameObject);
             }

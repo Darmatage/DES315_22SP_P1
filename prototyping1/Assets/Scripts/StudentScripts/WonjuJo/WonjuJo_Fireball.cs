@@ -5,11 +5,12 @@ using UnityEngine;
 public class WonjuJo_Fireball : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float FireballLife = 1.5f;
+    public float FireballLife = 3f;
     private float FireballTimer;
     public float Speed = 5f;
     public int Damage = 15;
-    private Rigidbody2D RB2D;
+
+    public Renderer FireballRenderer;
 
     Vector2 Target;
     private Transform playerTrans;
@@ -17,22 +18,22 @@ public class WonjuJo_Fireball : MonoBehaviour
 
     void Start()
     {
-        RB2D = GetComponent<Rigidbody2D>();
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
         Target = new Vector2(playerTrans.position.x, playerTrans.position.y);
+
         if(playerTrans.localScale.x < 0)
         {
-            Target.x -= 5;
+            Target.x -= 20;
         }
         else
         {
-            Target.x += 5;
+            Target.x += 20;
+            FireballRenderer.transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 
     private void Update()
-    {
-        
+    {        
         transform.position = Vector2.MoveTowards(transform.position, Target, Speed* Time.deltaTime);
     }
 
@@ -44,6 +45,17 @@ public class WonjuJo_Fireball : MonoBehaviour
             MH.MonsterTakeDamge(15);
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.tag == "ExplodeEnemy")
+        {
+            WonjuJo_ExplosionEnemy Explosion = collision.GetComponent<WonjuJo_ExplosionEnemy>();
+            Explosion.MonsterTakeDamge(15);
+            Destroy(gameObject);
+        }
+        //if(collision.gameObject.tag == "Torch")
+        //{
+
+        //}
     }
 
     private void FixedUpdate()
