@@ -21,7 +21,9 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
     public float moveSpeed = 1.0f;
     public int damage = 1;
     private bool inQuicksand;
-
+    private GameObject myCanvas;
+    private GameObject SinkingText;
+    private GameObject MovingText;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,21 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             playerTransform = player.GetComponent<Transform>();
             playerMaxSpeed = player.GetComponent<PlayerMove>().speed;
             playerMaxYScale = playerTransform.localScale.y;
+        }
+
+        //Initializing canvas from the one in the scene.
+        if(GameObject.Find("GameHandlerCanvas") != null)
+        {
+            myCanvas = GameObject.Find("GameHandlerCanvas").transform.Find("Canvas").gameObject;
+
+            if (myCanvas)
+            {
+                SinkingText = myCanvas.transform.Find("SinkingPopUp").gameObject;
+                MovingText = myCanvas.transform.Find("MovingPopUp").gameObject;
+
+                SinkingText.SetActive(false);
+                MovingText.SetActive(false);
+            }
         }
     }
 
@@ -80,6 +97,9 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
         //Give player back normal movement speed before entering quicksand.
         if(other.gameObject.tag == "Player")
         {
+            SinkingText.SetActive(false);
+            MovingText.SetActive(false);
+
             inQuicksand = false;
 
             player.GetComponent<PlayerMove>().speed = playerMaxSpeed;
@@ -104,17 +124,29 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             }
 
             //If there is any input, scale the player down and do damage.
-            if (Input.anyKey)
+            if (Input.anyKey && player.GetComponent<PlayerMove>().speed == 0)
             {
                 gameHandlerObj.TakeDamage(damage);
                 float newScale = Mathf.Lerp(0, playerTransform.localScale.y, .95f);
                 playerTransform.localScale = new Vector3(playerTransform.localScale.x, newScale, playerTransform.localScale.z);
+                MovingText.SetActive(false);
+                SinkingText.SetActive(true);
             }
             else
             {
+                SinkingText.SetActive(false);
+                MovingText.SetActive(true);
                 //not moving then move the player out of the sand.
                 playerRigidbody.MovePosition(playerTransform.position + change *moveSpeed * Time.deltaTime);
             }
         }
+
+        UpdateTextPopUpPositions();
+    }
+
+    void UpdateTextPopUpPositions()
+    {
+        SinkingText.transform.localPosition = new Vector3(player.transform.position.x, player.transform.position.y + 100.0f, player.transform.position.z);
+        MovingText.transform.localPosition = new Vector3(player.transform.position.x, player.transform.position.y + 100.0f, player.transform.position.z);
     }
 }
