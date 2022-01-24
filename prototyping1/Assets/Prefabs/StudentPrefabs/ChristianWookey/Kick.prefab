@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 402659135701570023}
   - component: {fileID: 6184523527724851510}
   - component: {fileID: 6787810810220240716}
-  - component: {fileID: 1754886117671839646}
   m_Layer: 10
   m_Name: Kick
   m_TagString: Untagged
@@ -70,19 +69,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1754886117671839646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2781610148459084083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccd7a763a8d5b8348ad268144044cf40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Force: 100
 --- !u!1 &3300565836634237502
 GameObject:
   m_ObjectHideFlags: 0

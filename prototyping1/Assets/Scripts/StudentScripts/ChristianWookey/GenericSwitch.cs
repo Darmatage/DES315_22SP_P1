@@ -40,13 +40,15 @@ public class GenericSwitch : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		// don't un-switch if not desired.
+		// don't switch off if not desired.
 		if (toggle || on)
 		{
 			foreach (string t in tags)
 			{
 				if (other.gameObject.tag == t)
 				{
+					on = !on;
+					
 					if (on)
 					{
 						ArtSwitchOn();

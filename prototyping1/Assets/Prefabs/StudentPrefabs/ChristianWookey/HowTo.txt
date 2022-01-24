@@ -1,0 +1,18 @@
+Kick.prefab
+- The Almighty Kick
+- Attach to a player to give them a kick power that pushes enemies away (but does not damage them)
+- Click to kick in a direction.
+
+Grate.prefab
+- The grate is an obstacle that blocks the player but not enemies.
+- It has an open state that lets enemies through (up-down bars) and a closed state that lets nothing through (diagonal bars)
+- Anything that has the "Enemy" layer set should
+- The three functions of interest are "Open" "Close" and "Toggle" (toggles between open and closed state). Use this with GenericSwitch.
+- If Open boolean is set to true, the grate starts in the open state, otherwise it starts in the closed state (art doesn't update until you hit play).
+
+GenericSwitch.prefab
+- A switch that can be used to call a function on any GameObject in the scene.
+- See ChristianWookeyScene for example usage.
+- Toggle setting for whether the switch should be able to triggered over and over or just once.
+
+
