@@ -23854,11 +23854,6 @@ PrefabInstance:
       propertyPath: shootKey
       value: 105
       objectReference: {fileID: 0}
-    - target: {fileID: 4088271260030370638, guid: d646cacd3b52ac146a6a051522b39ef6,
-        type: 3}
-      propertyPath: proximity
-      value: 1.1
-      objectReference: {fileID: 0}
     - target: {fileID: 4088271260030370642, guid: d646cacd3b52ac146a6a051522b39ef6,
         type: 3}
       propertyPath: m_Name

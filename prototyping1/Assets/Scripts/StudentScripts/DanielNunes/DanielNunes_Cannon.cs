@@ -378,11 +378,11 @@ public class DanielNunes_Cannon : MonoBehaviour
                     tempWhereIsPlayer = whereIsPlayer;
                 }
             }
-            else if (Input.GetKeyUp(holdKey))
-            {
-                //unlock the player
-                //stop the holding animation
-            }
+            //else if (Input.GetKeyUp(holdKey))
+            //{
+            //    //unlock the player
+            //    //stop the holding animation
+            //}
         }
     }
 
@@ -677,7 +677,14 @@ public class DanielNunes_Cannon : MonoBehaviour
         if (whereIsPlayer == Where.eRIGHT || whereIsPlayer == Where.eLEFT)
         {
             //snap them to the exact y position of the cannon, but maintain the x
-            player.transform.position = new Vector2(player.transform.position.x, transform.position.y - offset.y);
+            //player.transform.position = new Vector2(player.transform.position.x, transform.position.y - offset.y);
+
+            if (whereIsPlayer == Where.eRIGHT)
+                //snap them to the exact y position of the cannon and keep them a certain distance in the x
+                player.transform.position = new Vector2(transform.position.x + 0.75f, transform.position.y - offset.y);
+            else
+                //snap them to the exact y position of the cannon and keep them a certain distance in the x
+                player.transform.position = new Vector2(transform.position.x - 0.75f, transform.position.y - offset.y);
         }
         //if player is vertical to the cannon
         else
@@ -686,7 +693,14 @@ public class DanielNunes_Cannon : MonoBehaviour
             int scaleX = (int)player.transform.localScale.x;
 
             //snap them to the exact x position of the cannon, but maintain the y
-            player.transform.position = new Vector2(transform.position.x + (-scaleX * offset.x), player.transform.position.y);
+            //player.transform.position = new Vector2(transform.position.x + (-scaleX * offset.x), player.transform.position.y);
+
+            if (whereIsPlayer == Where.eUP)
+                //snap them to the exact x position of the cannon and keep them a certain distance in the y
+                player.transform.position = new Vector2(transform.position.x + (-scaleX * offset.x), transform.position.y + 1.4f);
+            else
+                //snap them to the exact x position of the cannon and keep them a certain distance in the y
+                player.transform.position = new Vector2(transform.position.x + (-scaleX * offset.x), transform.position.y - 0.4f);
         }
     }
 

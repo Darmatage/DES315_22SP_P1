@@ -126,9 +126,7 @@ MonoBehaviour:
   whereIsPlayer: 0
   maxMoveTime: 1
   speed: 1
-  proximity: 1.1
-  particles: {fileID: 3820208635242196592, guid: 5539bbe22fa828d41a4b98df7550b8c1,
-    type: 3}
+  proximity: 1.175
 --- !u!61 &4088271260030370637
 BoxCollider2D:
   m_ObjectHideFlags: 0
