@@ -17534,7 +17534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 970094ea3dad37c4394ae5f4f350d60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plyTransform: {fileID: 0}
+  plyTransform: {fileID: 655027019}
   PortalableLayer: {fileID: 0}
   portalObject1: {fileID: 3803668925415494686, guid: 22dc5683828065f43b12bd30b55cc020,
     type: 3}
@@ -17789,6 +17789,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 370f8cfdc2b46a14ea799b5e0116b058, type: 3}
+--- !u!4 &655027019 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5174094196587440800, guid: f15318afe2a4d8741a715281e186ed04,
+    type: 3}
+  m_PrefabInstance: {fileID: 6853139540415881831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &915919624
 GameObject:
   m_ObjectHideFlags: 0

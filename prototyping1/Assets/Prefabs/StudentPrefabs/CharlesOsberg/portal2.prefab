@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2778695135909404477}
   - component: {fileID: 7837327782262117600}
   - component: {fileID: -5639463095790873303}
-  m_Layer: 0
+  - component: {fileID: -5072062374121667298}
+  m_Layer: 13
   m_Name: portal2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -115,3 +116,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPortal2: 1
+--- !u!50 &-5072062374121667298
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7597968722470589520}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

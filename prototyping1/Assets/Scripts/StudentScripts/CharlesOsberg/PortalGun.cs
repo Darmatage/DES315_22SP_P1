@@ -15,38 +15,39 @@ public class PortalGun : MonoBehaviour
     public static GameObject curPor1 { get; private set; } = null;
     public static GameObject curPor2 { get; private set; } = null;
 
+    private GameObject FirePortal(GameObject portalPrefab, GameObject portalInstance)
+    {
+        var wPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var pPos = plyTransform.position;
+
+        wPos.z = -0.1f;
+        pPos.z = -0.1f;
+
+        if (!portalInstance)
+        {
+            portalInstance = Instantiate(portalPrefab, pPos, Quaternion.identity);
+        }
+        else
+        {
+            portalInstance.transform.position = pPos;
+        }
+
+        var pDelta = wPos - pPos;
+        portalInstance.GetComponent<PortalTeleport>().Throw(new Vector2(pDelta.x, pDelta.y));
+
+        return portalInstance;
+    }
+    
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            var wPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            wPos.z = -0.1f;
-
-            if (!curPor1)
-            {
-                curPor1 = Instantiate(portalObject1, wPos, Quaternion.identity);
-            }
-            else
-            {
-                curPor1.transform.position = wPos;
-            }
+            curPor1 = FirePortal(portalObject1, curPor1);
         }
         if (Input.GetButtonDown("Fire2"))
         {
-            var wPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            wPos.z = -0.1f;
-
-            if (!curPor2)
-            {
-                curPor2 = Instantiate(portalObject2, wPos, Quaternion.identity);
-            }
-            else
-            {
-                curPor2.transform.position = wPos;
-            }        
+            curPor2 = FirePortal(portalObject2, curPor2);
         }
     }
 }
