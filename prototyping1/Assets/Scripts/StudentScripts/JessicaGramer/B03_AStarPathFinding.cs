@@ -1,28 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
-
-/*
-        This is where you handle pathing requests, each request has several fields:
-
-        start/goal - start and goal world positions
-        path - where you will build the path upon completion, path should be
-            start to goal, not goal to start
-
-        debugColoring - whether to color the grid based on the A* state:
-            closed list nodes - yellow
-            open list nodes - blue
-
-            use terrain->set_color(row, col, Colors::YourColor);
-            also it can be helpful to temporarily use other colors for specific states
-            when you are testing your algorithms
-
-        method - which algorithm to use: A*, Floyd-Warshall, JPS+, or goal bounding,
-            will be A* generally, unless you implement extra credit features
-    */
 
 public class B03_AStarPathFinding : MonoBehaviour
 {
@@ -56,8 +36,9 @@ public class B03_AStarPathFinding : MonoBehaviour
     [SerializeField] float StepTime = 1.0f; // the amount of seconds a single step takes
     [Header("Path Requesting")]
     public bool NewRequest = true; // recaluclate path?
-    public Vector3Int Goal = new Vector3Int(0, 0, 0);
+    public Vector3 Goal = new Vector3Int(0, 0, 0);
     public List<Vector3> Path = new List<Vector3>(); // list of world positions
+    public PathResult prevResult = PathResult.IMPOSSIBLE; // please no changy, needed for external code
     [Header("Misc.")]
     public HeuristicType Heuristic = HeuristicType.OCTILE;
     public float HeuristicWeight = 1.0f;
@@ -65,7 +46,6 @@ public class B03_AStarPathFinding : MonoBehaviour
     private float timer = 0.0f;
     private const int north = 1 << 3, south = 1 << 2, east = 1 << 1, west = 1 << 0;
 
-    private PathResult prevResult = PathResult.IMPOSSIBLE;
     private GridLayout gridLayout;
     private Vector3Int currStart;
     private Vector3Int currGoal;
@@ -100,7 +80,7 @@ public class B03_AStarPathFinding : MonoBehaviour
         {
             Path = new List<Vector3>();
             currStart = gridLayout.WorldToCell(transform.position);
-            currGoal = new Vector3Int(Goal.x, Goal.y, Goal.z);
+            currGoal = gridLayout.WorldToCell(Goal);
             prevResult = PathResult.PROCESSING;
 
             openList_ = new List<B03_Node>();
@@ -146,7 +126,7 @@ public class B03_AStarPathFinding : MonoBehaviour
                     curr_node = curr_node.prevNode_;
                 }
 
-                Path.Reverse();
+                //Path.Reverse();
                 return PathResult.COMPLETE;
             }
 
