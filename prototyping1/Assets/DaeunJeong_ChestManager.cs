@@ -25,6 +25,13 @@ public class DaeunJeong_ChestManager : MonoBehaviour
         {
             if (Chests[i].GetComponent<DaeunJeong_MysteriousChest>().shouldSpawnSwitch)
             {
+                GameObject switchObject = GameObject.Find("Switch");
+
+                if (switchObject.GetComponent<DoorSwitch>() != null)
+                {
+                    Destroy(switchObject);
+                }
+
                 switchChest = Chests[Random.Range(0, Chests.Length)];
                 switchChest.GetComponent<DaeunJeong_MysteriousChest>().ThingsCanGetFromChest.Clear();
                 switchChest.GetComponent<DaeunJeong_MysteriousChest>().ThingsCanGetFromChest.Add(switchPrefab);
