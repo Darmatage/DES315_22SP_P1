@@ -21,7 +21,7 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
 
     public void ActivateColorEffect(float xSeconds)
     {
-        // <- we add a second to the timer to detect finished state inversion more easily
+        // we add a second to the timer to detect finished state inversion more easily
         xSeconds += 1.0f;
         if (hideOnActivation) Hide(xSeconds);
         if (!hideOnActivation) Reveal(xSeconds);
@@ -38,7 +38,6 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
         if ((internalTimer > 0.0f) && (internalTimer < 1.0f))
         {
             internalTimer = 0.0f;
-            //GetComponent<Collider2D>().enabled = !(GetComponent<Collider2D>().enabled); // change this later
             GetComponent<BoxCollider2D>().enabled = !(GetComponent<Collider2D>().enabled);
             GetComponent<SpriteRenderer>().enabled = !(GetComponent<SpriteRenderer>().enabled);
 

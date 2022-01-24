@@ -131,5 +131,5 @@ MonoBehaviour:
   colorTag: Red
   defaultWaveExpireTime: 5
   defaultRevealTime: 5
-  defaultExpansionVelocity: 3
+  defaultExpansionVelocity: 70
   defaultCooldown: 5

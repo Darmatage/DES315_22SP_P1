@@ -124,6 +124,26 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &11984087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2190628367435037980, guid: ca7debc4644c6e446bce3c9ab4a8b74b,
+    type: 3}
+  m_PrefabInstance: {fileID: 862249030}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &11984088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11984087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210264aef056fd949ad5a847c00f79b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 1982129394}
+  Disableable: {fileID: 1961287840}
 --- !u!1 &18261231
 GameObject:
   m_ObjectHideFlags: 0
@@ -17370,6 +17390,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!4 &325836928 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 808692059165069203, guid: 35bf54ad56375c743943124ce57a4c15,
+    type: 3}
+  m_PrefabInstance: {fileID: 808692059232047438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &465733204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17436,6 +17462,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PickupCoin
+      objectReference: {fileID: 0}
+    - target: {fileID: 9125970535451432788, guid: 7c94acf75140efd4aa737ed8ee93fe71,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pullable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c94acf75140efd4aa737ed8ee93fe71, type: 3}
@@ -17613,6 +17644,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PickupJewel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661532204536297201, guid: f81cec92f62272849bb9648f9f67f8dc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pullable
       objectReference: {fileID: 0}
     - target: {fileID: 5340632940280364478, guid: f81cec92f62272849bb9648f9f67f8dc,
         type: 3}
@@ -17805,6 +17841,16 @@ PrefabInstance:
     - target: {fileID: 2190628367435037977, guid: ca7debc4644c6e446bce3c9ab4a8b74b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190628367435037978, guid: ca7debc4644c6e446bce3c9ab4a8b74b,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190628367435037979, guid: ca7debc4644c6e446bce3c9ab4a8b74b,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2190628367435037980, guid: ca7debc4644c6e446bce3c9ab4a8b74b,
@@ -19751,6 +19797,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PickupHealth
       objectReference: {fileID: 0}
+    - target: {fileID: 412980851578624884, guid: e37dfe756aac6e442856ce7b8ce28396,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pullable
+      objectReference: {fileID: 0}
     - target: {fileID: 3294450357376018458, guid: e37dfe756aac6e442856ce7b8ce28396,
         type: 3}
       propertyPath: m_RootOrder
@@ -20822,11 +20873,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hookshot
       objectReference: {fileID: 0}
+    - target: {fileID: 808692058943550074, guid: 35bf54ad56375c743943124ce57a4c15,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -91597823295964659, guid: ed5afc75dabb1914ba29682f6b3791f6,
+        type: 3}
+    - target: {fileID: 808692058943550076, guid: 35bf54ad56375c743943124ce57a4c15,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 808692059764774146, guid: 35bf54ad56375c743943124ce57a4c15,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.2249999
+      objectReference: {fileID: 0}
+    - target: {fileID: 808692059764774146, guid: 35bf54ad56375c743943124ce57a4c15,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.027
+      objectReference: {fileID: 0}
     - target: {fileID: 808692059764774147, guid: 35bf54ad56375c743943124ce57a4c15,
         type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1982129394}
+    - target: {fileID: 808692059764774147, guid: 35bf54ad56375c743943124ce57a4c15,
+        type: 3}
+      propertyPath: positionRot
+      value: 
+      objectReference: {fileID: 325836928}
     - target: {fileID: 808692060146132388, guid: 35bf54ad56375c743943124ce57a4c15,
         type: 3}
       propertyPath: Player
