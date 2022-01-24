@@ -5,7 +5,7 @@ using UnityEngine;
 public class WonjuJo_Fireball : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float FireballLife = 1.5f;
+    public float FireballLife = 3f;
     private float FireballTimer;
     public float Speed = 5f;
     public int Damage = 15;
@@ -23,11 +23,11 @@ public class WonjuJo_Fireball : MonoBehaviour
 
         if(playerTrans.localScale.x < 0)
         {
-            Target.x -= 5;
+            Target.x -= 20;
         }
         else
         {
-            Target.x += 5;
+            Target.x += 20;
             FireballRenderer.transform.localScale = new Vector3(-1, 1, 1);
         }
     }

@@ -17004,100 +17004,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1001 &423630617
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2652796611025881063, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: PM
-      value: 
-      objectReference: {fileID: 2061567398}
-    - target: {fileID: 2652796611025881063, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: MonsterHealth
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2652796611025881063, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: MonsterStartHealth
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3239606537953489942, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_Name
-      value: WonjuJo_ExplosionEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.3311453
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.7152643
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833287647905764856, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: ExplosionEnemy
-      value: 
-      objectReference: {fileID: 1054498199}
-    - target: {fileID: 6806322995878967382, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-        type: 3}
-      propertyPath: speed
-      value: 2
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2d2f0868d8e68a64fb17a125c4d50d9a, type: 3}
 --- !u!1001 &465733204
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17108,7 +17014,7 @@ PrefabInstance:
     - target: {fileID: 5647238946579152748, guid: 7c94acf75140efd4aa737ed8ee93fe71,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5647238946579152748, guid: 7c94acf75140efd4aa737ed8ee93fe71,
         type: 3}
@@ -17231,7 +17137,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -18823,18 +18729,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &1054498199 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2652796611025881063, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
-    type: 3}
-  m_PrefabInstance: {fileID: 423630617}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3536cac456a65d49a4218ddb96a26e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1154219603
 GameObject:
   m_ObjectHideFlags: 0
@@ -18880,7 +18774,7 @@ Transform:
   - {fileID: 915919625}
   - {fileID: 1596600657}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1255874523
 PrefabInstance:
@@ -18904,6 +18798,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 3997990643917168598, guid: 8123a6702d1b45c4fb9208415270657b,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5705423988210603201, guid: 8123a6702d1b45c4fb9208415270657b,
         type: 3}
       propertyPath: PM
@@ -18917,12 +18816,12 @@ PrefabInstance:
     - target: {fileID: 5705423988210603201, guid: 8123a6702d1b45c4fb9208415270657b,
         type: 3}
       propertyPath: MonsterHealth
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5705423988210603201, guid: 8123a6702d1b45c4fb9208415270657b,
         type: 3}
       propertyPath: MonsterStartHealth
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7670020609936237066, guid: 8123a6702d1b45c4fb9208415270657b,
         type: 3}
@@ -18932,12 +18831,12 @@ PrefabInstance:
     - target: {fileID: 7670020609936237066, guid: 8123a6702d1b45c4fb9208415270657b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.61
+      value: -2.45
       objectReference: {fileID: 0}
     - target: {fileID: 7670020609936237066, guid: 8123a6702d1b45c4fb9208415270657b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.22
+      value: 6.96
       objectReference: {fileID: 0}
     - target: {fileID: 7670020609936237066, guid: 8123a6702d1b45c4fb9208415270657b,
         type: 3}
@@ -20285,6 +20184,90 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   damageTime: 0.5
+--- !u!1001 &1631538627
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2652796611025881063, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: PM
+      value: 
+      objectReference: {fileID: 2061567398}
+    - target: {fileID: 2652796611025881063, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: MonsterHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652796611025881063, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: MonsterStartHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239606537953489942, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_Name
+      value: WonjuJo_ExplosionEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.0576887
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.6977029
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3715168653976560157, guid: 2d2f0868d8e68a64fb17a125c4d50d9a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d2f0868d8e68a64fb17a125c4d50d9a, type: 3}
 --- !u!1001 &1647972331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20372,10 +20355,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: WonjuJo_GameHandlerCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2928651003253072495, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8182156539198753759, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8182156539198753759, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
