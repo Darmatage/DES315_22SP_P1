@@ -24285,12 +24285,12 @@ PrefabInstance:
     - target: {fileID: 1752800895972075738, guid: 117912aae34130e45b11eedfbd1d4b41,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.33
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 1752800895972075738, guid: 117912aae34130e45b11eedfbd1d4b41,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.42
+      value: 3.76
       objectReference: {fileID: 0}
     - target: {fileID: 1752800895972075738, guid: 117912aae34130e45b11eedfbd1d4b41,
         type: 3}
@@ -24335,7 +24335,7 @@ PrefabInstance:
     - target: {fileID: 8795562353032092023, guid: 117912aae34130e45b11eedfbd1d4b41,
         type: 3}
       propertyPath: m_Name
-      value: MonsterSlime (1)
+      value: MonsterSlime
       objectReference: {fileID: 0}
     - target: {fileID: 8795562353032092023, guid: 117912aae34130e45b11eedfbd1d4b41,
         type: 3}
@@ -27089,12 +27089,12 @@ PrefabInstance:
     - target: {fileID: 7976858550525226718, guid: c4e2342e1b8ca634ba26cec8b074067d,
         type: 3}
       propertyPath: OnSwitchOnEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7976858550525226718, guid: c4e2342e1b8ca634ba26cec8b074067d,
         type: 3}
       propertyPath: OnSwitchOffEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7976858550525226718, guid: c4e2342e1b8ca634ba26cec8b074067d,
         type: 3}
@@ -27294,12 +27294,12 @@ PrefabInstance:
     - target: {fileID: 7976858550525226718, guid: c4e2342e1b8ca634ba26cec8b074067d,
         type: 3}
       propertyPath: OnSwitchOffEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Toggle
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7976858550525226718, guid: c4e2342e1b8ca634ba26cec8b074067d,
         type: 3}
       propertyPath: OnSwitchOffEvent.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: Toggle
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7976858550525226718, guid: c4e2342e1b8ca634ba26cec8b074067d,
         type: 3}
@@ -27404,12 +27404,12 @@ PrefabInstance:
     - target: {fileID: 7976858550525226718, guid: c4e2342e1b8ca634ba26cec8b074067d,
         type: 3}
       propertyPath: OnSwitchOffEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7976858550525226718, guid: c4e2342e1b8ca634ba26cec8b074067d,
         type: 3}
       propertyPath: OnSwitchOffEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7976858550525226718, guid: c4e2342e1b8ca634ba26cec8b074067d,
         type: 3}

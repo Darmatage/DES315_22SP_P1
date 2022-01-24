@@ -14,5 +14,5 @@ GenericSwitch.prefab
 - A switch that can be used to call a function on any GameObject in the scene.
 - See ChristianWookeyScene for example usage.
 - Toggle setting for whether the switch should be able to triggered over and over or just once.
-
+- You can customize which tags trigger the switch. By default, the Player tag and the Enemy tag toggle the switch.
 
