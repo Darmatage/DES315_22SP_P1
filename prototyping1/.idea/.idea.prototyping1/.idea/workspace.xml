@@ -22,10 +22,6 @@
     <list default="true" id="2807b824-211b-4825-8c41-b9035f51e944" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.." afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.prototyping1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.prototyping1/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/StudentPrefabs/CharlesOsberg/portal1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/StudentPrefabs/CharlesOsberg/portal1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/StudentPrefabs/CharlesOsberg/portal2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/StudentPrefabs/CharlesOsberg/portal2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/StudentScenes/CharlesOsbergScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/StudentScenes/CharlesOsbergScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/StudentScripts/CharlesOsberg/PortalGun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StudentScripts/CharlesOsberg/PortalGun.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/StudentScripts/CharlesOsberg/PortalTeleport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/StudentScripts/CharlesOsberg/PortalTeleport.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +110,7 @@
       <workItem from="1611601248585" duration="913000" />
       <workItem from="1642178647080" duration="600000" />
       <workItem from="1642785127476" duration="3543000" />
-      <workItem from="1643039727671" duration="2041000" />
+      <workItem from="1643039727671" duration="4809000" />
     </task>
     <servers />
   </component>

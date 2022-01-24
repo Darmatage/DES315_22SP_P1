@@ -37,20 +37,33 @@ public class PortalTeleport : MonoBehaviour
     {
         if (isActive)
         {
-            Vector3 portalDist;
+            var isValidTele = false;
+            var portalDist = new Vector3();
             if (isPortal2)
             {
-                portalDist = PortalGun.curPor1.transform.position - transform.position;
+                if (PortalGun.curPor1)
+                {
+                    portalDist = PortalGun.curPor1.transform.position - transform.position;
+                    isValidTele = true;
+                }
             }
             else
             {
-                portalDist = PortalGun.curPor2.transform.position - transform.position ;
+                if (PortalGun.curPor2)
+                {
+                    portalDist = PortalGun.curPor2.transform.position - transform.position;
+                    isValidTele = true;
+                }
             }
-        
-            //push away a bit so we don't immediately teleport back and forth
-            portalDist += (other.transform.position - transform.position).normalized * pushAmt;
 
-            other.transform.position += portalDist;
+            if (isValidTele)
+            {
+                //push away a bit so we don't immediately teleport back and forth
+                portalDist += (other.transform.position - transform.position).normalized * pushAmt;
+
+                other.transform.position += portalDist;
+            }
+
         }
         else
         {
