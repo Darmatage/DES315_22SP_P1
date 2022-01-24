@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Tilemaps;
 using UnityEngine;
 
 public class LilyanMonrroy_Quicksand : MonoBehaviour
@@ -50,8 +51,8 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
     //Trigger event start
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("LilyanMonrroy_Quicksand Log: Trigger start!");
-        
+        //Debug.Log("LilyanMonrroy_Quicksand Log: Trigger start!");
+
         if (other.gameObject.tag == "Player")
         {
             inQuicksand = true;
@@ -63,22 +64,30 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
         }
         else
         {
-            Destroy(other.gameObject);
-            Debug.Log("LilyanMonrroy_Quicksand Log: Destroyed object that wasnt the player");
+            //If it is not a tile component delete it.
+            if (other.gameObject.GetComponent<Tilemap>() == null)
+            {
+                Destroy(other.gameObject);
+                Debug.Log("LilyanMonrroy_Quicksand Log: Destroyed object.");
+            }
         }
+
     }
 
     //Trigger event exit
     void OnTriggerExit2D(Collider2D other)
     {
-        inQuicksand = false;
-
         //Give player back normal movement speed before entering quicksand.
-        player.GetComponent<PlayerMove>().speed = playerMaxSpeed;
-        playerTransform.localScale = new Vector3(playerTransform.localScale.x, playerMaxYScale, playerTransform.localScale.z);
-        Debug.Log("LilyanMonrroy_Quicksand Log: Trigger end!");
+        if(other.gameObject.tag == "Player")
+        {
+            inQuicksand = false;
 
+            player.GetComponent<PlayerMove>().speed = playerMaxSpeed;
+            playerTransform.localScale = new Vector3(playerTransform.localScale.x, playerMaxYScale, playerTransform.localScale.z);
+            playerRigidbody.MovePosition(playerTransform.position + change * moveSpeed * 20 * Time.deltaTime);
+        }
 
+        //Debug.Log("LilyanMonrroy_Quicksand Log: Trigger end!");
     }
 
     //Update loop
