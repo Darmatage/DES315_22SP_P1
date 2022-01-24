@@ -10,7 +10,10 @@ public class GenericSwitch : MonoBehaviour
 	public GameObject SwitchOnArt;
 
 	// generic event can be assigned to do anything
-	public UnityEvent OnSwitchEvent;
+	public UnityEvent OnSwitchOnEvent;
+
+	// generic event can be assigned to do anything
+	public UnityEvent OnSwitchOffEvent;
 
 	public bool toggle = false;
 
@@ -37,19 +40,25 @@ public class GenericSwitch : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		// don't un-switch if not desired.
+		// don't switch off if not desired.
 		if (toggle || on)
 		{
 			foreach (string t in tags)
 			{
 				if (other.gameObject.tag == t)
 				{
+					on = !on;
+					
 					if (on)
+					{
 						ArtSwitchOn();
+						OnSwitchOnEvent.Invoke();
+					}
 					else
+					{
 						ArtSwitchOff();
-
-					OnSwitchEvent.Invoke();
+						OnSwitchOffEvent.Invoke();
+					}
 
 					break;
 				}
