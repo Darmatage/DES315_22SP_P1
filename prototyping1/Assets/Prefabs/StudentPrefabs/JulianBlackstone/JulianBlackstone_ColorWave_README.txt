@@ -25,6 +25,14 @@ of reveal it, then hit the respective check marks in the
 details section of the colorsystem script that is attached
 to the object!
 
+
+DISABLE VOLUMES:
+The disable volume is used for the sake of disabling a block
+set if the player is in an area where them not disabling would
+softlock the game. You can drag the instances of the walls or
+objects you want to activate on player collision into the volume's
+reference array in the details panel.
+
 -- Side Note --
 If you really want to use the currnet system for making any object 
 colored, you must add a CircleCollider2D with the trigger checkbox 
