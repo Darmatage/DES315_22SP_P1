@@ -9158,7 +9158,7 @@ PrefabInstance:
     - target: {fileID: 2932705004059494151, guid: 4d2d957fcba00bd4d89fe77514f03579,
         type: 3}
       propertyPath: defaultRevealTime
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2932705004059494151, guid: 4d2d957fcba00bd4d89fe77514f03579,
         type: 3}
@@ -10186,6 +10186,11 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultCooldown
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932705004059494151, guid: 4d2d957fcba00bd4d89fe77514f03579,
+        type: 3}
+      propertyPath: defaultRevealTime
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2932705004059494151, guid: 4d2d957fcba00bd4d89fe77514f03579,
         type: 3}
@@ -12842,7 +12847,7 @@ PrefabInstance:
     - target: {fileID: 7783233679475157304, guid: da20567aee1ca7f4c8b8b7c2a7ff2670,
         type: 3}
       propertyPath: m_Text
-      value: Student Example
+      value: Julian Blackstone
       objectReference: {fileID: 0}
     - target: {fileID: 9206448110116329667, guid: da20567aee1ca7f4c8b8b7c2a7ff2670,
         type: 3}
@@ -13688,7 +13693,7 @@ PrefabInstance:
     - target: {fileID: 2932705004059494151, guid: 4d2d957fcba00bd4d89fe77514f03579,
         type: 3}
       propertyPath: defaultRevealTime
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2932705004059494151, guid: 4d2d957fcba00bd4d89fe77514f03579,
         type: 3}
