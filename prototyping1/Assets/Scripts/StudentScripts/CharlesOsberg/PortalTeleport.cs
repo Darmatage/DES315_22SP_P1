@@ -20,16 +20,22 @@ public class PortalTeleport : MonoBehaviour
 
     public void Throw(Vector2 direction)
     {
+        rigidbody.isKinematic = false;
         isActive = false;
-
         rigidbody.velocity = direction.normalized * defaultForce;
+        transform.position += new Vector3(direction.x, direction.y, 0).normalized * pushAmt * 2.0f;
     }
 
     private void StopPortal()
     {
-        rigidbody.velocity = Vector2.zero;
-
+        var rawPos = transform.position;
+        rawPos.x = Mathf.Floor(rawPos.x);
+        rawPos.y = Mathf.Floor(rawPos.y);
+        transform.position = rawPos;
+        
+        rigidbody.isKinematic = true;
         isActive = true;
+        rigidbody.velocity = Vector2.zero;
     }
     
     [SerializeField] private bool isPortal2 = false;
@@ -82,23 +88,22 @@ public class PortalTeleport : MonoBehaviour
                 { //vertical hit
                     if (hitVec.y > 0)
                     { //hit on top
-                        print("hit on top");
-                     
+                        
                     }
                     else
                     { //hit on bottom
-                        print("hit on bott");
+                        
                     }
                 }
                 else
                 { //horizontal hit
                     if (hitVec.x > 0)
                     { //hit on right
-                        print("hit on right");
+                        
                     }
                     else
                     { //hit on left
-                        print("hit on left");
+                        
                     }
                 }
                 
