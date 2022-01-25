@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1866378276182817281}
   - component: {fileID: 6135125857236268693}
   m_Layer: 0
-  m_Name: TaroKumagai_SwitchRed
+  m_Name: Taro_SwitchRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
