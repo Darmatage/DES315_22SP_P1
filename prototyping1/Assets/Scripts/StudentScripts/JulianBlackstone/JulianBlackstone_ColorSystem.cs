@@ -22,7 +22,14 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
         if (hideOnActivation == false)
         {
             GetComponent<BoxCollider2D>().enabled = false;
-            GetComponent<SpriteRenderer>().enabled = false;
+
+            Color instanceColor = mySprite.color;
+
+            instanceColor.a = 0;
+
+            mySprite.color = instanceColor;
+
+            //GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
@@ -50,7 +57,7 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
                 }
                 else
                 {
-                    instanceColor.a = internalTimer / 25.0f;
+                    instanceColor.a = internalTimer / 2.0f;
                 }
 
                 mySprite.color = instanceColor;
