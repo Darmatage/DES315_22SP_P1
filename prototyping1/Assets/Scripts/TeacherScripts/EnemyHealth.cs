@@ -11,13 +11,27 @@ public class EnemyHealth : MonoBehaviour{
 	private Renderer rend;
 	
 	public bool isStunned = false;
+	public float stunTime = 5f;
+	private float stuncounter =0f;
 	
     void Start(){
 		anim = gameObject.GetComponentInChildren<Animator>();
 		rend = GetComponentInChildren<Renderer> ();
+		stuncounter = stunTime;
     }
 
-    public void hitEnemy(){
+	void FixedUpdate(){
+		if (isStunned == true){
+			stuncounter -= 0.01f;
+			if (stuncounter <= 0){
+				stuncounter = stunTime;
+                isStunned = false;
+            }
+        }
+	}
+
+
+    public void HitEnemy(){
 		StopCoroutine("GetHit");
 		StartCoroutine("GetHit");   
     }
