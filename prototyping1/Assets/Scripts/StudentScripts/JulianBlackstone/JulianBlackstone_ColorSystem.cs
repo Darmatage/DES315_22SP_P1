@@ -37,13 +37,21 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
     private void FixedUpdate()
     {
 
-
+       
         if (mySprite != null)
         {
-            if (internalTimer > 0.0f)
+            if (internalTimer >= 1.0f)
             {
                 Color instanceColor = mySprite.color;
-                instanceColor.a = internalTimer / 50;
+
+                if (hideOnActivation)
+                {
+                    instanceColor.a = 1.0f / internalTimer;
+                }
+                else
+                {
+                    instanceColor.a = internalTimer / 25.0f;
+                }
 
                 mySprite.color = instanceColor;
             }
@@ -59,10 +67,19 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
         {
             internalTimer = 0.0f;
             GetComponent<BoxCollider2D>().enabled = !(GetComponent<Collider2D>().enabled);
-            GetComponent<SpriteRenderer>().enabled = !(GetComponent<SpriteRenderer>().enabled);
+            //GetComponent<SpriteRenderer>().enabled = !(GetComponent<SpriteRenderer>().enabled);
 
             Color instanceColor = mySprite.color;
-            instanceColor.a = 1.0f;
+
+
+            if (hideOnActivation)
+            {
+                instanceColor.a = 1;
+            }
+            else
+            {
+                instanceColor.a = 0;
+            }
 
             mySprite.color = instanceColor;
         }
