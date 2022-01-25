@@ -91,7 +91,10 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
         #region Circle Movement
         else if (circle_mode)
         {
-            angle += rotate_speed * Time.deltaTime; // rotate smoothly with delta time
+            if (reverse_dir) // counter clockwise
+                angle += -rotate_speed * Time.deltaTime; // rotate smoothly with delta time
+            else // clockwise
+                angle += rotate_speed * Time.deltaTime; // rotate smoothly with delta time
             var offset = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)) * radius; // circle (sin, cos) * radius length
             transform.position = center + offset; // offset from center acting as pivot point
         }

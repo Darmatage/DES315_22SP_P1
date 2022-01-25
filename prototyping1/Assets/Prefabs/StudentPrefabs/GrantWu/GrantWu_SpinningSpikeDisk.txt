@@ -7,7 +7,7 @@ HowToUse
    c. Y_center - starting position of disk in y direction
    d. X_center - starting position of disk in x direction
    e. Speed - Movement speed of the disk
-   f. Reverse_dir - change direction of disk
+   f. Reverse_dir - change direction of disk (for both linear and circular movement)
    g. Damage - Damage to the player value
    h. Y_dir - Set disk to move on the y-axis
    i. X_dir - Set disk to move on the x-axis
