@@ -1,0 +1,11 @@
+The Metronome Controller restricts movement for the player so that they may only move to the beat of a metronome.
+
+Integration steps:
+
+1. Replace PlayerMove script with MetronomePlayerController on the Player object.
+
+2. Add a MetronomeController prefab into your scene.
+
+3. Add a MetronomeMarker prefab and a StatusText prefab as a child of the Canvas object.
+
+Enjoy! In the future this will be consolidated to one prefab.
