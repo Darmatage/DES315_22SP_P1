@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6297105477817182828}
   - component: {fileID: 7963539567691582449}
   - component: {fileID: 2254105535100323377}
+  - component: {fileID: 6869312373122330936}
   m_Layer: 6
   m_Name: MonsterSkull
   m_TagString: monsterShooter
@@ -110,10 +111,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 3523443560510459683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 573bdd0132f003440a120610bf9ddd5e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8268fdf123dbc9241b1f205dda38b524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies_: []
+  disableOtherScripts_: 1
+  sprite_: {fileID: 0}
+  grabbed_: 0
+  change_: 0
+  locked_: 0
+  restrictPlacement_: 0
+--- !u!114 &6869312373122330936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3523443560510459683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d042e08a111e7241a7ee3c236a9900e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_: {fileID: 0}
+  distance_: 8
+  all_: 1
+  specifics_: []
+  enabled_: 0
+  change_: 0
 --- !u!1 &7646164479038769140
 GameObject:
   m_ObjectHideFlags: 0
