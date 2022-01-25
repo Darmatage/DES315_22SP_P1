@@ -22,15 +22,26 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
     public float x_center;     // starting position of x coordinate used to offset PingPong()
     [Tooltip("speed of disk")]
     public float speed = 2;    // speed of disk
+    [Tooltip("move disk in a circle")]
+    public bool circle_mode;   // move the disk in a circle
+    [Tooltip("speed of rotating disk")]
+    public float rotate_speed = 1;
+    [Tooltip("distance from disk position to rotate about")]
+    public float radius = 0.5f;
     [Tooltip("player damage from disk")]
     public int damage = 1;     // player damage of disk 
    
    
     private GameHandler gameHandlerObj; // player takes damage
+    private Vector2 center;             // object's pivot point/initial starting position
+    private float angle;                // uses rotate speed and updates with delta time for sin & cos angles
 
     // Start is called before the first frame update
     void Start()
     {
+        center = transform.position; // set pivot point
+
+        // Game handler to handle player damage
         GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
         if (gameHandlerLocation != null)
         {
@@ -44,6 +55,7 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
         // Mathf.PingPong returns an incrementing and decrementing value between 0 and length (distance here).
         // Center position is used and offsetted by PingPong's return value
         // Subtract half the length so that it moves +/- length/2 e.g. length = 7 -> moves 3.5 units up and 3.5 down
+        #region Linear Movement
         if (x_dir && y_dir)
         {
             if (reverse_diagonal_dir)
@@ -74,6 +86,22 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
                 transform.position = new Vector3(x_center + -(Mathf.PingPong(Time.time * speed, x_dist) - x_dist / 2f), transform.position.y, transform.position.z);
             else
                 transform.position = new Vector3(x_center + (Mathf.PingPong(Time.time * speed, x_dist) - x_dist / 2f), transform.position.y, transform.position.z);
+        }
+        #endregion
+        #region Circle Movement
+        else if (circle_mode)
+        {
+            if (reverse_dir) // counter clockwise
+                angle += -rotate_speed * Time.deltaTime; // rotate smoothly with delta time
+            else // clockwise
+                angle += rotate_speed * Time.deltaTime; // rotate smoothly with delta time
+            var offset = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)) * radius; // circle (sin, cos) * radius length
+            transform.position = center + offset; // offset from center acting as pivot point
+        }
+        #endregion
+        else // should never happen 
+        {
+            Debug.LogError("Invalid mode combination for disk movement. Circle_mode does not work with linear directions.");
         }
 
         transform.Rotate(new Vector3(0, 0, 10000) * Time.deltaTime);
