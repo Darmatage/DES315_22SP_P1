@@ -8,6 +8,7 @@ public class WonjuJo_Explode : MonoBehaviour
 
     private WonjuJo_PlayerHandler gameHandlerObj;
 
+    //private WonjuJo_MonsterHandler MH;
     // Start is called before the first frame update
 
     private bool Once = false;
@@ -26,19 +27,25 @@ public class WonjuJo_Explode : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-      if (ExplosionEnemy.GetIsDead() && !Once)
+        if (ExplosionEnemy.GetIsDead() && !Once)
         {
-            StartCoroutine("Delay");
-            gameHandlerObj.TakeDamage(20);
-            Once = true;
+            if (collision.gameObject.tag == "Player")
+            {
+                Once = true;
 
+                StartCoroutine(Delay(1.8f));
+            }            
         }
+
+
     }
 
-    IEnumerator Delay()
+    IEnumerator Delay(float time)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(time);
+        gameHandlerObj.TakeDamage(20);
+
     }
 }
