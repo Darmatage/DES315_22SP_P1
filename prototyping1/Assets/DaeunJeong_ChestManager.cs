@@ -27,9 +27,12 @@ public class DaeunJeong_ChestManager : MonoBehaviour
             {
                 GameObject switchObject = GameObject.Find("Switch");
 
-                if (switchObject.GetComponent<DoorSwitch>() != null)
+                if (switchObject != null)
                 {
-                    Destroy(switchObject);
+                    if (switchObject.GetComponent<DoorSwitch>() != null)
+                    {
+                        Destroy(switchObject);
+                    }
                 }
 
                 switchChest = Chests[Random.Range(0, Chests.Length)];
