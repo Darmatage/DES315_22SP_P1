@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 	public float defaultSpeed = 4f;
 	public Transform target;
 	public int damage = 1;
-	public int EnemyLives = 3;
+	public float EnemyLives = 3;
+	public float maxEnemyLives = 3;
 	private Renderer rend;
 	private JirakitJarusiripipat_GameHandler gameHandlerObj;
 	private Animator anim;
@@ -21,27 +23,32 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 
 	public bool playerInArea = false;
 	public string detectionTag = "Player";
+	private JirakitJarusiripipat_SFX SFX;
+
+	[SerializeField]
+	private Image healthFill;
 
 	void Start()
 	{
 		anim = gameObject.GetComponentInChildren<Animator>();
 		rend = GetComponentInChildren<Renderer>();
-
-		//if (GameObject.FindGameObjectWithTag("Player") != null)
-		//{
-		//	target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-		//}
-		GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
+		SFX = GameObject.FindGameObjectWithTag("Respawn").GetComponent<JirakitJarusiripipat_SFX>();
+        if (GameObject.FindGameObjectWithTag("Player") != null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        }
+        GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
 		if (gameHandlerLocation != null)
 		{
 			gameHandlerObj = gameHandlerLocation.GetComponent<JirakitJarusiripipat_GameHandler>();
 		}
+	
 	}
 
 	void Update()
 	{
 		//int playerHealth = GameHandler.PlayerHealth; //access script directly in the case of a static variable 
-		if (target != null && playerInArea)
+		if (target != null /*&& playerInArea*/)
 		{
 			//if ((attackPlayer == true) && (playerHealth >= 1)){
 			if (attackPlayer == true)
@@ -61,6 +68,7 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 				speed = defaultSpeed;
             }
 		}
+		healthFill.fillAmount = EnemyLives / maxEnemyLives;
 		
 	}
 
@@ -109,6 +117,7 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 
 		anim.SetTrigger("Hurt");
 		EnemyLives -= 1;
+		SFX.Punch.Play();
 		// color values are R, G, B, and alpha, each divided by 100
 		rend.material.color = new Color(2.4f, 0.9f, 0.9f, 0.5f);
 		if (EnemyLives < 1)

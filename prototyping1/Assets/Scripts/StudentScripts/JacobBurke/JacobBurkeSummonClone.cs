@@ -8,23 +8,28 @@ public class JacobBurkeSummonClone : MonoBehaviour
     GameObject playerClone;
 
     private GameObject playerCloneInstance;
+    private GameObject player;
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.position = new Vector3(player.transform.position.x - 0.5f, player.transform.position.y, player.transform.position.z);
+
         if (Input.GetKeyDown(KeyCode.E) && (playerCloneInstance == null) && playerClone)
         {
-            Vector3 pos = GameObject.FindGameObjectWithTag("Player").transform.position;
-            pos.x += 3;
+            GetComponent<SpriteRenderer>().enabled = false;
+            Vector3 pos = player.transform.position;
+            pos.x += 0.1f;
             playerCloneInstance = Instantiate(playerClone, pos, Quaternion.identity);
+            playerCloneInstance.GetComponent<JacobBurke_Cloning>().shadowSpawner = gameObject;
         }
     }
 }

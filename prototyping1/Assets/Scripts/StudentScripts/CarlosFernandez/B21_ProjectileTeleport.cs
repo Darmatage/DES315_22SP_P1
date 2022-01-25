@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using UnityEngine;
 
 public class B21_ProjectileTeleport : MonoBehaviour
@@ -32,17 +33,22 @@ public class B21_ProjectileTeleport : MonoBehaviour
     private float cooldownTimer = 0.0f;
     private Vector3 shootDirection;
     private Vector2 lastVelocity;
-    
+    private GameObject playerCamera;
+
     // Start is called before the first frame update
     void Start()
     {
         playerObject = GameObject.FindWithTag("Player");
+        playerCamera = GameObject.FindWithTag("MainCamera");
+
         projectileDistanceCounter = travelDuration;
     }
 
     // Update is called once per frame
     void Update()
     {
+        HandleCameraMovement();
+        
         if (projectileHasBeenShot)
         {
             projectileDistanceCounter -= Time.deltaTime;
@@ -60,8 +66,12 @@ public class B21_ProjectileTeleport : MonoBehaviour
 
         if (Input.GetKeyDown(cancelShootKeybind))
         {
-            if(projectile)
+            if (projectile)
+            {
                 Destroy(projectile);
+            }
+
+            Camera.main.orthographicSize = 5.0f;
         }
         
         if (Input.GetKeyDown(shootKeybind))
@@ -73,6 +83,7 @@ public class B21_ProjectileTeleport : MonoBehaviour
                 if (projectile)
                 {
                     projectileHasBeenShot = true;
+                    cooldownTimer = cooldownDuration;
                     shootDirection = Input.mousePosition;
                     shootDirection.z = 0.0f;
                     shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
@@ -84,22 +95,47 @@ public class B21_ProjectileTeleport : MonoBehaviour
             }
             else if (projectile)
             {
+                DrawTeleportLine();
                 playerObject.transform.position = projectile.transform.position;
                 Destroy(projectile);
+                Camera.main.orthographicSize = 5.0f;
+
             }
+        }
+
+        if (cooldownTimer > 0.0f)
+        {
+            cooldownTimer -= Time.deltaTime;
         }
         
     }
-    
 
-    //private void OnCollisionEnter2D(Collision2D other)
-    //{
-    //    if (!other.gameObject.CompareTag("Player") && other.gameObject.layer != LayerMask.NameToLayer("Enemy"))
-    //    {
-    //        Vector2 reflectedPosition = Vector2.Reflect(gameObject.GetComponent<Rigidbody2D>().velocity.normalized, other.contacts[0].normal);
-    //        GetComponent<Rigidbody2D>().velocity = new Vector2(reflectedPosition.x * projectileSpeed,
-    //            reflectedPosition.y * projectileSpeed);
-    //
-    //    }
-    //}
+
+
+    private void DrawTeleportLine()
+    {
+        var lr = gameObject.GetComponent<LineRenderer>();
+        lr.SetPosition(0, playerObject.transform.position);
+        lr.SetPosition(1, projectile.transform.position);
+        
+    }
+
+    private void HandleCameraMovement()
+    {
+        if (projectile)
+        {
+            Vector3 midPoint = (playerObject.transform.position + projectile.transform.position) / 2.0f;
+            playerCamera.transform.position = new Vector3(midPoint.x, midPoint.y, playerCamera.transform.position.z);
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(projectile.transform.position);
+            if (    screenPos.x < 0
+                 || screenPos.x > (Screen.width )
+                 || screenPos.y < 0
+                 || screenPos.y > (Screen.height)
+                 )
+            {
+                Camera.main.orthographicSize += 0.1f;
+            }
+
+        }
+    }
 }

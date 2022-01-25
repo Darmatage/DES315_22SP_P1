@@ -126,7 +126,7 @@ MonoBehaviour:
   whereIsPlayer: 0
   maxMoveTime: 1
   speed: 1
-  proximity: 1.1
+  proximity: 1.175
 --- !u!61 &4088271260030370637
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -240,7 +240,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 7
+  m_SortingOrder: 95
   m_Sprite: {fileID: 21300000, guid: 0c0891a1856f16a449ac14e0bc893abb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

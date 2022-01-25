@@ -117,6 +117,7 @@ GameObject:
   - component: {fileID: 174651534433425104}
   - component: {fileID: 7641862248900796889}
   - component: {fileID: 6478920752467125439}
+  - component: {fileID: 5045977115891963854}
   m_Layer: 6
   m_Name: MonsterSlime (1)
   m_TagString: Untagged
@@ -211,7 +212,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 5428306844967600409}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 573bdd0132f003440a120610bf9ddd5e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8268fdf123dbc9241b1f205dda38b524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies_: []
+  disableOtherScripts_: 1
+  grabbed_: 0
+  change_: 0
+--- !u!114 &5045977115891963854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428306844967600409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d042e08a111e7241a7ee3c236a9900e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_: {fileID: 0}
+  distance_: 7
+  all_: 1
+  specifics_: []
+  enabled_: 0
+  change_: 0

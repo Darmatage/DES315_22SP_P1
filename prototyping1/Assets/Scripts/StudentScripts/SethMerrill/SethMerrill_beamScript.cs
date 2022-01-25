@@ -15,9 +15,17 @@ public class SethMerrill_beamScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		Vector3 pos = transform.position;
+		Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
+		
+		Vector3 v = Vector3.Normalize(playerPos - pos);
+		float f = Vector2.Angle(v, new Vector2(0,1));
+		
 		Vector3 q = transform.eulerAngles;
-		q.z += .1f;
+		q.z = f;
 		transform.eulerAngles = q;
+		
+		//Debug.Log(gh.gameObject.name);
     }
 	
 	void OnTriggerEnter2D(Collider2D other)
