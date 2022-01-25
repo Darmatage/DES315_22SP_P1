@@ -18253,6 +18253,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8327058575985396620, guid: 1aae148b26d30d443831311a6245fe68,
         type: 3}
+      propertyPath: reverse_dir
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327058575985396620, guid: 1aae148b26d30d443831311a6245fe68,
+        type: 3}
       propertyPath: rotate_speed
       value: 5
       objectReference: {fileID: 0}
