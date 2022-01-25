@@ -1,0 +1,27 @@
+Overview: Enemy will multiply a # of times based on programmer input
+
+Public Variables:
+  - health: CURRENTLY NOT WORKING CORRECTLY (WILL BE REMOVED SOON)
+  - multiplications: # of Multiplications the FIRST ENEMY will do
+  - time_between_multiplications: Time (in seconds) between each multiplication
+  - enemy_object: The enemy object (WILL BE REMOVED SOON)
+  - enemy_art: The artwork of the enemy (WILL BE REWORKED SOON)
+
+In-Depth Description:
+  Enemy w/MultiplyEnemy script will make smaller copies of itself. Each copy will
+have HALF the health of the original, HALF the amount of multiplications of the
+original, and will be smaller than its parent. Each version of the enemy will spawn 
+one(1) enemy per split.
+
+Future Change(s)/Plan(s):
+  1) Remove "health" variable. Found better way to get the information
+  2) Remove the "enemy_object" variable. Found better way to get the information
+  3) Have a public color variable so enemy will flash said color before multiplying
+  4) Make it so "enemy_art" isn't needed, but will still be an option. "enemy_art" is 
+     used to make the sprite change color due to the enemies having a child component
+     that is holding a Renderer.
+
+Contact Me:
+Email: jacksonfischer@digipen.edu
+Discord: Polybius#9228
+Microsoft Teams: Jackson Fischer
