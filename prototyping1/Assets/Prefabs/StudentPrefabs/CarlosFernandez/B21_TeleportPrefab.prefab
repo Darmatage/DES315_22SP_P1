@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53152c13186baee4c9a77d51ceb272fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 1
-  travelDuration: 0.1
+  projectileSpeed: 2
+  travelDuration: 2
   cooldownDuration: 0
   shootKeybind: 101
   cancelShootKeybind: 114
