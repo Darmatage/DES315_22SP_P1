@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6d085685b734670448c927ea89c7876a, type: 3}
-  m_Color: {r: 0.13394445, g: 0.1786768, b: 0.8113208, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.050761223, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1866378276182817281}
   - component: {fileID: 52357334617100973}
   m_Layer: 0
-  m_Name: TaroKumagai_BlueBlock
+  m_Name: Taro_RedBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c49ea8d062968fa41803d8b13f908ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SwitchColor: 1
+  SwitchColor: 0
   InactiveAlpha: 0.3
   sprite: {fileID: 4377491087271670073}
   boxCollider: {fileID: 1866378276182817281}
