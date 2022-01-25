@@ -13,8 +13,13 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Text Box to Display the time
         timerText = gameObject.GetComponent<Text>();
         timerText.color = startColor;
+
+        // All the enemies in the scene
+        allEnemiesInScene.Add(GameObject.Find("MonsterSkull"));
+        allEnemiesInScene.Add(GameObject.Find("MonsterSlime"));
     }
 
     // Update is called once per frame
@@ -41,5 +46,12 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
         timerText.text = minutes + ":" + seconds + ":" + milliSeconds;
         timerText.color = Color.Lerp(timerText.color, endColor, 0.05f * Time.deltaTime);
+    }
+
+    void MakeAllEnemiesStronger()
+    {
+        // Base enemies go faster
+        // 1. Increase the speed of the
+        // 2. Decrease time inbetween shots
     }
 }
