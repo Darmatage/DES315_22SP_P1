@@ -7,6 +7,7 @@ public class DestructibleObject : MonoBehaviour
     public GameObject ContainedObject;
     public GameObject PromptObjectUI;
     public GameObject ExplosionPrefab;
+    public Sprite ObjectSprite;
 
     private GameObject Player;
     private Transform PlayerTrans;
@@ -36,6 +37,13 @@ public class DestructibleObject : MonoBehaviour
         DestructionImminent = false;
 
         PromptTimer = 0.0f;
+
+        // Attatch the sprite to the child object
+        if (ObjectSprite != null)
+		{
+            SpriteRenderer sr = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+            sr.sprite = ObjectSprite;
+        }
     }
 
     // Update is called once per frame
