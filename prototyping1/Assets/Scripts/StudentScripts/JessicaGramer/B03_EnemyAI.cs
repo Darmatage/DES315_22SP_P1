@@ -21,7 +21,6 @@ public class B03_EnemyAI : MonoBehaviour
     public float Speed = 4f;
 	public int Damage = 1;
 	public int EnemyLives = 3;
-	public float RetreatTime = 3.0f;
 
 	private Transform target = null;
 	private GameHandler gameHandlerObj = null;
