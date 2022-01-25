@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class JirakitJarusiripipat_GameManager : MonoBehaviour
 {
-    public int currentRound = 1;
-    public int totalRound;
+    private int currentRound = 1;
+    private int totalRound = 4;
     //public List<Transform[]> spawnLocation = new List<Transform[]>();
 
     [SerializeField]
@@ -17,15 +17,15 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
     private Transform[] wave3SpawnPoint;
     [SerializeField]
     private Transform[] wave4SpawnPoint;
-    [SerializeField]
-    private bool[] check;
+    public bool[] check;
     [SerializeField]
     private bool[] end;
     [SerializeField]
     private int[] totalSlimeNumber;
     [SerializeField]
     private int[] totalSkullNumber;
-
+    [SerializeField]
+    private int[] totalBossNumber;
     [SerializeField]
     private GameObject slime;
     [SerializeField]
@@ -37,9 +37,9 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
     private GameObject door;
 
     [SerializeField]
-    private Text roundNumberText;
-    [SerializeField]
-    private Text waveParentText;
+    private Text waveText;
+    //[SerializeField]
+    //private Text waveParentText;
     [SerializeField]
     private JirakitJarusiripipat_SFX SFX;
     [SerializeField]
@@ -48,24 +48,30 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
     [SerializeField]
     Image instruction;
 
-    bool gameStart = false;
+    [SerializeField]
+    private bool gameStart = true;
+    private bool gameEnd = false;
+    private bool doorOpen = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!gameStart)
+        if (!gameStart)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 gameStart = true;
-                SFX.BGM.Play();
-                instruction.gameObject.SetActive(false);
-                proceed.gameObject.SetActive(false);
+                if (SFX != null)
+                    SFX.BGM.Play();
+                if (instruction != null)
+                    instruction.gameObject.SetActive(false);
+                if (proceed != null)
+                    proceed.gameObject.SetActive(false);
             }
         }
         else
@@ -145,19 +151,32 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
                     allEnemy.Clear();
                     currentRound++;
                     end[3] = true;
+                    gameEnd = true;
                 }
             }
-            if (currentRound == 5)
+            if (gameEnd && !doorOpen)
             {
-                waveParentText.gameObject.SetActive(false);
+                if (waveText != null)
+                {
+                    waveText.gameObject.SetActive(false);
+                }
+                doorOpen = true;
                 door.GetComponent<Door>().DoorOpen();
-                currentRound++;
             }
+            //if (currentRound == 5)
+            //{
+            //    waveParentText.gameObject.SetActive(false);
+            //    door.GetComponent<Door>().DoorOpen();
+            //    currentRound++;
+            //}
             if (currentRound == 1 && !check[0])
             {
-                //for (int i = 0; i < wave1SpawnPoint.Length; i++)
-                //{
                 int i = 0;
+                for (int j = 0; j < totalBossNumber[0]; j++)
+                {
+                    allEnemy.Add(Instantiate(boss, wave1SpawnPoint[i].position, Quaternion.identity));
+                    i++;
+                }
                 for (int j = 0; j < totalSlimeNumber[0]; j++)
                 {
                     allEnemy.Add(Instantiate(slime, wave1SpawnPoint[i].position, Quaternion.identity));
@@ -169,14 +188,17 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
                     i++;
                 }
                 check[0] = true;
-                //}
-
             }
             else if (currentRound == 2 && !check[1] && end[0])
             {
                 //Debug.Log("Total Slime = " + totalSlimeNumber[1]);
 
                 int i = 0;
+                for (int j = 0; j < totalBossNumber[1]; j++)
+                {
+                    allEnemy.Add(Instantiate(boss, wave2SpawnPoint[i].position, Quaternion.identity));
+                    i++;
+                }
                 for (int j = 0; j < totalSlimeNumber[1]; j++)
                 {
                     allEnemy.Add(Instantiate(slime, wave2SpawnPoint[i].position, Quaternion.identity));
@@ -194,6 +216,11 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
             else if (currentRound == 3 && !check[2] && end[1])
             {
                 int i = 0;
+                for (int j = 0; j < totalBossNumber[2]; j++)
+                {
+                    allEnemy.Add(Instantiate(boss, wave3SpawnPoint[i].position, Quaternion.identity));
+                    i++;
+                }
                 for (int j = 0; j < totalSlimeNumber[2]; j++)
                 {
                     allEnemy.Add(Instantiate(slime, wave3SpawnPoint[i].position, Quaternion.identity));
@@ -209,9 +236,21 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
             }
             else if (currentRound == totalRound && !check[3] && end[2])
             {
-                for (int i = 0; i < 4; i++)
+                int i = 0;
+                for (int j = 0; j < totalBossNumber[3]; j++)
                 {
                     allEnemy.Add(Instantiate(boss, wave4SpawnPoint[i].position, Quaternion.identity));
+                    i++;
+                }
+                for (int j = 0; j < totalSlimeNumber[3]; j++)
+                {
+                    allEnemy.Add(Instantiate(slime, wave4SpawnPoint[i].position, Quaternion.identity));
+                    i++;
+                }
+                for (int k = 0; k < totalSkullNumber[3]; k++)
+                {
+                    allEnemy.Add(Instantiate(skull, wave4SpawnPoint[i].position, Quaternion.identity));
+                    i++;
                 }
                 check[3] = true;
             }
@@ -224,8 +263,12 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
                 }
 
             }
-            roundNumberText.text = currentRound.ToString();
+            if (waveText != null)
+            {
+                //roundNumberText.text = currentRound.ToString();
+                waveText.text = "Wave " + currentRound.ToString() + " / " + totalRound.ToString();
+            }
         }
     }
-        
+
 }

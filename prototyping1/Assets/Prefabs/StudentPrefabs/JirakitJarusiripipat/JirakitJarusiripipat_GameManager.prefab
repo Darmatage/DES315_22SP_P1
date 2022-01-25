@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790240787090964438}
   - component: {fileID: 1790240787090964437}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: JirakitJarusiripipat_GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  check: 00000000
+  check: 
   end: 00000000
   totalSlimeNumber: 080000000c00000010000000
   totalSkullNumber: 020000000400000004000000
