@@ -11,8 +11,17 @@ public class DestructibleObject : MonoBehaviour
     private GameObject Player;
     private Transform PlayerTrans;
     private bool IsColliding;
+
+    // UI prompt support
     private bool IsDisplayingPrompt;
     private GameObject UIPromptInstance;
+    private float PromptDelay = 1.0f;
+    private float PromptTimer;
+
+    // Destruction timer support
+    private float DestructionDelay = 0.25f;
+    private float DestructionTimer;
+    private bool DestructionImminent;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +31,11 @@ public class DestructibleObject : MonoBehaviour
 
         IsColliding = false;
         IsDisplayingPrompt = false;
+
+        DestructionTimer = 0.0f;
+        DestructionImminent = false;
+
+        PromptTimer = 0.0f;
     }
 
     // Update is called once per frame
@@ -34,32 +48,47 @@ public class DestructibleObject : MonoBehaviour
             // towards the object with the last player input)
             if (ShouldDisplayDestroyPrompt())
 			{
-                if (Input.GetKey(KeyCode.E)) // "E" destroys the object
-				{
-                    if (ContainedObject != null)
-                        GameObject.Instantiate(ContainedObject, transform.position, Quaternion.identity);
-
-                    if (IsDisplayingPrompt)
-                    {
-                        RemovePrompt();
-                    }
-
-                    if (ExplosionPrefab != null)
-                        GameObject.Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
-
-                    Destroy(gameObject);
-				}
-                else if (!IsDisplayingPrompt)
+                if (!IsDisplayingPrompt && !DestructionImminent)
 				{
                     // The prompt should be displaying
-                    UIPromptInstance = Instantiate(PromptObjectUI, transform, false);
+                    UIPromptInstance = Instantiate(PromptObjectUI, PlayerTrans, false);
                     IsDisplayingPrompt = true;
-				}
+                }
 			}
             else if (IsDisplayingPrompt)
 			{
                 RemovePrompt();
             }
+
+            // While colliding with the object, the player should be able to destroy it
+            if (Input.GetKey(KeyCode.Space)) // Spacebar destroys the object
+            {
+                DestructionImminent = true;
+
+                if (IsDisplayingPrompt)
+                {
+                    RemovePrompt();
+                }
+            }
+        }
+         
+        if (DestructionImminent) // start the destruction timer
+            DestroyAfterDelay();
+    }
+
+    void DestroyAfterDelay()
+	{
+        DestructionTimer += Time.deltaTime;
+
+        if (DestructionTimer >= DestructionDelay)
+		{
+            if (ContainedObject != null)
+                GameObject.Instantiate(ContainedObject, transform.position, Quaternion.identity);
+
+            if (ExplosionPrefab != null)
+                GameObject.Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
+
+            Destroy(gameObject);
         }
     }
 
@@ -67,78 +96,84 @@ public class DestructibleObject : MonoBehaviour
 	{
         bool shouldDisplayPrompt = false;
 
-        // The player must also push at the object to be able to destroy it
-        float xDiff = PlayerTrans.position.x - transform.position.x;
-        float yDiff = PlayerTrans.position.y - transform.position.y;
-        if (Mathf.Abs(xDiff) < Mathf.Abs(yDiff)) // Player should aim up or down
-        {
-            if (yDiff < 0) // DO is above player, so player should point up
-            {
-                if (Input.GetKey(KeyCode.W))
-                    shouldDisplayPrompt = true;
-                else if (IsDisplayingPrompt)
-				{
-                    // As long as the player isn't actively moving to 
-                    // face away from the object, allow them to destroy it
-                    if (!Input.GetKey(KeyCode.S))
-                        if (!Input.GetKey(KeyCode.D))
-                            if (!Input.GetKey(KeyCode.A))
-                                shouldDisplayPrompt = true;
-                }
-            }
-            else // DO is below player, so player should point down
-            {
-                if (Input.GetKey(KeyCode.S))
-                    shouldDisplayPrompt = true;
-                else if (IsDisplayingPrompt)
-                {
-                    // As long as the player isn't actively moving to 
-                    // face away from the object, allow them to destroy it
-                    if (!Input.GetKey(KeyCode.W))
-                        if (!Input.GetKey(KeyCode.D))
-                            if (!Input.GetKey(KeyCode.A))
-                                shouldDisplayPrompt = true;
-                }
-            }
-        }
-        else // Player should aim left or right
-        {
-            if (xDiff < 0) // DO is to the right of player, so player should point right
-            {
-                if (Input.GetKey(KeyCode.D))
-                    shouldDisplayPrompt = true;
-                else if (IsDisplayingPrompt)
-                {
-                    // As long as the player isn't actively moving to 
-                    // face away from the object, allow them to destroy it
-                    if (!Input.GetKey(KeyCode.S))
-                        if (!Input.GetKey(KeyCode.W))
-                            if (!Input.GetKey(KeyCode.A))
-                                shouldDisplayPrompt = true;
-                }
-            }
-            else // DO is to the left of player, so player should point left
-            {
-                if (Input.GetKey(KeyCode.A))
-                    shouldDisplayPrompt = true;
-                else if (IsDisplayingPrompt)
-                {
-                    // As long as the player isn't actively moving to 
-                    // face away from the object, allow them to destroy it
-                    if (!Input.GetKey(KeyCode.S))
-                        if (!Input.GetKey(KeyCode.D))
-                            if (!Input.GetKey(KeyCode.W))
-                                shouldDisplayPrompt = true;
-                }
-            }
-        }
+        PromptTimer += Time.deltaTime;
+        if (PromptTimer >= PromptDelay)
+            shouldDisplayPrompt = true;
+        
+    //    // The player must also push at the object to be able to destroy it
+    //    float xDiff = PlayerTrans.position.x - transform.position.x;
+    //    float yDiff = PlayerTrans.position.y - transform.position.y;
+    //    if (Mathf.Abs(xDiff) < Mathf.Abs(yDiff)) // Player should aim up or down
+    //    {
+    //        if (yDiff < 0) // DO is above player, so player should point up
+    //        {
+    //            if (Input.GetKey(KeyCode.W))
+    //                shouldDisplayPrompt = true;
+    //            else if (IsDisplayingPrompt)
+				//{
+    //                // As long as the player isn't actively moving to 
+    //                // face away from the object, allow them to destroy it
+    //                if (!Input.GetKey(KeyCode.S))
+    //                    if (!Input.GetKey(KeyCode.D))
+    //                        if (!Input.GetKey(KeyCode.A))
+    //                            shouldDisplayPrompt = true;
+    //            }
+    //        }
+    //        else // DO is below player, so player should point down
+    //        {
+    //            if (Input.GetKey(KeyCode.S))
+    //                shouldDisplayPrompt = true;
+    //            else if (IsDisplayingPrompt)
+    //            {
+    //                // As long as the player isn't actively moving to 
+    //                // face away from the object, allow them to destroy it
+    //                if (!Input.GetKey(KeyCode.W))
+    //                    if (!Input.GetKey(KeyCode.D))
+    //                        if (!Input.GetKey(KeyCode.A))
+    //                            shouldDisplayPrompt = true;
+    //            }
+    //        }
+    //    }
+    //    else // Player should aim left or right
+    //    {
+    //        if (xDiff < 0) // DO is to the right of player, so player should point right
+    //        {
+    //            if (Input.GetKey(KeyCode.D))
+    //                shouldDisplayPrompt = true;
+    //            else if (IsDisplayingPrompt)
+    //            {
+    //                // As long as the player isn't actively moving to 
+    //                // face away from the object, allow them to destroy it
+    //                if (!Input.GetKey(KeyCode.S))
+    //                    if (!Input.GetKey(KeyCode.W))
+    //                        if (!Input.GetKey(KeyCode.A))
+    //                            shouldDisplayPrompt = true;
+    //            }
+    //        }
+    //        else // DO is to the left of player, so player should point left
+    //        {
+    //            if (Input.GetKey(KeyCode.A))
+    //                shouldDisplayPrompt = true;
+    //            else if (IsDisplayingPrompt)
+    //            {
+    //                // As long as the player isn't actively moving to 
+    //                // face away from the object, allow them to destroy it
+    //                if (!Input.GetKey(KeyCode.S))
+    //                    if (!Input.GetKey(KeyCode.D))
+    //                        if (!Input.GetKey(KeyCode.W))
+    //                            shouldDisplayPrompt = true;
+    //            }
+    //        }
+    //    }
 
         return shouldDisplayPrompt;
 	}
 
     void RemovePrompt()
 	{
-        Destroy(UIPromptInstance);
+        if (UIPromptInstance != null)
+            Destroy(UIPromptInstance);
+
         IsDisplayingPrompt = false;
 	}
 

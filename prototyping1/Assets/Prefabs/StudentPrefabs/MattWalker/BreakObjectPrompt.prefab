@@ -78,7 +78,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Press \"E\" \nto Break"
+  m_Text: 'Spacebar
+
+    to Break'
 --- !u!1 &2912799944280015469
 GameObject:
   m_ObjectHideFlags: 0
