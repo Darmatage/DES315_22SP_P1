@@ -60,7 +60,7 @@ public class PortalTeleport : MonoBehaviour
         }
         
         transform.position = rawPos;
-        
+        PortalGun.NotifyPortalSuccess(isPortal2);
         rigidbody.isKinematic = true;
         isActive = true;
         rigidbody.velocity = Vector2.zero;
@@ -110,7 +110,8 @@ public class PortalTeleport : MonoBehaviour
                     HitDirection.Bottom => Vector3.up,
                     HitDirection.Top => Vector3.down,
                     HitDirection.Left => Vector3.right,
-                    HitDirection.Right => Vector3.left
+                    HitDirection.Right => Vector3.left,
+                    _ => Vector3.zero
                 };
                 
                 other.transform.position += portalDist;

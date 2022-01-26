@@ -19,8 +19,27 @@ public class PortalGun : MonoBehaviour
     [SerializeField] private SpriteRenderer crosshair2 = null;
     [SerializeField] private Sprite crosshair2Empty = null;
     [SerializeField] private Sprite crosshair2Full = null;
+
+    private static PortalGun instance = null;
+
+    private PortalGun()
+    {
+        instance = this;
+    }
     
-    private GameObject FirePortal(GameObject portalPrefab, GameObject portalInstance, SpriteRenderer crosshair, Sprite fullSprite)
+    public static void NotifyPortalSuccess(bool isPortal2)
+    {
+        if (!isPortal2)
+        {
+            instance.crosshair1.sprite = instance.crosshair1Full;
+        }
+        else
+        {
+            instance.crosshair2.sprite = instance.crosshair2Full;
+        }
+    }
+    
+    private GameObject FirePortal(GameObject portalPrefab, GameObject portalInstance)
     {
         var wPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         var pPos = plyTransform.position;
@@ -30,7 +49,6 @@ public class PortalGun : MonoBehaviour
         if (!portalInstance)
         {
             portalInstance = Instantiate(portalPrefab, pPos, Quaternion.identity);
-            crosshair.sprite = fullSprite;
         }
         else
         {
@@ -57,11 +75,11 @@ public class PortalGun : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            curPor1 = FirePortal(portalObject1, curPor1, crosshair1, crosshair1Full);
+            curPor1 = FirePortal(portalObject1, curPor1);
         }
         if (Input.GetButtonDown("Fire2"))
         {
-            curPor2 = FirePortal(portalObject2, curPor2, crosshair2, crosshair2Full);
+            curPor2 = FirePortal(portalObject2, curPor2);
         }
 
         if (Input.GetKeyDown(KeyCode.R))
