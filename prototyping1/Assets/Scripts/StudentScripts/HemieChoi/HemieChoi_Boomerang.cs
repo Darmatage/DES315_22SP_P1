@@ -27,7 +27,7 @@ public class HemieChoi_Boomerang : MonoBehaviour
     {
         RotateWeapon();
 
-        if (isHolding && Input.GetKeyDown(KeyCode.Z))
+        if (isHolding && Input.GetKeyDown(KeyCode.Space))
         {
             isThrowing = true;
             isHolding = false;

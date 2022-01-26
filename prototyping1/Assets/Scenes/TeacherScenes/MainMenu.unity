@@ -6158,21 +6158,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonA12
       objectReference: {fileID: 0}
-    - target: {fileID: 4470194261508753837, guid: 180c50132611723498e04232bcce0ad7,
-        type: 3}
-      propertyPath: m_Text
-      value: Scott Fado-Bristow
-      objectReference: {fileID: 0}
-    - target: {fileID: 4470194261508753837, guid: 180c50132611723498e04232bcce0ad7,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 5289055198004321536, guid: 180c50132611723498e04232bcce0ad7,
-        type: 3}
-      propertyPath: GoToScene
-      value: ScottFado-BristowScene
-      objectReference: {fileID: 0}
     - target: {fileID: 7371410899088442534, guid: 180c50132611723498e04232bcce0ad7,
         type: 3}
       propertyPath: m_Pivot.x

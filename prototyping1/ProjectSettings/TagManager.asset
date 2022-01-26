@@ -36,6 +36,10 @@ TagManager:
   - JulianBlackstone_Totem
   - BraedanNeversBreakable
   - MysteriousChest
+  - ExplosiveBarrel
+  - Coin
+  - Health
+  - Jewel
   layers:
   - Default
   - TransparentFX

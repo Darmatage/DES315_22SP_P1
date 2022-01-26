@@ -71,35 +71,35 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
             rotateParent.eulerAngles = new Vector3(0, 0, -90f);
             
         }
-        else if (Input.GetKey(KeyCode.S) && !isFaceRight)
+        if (Input.GetKey(KeyCode.S) && !isFaceRight)
         {
             rotateParent.eulerAngles = new Vector3(0, 0, 90f);
 
         }
-        else if (Input.GetKey(KeyCode.W) && isFaceRight)
+        if (Input.GetKey(KeyCode.W) && isFaceRight)
         {
             rotateParent.eulerAngles = new Vector3(0, 0, 90f);
         }
-        else if (Input.GetKey(KeyCode.W) && !isFaceRight)
+        if (Input.GetKey(KeyCode.W) && !isFaceRight)
         {
             rotateParent.eulerAngles = new Vector3(0, 0, -90f);
         }
-        else if (Input.GetKey(KeyCode.A) && isFaceRight)
+        if (Input.GetKey(KeyCode.A) && isFaceRight)
         {
             rotateParent.eulerAngles = new Vector3(0, 0, 180);
             isFaceRight = false;
         }
-        else if(Input.GetKey(KeyCode.A) && !isFaceRight)
+        if(Input.GetKey(KeyCode.A) && !isFaceRight)
         {
             rotateParent.eulerAngles = new Vector3(0, 0, 0);
             isFaceRight = false;
         }
-        else if (Input.GetKey(KeyCode.D) && !isFaceRight)
+        if (Input.GetKey(KeyCode.D) && !isFaceRight)
         {
             rotateParent.eulerAngles = new Vector3(0, 0, 0f);
             isFaceRight = true;
         }
-        else if (Input.GetKey(KeyCode.D) && isFaceRight)
+        if (Input.GetKey(KeyCode.D) && isFaceRight)
         {
             rotateParent.eulerAngles = new Vector3(0, 0, 0f);
             isFaceRight = true;
