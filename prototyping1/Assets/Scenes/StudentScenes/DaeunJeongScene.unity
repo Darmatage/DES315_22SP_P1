@@ -17422,6 +17422,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6551937145445057747, guid: 401a933dbd2195744a4fb43f251707d7,
         type: 3}
+      propertyPath: NextScene
+      value: WonjuJoScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6551937145445057747, guid: 401a933dbd2195744a4fb43f251707d7,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
