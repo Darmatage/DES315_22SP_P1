@@ -6,9 +6,7 @@ using UnityEngine;
 public class PortalGun : MonoBehaviour
 {
     [SerializeField] private Transform plyTransform = null;
-
-    [SerializeField] private GameObject PortalableLayer = null;
-
+    
     [SerializeField] private GameObject portalObject1 = null;
     [SerializeField] private GameObject portalObject2 = null;
 
@@ -29,7 +27,6 @@ public class PortalGun : MonoBehaviour
 
         wPos.z = -0.1f;
         pPos.z = -0.1f;
-
         if (!portalInstance)
         {
             portalInstance = Instantiate(portalPrefab, pPos, Quaternion.identity);

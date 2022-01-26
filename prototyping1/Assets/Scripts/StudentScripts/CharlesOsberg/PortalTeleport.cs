@@ -129,6 +129,11 @@ public class PortalTeleport : MonoBehaviour
             {
                 isCollisionValid = false;
             }
+            else if (!COTags.CompareTag(other.gameObject, "PortalAllowed"))
+            {
+                shouldFizzle = true;
+                isCollisionValid = false;
+            }
             else if (isPortal2)
             { //too close to other portal (makes it possible to glitch out of bounds)
                 if (PortalGun.curPor1)
