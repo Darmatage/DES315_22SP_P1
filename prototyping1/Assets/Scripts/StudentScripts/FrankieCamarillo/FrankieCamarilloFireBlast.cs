@@ -6,20 +6,23 @@ public class FrankieCamarilloFireBlast : MonoBehaviour
 {
     private GameObject player_;
     public GameObject FireProjectile;
-    private Camera cam_;
+
+    private Camera cam_; 
 
     public int damage_ = 1;
     public float range_ = 10.0f;
+	
+	public float deleteFireDelay = 2f;
+	
     // Start is called before the first frame update
     void Start()
     {
         cam_ = Camera.main;
-        player_ = GameObject.FindGameObjectWithTag("Player");
+        player_ = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+
+    void Update(){
         if (Input.GetKeyDown(KeyCode.F) || Input.GetMouseButtonDown(1))
         {
             // this is where I am going to spawn the prefab
@@ -42,11 +45,20 @@ public class FrankieCamarilloFireBlast : MonoBehaviour
 
             float AngleRad = Mathf.Atan2(direction.y - player_.transform.position.y, direction.x - player_.transform.position.x);
 
-            float AngleDeg = (180 / Mathf.PI) *AngleRad;
+            float AngleDeg = ((180 / Mathf.PI) *AngleRad) - 90;
 
             Vector3 spawnPos = new Vector3(player_.transform.position.x, player_.transform.position.y, 0);
-            Instantiate(FireProjectile, spawnPos, Quaternion.Euler(0, 0, AngleDeg));
+            GameObject fireColumn = Instantiate(FireProjectile, spawnPos, Quaternion.Euler(0, 0, AngleDeg));
+			
+			StartCoroutine(DeleteFireColumn(fireColumn));
 
         }
     }
+	
+	
+	IEnumerator DeleteFireColumn(GameObject fireThing){
+		yield return new WaitForSeconds (deleteFireDelay);
+		Destroy(fireThing);
+	}
+	
 }
