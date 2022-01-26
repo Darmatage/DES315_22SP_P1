@@ -17,8 +17,24 @@ public class WonjuJo_MonsterHandler : MonoBehaviour
     void Start()
     {
         if (!PM)
-            Debug.Log("There is no PM");
+        {
+            Debug.Log("[WonjuJo_MonsterHandler] - There is no PlayerMovement reference.");
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player != null)
+            {
+                WonjuJo_PlayerMovement pm = player.GetComponent<WonjuJo_PlayerMovement>();
+
+                if (pm != null)
+                {
+                    PM = pm;
+                    Debug.Log("[WonjuJo_MonsterHandler] - Found PlayerMovement reference.");
+                }
+            }
+        }
     }
+
 
     public void MonsterTakeDamge(int damage)
     {

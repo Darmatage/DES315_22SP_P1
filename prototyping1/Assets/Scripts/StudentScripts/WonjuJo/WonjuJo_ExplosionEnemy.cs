@@ -14,14 +14,28 @@ public class WonjuJo_ExplosionEnemy : MonoBehaviour
     public Renderer Rend;
 
     public WonjuJo_PlayerMovement PM;
-    
+
     // Start is called before the first frame update
     void Start()
     {
         if (!PM)
-            Debug.Log("There is no PM");
-    }
+        {
+            Debug.Log("[WonjuJo_ExplosionEnemy] - There is no PlayerMovement reference.");
 
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player != null)
+            {
+                WonjuJo_PlayerMovement pm = player.GetComponent<WonjuJo_PlayerMovement>();
+
+                if (pm != null)
+                {
+                    PM = pm;
+                    Debug.Log("[WonjuJo_ExplosionEnemy] - Found PlayerMovement reference.");
+                }
+            }
+        }
+    }
     public bool GetIsDead() { return IsDead; }
 
     public void MonsterTakeDamge(int damage)
