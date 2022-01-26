@@ -144,6 +144,21 @@ public class ExplosiveBarrel : MonoBehaviour
             TakeDamage(1);
         }
 
+        if (m_stats.m_exploded == true)
+        {
+            if (collision.gameObject.tag == "Player")
+            {
+                m_handler.TakeDamage(m_stats.m_damage);
+            }
+
+            var enemyhp = collision.gameObject.GetComponent<EnemyHealth>();
+
+            if (enemyhp != null)
+            {
+                enemyhp.EnemyLives = Mathf.Clamp(enemyhp.EnemyLives - (m_stats.m_damage - 1), 0, 1000);
+                enemyhp.HitEnemy();
+            }
+        }
         //if (collision.collider.GetType().ToString() == "BoxCollider2D")
         //{
         //}
