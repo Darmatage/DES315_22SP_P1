@@ -50,7 +50,8 @@ public class ExplosiveBarrel : MonoBehaviour
     private GameHandler m_handler;
     private Vector3 m_initscale = Vector3.one;
     private Vector3 m_newScale;
-    private SpriteRenderer m_renderer;
+    public SpriteRenderer m_renderer;
+    public AudioSource m_explodeSound;
     private Rigidbody2D m_rb;
     private float m_radius = 0;
     private float xplodedt = 0;
@@ -66,7 +67,6 @@ public class ExplosiveBarrel : MonoBehaviour
 
     void Start()
     {
-        m_renderer = GetComponent<SpriteRenderer>();
         m_rb = GetComponent<Rigidbody2D>();
         m_handler = FindObjectOfType<GameHandler>();
         m_exlosivetrigger = GetComponent<CircleCollider2D>();
@@ -102,7 +102,7 @@ public class ExplosiveBarrel : MonoBehaviour
         {
             m_stats.m_dt = Mathf.Clamp(m_stats.m_dt + Time.deltaTime, 0, m_stats.m_timerLength);
 
-            if (m_stats.m_dt >= m_stats.m_timerLength)
+            if (m_stats.m_dt >= m_stats.m_timerLength && m_stats.m_exploded == false)
             {
                 // Trigger explosion
                 Explode();
@@ -167,7 +167,9 @@ public class ExplosiveBarrel : MonoBehaviour
     }
     private void Explode()
     {
+        m_explodeSound.PlayOneShot(m_explodeSound.clip);
         m_stats.m_exploded = true;
+
 
         // Take everythign in the radius and deal damage and push them back
 
