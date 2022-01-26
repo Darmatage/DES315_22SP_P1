@@ -14,13 +14,15 @@ public class DaeunJeong_ChestManager : MonoBehaviour
     {
         Chests = GameObject.FindGameObjectsWithTag("MysteriousChest");
 
-        if (Chests.Length >= 1)
+        if (Chests.Length >= 10)
+        {
+            switchChests = Chests;
+
+            SetMultipleSwitchChest();
+        }
+        else
         {
             SetSwitchChest();
-        }
-        else if (Chests.Length >= 10)
-        {
-            SetMultipleSwitchChest();
         }
     }
 
@@ -64,7 +66,7 @@ public class DaeunJeong_ChestManager : MonoBehaviour
                     }
                 }
 
-                for (int j = 0; j < Chests.Length / 2; ++j)
+                for (int j = 0; j < Chests.Length / 4; ++j)
                 {
                     switchChests[j] = Chests[Random.Range(0, Chests.Length)];
                     switchChests[j].GetComponent<DaeunJeong_MysteriousChest>().ThingsCanGetFromChest.Clear();
