@@ -9,6 +9,12 @@ public class DestructibleObject : MonoBehaviour
     public GameObject ExplosionPrefab;
     public Sprite ObjectSprite;
 
+    // For changing material when the player is close enough
+    private SpriteRenderer ChildSpriteRenderer;
+    private Material DefaultMaterial;
+    public Material DestroyableMaterial;
+
+    // For detecting the player
     private GameObject Player;
     private Transform PlayerTrans;
     private bool IsColliding;
@@ -36,14 +42,21 @@ public class DestructibleObject : MonoBehaviour
         DestructionTimer = 0.0f;
         DestructionImminent = false;
 
-        PromptTimer = 0.0f;
-
-        // Attatch the sprite to the child object
-        if (ObjectSprite != null)
+        ChildSpriteRenderer = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
+        if (ChildSpriteRenderer != null)
 		{
-            SpriteRenderer sr = transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>();
-            sr.sprite = ObjectSprite;
+            // Attatch the sprite to the child object
+            if (ObjectSprite != null)
+                ChildSpriteRenderer.sprite = ObjectSprite;
+
+            // Assign the default material
+            List<Material> materials = new List<Material>();
+            ChildSpriteRenderer.GetMaterials(materials);
+            DefaultMaterial = materials[0];
         }
+
+        if (DestroyableMaterial != null)
+            DestroyableMaterial.renderQueue = 3000;
     }
 
     // Update is called once per frame
@@ -95,7 +108,7 @@ public class DestructibleObject : MonoBehaviour
 
             if (ExplosionPrefab != null)
                 GameObject.Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
-
+                
             Destroy(gameObject);
         }
     }
@@ -190,6 +203,13 @@ public class DestructibleObject : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             IsColliding = true;
+            PromptTimer = 0.0f;
+
+            // Make the box look destroyable
+            if (ChildSpriteRenderer != null)
+            {
+                ChildSpriteRenderer.material = DestroyableMaterial;
+            }
         }
     }
 
@@ -203,7 +223,13 @@ public class DestructibleObject : MonoBehaviour
             {
                 RemovePrompt();
             }
+
+            // Make the box look destroyable
+            if (ChildSpriteRenderer != null)
+            {
+                ChildSpriteRenderer.material = DefaultMaterial;
+            }
         }
     }
 
-}
+ }

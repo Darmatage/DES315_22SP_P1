@@ -10,3 +10,10 @@ Public Variables:
 2. "Prompt Object UI" - don't change this
 3. "Explosion Prefab" - don't change this, unless you want a different explosion animation
 4. "Object Sprite"    - This sprite used for this object (default is a wooden crate)
+
+
+
+To use Health Pickups:
+
+The prefab "PickupHealth" will restore 25 hp to the player when they touch it heart.  You can use this prefab in the
+"Contained Object" variable desribed above so that some objects will drop a heart when you destroy them.
