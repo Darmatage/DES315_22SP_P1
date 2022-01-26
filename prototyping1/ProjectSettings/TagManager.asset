@@ -36,6 +36,8 @@ TagManager:
   - JulianBlackstone_Totem
   - BraedanNeversBreakable
   - MysteriousChest
+  - MonsterArt
+  - VisionRange
   layers:
   - Default
   - TransparentFX
