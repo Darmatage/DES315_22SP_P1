@@ -136,6 +136,8 @@ public class ExplosiveBarrel : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+
         if (m_triggerType == ExplosiveTrigger.Touch)
         {
 
@@ -179,6 +181,7 @@ public class ExplosiveBarrel : MonoBehaviour
         m_rb.mass = 100f; // Set mass so it wont move lmao
         m_rb.drag = 100f;
         m_rb.constraints = RigidbodyConstraints2D.FreezePosition;
+
         Invoke("DestroySelf", m_explodeTime);
 
         //var hit = Physics2D.CircleCastAll(transform.position, m_stats.m_explosiveRadius, dir, 0, m_damageMask, Mathf.NegativeInfinity, Mathf.Infinity);

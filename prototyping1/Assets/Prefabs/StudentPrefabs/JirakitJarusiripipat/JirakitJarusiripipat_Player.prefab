@@ -104,7 +104,7 @@ MonoBehaviour:
   timeToAttackCooldown: 0.8
   rotateParent: {fileID: 7957374624267614764}
   attackPos: {fileID: 6045001830298869459}
-  attackRange: 0.85
+  attackRange: 1.43
   skillPlayerSpeed: 7
   effect1: {fileID: 8488651912210544037, guid: fcf73df4d23e108459a1e2ea3edcb7ba, type: 3}
   effect2: {fileID: 6762759163116901154, guid: e890c2c0258f31348b271bc8b434ce71, type: 3}
@@ -113,6 +113,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   skillGaugeText: {fileID: 0}
+  readyText: []
+  notReadyText: []
+  UsingText: []
+  cover: {fileID: 0}
+  skillGaugeImage: {fileID: 0}
 --- !u!114 &2391722290754411632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,8 +262,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3479487149634037249}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6899996, y: -0.10000001, z: 0}
-  m_LocalScale: {x: 1.72, y: 1.7, z: 1}
+  m_LocalPosition: {x: 1.13, y: -0.10000001, z: 0}
+  m_LocalScale: {x: 2.87, y: 2.86, z: 1}
   m_Children: []
   m_Father: {fileID: 7957374624267614764}
   m_RootOrder: 0

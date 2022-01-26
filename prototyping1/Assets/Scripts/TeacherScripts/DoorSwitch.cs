@@ -18,7 +18,7 @@ public class DoorSwitch : MonoBehaviour
     }
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (other.gameObject.tag == "Player"){
+		if ((other.gameObject.tag == "Player") || (other.gameObject.tag == "Weapons")){
 			SwitchOffArt.SetActive(false);
 			SwitchOnArt.SetActive(true);
 			DoorObj.GetComponent<Door>().DoorOpen();

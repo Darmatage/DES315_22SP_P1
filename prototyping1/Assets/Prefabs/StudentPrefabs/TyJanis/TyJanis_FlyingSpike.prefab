@@ -151,4 +151,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cbdc049f26cc94981a55db81605edd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 3
+  damage: 10
+  color: {r: 0.3529412, g: 0.3254902, b: 0.25490198, a: 0}
+  flashColor: {r: 0.5377358, g: 0.16738568, b: 0, a: 1}
+  flyDirection: 0
+  launchDelay: 0.3
+  speed: 200
+  detectDistance: 3

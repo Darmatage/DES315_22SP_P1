@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 726187662783948030}
   - component: {fileID: 3893367204897597203}
   m_Layer: 0
-  m_Name: Rectangular Palette
+  m_Name: Taro_BlockPallette
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
