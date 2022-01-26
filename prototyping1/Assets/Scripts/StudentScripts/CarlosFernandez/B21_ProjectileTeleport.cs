@@ -33,17 +33,22 @@ public class B21_ProjectileTeleport : MonoBehaviour
     private float cooldownTimer = 0.0f;
     private Vector3 shootDirection;
     private Vector2 lastVelocity;
+    private GameObject playerCamera;
 
     // Start is called before the first frame update
     void Start()
     {
         playerObject = GameObject.FindWithTag("Player");
+        playerCamera = GameObject.FindWithTag("MainCamera");
+
         projectileDistanceCounter = travelDuration;
     }
 
     // Update is called once per frame
     void Update()
     {
+        HandleCameraMovement();
+        
         if (projectileHasBeenShot)
         {
             projectileDistanceCounter -= Time.deltaTime;
@@ -61,8 +66,12 @@ public class B21_ProjectileTeleport : MonoBehaviour
 
         if (Input.GetKeyDown(cancelShootKeybind))
         {
-            if(projectile)
+            if (projectile)
+            {
                 Destroy(projectile);
+            }
+
+            Camera.main.orthographicSize = 5.0f;
         }
         
         if (Input.GetKeyDown(shootKeybind))
@@ -89,6 +98,8 @@ public class B21_ProjectileTeleport : MonoBehaviour
                 DrawTeleportLine();
                 playerObject.transform.position = projectile.transform.position;
                 Destroy(projectile);
+                Camera.main.orthographicSize = 5.0f;
+
             }
         }
 
@@ -96,6 +107,7 @@ public class B21_ProjectileTeleport : MonoBehaviour
         {
             cooldownTimer -= Time.deltaTime;
         }
+        
     }
 
 
@@ -106,5 +118,24 @@ public class B21_ProjectileTeleport : MonoBehaviour
         lr.SetPosition(0, playerObject.transform.position);
         lr.SetPosition(1, projectile.transform.position);
         
+    }
+
+    private void HandleCameraMovement()
+    {
+        if (projectile)
+        {
+            Vector3 midPoint = (playerObject.transform.position + projectile.transform.position) / 2.0f;
+            playerCamera.transform.position = new Vector3(midPoint.x, midPoint.y, playerCamera.transform.position.z);
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(projectile.transform.position);
+            if (    screenPos.x < 0
+                 || screenPos.x > (Screen.width )
+                 || screenPos.y < 0
+                 || screenPos.y > (Screen.height)
+                 )
+            {
+                Camera.main.orthographicSize += 0.1f;
+            }
+
+        }
     }
 }
