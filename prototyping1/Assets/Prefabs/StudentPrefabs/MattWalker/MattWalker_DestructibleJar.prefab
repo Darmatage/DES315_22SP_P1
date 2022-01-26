@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1772756927244049360}
   - component: {fileID: 1772756927244049361}
   m_Layer: 0
-  m_Name: DestructibleJar
+  m_Name: MattWalker_DestructibleJar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

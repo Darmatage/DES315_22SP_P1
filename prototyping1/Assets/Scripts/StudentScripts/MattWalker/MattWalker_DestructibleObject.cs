@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestructibleObject : MonoBehaviour
+public class MattWalker_DestructibleObject : MonoBehaviour
 {
     public GameObject ContainedObject;
     public GameObject PromptObjectUI;

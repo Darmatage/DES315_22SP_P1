@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 6586999128826556844}
   - component: {fileID: 2169466874362144977}
   m_Layer: 5
-  m_Name: BreakObjectPrompt
+  m_Name: MattWalker_BreakObjectPrompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

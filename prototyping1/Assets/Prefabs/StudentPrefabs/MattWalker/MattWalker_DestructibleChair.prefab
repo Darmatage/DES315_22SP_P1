@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7729550348720348759}
   - component: {fileID: 7729550348720348758}
   m_Layer: 0
-  m_Name: DestructibleChair
+  m_Name: MattWalker_DestructibleChair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

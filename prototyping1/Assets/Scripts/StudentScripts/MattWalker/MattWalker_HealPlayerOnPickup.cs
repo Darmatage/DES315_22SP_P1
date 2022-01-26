@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealPlayerOnPickup : MonoBehaviour
+public class MattWalker_HealPlayerOnPickup : MonoBehaviour
 {
     public int HealAmount = 25;
     private float DelayTillPickupPossible = 0.5f;

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5276478399074715983}
   - component: {fileID: 1153416073144164627}
   m_Layer: 7
-  m_Name: PickupHealth
+  m_Name: MattWalker_PickupHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
