@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeleteOther : MonoBehaviour
+public class FrankieCamarilloDeleteOther : MonoBehaviour
 {
-
     // Start is called before the first frame update
     void Start()
     {
@@ -15,13 +14,16 @@ public class DeleteOther : MonoBehaviour
     void Update()
     {
         
+
+        
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        //test
         foreach (ContactPoint contact in collision.contacts)
         {
-            // object is in enemy layer
+            //object is in enemy layer
             if (contact.otherCollider.gameObject.layer == 6)
                 Destroy(contact.otherCollider.gameObject);
         }

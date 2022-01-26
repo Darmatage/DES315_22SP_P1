@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3706169485650607315}
   - component: {fileID: 7368093385215613946}
-  - component: {fileID: 2713613014141435626}
-  - component: {fileID: 2302455788417401782}
+  - component: {fileID: 7155071905599421351}
+  - component: {fileID: 172527882585046289}
   m_Layer: 0
   m_Name: FireBlastProjectile
   m_TagString: Untagged
@@ -60,7 +60,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 4.25}
   m_EdgeRadius: 0
---- !u!114 &2713613014141435626
+--- !u!114 &7155071905599421351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,11 +69,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6092522510322059024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cdf211bea2b6964e9726dc16f089655, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a62572b83977bc4599d7836eca84756, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer_: 1
---- !u!114 &2302455788417401782
+  timer_: 5
+--- !u!114 &172527882585046289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6092522510322059024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61d3e278db511e342b283f1a7da9a77f, type: 3}
+  m_Script: {fileID: 11500000, guid: 5804224da08cffe49b7a4c5430ca12b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6209045682629563986
