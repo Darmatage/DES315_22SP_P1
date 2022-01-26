@@ -5,21 +5,24 @@ using UnityEngine;
 public class HealPlayerOnPickup : MonoBehaviour
 {
     public int HealAmount = 25;
+    private float DelayTillPickupPossible = 0.5f;
+    private float PickupTimer;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        PickupTimer = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        PickupTimer += Time.deltaTime;
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player" && PickupTimer >= DelayTillPickupPossible)
         {
             GameHandler gh = FindObjectOfType<GameHandler>();
 
