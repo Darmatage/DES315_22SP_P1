@@ -52,7 +52,7 @@ MonoBehaviour:
   ExplosionPrefab: {fileID: 4715384974309689237, guid: 2f678479dde80ff44be35d96e9d0c0ae,
     type: 3}
   ObjectSprite: {fileID: 21300000, guid: 2fa98dbad3bba9d479df733ea5171d12, type: 3}
-  DefaultMaterial: {fileID: 0}
+  DestructionSound: {fileID: 8300000, guid: 5c3b71f6331ea44469a49e1ba927d607, type: 3}
   DestroyableMaterial: {fileID: 2100000, guid: 5c5de154d13bcb54fbf874d27b0d28c7, type: 2}
 --- !u!61 &3856461115586835715
 BoxCollider2D:

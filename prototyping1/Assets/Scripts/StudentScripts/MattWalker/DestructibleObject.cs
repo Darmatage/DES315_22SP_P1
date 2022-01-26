@@ -108,7 +108,7 @@ public class DestructibleObject : MonoBehaviour
 
             if (ExplosionPrefab != null)
                 GameObject.Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
-
+                
             Destroy(gameObject);
         }
     }
