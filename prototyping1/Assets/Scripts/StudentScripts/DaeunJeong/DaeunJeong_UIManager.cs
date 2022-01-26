@@ -64,4 +64,26 @@ public class DaeunJeong_UIManager : MonoBehaviour
 
         isSpawned = true;
     }
+
+    public void ShowUITextForPickups(DaeunJeong_Pickups.PICKUP_TYPE pickupType)
+    {
+        switch (pickupType)
+        {
+            case DaeunJeong_Pickups.PICKUP_TYPE.COIN:
+                text.GetComponent<Text>().text = "You got a coin! Every penny counts...";
+                break;
+            case DaeunJeong_Pickups.PICKUP_TYPE.HEALTH:
+                text.GetComponent<Text>().text = "You feel better now!";
+                break;
+            case DaeunJeong_Pickups.PICKUP_TYPE.JEWEL:
+                text.GetComponent<Text>().text = "You got a diamond! What a rich.";
+                break;
+        }
+
+        imageComponent.enabled = true;
+        text.SetActive(true);
+
+        isSpawned = true;
+        timer = 0.0f;
+    }
 }
