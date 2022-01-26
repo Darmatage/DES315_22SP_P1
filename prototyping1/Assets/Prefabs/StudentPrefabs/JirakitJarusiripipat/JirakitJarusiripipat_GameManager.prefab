@@ -43,8 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4bbadbb4a9a9dc4daa6e73c7aafd2cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRound: 1
-  totalRound: 4
   wave1SpawnPoint:
   - {fileID: 0}
   - {fileID: 0}
@@ -99,17 +97,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  check: 
+  check: 00000000
   end: 00000000
-  totalSlimeNumber: 080000000c00000010000000
-  totalSkullNumber: 020000000400000004000000
+  totalSlimeNumber: 080000000c0000001000000000000000
+  totalSkullNumber: 02000000040000000400000000000000
+  totalBossNumber: 00000000000000000000000004000000
   slime: {fileID: 8898896608196318436, guid: 9a8771c7dfa62604093f451a36c2519d, type: 3}
   skull: {fileID: 1604228919311886650, guid: d223dd3c8ba47eb468a11d7e06cfe3f2, type: 3}
   boss: {fileID: 8898896608196318436, guid: 490a9ba477ff9ea4c934087944a17e50, type: 3}
   allEnemy: []
   door: {fileID: 0}
-  roundNumberText: {fileID: 0}
-  waveParentText: {fileID: 0}
+  waveText: {fileID: 0}
   SFX: {fileID: 0}
   proceed: {fileID: 0}
   instruction: {fileID: 0}
+  gameStart: 0
