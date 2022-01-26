@@ -36,6 +36,7 @@ TagManager:
   - JulianBlackstone_Totem
   - BraedanNeversBreakable
   - MysteriousChest
+  - ExplosiveBarrel
   layers:
   - Default
   - TransparentFX
