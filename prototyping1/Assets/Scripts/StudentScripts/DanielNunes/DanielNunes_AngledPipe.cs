@@ -23,6 +23,9 @@ public class DanielNunes_AngledPipe : MonoBehaviour
     private Vector3 originalRot;
     private Vector3 newRot;
 
+    [SerializeField]
+    private GameObject pipeParticles;
+
     //public enum Orientations
     //{
     //    eRIGHT_DOWN,
@@ -141,6 +144,15 @@ public class DanielNunes_AngledPipe : MonoBehaviour
                 collision.transform.eulerAngles = new Vector3(0, 0, collision.transform.eulerAngles.z + 90.0f);
                 //set the velocity with the newly-rotated right vector
                 collision.GetComponent<Rigidbody2D>().velocity = collision.transform.right * collision.GetComponent<DanielNunes_Cannonball>().GetSpeed();
+
+                //create pipe particles
+                GameObject p = Instantiate(pipeParticles, null);
+                p.transform.position = transform.position;
+                //match the angle of the particles with the cannonball (when cannonball is at z = 0, particles are at z = -90)
+                //match the angles exactly initially...
+                p.transform.eulerAngles = collision.transform.eulerAngles;
+                //..then apply the 90-degree offset
+                p.transform.eulerAngles = new Vector3(0, 0, collision.transform.eulerAngles.z - 90.0f);
             }
             else if (collision.transform.right == -transform.right)
             {
@@ -150,9 +162,19 @@ public class DanielNunes_AngledPipe : MonoBehaviour
                 collision.transform.eulerAngles = new Vector3(0, 0, collision.transform.eulerAngles.z - 90.0f);
                 //set the velocity with the newly-rotated right vector
                 collision.GetComponent<Rigidbody2D>().velocity = collision.transform.right * collision.GetComponent<DanielNunes_Cannonball>().GetSpeed();
+
+                //create pipe particles
+                GameObject p = Instantiate(pipeParticles, null);
+                p.transform.position = transform.position;
+                //match the angle of the particles with the cannonball (when cannonball is at z = 0, particles are at z = -90)
+                //match the angles exactly initially...
+                p.transform.eulerAngles = collision.transform.eulerAngles;
+                //..then apply the 90-degree offset
+                p.transform.eulerAngles = new Vector3(0, 0, collision.transform.eulerAngles.z - 90.0f);
             }
             else
             {
+                collision.gameObject.GetComponent<DanielNunes_Cannonball>().CreateParticles();
                 //destroy the canonball if it didn't enter either end of the pipe
                 Destroy(collision.gameObject);
             }

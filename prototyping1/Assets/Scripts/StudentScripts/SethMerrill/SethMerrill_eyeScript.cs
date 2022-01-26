@@ -10,13 +10,16 @@ public class SethMerrill_eyeScript : MonoBehaviour
 	public Vector3 direction;
 	static System.Random RNG;
 	public float hunger;
+	public float range;
+	public int damage;
+	private GameHandler gh;
     // Start is called before the first frame update
     void Start()
     {
 		beamInstance = Instantiate(beamPrefab, transform.position, Quaternion.identity);
-		direction = new Vector3(1, 0, 0);
 		if(RNG == null) RNG = new System.Random();
 		hunger = (float)RNG.NextDouble();
+		gh = GameObject.FindWithTag("GameHandler").GetComponent<GameHandler>();
     }
 
     // Update is called once per frame
@@ -28,7 +31,7 @@ public class SethMerrill_eyeScript : MonoBehaviour
         beamInstance.transform.position = transform.position;
 		
 		direction.x = (Vector3.Normalize(playerPos - pos) * hunger).x + ((float)RNG.NextDouble() - 0.5f) * (1.0f - hunger);
-		direction.y = (Vector3.Normalize(playerPos - pos) * hunger).y + ((float)RNG.NextDouble() - 0.5f) * (1.0f - hunger);
+		direction.y = (Vector3.Normalize(playerPos - pos) * hunger).y + ((float)RNG.NextDouble() - 0.5f) * (1.0f - hunger);	
 		
 		transform.position += Vector3.Normalize(direction) * speed * Time.deltaTime;
     }

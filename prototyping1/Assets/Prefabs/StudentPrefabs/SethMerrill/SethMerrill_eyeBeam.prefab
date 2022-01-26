@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3411648053387483139}
   - component: {fileID: 3744178727588586645}
-  - component: {fileID: 7650594950045101634}
   - component: {fileID: 7957459288964242251}
+  - component: {fileID: -4897905621139615116}
   m_Layer: 0
   m_Name: SethMerrill_eyeBeam
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4402205038157868770}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.9766, y: 1.9766, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,9 +73,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 96
-  m_Sprite: {fileID: 21300000, guid: 6b25c14e5c3e42645b42756dfba06be9, type: 3}
-  m_Color: {r: 0.1192595, g: 0.9433962, b: 0.13521464, a: 0.47058824}
+  m_SortingOrder: 95
+  m_Sprite: {fileID: -2413806693520163455, guid: 845988b37c07dda4b9cf6ebbe3e79016,
+    type: 3}
+  m_Color: {r: 0, g: 1, b: 0.12291002, a: 0.47058824}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,32 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7650594950045101634
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4402205038157868770}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.3}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1.28, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.28, y: 0.71}
-  m_EdgeRadius: 0
 --- !u!114 &7957459288964242251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,4 +98,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9279435f85e86994380bc7191dd607df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 10
+--- !u!58 &-4897905621139615116
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402205038157868770}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

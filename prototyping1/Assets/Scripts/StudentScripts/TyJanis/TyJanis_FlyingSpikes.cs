@@ -8,20 +8,29 @@ public class TyJanis_FlyingSpikes : MonoBehaviour
     public int damage = 10;
 
     Rigidbody2D rb;
-    PolygonCollider2D collider;
-    public float distance;
+    PolygonCollider2D polycollider;
+    SpriteRenderer sprite;
+    
+    //The Color to be assigned to the Renderer’s Material
+    public Color color;
+    public Color flashColor;
+
     bool isFlying = false;
 
-    public float speed = 200.0f;
     Vector2 dir = Vector2.down;
     public enum Direction{Up,Right,Down, Left};
-    public Direction flyDirection;
 
+    public Direction flyDirection;
+    public float launchDelay;
+    public float speed = 200.0f;
+    public float detectDistance;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        collider = GetComponent<PolygonCollider2D>();
+        polycollider = GetComponent<PolygonCollider2D>();
+        sprite = GetComponent<SpriteRenderer>();
+        //sprite.color = color;
 
         if(flyDirection == Direction.Up)
         {
@@ -54,15 +63,18 @@ public class TyJanis_FlyingSpikes : MonoBehaviour
 
         if(!isFlying)
         {
-            RaycastHit2D detected = Physics2D.Raycast(transform.position, dir, distance);
+            RaycastHit2D detected = Physics2D.Raycast(transform.position, dir, detectDistance);
 
-            Debug.DrawRay(transform.position, dir * distance, Color.red);
+            Debug.DrawRay(transform.position, dir * detectDistance, Color.red);
 
             if(detected.transform != null)
             {
                 if(detected.transform.tag == "Player")
                 {
-                    rb.AddForce(dir * speed);
+                    sprite.color = flashColor; //Color.Lerp(color,flashColor,Mathf.Sin(Time.time));
+
+                    Invoke("LaunchSpike",launchDelay);
+                    
                     isFlying = true;
                 }
             }
@@ -78,4 +90,10 @@ public class TyJanis_FlyingSpikes : MonoBehaviour
 		}
 		
 	}
+
+    void LaunchSpike()
+    {
+        rb.AddForce(dir * speed);
+    }
+
 }

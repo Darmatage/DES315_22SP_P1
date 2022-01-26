@@ -9,6 +9,11 @@ public class DanielNunes_Cannonball : MonoBehaviour
 
     private float deathTimer = 15.0f;
 
+    [SerializeField]
+    private GameObject cannonballParticles;
+    [SerializeField]
+    private GameObject cannonParticles;
+
     //singleton enforcement
     private static DanielNunes_Cannonball instance_;
     public static DanielNunes_Cannonball Instance
@@ -37,6 +42,13 @@ public class DanielNunes_Cannonball : MonoBehaviour
         //We also want the cannonball to move in the direction the cannon was facing.
         //So, use the right vector of the cannon in this calculation.
         GetComponent<Rigidbody2D>().velocity = transform.parent.right * speed;
+
+        //create cannon particles
+        //cannonball creates these particles so you can't constantly create them when spamming shoot on the cannon itself
+        GameObject p = Instantiate(cannonParticles, null);
+        p.transform.position = transform.position;
+        //match the angle of the particles with the cannonball (when cannonball is at z = 0, particles are at z = -90)
+        p.transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z - 90.0f);
     }
 
     // Update is called once per frame
@@ -46,6 +58,7 @@ public class DanielNunes_Cannonball : MonoBehaviour
         deathTimer -= Time.deltaTime;
         if (deathTimer <= 0.0f)
         {
+            CreateParticles();
             Destroy(gameObject);
         }
     }
@@ -61,6 +74,7 @@ public class DanielNunes_Cannonball : MonoBehaviour
         //if the cannonball hits any walls
         if (collision.gameObject.name.Equals("TilemapWalls"))
         {
+            CreateParticles();
             //despawn
             Destroy(gameObject);
         }
@@ -73,8 +87,16 @@ public class DanielNunes_Cannonball : MonoBehaviour
             ds.SwitchOnArt.SetActive(true);
             ds.DoorObj.GetComponent<Door>().DoorOpen();
 
+            CreateParticles();
+
             //despawn
             Destroy(gameObject);
         }
+    }
+
+    public void CreateParticles()
+    {
+        GameObject particles = Instantiate(cannonballParticles, null);
+        particles.transform.position = transform.position;
     }
 }

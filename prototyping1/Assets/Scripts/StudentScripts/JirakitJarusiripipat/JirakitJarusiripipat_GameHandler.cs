@@ -42,7 +42,15 @@ public class JirakitJarusiripipat_GameHandler : MonoBehaviour
 			else { Pause(); }
 		}
 	}
-
+	public void Heal(int healing)
+	{
+		PlayerHealth += healing;
+		if (PlayerHealth >= PlayerHealthStart)
+		{
+			PlayerHealth = PlayerHealthStart;
+		}
+		UpdateHealth();
+	}
 	void Pause()
 	{
 		pauseMenuUI.SetActive(true);
