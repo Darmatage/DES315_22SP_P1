@@ -16,7 +16,8 @@ Fireball is a skill that goes straight and damages the monster.
 In the fireball prefab, you can change the fireball's value(Fireball life, Speed, damage).
 In the MainPlayer prefab, you can change the fireball cooldown and position of the fireball.
 	1. Drag and drop MainPlayer to the scene.
-	2. Set the fireball to the WonjuJo_PlayerMovement component from the editor.
+	2. Set the Fireball CooldownImage(the image is in the WonjuJo_GameHandlerCanvas) to the WonjuJo_Player_Movement compoonent from the editor.
+	3. Set the fireball to the WonjuJo_PlayerMovement component from the editor.
 
 GameHandlerCanvas
 It's a canvas that notifies how to use the attack skills, the title, and the remaining health.
