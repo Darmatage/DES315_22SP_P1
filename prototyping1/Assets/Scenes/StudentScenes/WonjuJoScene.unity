@@ -20359,11 +20359,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 9100000, guid: af45fa8958b0d754dba88217f5e36a61, type: 2}
+      objectReference: {fileID: 1711548215581857244, guid: 5c46a33a717dc2348a5a39fa4f53fed0,
+        type: 3}
     - target: {fileID: 779397159792320515, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: Restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 779397159792320515, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameHandler, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1806154120203081548, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
@@ -20374,11 +20380,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2003152373}
+      objectReference: {fileID: 1711548215581857244, guid: 5c46a33a717dc2348a5a39fa4f53fed0,
+        type: 3}
     - target: {fileID: 2217770974307422671, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: 
+      value: Resume
       objectReference: {fileID: 0}
     - target: {fileID: 2928651003253072495, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
@@ -20443,12 +20450,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 779397159562948339, guid: 32bab4e55e3fce5458cd21ae1ebb1036, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 32bab4e55e3fce5458cd21ae1ebb1036, type: 3}
---- !u!1 &2003152373 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1806154120203081548, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
-    type: 3}
-  m_PrefabInstance: {fileID: 2003152372}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2061567398 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 139888408495466636, guid: 3d75388a8210e3843afc7446651b7b4a,
