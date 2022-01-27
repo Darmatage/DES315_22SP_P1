@@ -11,10 +11,9 @@ public class DaeunJeong_MysteriousChest : MonoBehaviour
     public GameObject EffectAnimation;
     public GameObject Canvas;
     public GameObject UIPanelPrefab;
-    
+    public DaeunJeong_UIManager UIManager;
     public bool shouldSpawnSwitch;
-
-    private DaeunJeong_UIManager UIManager;
+    
     private bool isDestroyed = false;
 
     private void Start()
