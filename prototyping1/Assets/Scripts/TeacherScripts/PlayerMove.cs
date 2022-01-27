@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
-{
+public class PlayerMove : MonoBehaviour{
+//NOTE: This script has been adjusted to make all functions virtual, allowing for derived classes to override functions
+
 
 	public float speed = 3f; // player movement speed
-	private Vector3 change; // player movement direction
+	public Vector3 change; // player movement direction
 	private Rigidbody2D rb2d;
 	private Animator anim;
 	private bool isAlive = true;
 
 	private Renderer rend;
 
-    // Start is called before the first frame update
-    void Start(){
+
+    protected virtual void Start(){
 		anim = gameObject.GetComponentInChildren<Animator>();
 		rend = GetComponentInChildren<Renderer> ();
 
@@ -23,8 +24,7 @@ public class PlayerMove : MonoBehaviour
 		}
     }
 
-    // Update is called once per frame
-    void FixedUpdate(){
+    protected virtual void FixedUpdate(){
 
 		if (isAlive == true){
 			change = Vector3.zero;
@@ -50,7 +50,7 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-	void UpdateAnimationAndMove() {
+	protected virtual void UpdateAnimationAndMove() {
 		if (isAlive == true){
 			if (change!=Vector3.zero && speed != 0) {
 				rb2d.MovePosition(transform.position + change * speed * Time.deltaTime);
@@ -64,7 +64,7 @@ public class PlayerMove : MonoBehaviour
 		}
 	}
 
-	public void playerHit(){
+	public virtual void playerHit(){
 		if (isAlive == true){
 			anim.SetTrigger("Hurt"); 
 			StopCoroutine(ChangeColor());
@@ -72,7 +72,7 @@ public class PlayerMove : MonoBehaviour
 		}
 	}
 
-	public void playerDie(){
+	public virtual void playerDie(){
 		anim.SetBool("isDead", true);
 		if (isAlive == false) {
 			//Debug.Log("I'm already dead");
@@ -85,7 +85,7 @@ public class PlayerMove : MonoBehaviour
 	}
 
 
-	IEnumerator ChangeColor(){
+	protected virtual IEnumerator ChangeColor(){
 		// color values are R, G, B, and alpha, each 0-255 divided by 100
 		rend.material.color = new Color(2.0f, 1.0f, 0.0f, 0.5f);
 		yield return new WaitForSeconds(0.5f);

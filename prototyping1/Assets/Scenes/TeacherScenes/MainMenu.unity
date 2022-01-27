@@ -638,7 +638,7 @@ PrefabInstance:
     - target: {fileID: 5289055198004321536, guid: 600a2a549ad9b7f42bde0b604097db64,
         type: 3}
       propertyPath: GoToScene
-      value: A24
+      value: DamianRouseScene
       objectReference: {fileID: 0}
     - target: {fileID: 7371410899088442534, guid: 600a2a549ad9b7f42bde0b604097db64,
         type: 3}
@@ -889,6 +889,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ButtonB24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062738705829005531, guid: 621c5c3e8e4395c4f9884bbef1d94422,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4470194261508753837, guid: 621c5c3e8e4395c4f9884bbef1d94422,
         type: 3}
@@ -1691,6 +1696,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289055198004321536, guid: 265ab9ae29caff2489adfb168513623b,
+        type: 3}
+      propertyPath: GoToScene
+      value: EunjinHongScene
       objectReference: {fileID: 0}
     - target: {fileID: 7371410899088442534, guid: 265ab9ae29caff2489adfb168513623b,
         type: 3}
@@ -6148,21 +6158,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ButtonA12
       objectReference: {fileID: 0}
-    - target: {fileID: 4470194261508753837, guid: 180c50132611723498e04232bcce0ad7,
-        type: 3}
-      propertyPath: m_Text
-      value: Scott Fado-Bristow
-      objectReference: {fileID: 0}
-    - target: {fileID: 4470194261508753837, guid: 180c50132611723498e04232bcce0ad7,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 5289055198004321536, guid: 180c50132611723498e04232bcce0ad7,
-        type: 3}
-      propertyPath: GoToScene
-      value: ScottFado-BristowScene
-      objectReference: {fileID: 0}
     - target: {fileID: 7371410899088442534, guid: 180c50132611723498e04232bcce0ad7,
         type: 3}
       propertyPath: m_Pivot.x
@@ -6412,6 +6407,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ButtonB02
+      objectReference: {fileID: 0}
+    - target: {fileID: 5289055198004321536, guid: 0070e51fb53723d4fbbba008bc00f2e7,
+        type: 3}
+      propertyPath: GoToScene
+      value: JonathanHamlingScene
       objectReference: {fileID: 0}
     - target: {fileID: 7371410899088442534, guid: 0070e51fb53723d4fbbba008bc00f2e7,
         type: 3}

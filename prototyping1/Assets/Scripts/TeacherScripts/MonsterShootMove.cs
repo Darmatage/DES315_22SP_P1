@@ -10,20 +10,22 @@ public class MonsterShootMove : MonoBehaviour {
 	public float startTimeBtwShots = 2;
 	public GameObject projectile;
 
-	private Animator anim; 
 	private Rigidbody2D rb;
 	private Transform player;
 	private Vector2 PlayerVect;
 
-	public int EnemyLives = 30;
-	private Renderer rend;
+
+	//public int EnemyLives = 30;
+	//private Renderer rend;
+	private Animator anim; 
 	private GameHandler gameHandlerObj;
+	private bool isStunned = false; //access isStunned through EnemyHealth.cs
 
 	void Start () {
 		Physics2D.queriesStartInColliders = false;
 
+		//rend = GetComponent<Renderer> ();
 		anim = GetComponentInChildren<Animator> ();
-		rend = GetComponent<Renderer> ();
 		rb = GetComponent<Rigidbody2D> ();
 		player = GameObject.FindGameObjectWithTag("Player").transform;
 		PlayerVect = player.transform.position;
@@ -37,12 +39,13 @@ public class MonsterShootMove : MonoBehaviour {
 	}
 
 	void Update () {
-		if (player != null) {
+		isStunned = gameObject.GetComponent<EnemyHealth>().isStunned;
+		if ((player != null) && (isStunned == false)) {
 
 			// approach player
 			if (Vector2.Distance (transform.position, player.position) > stoppingDistance) {
 				transform.position = Vector2.MoveTowards (transform.position, player.position, (speed/2) * Time.deltaTime);
-				anim.SetBool("Walk", true);
+				//anim.SetBool("Walk", true); // Walk bool DNE error
 				Vector2 lookDir = PlayerVect - rb.position;
 				//float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg -90f;
 				//rb.rotation = angle;
@@ -51,17 +54,17 @@ public class MonsterShootMove : MonoBehaviour {
 			// stop moving
 			else if (Vector2.Distance (transform.position, player.position) < stoppingDistance && Vector2.Distance (transform.position, player.position) > retreatDistance) {
 				transform.position = this.transform.position;
-				anim.SetBool("Walk", false);
+				//anim.SetBool("Walk", false); // Walk bool DNE error
 			}
 
 			// retreat from player
 			else if (Vector2.Distance (transform.position, player.position) < retreatDistance) {
 				transform.position = Vector2.MoveTowards (transform.position, player.position, -speed * Time.deltaTime);
-				anim.SetBool("Walk", true);
+				//anim.SetBool("Walk", true); // Walk bool DNE error
 			}
 
 			if (timeBtwShots <= 0) {
-				anim.SetTrigger("Attack");
+				//anim.SetTrigger("Attack"); // Attack parameter DNE error
 				Instantiate (projectile, transform.position, Quaternion.identity);
 				timeBtwShots = startTimeBtwShots;
 			} 
