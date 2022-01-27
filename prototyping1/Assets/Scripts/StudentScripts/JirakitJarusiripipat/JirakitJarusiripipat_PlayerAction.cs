@@ -16,6 +16,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     private float maxSkillGauge;
     [HideInInspector]
     public float skillGauge;
+    public GameObject skillBG;
     [Header("Melee")]
     [HideInInspector]
     public float timeToAttack;
@@ -202,7 +203,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         playermove.speed = skillPlayerSpeed;
         timeToAttackCooldown = 0.3f;
         skillGauge = 0;
-
+        skillBG.SetActive(true);
         GameObject obj = Instantiate(effect1, transform.position, Quaternion.identity);
         obj.transform.parent = gameObject.transform;
 
@@ -229,6 +230,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
             notReadyText[i].gameObject.SetActive(true);
             UsingText[i].gameObject.SetActive(false);
         }
+        skillBG.SetActive(false);
     }
 
     private void CheckDurationSkill()
