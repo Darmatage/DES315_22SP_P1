@@ -14,6 +14,9 @@ public class PortalTeleport : MonoBehaviour
 
     private const float portalExclusionZone = 1.0f;
 
+
+    [SerializeField] private GameObject portalFizz = null;
+    
     private new Rigidbody2D rigidbody;
 
     public enum HitDirection
@@ -102,7 +105,7 @@ public class PortalTeleport : MonoBehaviour
             if (isValidTele)
             {
                 //push away a bit so we don't immediately teleport back and forth
-                portalDist += (other.transform.position - transform.position).normalized * pushAmt;
+                portalDist -= (other.transform.position - transform.position);
 
                 //also push away from contacted wall
                 portalDist += oDir switch
@@ -196,6 +199,7 @@ public class PortalTeleport : MonoBehaviour
 
             if (shouldFizzle)
             {
+                Instantiate(portalFizz, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
         }
