@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1866378276182817281}
   - component: {fileID: 6135125857236268693}
   m_Layer: 0
-  m_Name: TaroSwitchBlue
+  m_Name: Taro_SwitchBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +149,7 @@ SpriteRenderer:
   m_SortingOrder: 90
   m_Sprite: {fileID: 5780841043688988522, guid: 33b86c38efb9967459b5854f7005438f,
     type: 3}
-  m_Color: {r: 0.14117648, g: 0.16862746, b: 0.8117647, a: 1}
+  m_Color: {r: 0.3529412, g: 0.3529412, b: 0.3529412, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -233,7 +233,7 @@ SpriteRenderer:
   m_SortingOrder: 90
   m_Sprite: {fileID: -4071626748009554214, guid: 33b86c38efb9967459b5854f7005438f,
     type: 3}
-  m_Color: {r: 0.3584906, g: 0.3336206, b: 0.33312568, a: 1}
+  m_Color: {r: 0.14117648, g: 0.16862746, b: 0.8117647, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

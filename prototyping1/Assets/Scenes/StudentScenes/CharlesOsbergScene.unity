@@ -19166,7 +19166,7 @@ PrefabInstance:
     - target: {fileID: 7783233679475157304, guid: da20567aee1ca7f4c8b8b7c2a7ff2670,
         type: 3}
       propertyPath: m_Text
-      value: Student Example
+      value: Charles O
       objectReference: {fileID: 0}
     - target: {fileID: 9206448110116329667, guid: da20567aee1ca7f4c8b8b7c2a7ff2670,
         type: 3}
@@ -19616,6 +19616,7 @@ GameObject:
   - component: {fileID: 1306448854}
   - component: {fileID: 1306448853}
   - component: {fileID: 1306448852}
+  - component: {fileID: 1306448856}
   m_Layer: 0
   m_Name: TilemapPortalable
   m_TagString: Untagged
@@ -19854,6 +19855,20 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1306448856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1306448850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1442690e7e685d147b4c42d353116a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tags:
+  - PortalAllowed
 --- !u!1001 &1571577279
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20963,7 +20978,7 @@ PrefabInstance:
     - target: {fileID: 4503928720654438545, guid: ebaa86f2b71f84545856dc7980fc4035,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.087261
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4503928720654438545, guid: ebaa86f2b71f84545856dc7980fc4035,
         type: 3}
