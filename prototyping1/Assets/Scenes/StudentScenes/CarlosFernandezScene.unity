@@ -26323,6 +26323,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 141996018}
     m_Modifications:
+    - target: {fileID: 2128592148513256311, guid: 3c12e5e387317704291811cabf241239,
+        type: 3}
+      propertyPath: textColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128592148513256311, guid: 3c12e5e387317704291811cabf241239,
+        type: 3}
+      propertyPath: textColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128592148513256311, guid: 3c12e5e387317704291811cabf241239,
+        type: 3}
+      propertyPath: textColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2128592148513256311, guid: 3c12e5e387317704291811cabf241239,
+        type: 3}
+      propertyPath: textColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3779418355993841777, guid: 3c12e5e387317704291811cabf241239,
         type: 3}
       propertyPath: travelDuration

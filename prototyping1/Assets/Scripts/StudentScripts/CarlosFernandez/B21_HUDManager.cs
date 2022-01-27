@@ -12,6 +12,7 @@ public class B21_HUDManager : MonoBehaviour
     private Text newText;
     private int cdNumber;
     private B21_ProjectileTeleport scriptReference;
+    public Color textColor;
     
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class B21_HUDManager : MonoBehaviour
         newText = text.AddComponent<Text>();
         newText.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         newText.fontSize = 23;
-
+        newText.color = textColor;
     }
 
     private void PrintText()

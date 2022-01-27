@@ -53,6 +53,7 @@ MonoBehaviour:
   cooldownDuration: 0
   shootKeybind: 101
   cancelShootKeybind: 114
+  cooldownTimer: 0
 --- !u!212 &8866436679199516625
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -253,3 +254,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a4e6ddb06955e43beae0d3da3a70d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textColor: {r: 1, g: 1, b: 1, a: 1}
