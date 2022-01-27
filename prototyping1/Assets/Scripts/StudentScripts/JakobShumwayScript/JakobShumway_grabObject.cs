@@ -20,9 +20,23 @@ public class JakobShumway_grabObject : MonoBehaviour
         right
     };
 
+        [Tooltip("Which keybind would you like?")]
     public KeyCode grabButton;
 
+        // How far to throw objects
+        [Tooltip("How far to throw objects.")]
     public float throwIntensity = 15;
+
+        // Move player opposite to throw force. Set this to 0 to disable.
+        [Tooltip("Move player opposite to throw force. Set this to 0 to disable.")]
+    public float playerThrowbackMultiplier = .5f;
+
+        // After throwing, set speed to 0 for this timer.
+        [Tooltip("After throwing, set speed to 0 for this timer. Made to be used with playerThrowback. Set this to 0 to disable.")]
+    public float afterFreezeDuration = .35f;
+
+    [HideInInspector]
+    public float afterFreezeTimer = 0f;
 
     [HideInInspector]
     public bool holding = false;
@@ -36,15 +50,31 @@ public class JakobShumway_grabObject : MonoBehaviour
     [HideInInspector]
     public GameObject grabbedObject;
 
+    private float prevSpeed = 3;
+
     // Start is called before the first frame update
     void Start()
     {
         playerTrans = GetComponent<Transform>();
+        prevSpeed = gameObject.GetComponent<PlayerMove>().speed;
     }
 
     // Update is called once per frame
     void Update()
     {
+            // Remove player speed after throwing, makes throw more impactful
+        if (afterFreezeTimer > 0)
+        {
+            afterFreezeTimer -= Time.deltaTime;
+            gameObject.GetComponent<PlayerMove>().speed = 0;
+        }
+        else
+        {
+            gameObject.GetComponent<PlayerMove>().speed = prevSpeed;
+        }
+
+
+
             // Update direction
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
             playerDirection = direction.up;
@@ -76,6 +106,8 @@ public class JakobShumway_grabObject : MonoBehaviour
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
                 grabbedObject.transform.position += new Vector3(1, 0, 0);
 
+            if (grabbedObject.GetComponent<EnemyHealth>())
+                grabbedObject.GetComponent<EnemyHealth>().isStunned = true;
         }
 
         if (Input.GetKeyDown(grabButton))
@@ -110,11 +142,19 @@ public class JakobShumway_grabObject : MonoBehaviour
                     throwY /= 2;
                 }
 
+                if (throwX != 0 || throwY != 0)
+                    afterFreezeTimer = afterFreezeDuration;
+
+                    // Launch Object
                 grabbedObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(throwX, throwY), ForceMode2D.Impulse);
 
-                throwX /= 2;
-                throwY /= 2;
+                    // Launch player in opposite direction
+                throwX *= playerThrowbackMultiplier;
+                throwY *= playerThrowbackMultiplier;
                 playerTrans.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-throwX, -throwY), ForceMode2D.Impulse);
+
+                if (grabbedObject.GetComponent<EnemyHealth>())
+                    grabbedObject.GetComponent<EnemyHealth>().isStunned = false;
 
                 // Set object down
                 grabbedObject = null;
@@ -177,10 +217,14 @@ public class JakobShumway_grabObject : MonoBehaviour
                 }
 
                 // grab i
-                grabbedObject = tryGrab[closest].gameObject;
-                holding = true;
+                if (closest != -1)
+                {
+                    grabbedObject = tryGrab[closest].gameObject;
+                    holding = true;
 
-                grabbedObject.transform.position = playerTrans.position;
+                    grabbedObject.transform.position = playerTrans.position;
+                }
+                
             }
         }
         // End of GrabButton

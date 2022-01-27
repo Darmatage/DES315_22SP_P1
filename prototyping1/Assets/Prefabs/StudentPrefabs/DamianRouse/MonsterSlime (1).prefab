@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 7641862248900796889}
   - component: {fileID: 6478920752467125439}
   - component: {fileID: 5045977115891963854}
+  - component: {fileID: 1696804417052873881}
   m_Layer: 6
   m_Name: MonsterSlime (1)
   m_TagString: Untagged
@@ -201,7 +202,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   damage: 1
-  EnemyLives: 3
   retreatTime: 3
 --- !u!114 &6478920752467125439
 MonoBehaviour:
@@ -216,8 +216,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   disableOtherScripts_: 1
+  sprite_: {fileID: 0}
   grabbed_: 0
   change_: 0
+  locked_: 0
+  restrictPlacement_: 0
 --- !u!114 &5045977115891963854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,3 +239,18 @@ MonoBehaviour:
   specifics_: []
   enabled_: 0
   change_: 0
+--- !u!114 &1696804417052873881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5428306844967600409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5d8f9309ea3d64b8176c6ce0bf3f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyLives: 3
+  isStunned: 0
+  stunTime: 5

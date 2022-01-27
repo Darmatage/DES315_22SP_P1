@@ -5,6 +5,10 @@ Three easy steps:
  - Add a 'Rigidbody2D' to the object you want thrown.
  - Preface the object with 'GRAB_'.
 
-My prefab is not required to grab/throw objects, but I have already completed the last two steps.
+ - IF you want your object to deal damage to enemies when thrown, add 'JakobShumway_impactDamage' to the object you want thrown.
 
-I would also highly recommend giving your object friction.
+Additional notes:
+ - My prefab box is not required to grab/throw objects.
+ - I would highly recommend giving your object friction.
+ - The prefabs in personalUse are not for you. 
+
