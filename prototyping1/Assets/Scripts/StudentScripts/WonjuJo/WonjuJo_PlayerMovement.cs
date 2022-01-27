@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WonjuJo_PlayerMovement : MonoBehaviour
 {
@@ -11,16 +12,20 @@ public class WonjuJo_PlayerMovement : MonoBehaviour
 	private Animator anim;
 	private bool isAlive = true;
 	private bool IsAttack = false;
+	
 	public GameObject Fireball;
 	public Transform FireballPosition;
+	public Image FireballCooldownImage;
+	private bool IsFireballCooldown = false;
 
 	private Renderer rend;
 
-	Time Timer;
 	float FireballCooldown = 1.5f;
 	[SerializeField]
 	private float NextFireballCooldown;
 
+	public AudioSource audioSource;
+	//public AudioClip FireballClip;
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -39,6 +44,18 @@ public class WonjuJo_PlayerMovement : MonoBehaviour
 
 		if (isAlive == true)
 		{
+			if (IsFireballCooldown)
+			{
+				FireballCooldownImage.fillAmount += 1 / FireballCooldown * Time.deltaTime;
+
+				if (FireballCooldownImage.fillAmount >= 1)
+				{
+					FireballCooldownImage.fillAmount = 0;
+					IsFireballCooldown = false;
+				}
+
+			}
+
 			change = Vector3.zero;
 			change.x = Input.GetAxisRaw("Horizontal");
 			change.y = Input.GetAxisRaw("Vertical");
@@ -68,11 +85,15 @@ public class WonjuJo_PlayerMovement : MonoBehaviour
 				if (Input.GetKey(KeyCode.Mouse1))
 				{
 					Instantiate(Fireball, FireballPosition.position, Quaternion.identity);
+					audioSource.Play();
 					NextFireballCooldown = Time.time + FireballCooldown;
+					IsFireballCooldown = true;
 				}
+
 			}
 
 		} //else playerDie(); //run this function from the GameHandler instead
+
 	}
 
 	private void OnCollisionEnter2D(Collision2D collision)
@@ -81,7 +102,20 @@ public class WonjuJo_PlayerMovement : MonoBehaviour
 		{
 			WonjuJo_MonsterHandler MH = collision.gameObject.GetComponent<WonjuJo_MonsterHandler>();
 			if (MH)
+			{
 				MH.MonsterTakeDamge(5);
+				IsAttack = false;
+			}
+		}
+
+		if (collision.gameObject.tag == "ExplodeEnemy" && IsAttack)
+		{
+			WonjuJo_ExplosionEnemy EH = collision.gameObject.GetComponent<WonjuJo_ExplosionEnemy>();
+			if (EH)
+			{
+				EH.MonsterTakeDamge(5);
+				IsAttack = false;
+			}
 		}
 	}
 
@@ -128,7 +162,6 @@ public class WonjuJo_PlayerMovement : MonoBehaviour
 			//gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
 		}
 	}
-
 
 	IEnumerator ChangeColor()
 	{

@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce0db91a8d3253409748b12f782dba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3.5
   attackSlow: 1
   EnemyLives: 3
   retreatTime: 3

@@ -123,6 +123,11 @@ public class BenThompson_BoatController : MonoBehaviour
             {
                 boatFumes.SetActive(false);
             }
+
+            if(boatWaterTrail)
+            {
+                boatWaterTrail.Stop();
+            }
         }
     }
 

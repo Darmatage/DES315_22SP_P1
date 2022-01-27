@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour{
 
 
 	public float speed = 3f; // player movement speed
-	private Vector3 change; // player movement direction
+	public Vector3 change; // player movement direction
 	private Rigidbody2D rb2d;
 	private Animator anim;
 	private bool isAlive = true;
