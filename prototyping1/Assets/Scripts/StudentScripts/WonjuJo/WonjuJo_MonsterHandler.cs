@@ -38,6 +38,9 @@ public class WonjuJo_MonsterHandler : MonoBehaviour
 
     public void MonsterTakeDamge(int damage)
     {
+        StopCoroutine(ChangeColor());
+        StartCoroutine(ChangeColor());
+
         MonsterHealth -= damage;
         if (MonsterHealth <= 0)
         {
@@ -52,21 +55,6 @@ public class WonjuJo_MonsterHandler : MonoBehaviour
         if(IsDead)
         {
             Destroy(Monster);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "bullet")
-        {
-            StopCoroutine(ChangeColor());
-            StartCoroutine(ChangeColor());
-        }
-
-        if (collision.gameObject.tag == "Player" && PM.GetIsAttack())
-        {
-            StopCoroutine(ChangeColor());
-            StartCoroutine(ChangeColor());
         }
     }
 
