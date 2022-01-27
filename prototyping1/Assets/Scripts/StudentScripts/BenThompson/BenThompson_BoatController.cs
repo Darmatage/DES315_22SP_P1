@@ -83,14 +83,20 @@ public class BenThompson_BoatController : MonoBehaviour
 
     [SerializeField]
     ParticleSystem boatWaterTrail;
+
+    private void Awake()
+    {
+        // Grab the boat charge indicator
+        boatChargeIndicator = GameObject.Find("BenThompsonBoatChargeIndicator");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         // Deactivate the player sprite
         playerSprite.SetActive(false);
 
-        // Grab the boat charge indicator
-        boatChargeIndicator = GameObject.Find("BenThompsonBoatChargeIndicator");
+        
         if(boatChargeIndicator)
         {
             boatChargeIndicator.transform.parent.parent.gameObject.SetActive(false);
