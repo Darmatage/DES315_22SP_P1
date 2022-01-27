@@ -155,16 +155,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8f2204b45b63e418cc3fb4acbfb2fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableOtherScripts_: 1
-  sprite_: {fileID: 370398545073831036}
+  disableScriptsWhenGrabbed_: 1
+  seperateSprite_: {fileID: 370398545073831036}
+  gridlessPlacement_: 1
+  gridPlacement_: 1
+  placementMap_: {fileID: 0}
+  placementLayer_:
+    serializedVersion: 2
+    m_Bits: 1
+  lockWhenAnchored_: 1
+  lockColor_: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
   grabbed_: 0
   change_: 0
   locked_: 0
-  restrictPlacement_: 0
-  fillerTile_: {fileID: 0}
-  mapToReplace_: {fileID: 0}
-  mapToFill_: {fileID: 0}
-  anchoredColor_: {r: 0.33962262, g: 0.33770022, b: 0.33770022, a: 1}
-  lockWhenAnchored_: 1
   pos_: {x: 0, y: 0, z: 0}
   willFill_: 0
+  gridPos_: {x: 0, y: 0, z: 0}
+  fillerTile_: {fileID: 11400000, guid: 54047f8100659b646baba20e1699ea29, type: 2}
+  mapToFill_: {fileID: 0}
