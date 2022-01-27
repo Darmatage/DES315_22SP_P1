@@ -3985,6 +3985,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 2
       objectReference: {fileID: 0}
@@ -4062,6 +4082,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -4143,6 +4183,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 0
       objectReference: {fileID: 0}
@@ -4220,6 +4280,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -4301,6 +4381,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 3
       objectReference: {fileID: 0}
@@ -4378,6 +4478,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -4528,6 +4648,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 1
       objectReference: {fileID: 0}
@@ -4605,6 +4745,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -21560,6 +21720,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 1
       objectReference: {fileID: 0}
@@ -21637,6 +21817,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -21718,6 +21918,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 2
       objectReference: {fileID: 0}
@@ -21795,6 +22015,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -21876,6 +22116,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 1
       objectReference: {fileID: 0}
@@ -21955,6 +22215,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 3
       objectReference: {fileID: 0}
@@ -22032,6 +22312,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -22248,6 +22548,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 1
       objectReference: {fileID: 0}
@@ -22424,6 +22744,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 3
       objectReference: {fileID: 0}
@@ -22570,6 +22910,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -22808,6 +23168,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 3
       objectReference: {fileID: 0}
@@ -22885,6 +23265,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -22966,6 +23366,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 3
       objectReference: {fileID: 0}
@@ -23045,6 +23465,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 2
       objectReference: {fileID: 0}
@@ -23122,6 +23562,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -29183,6 +29643,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 1
       objectReference: {fileID: 0}
@@ -29260,6 +29740,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -29463,6 +29963,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 1
       objectReference: {fileID: 0}
@@ -29542,6 +30062,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 2
       objectReference: {fileID: 0}
@@ -29619,6 +30159,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -29980,6 +30540,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 1
       objectReference: {fileID: 0}
@@ -30057,6 +30637,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -30138,6 +30738,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 2
       objectReference: {fileID: 0}
@@ -30215,6 +30835,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -32003,6 +32643,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 3
       objectReference: {fileID: 0}
@@ -32010,6 +32670,11 @@ PrefabInstance:
         type: 3}
       propertyPath: fallDirection
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: detectDistance
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5160772777407120157, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
@@ -32080,6 +32745,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -32161,6 +32846,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 0
       objectReference: {fileID: 0}
@@ -32238,6 +32943,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -32319,6 +33044,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 3
       objectReference: {fileID: 0}
@@ -32396,6 +33141,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -32483,6 +33248,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 0
       objectReference: {fileID: 0}
@@ -32560,6 +33345,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection
@@ -32641,6 +33446,26 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
       propertyPath: flyDirection
       value: 1
       objectReference: {fileID: 0}
@@ -32718,6 +33543,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: launchDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.g
+      value: 0.14474103
+      objectReference: {fileID: 0}
+    - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
+        type: 3}
+      propertyPath: flashColor.r
+      value: 0.5372549
+      objectReference: {fileID: 0}
     - target: {fileID: -8396924131504948338, guid: 2fb9d6422c1e7344e993a3325d8ac330,
         type: 3}
       propertyPath: flyDirection

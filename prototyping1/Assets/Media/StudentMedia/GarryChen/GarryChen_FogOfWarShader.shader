@@ -48,7 +48,7 @@ Shader "Hidden/GarryChen_FogOfWarShader"
             {
                 fixed4 col = tex2D(_MainTex, i.uv) + tex2D(_SecondaryTex, i.uv);
                 //col.a = 1.0f - 0.5f * (col.r + col.b);
-                return fixed4(0,0,0, 1.0f - 0.5f * (col.r + col.b));
+                return fixed4(0,0,0, 1.0f - 0.5f * (col.r + col.b) + col.g);
             }
             ENDCG
         }

@@ -12,14 +12,16 @@ public class HemieChoi_Boomerang : MonoBehaviour
     private bool isDropped;
     [SerializeField] private bool isHolding;
     private GameObject playerObj;
+    private float timer;
 
     // Start is called before the first frame update
     void Start()
     {
         rotationSpeed = 1000.0f;
-        movingSpeed = 5.0f;
+        movingSpeed = 8.0f;
         playerObj = GameObject.Find("Player");
         isHolding = true;
+        timer = 0;
     }
 
     // Update is called once per frame
@@ -27,18 +29,13 @@ public class HemieChoi_Boomerang : MonoBehaviour
     {
         RotateWeapon();
 
-        if (isHolding && Input.GetKeyDown(KeyCode.Z))
+        if (isHolding && Input.GetMouseButtonDown(0))
         {
             isThrowing = true;
             isHolding = false;
-            if (Input.GetAxis("Horizontal") < 0)
-            {
-                targetPos = new Vector3(transform.position.x - 6.0f, transform.position.y, 0);
-            }
-            else
-            {
-                targetPos = new Vector3(transform.position.x + 6.0f, transform.position.y, 0);
-            }
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            targetPos = new Vector3(mousePos.x, mousePos.y, 0);
+            //targetPos.x = Mathf.Clamp(targetPos.x, targetPos.x >= 0 ? targetPos.x - (targetPos.x - 3.0f) : targetPos.x + (targetPos.x - 3.0f))
         } 
 
         if (isThrowing)
@@ -53,7 +50,8 @@ public class HemieChoi_Boomerang : MonoBehaviour
             isRotating = false;
         }
 
-        if (!isHolding && !isThrowing && !isDropped)
+        // make it return
+        if ((!isHolding && !isThrowing && !isDropped))
         {
             transform.position = Vector2.MoveTowards(transform.position, playerObj.transform.position, movingSpeed * Time.deltaTime);
             if (Vector2.Distance(transform.position, playerObj.transform.position) <= 0.01f)
@@ -63,15 +61,21 @@ public class HemieChoi_Boomerang : MonoBehaviour
             }
         }
 
-        if(Vector2.Distance(transform.position, targetPos) <= 0.01f)
+        if(Vector2.Distance(transform.position, targetPos) <= 0.01f || timer > 0.5f)
         {
             isThrowing = false;
+        }
+
+        if (!isThrowing)
+        {
+            timer = 0;
         }
     }
 
     private void ThrowBoomerang()
     {
         isRotating = true;
+        timer += Time.deltaTime;
         transform.position = Vector2.MoveTowards(transform.position, targetPos, movingSpeed * Time.deltaTime);
     }
 

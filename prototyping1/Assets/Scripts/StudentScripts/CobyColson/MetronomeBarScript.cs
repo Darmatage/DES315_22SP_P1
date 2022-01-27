@@ -39,7 +39,7 @@ public class MetronomeBarScript : MonoBehaviour
         {
             rect.anchoredPosition = new Vector2(rect.anchoredPosition.x + barSpeed * Time.deltaTime, rect.anchoredPosition.y);
         }
-        if (Mathf.Abs(rect.anchoredPosition.x) < 1)
+        if (Mathf.Abs(rect.anchoredPosition.x) < 5)
         {
             if (!audioSources[1].isPlaying)
             {
