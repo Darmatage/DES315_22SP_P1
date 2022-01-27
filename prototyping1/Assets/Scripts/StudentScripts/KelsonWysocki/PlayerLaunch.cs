@@ -46,7 +46,6 @@ public class PlayerLaunch : MonoBehaviour
     private bool canDash = true;
     private float trackCooldown = 0f;
     private bool cooldownGoing = false;
-    private bool didCharge = false;
 
     private bool mouseDown = false;
 
@@ -161,7 +160,6 @@ public class PlayerLaunch : MonoBehaviour
 
     private void ChargeLaunch()
     {
-        didCharge = true;
         var em = chargeEffectPSystem.emission;
         em.rateOverTime = 1000;
         if (launchSpeedToUse < launchSpeed * 2)
@@ -223,7 +221,6 @@ public class PlayerLaunch : MonoBehaviour
         em.rateOverTime = 0;
         launchDistanceToUse = launchDistance;
         cooldownGoing = true;
-        didCharge = false;
 
         player.tag = "Player";
 
