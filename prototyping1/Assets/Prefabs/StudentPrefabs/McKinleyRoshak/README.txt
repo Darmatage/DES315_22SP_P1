@@ -1,0 +1,2 @@
+The dash prefab can be dropped into any scene as it's own object. It allows the player to dash by pushing the dash button (default mapped to f, but can be remapped very easily in the object editor)
+When dashing, the player will move much faster for a short time, and then must wait a short time until they can dash again.
