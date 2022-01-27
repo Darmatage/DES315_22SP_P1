@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 864441453461747352}
   - component: {fileID: 1168950795211430991}
   - component: {fileID: 6484676984837471611}
+  - component: {fileID: 2128592148513256311}
   m_Layer: 14
   m_Name: B21_TeleportPrefab
   m_TagString: Untagged
@@ -240,3 +241,15 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &2128592148513256311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316615293460003396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a4e6ddb06955e43beae0d3da3a70d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
