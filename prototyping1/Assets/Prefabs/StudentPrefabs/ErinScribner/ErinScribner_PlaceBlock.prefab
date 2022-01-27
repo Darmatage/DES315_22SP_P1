@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2090379292874809017}
   - component: {fileID: 2090379292874809016}
   m_Layer: 0
-  m_Name: PlaceBlock
+  m_Name: ErinScribner_PlaceBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
