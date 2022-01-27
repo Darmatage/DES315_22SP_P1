@@ -92,6 +92,42 @@ public class DanielNunes_Cannonball : MonoBehaviour
             //despawn
             Destroy(gameObject);
         }
+        //if we collided with one of Taro's switches
+        else if (collision.gameObject.GetComponent<Taro_ColorSwitchBehavior>())
+        {
+            //get the color manager from the player
+            Taro_ColorSwitchTrigger trigger = GameObject.FindGameObjectWithTag("Player").GetComponent<Taro_ColorSwitchTrigger>();
+            if (trigger != null && trigger.isActive)
+            {
+                //get the color of the switch we hit
+                Taro_ColorSwitchBehavior taroSwitch = collision.gameObject.GetComponent<Taro_ColorSwitchBehavior>();
+
+                Taro_ColorSwitchManager.SetActiveColor(taroSwitch.SwitchColor);
+
+                taroSwitch.ActiveSprite.SetActive(true);
+                taroSwitch.InactiveSprite.SetActive(false);
+
+                //get all cannons in the scene
+                DanielNunes_Cannon[] cannons = FindObjectsOfType<DanielNunes_Cannon>();
+                //go through all cannons and...
+                for (int i = 0; i < cannons.Length; ++i)
+                {
+                    //...briefly reset each of their raycast contacts
+                    cannons[i].ResetContacts();
+                }
+
+                //despawn cannonball
+                CreateParticles();
+                Destroy(gameObject);
+            }
+        }
+        //if we collided with one of Taro's tilemap blocks
+        else if (collision.gameObject.name.Contains("Taro_Tilemap"))
+        {
+            //despawn cannonball
+            CreateParticles();
+            Destroy(gameObject);
+        }
     }
 
     public void CreateParticles()

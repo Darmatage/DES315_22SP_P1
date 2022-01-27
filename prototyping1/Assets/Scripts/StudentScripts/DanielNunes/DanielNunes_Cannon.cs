@@ -566,7 +566,7 @@ public class DanielNunes_Cannon : MonoBehaviour
         foreach (RaycastHit2D hit in rays)
         {
             //check to see if it's hitting something with a physical collider (NOT OURSELVES NOR THE PLAYER)
-            if (!hit.collider.isTrigger && !hit.collider.gameObject.name.Contains("Nunes_Cannon") && !hit.collider.gameObject.CompareTag("Player"))
+            if (AdditionalRaycastChecks(hit))
             {
                 //if the distance of the ray is less than or equal to 1 unit, then it's right next to the cannon
                 if (hit.distance <= 1.0f)
@@ -595,7 +595,7 @@ public class DanielNunes_Cannon : MonoBehaviour
         foreach (RaycastHit2D hit in rays)
         {
             //check to see if it's hitting something with a physical collider (NOT OURSELVES NOR THE PLAYER)
-            if (!hit.collider.isTrigger && !hit.collider.gameObject.name.Contains("Nunes_Cannon") && !hit.collider.gameObject.CompareTag("Player"))
+            if (AdditionalRaycastChecks(hit))
             {
                 //if the distance of the ray is less than or equal to 1 unit, then it's right next to the cannon
                 if (hit.distance <= 1.0f)
@@ -623,7 +623,7 @@ public class DanielNunes_Cannon : MonoBehaviour
         foreach (RaycastHit2D hit in rays)
         {
             //check to see if it's hitting something with a physical collider (NOT OURSELVES NOR THE PLAYER)
-            if (!hit.collider.isTrigger && !hit.collider.gameObject.name.Contains("Nunes_Cannon") && !hit.collider.gameObject.CompareTag("Player"))
+            if (AdditionalRaycastChecks(hit))
             {
                 //if the distance of the ray is less than or equal to 1 unit, then it's right next to the cannon
                 if (hit.distance <= 1.0f)
@@ -651,7 +651,7 @@ public class DanielNunes_Cannon : MonoBehaviour
         foreach (RaycastHit2D hit in rays)
         {
             //check to see if it's hitting something with a physical collider (NOT OURSELVES NOR THE PLAYER)
-            if (!hit.collider.isTrigger && !hit.collider.gameObject.name.Contains("Nunes_Cannon") && !hit.collider.gameObject.CompareTag("Player"))
+            if (AdditionalRaycastChecks(hit))
             {
                 //if the distance of the ray is less than or equal to 1 unit, then it's right next to the cannon
                 if (hit.distance <= 1.0f)
@@ -671,6 +671,41 @@ public class DanielNunes_Cannon : MonoBehaviour
                 playerHere = true;
             }
         }
+    }
+
+    private bool AdditionalRaycastChecks(RaycastHit2D hit)
+    {
+        //returning true means we don't want the cannon to be moved
+
+        //add as many checks as you want to this statement. If they all evaluate to true, then we ignore collision
+        //if it isn't a trigger collider
+        //if it isn't ourselves
+        //if it isn't the player
+        if (!hit.collider.isTrigger && !hit.collider.gameObject.name.Contains("Nunes_Cannon") &&
+            !hit.collider.gameObject.CompareTag("Player"))
+        {
+            //if Taro's tiles exist in the scene
+            if (FindObjectOfType<Taro_ColorSwitchManager>())
+            {
+                //if it's Taro's tile block
+                if (hit.collider.gameObject.name.Contains("Taro_Tile"))
+                {
+                    //if the block is in the default collision layer
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Default"))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     public void ResetContacts()
@@ -728,7 +763,7 @@ public class DanielNunes_Cannon : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //if in the sand
-        if (collision.gameObject.name.Equals("TilemapSand"))
+        if (collision.gameObject.name.Contains("Nunes_TilemapSand"))
         {
             sinking = true;
             shrinkTimer = 0.0f;
