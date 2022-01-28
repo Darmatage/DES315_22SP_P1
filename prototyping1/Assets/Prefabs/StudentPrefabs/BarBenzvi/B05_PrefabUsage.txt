@@ -1,0 +1,7 @@
+The MonsterSlime prefabs can be used to activate QTEs on collision with the player
+The big MonsterSlime prefab will use the more challenging QTE prefab (QuickTimeEventMedium), but you could simply change this on the objects in your scene
+
+The QuickTimeEvent prefabs should pretty much handle themselves, and should not be manually placed in your scene.
+
+All of these prefabs use or call the QTE events in B05_EventManager. If you want to use this feature, you will likely want to hook into some of these events.
+You could also use some of the components I already made, such as B05_DamagePlayerOnQTEFailed or B05_QTETrigger
