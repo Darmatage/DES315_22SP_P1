@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6837249965058409912}
   - component: {fileID: 8527348228956277419}
   - component: {fileID: 6897368542320644458}
-  - component: {fileID: 8557583117409336378}
+  - component: {fileID: 1767550377925495151}
+  - component: {fileID: 3053218233424026416}
   m_Layer: 6
   m_Name: KennyMecham_MonsterSkull
   m_TagString: monsterShooter
@@ -101,7 +102,7 @@ MonoBehaviour:
   projectile: {fileID: 9217334252462357836, guid: ef4f811a6912deb438302a44b156ff88,
     type: 3}
   EnemyLives: 30
---- !u!114 &8557583117409336378
+--- !u!114 &1767550377925495151
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,11 +111,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1283846235326148580}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c218307e1ba909429a2a68da0df18b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 1442690e7e685d147b4c42d353116a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teams:
+  _tags:
   - Enemy
+--- !u!114 &3053218233424026416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283846235326148580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf54eb8e493b3694fb785dc687c8e87a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 5
+  damage: 2
+  speed: 0
+  lives: 0
+  attackCooldown: 0
 --- !u!1 &5415657769965168435
 GameObject:
   m_ObjectHideFlags: 0
