@@ -55,7 +55,6 @@ public class Kiara_Hide : MonoBehaviour
             foreach (GameObject enemy in Enemies)
             {
                 Kiara_AlteredMonsterMoveHit tempScript = enemy.GetComponent<Kiara_AlteredMonsterMoveHit>();
-                tempScript.attackPlayer = true;
                 tempScript.canSeePlayer = true;
             }
 

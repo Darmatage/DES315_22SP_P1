@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2800549621815969434}
   - component: {fileID: 2773156923286725692}
   m_Layer: 0
-  m_Name: CoinArt
+  m_Name: BoxArt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 7196408389395962574}
   - component: {fileID: 517375545737103083}
   - component: {fileID: 2708903662459662829}
+  - component: {fileID: -6533856516142952898}
+  - component: {fileID: 1382473310714091349}
   m_Layer: 7
   m_Name: GRAB_breakBox
   m_TagString: Untagged
@@ -157,10 +159,39 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 2.5
-  m_AngularDrag: 0.05
+  m_AngularDrag: 2.5
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-6533856516142952898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990974368087028470}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c786d10b44119004eb8858b53ae0c327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceRequired: 8
+  dmgAmount: 1
+--- !u!114 &1382473310714091349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5990974368087028470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca263c438bedde4f8e7342d41820152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticle: {fileID: 6134869188595126935, guid: 9af8dbce63330854b9f3d65dd1f4db7d,
+    type: 3}
+  boxHealth: 1

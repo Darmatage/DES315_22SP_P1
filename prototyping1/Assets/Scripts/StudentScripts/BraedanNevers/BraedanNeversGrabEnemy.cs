@@ -5,12 +5,13 @@ using UnityEngine;
 public class BraedanNeversGrabEnemy : MonoBehaviour
 {
     public float projectileSpeed;
-    public bool IsAttachedToPlayer = false;
-    public bool IsHoldingEnemy = false;
-    public bool EnemyInRange = false;
+    private bool IsAttachedToPlayer = false;
+    private bool IsHoldingEnemy = false;
+    private bool EnemyInRange = false;
 
     public GameObject projectilePrefab;
-    public GameObject projectileClone = null;
+    
+    private GameObject projectileClone = null;
 
 
     // Start is called before the first frame update
@@ -63,6 +64,8 @@ public class BraedanNeversGrabEnemy : MonoBehaviour
                 EnemyInRange = false;   
                 projectileClone = Instantiate(projectilePrefab, transform.position, transform.rotation);
                 projectileClone.GetComponent<BraedanProjectile>().isHeld = true;
+
+                projectileClone.transform.localScale = other.transform.localScale;
 
                 SpriteRenderer projectileSpriteRenderer = projectileClone.transform.GetChild(0).GetComponent<SpriteRenderer>();
                 SpriteRenderer enemySpriteRenderer = other.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
