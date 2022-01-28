@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &412980851578624884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3294450357376018458}
+  - component: {fileID: 1580429160976337090}
+  m_Layer: 7
+  m_Name: Taro_EnemySkullSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3294450357376018458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412980851578624884}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8435919722870643728}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1580429160976337090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412980851578624884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddf08bc416100f41b71af5487728a48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy: {fileID: 6155731756999082813}
+  ScanRadius: 15
+  ScanInterval: 0.2
+  ScanLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!1001 &7923359077847007109
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3294450357376018458}
+    m_Modifications:
+    - target: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078256246479289528, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_Name
+      value: MonsterSkull
+      objectReference: {fileID: 0}
+    - target: {fileID: 7419966506197399658, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: speed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7419966506197399658, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 2897097587681159296, guid: 789a792056dc1aa498d7f8446275bcd7,
+        type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 370f8cfdc2b46a14ea799b5e0116b058, type: 3}
+--- !u!1 &6155731756999082813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4078256246479289528, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+    type: 3}
+  m_PrefabInstance: {fileID: 7923359077847007109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8435919722870643728 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1794408831066137493, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+    type: 3}
+  m_PrefabInstance: {fileID: 7923359077847007109}
+  m_PrefabAsset: {fileID: 0}
