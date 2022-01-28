@@ -486,6 +486,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3739916347274116001, guid: 757bd2e2bada2834184bf3e69577581b,
+        type: 3}
+      propertyPath: DoorObj
+      value: 
+      objectReference: {fileID: 888632053}
     - target: {fileID: 4138389104573116996, guid: 757bd2e2bada2834184bf3e69577581b,
         type: 3}
       propertyPath: m_Name
@@ -10888,6 +10893,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 628288438}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &888632053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3530746435627036704, guid: 401a933dbd2195744a4fb43f251707d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2013662479}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &912504961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16638,7 +16649,7 @@ PrefabInstance:
     - target: {fileID: 3825126630261024793, guid: d7736b4914ea50443bfc25468f6a9f97,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.89
+      value: 17.91
       objectReference: {fileID: 0}
     - target: {fileID: 3825126630261024793, guid: d7736b4914ea50443bfc25468f6a9f97,
         type: 3}
@@ -18232,7 +18243,7 @@ PrefabInstance:
     - target: {fileID: 5333346844073895424, guid: 1f3ffad9a4bcc674893078cd507a9831,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.62
+      value: 24.65
       objectReference: {fileID: 0}
     - target: {fileID: 5333346844073895424, guid: 1f3ffad9a4bcc674893078cd507a9831,
         type: 3}
@@ -18343,7 +18354,7 @@ PrefabInstance:
     - target: {fileID: 6551937145445057747, guid: 401a933dbd2195744a4fb43f251707d7,
         type: 3}
       propertyPath: NextScene
-      value: TeacherSampleScene
+      value: CarlosFernandezScene
       objectReference: {fileID: 0}
     - target: {fileID: 6551937145445057747, guid: 401a933dbd2195744a4fb43f251707d7,
         type: 3}
