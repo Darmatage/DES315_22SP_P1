@@ -9,7 +9,7 @@ Cooldown: how long it takes the dash to recharge after being used.
 Keys: 
 "Left Click"
 	click: Dashes default distance with small damage area.
-	hold : Hold to charge dash. It takes 0.5 seconds before increase in distance/damage area size starts. Once started it takes 1 second to fully charge.
+	hold : Hold to charge dash. It takes 0.25 seconds before increase in distance/damage area size starts. Once started it takes 0.5 seconds to fully charge.
 
 Instructions:
 Add "PlayerLaunchPrefab" to level.
