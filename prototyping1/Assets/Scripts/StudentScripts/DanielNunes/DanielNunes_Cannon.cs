@@ -88,6 +88,11 @@ public class DanielNunes_Cannon : MonoBehaviour
     {
         moveTimer = maxMoveTime;
         player = GameObject.FindGameObjectWithTag("Player");
+
+        //round the position of the cannon to 1 decimal place so it's as precise as possible
+        transform.position = new Vector2((float)Mathf.Round(transform.position.x * 10.0f) / 10.0f, (float)Mathf.Round(transform.position.y * 10.0f) / 10.0f);
+        //approximate where the cannon should be if the user doesn't place it properly initially
+        FixPositioning();
     }
 
     // Update is called once per frame
@@ -832,12 +837,12 @@ public class DanielNunes_Cannon : MonoBehaviour
             //if positive
             if (position.x >= 0)
             {
-                newX = (float)((int)Mathf.Abs(position.x)) + 0.5f; 
+                newX = (float)((int)position.x) + 0.5f; 
             }
             //if negative
             else
             {
-                newX = (float)((int)Mathf.Abs(position.x)) - 0.5f;
+                newX = (float)((int)position.x) - 0.5f;
             }
         }
         else
@@ -859,12 +864,12 @@ public class DanielNunes_Cannon : MonoBehaviour
             //if positive
             if (position.y >= 0)
             {
-                newY = (float)((int)Mathf.Abs(position.y)) + 0.5f;
+                newY = (float)((int)position.y) + 0.5f;
             }
             //if negative
             else
             {
-                newY = (float)((int)Mathf.Abs(position.y)) - 0.5f;
+                newY = (float)((int)position.y) - 0.5f;
             }
         }
         else
