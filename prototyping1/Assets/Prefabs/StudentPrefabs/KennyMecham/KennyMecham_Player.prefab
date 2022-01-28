@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 2563148316582218116}
   - component: {fileID: 5169211978279781568}
   - component: {fileID: 3289724807283158036}
+  - component: {fileID: 7768253293703786111}
   m_Layer: 10
   m_Name: KennyMecham_Player
   m_TagString: Untagged
@@ -354,8 +355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 582d3e561d67213408e645d9f98569fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tags_to_hit_:
-  - 
   detectors_:
   - {fileID: 3183347758148495344}
   - {fileID: 5793168942577073803}
@@ -373,6 +372,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attack_key_: 32
+--- !u!114 &7768253293703786111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4696406718790087584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf54eb8e493b3694fb785dc687c8e87a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damage: 5
+  speed: 2
+  lives: 1
+  attackCooldown: 0
 --- !u!1 &6168661364922108828
 GameObject:
   m_ObjectHideFlags: 0
