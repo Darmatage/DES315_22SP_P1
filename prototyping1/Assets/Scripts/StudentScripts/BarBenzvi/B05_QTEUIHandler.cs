@@ -15,7 +15,7 @@ public class B05_QTEUIButtonData
 [System.Serializable]
 public class B05_QTEComboButtonData
 {
-    public KeyCode KeyToPress = KeyCode.Space;
+    public List<KeyCode> KeysToPress = new List<KeyCode>();
     public Color KeyColor = Color.red;
     //This is temporary - currently using this just to avoid making 4 arrow sprites that just face different directions
     public float KeyAngle = 0.0f;
@@ -35,14 +35,38 @@ public class B05_QTEUIHandler : MonoBehaviour
     public Color CorrectColor = Color.green;
     public Vector3 CorrectFlyoffVelocity = Vector3.up * 100.0f;
 
+    public int IncorrectKeyDamage = 5;
+
+    public RectTransform PlayerFireball = null;
+    public RectTransform PlayerIcon = null;
+    public RectTransform EnemyFireball = null;
+    public RectTransform EnemyIcon = null;
+
+    public float MinFireballSize = 20;
+    public float MaxFireballSize = 100;
+    public float FireballFlyTime = 0.3f;
+
+    Vector2 playerFireballPos = new Vector2();
+    Vector2 enemyFireballPos = new Vector2();
+
     int currIndex = 0;
-    List<KeyCode> keyCombo = new List<KeyCode>();
+    List<B05_QTEComboButtonData> keyCombo = new List<B05_QTEComboButtonData>();
     float timer = 0.0f;
     float maxTimerScale = 0.0f;
+    float fireballTimer = 0.0f;
+    bool succeeded = false;
+
+    GameHandler gHandler = null;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
+        if (gameHandlerLocation != null)
+        {
+            gHandler = gameHandlerLocation.GetComponent<GameHandler>();
+        }
+
         keyCombo.Clear();
         if(TimerBar != null)
         {
@@ -53,58 +77,108 @@ public class B05_QTEUIHandler : MonoBehaviour
         foreach(B05_QTEUIButtonData button in KeyButtonDisplays)
         {
             B05_QTEComboButtonData comboButton = PossibleComboButtons[Random.Range(0, PossibleComboButtons.Count)];
-            keyCombo.Add(comboButton.KeyToPress);
+            keyCombo.Add(comboButton);
 
             button.DisplayObject.GetComponent<Image>().color = comboButton.KeyColor;
             button.DisplayObject.GetComponent<Transform>().eulerAngles = new Vector3(0, 0, comboButton.KeyAngle);
         }
 
         timer = TimeToComplete;
+        fireballTimer = 0.0f;
+        if(PlayerFireball && EnemyFireball)
+        {
+            playerFireballPos = PlayerFireball.position;
+            enemyFireballPos = EnemyFireball.position;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //If any key was pressed, we want to check if it was the right one
-        if(Input.anyKeyDown)
+        if(succeeded || timer <= 0.0f)
         {
-            if(Input.GetKeyDown(keyCombo[currIndex]))
+            if(succeeded)
             {
-                GameObject bg = KeyButtonDisplays[currIndex].BackgroundObject;
-                GameObject bParent = KeyButtonDisplays[currIndex].ParentObject;
-                bg.GetComponent<B05_ColorInterpolator>().TargetColor = CorrectColor;
-                bParent.GetComponent<B05_ConstantTransformMovement>().Velocity = CorrectFlyoffVelocity;
-
-                ++currIndex;
-                if(currIndex == keyCombo.Count)
-                {
-                    Time.timeScale = 1.0f;
-                    B05_EventManager.CallQTESuccess();
-                    B05_EventManager.CallQTEEnded();
-                    Destroy(gameObject);
-                }
+                PlayerFireball.position = Vector2.Lerp(playerFireballPos, EnemyIcon.position, fireballTimer / FireballFlyTime);
             }
             else
             {
-                GameObject bg = KeyButtonDisplays[currIndex].BackgroundObject;
+                EnemyFireball.position = Vector2.Lerp(enemyFireballPos, PlayerIcon.position, fireballTimer / FireballFlyTime);
+            }
+
+            fireballTimer += Time.unscaledDeltaTime;
+
+            if(fireballTimer >= FireballFlyTime)
+            {
+                Time.timeScale = 1.0f;
+                if(succeeded)
+                {
+                    B05_EventManager.CallQTESuccess();
+                }
+                else
+                {
+                    B05_EventManager.CallQTEFailure();
+                }
+                B05_EventManager.CallQTEEnded();
+                Destroy(gameObject);
+            }
+
+            return;
+        }
+
+        //If any key was pressed, we want to check if it was the right one
+        if (Input.anyKeyDown)
+        {
+            GameObject bg = KeyButtonDisplays[currIndex].BackgroundObject;
+            GameObject bParent = KeyButtonDisplays[currIndex].ParentObject;
+            bool wrongKey = true;
+
+            foreach (KeyCode key in keyCombo[currIndex].KeysToPress)
+            {
+                if (Input.GetKeyDown(key))
+                {
+                    wrongKey = false;
+
+                    bg.GetComponent<B05_ColorInterpolator>().TargetColor = CorrectColor;
+                    bParent.GetComponent<B05_ConstantTransformMovement>().Velocity = CorrectFlyoffVelocity;
+
+                    ++currIndex;
+                    if (currIndex == keyCombo.Count)
+                    {
+                        succeeded = true;
+                        break;
+                    }
+                }
+            }
+            if(wrongKey)
+            {
                 bg.GetComponent<Image>().color = WrongColor;
+                if(gHandler != null)
+                {
+                    gHandler.TakeDamage(IncorrectKeyDamage);
+                }
             }
         }
-
         timer -= Time.unscaledDeltaTime;
 
-        if(TimerBar != null)
-        {
-            TimerBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Lerp(0, maxTimerScale, timer / TimeToComplete));
-            TimerBar.GetComponent<Image>().color = Color.Lerp(WrongColor, CorrectColor, timer / TimeToComplete);
-        }
+        float l = timer / TimeToComplete;
 
-        if(timer <= 0.0f)
+        if (TimerBar != null)
         {
-            Time.timeScale = 1.0f;
-            B05_EventManager.CallQTEFailure();
-            B05_EventManager.CallQTEEnded();
-            Destroy(gameObject);
+            TimerBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Lerp(0, maxTimerScale, l));
+            TimerBar.GetComponent<Image>().color = Color.Lerp(WrongColor, CorrectColor, l);
+        }
+        if(PlayerFireball != null)
+        {
+            float scaleVal = Mathf.Lerp(MinFireballSize, MaxFireballSize, (float)currIndex / keyCombo.Count);
+            PlayerFireball.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, scaleVal);
+            PlayerFireball.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, scaleVal);
+        }
+        if(EnemyFireball != null)
+        {
+            float scaleVal = Mathf.Lerp(MaxFireballSize, MinFireballSize, l);
+            EnemyFireball.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, scaleVal);
+            EnemyFireball.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, scaleVal);
         }
     }
 }
