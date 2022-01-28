@@ -772,7 +772,9 @@ PrefabInstance:
     - target: {fileID: 7783233679475157304, guid: da20567aee1ca7f4c8b8b7c2a7ff2670,
         type: 3}
       propertyPath: m_Text
-      value: Student Example
+      value: 'Jacob Burke
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 9206448110116329667, guid: da20567aee1ca7f4c8b8b7c2a7ff2670,
         type: 3}
