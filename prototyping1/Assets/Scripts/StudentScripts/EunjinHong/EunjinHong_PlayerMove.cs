@@ -23,9 +23,13 @@ public class EunjinHong_PlayerMove : MonoBehaviour
 
     public bool attack = false;
 
+    public ParticleSystem Particles;
+    public bool particle;
+
 
     protected virtual void Start()
     {
+        Particles.Pause();
         anim = gameObject.GetComponentInChildren<Animator>();
         rend = GetComponentInChildren<Renderer>();
 
@@ -72,7 +76,9 @@ public class EunjinHong_PlayerMove : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                if(gameHandlerObj.Stamina > 0)
+                Particles.Play();
+                particle = true;
+                if (gameHandlerObj.Stamina > 0)
                 {
                     isDashing = true;
                     gameHandlerObj.UseStamina(1);

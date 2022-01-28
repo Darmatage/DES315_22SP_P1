@@ -38,7 +38,10 @@ public class EunjinHong_MonsterHandler : MonoBehaviour
         if (MonsterHealth <= 0)
         {
             MonsterHealth = 0;
-            gameHandlerObj.ChargeStamina(1);
+            if(gameHandlerObj.Stamina < gameHandlerObj.StaminaStart)
+            {
+                gameHandlerObj.ChargeStamina(1);
+            }
 
             IsDead = true;
         }
