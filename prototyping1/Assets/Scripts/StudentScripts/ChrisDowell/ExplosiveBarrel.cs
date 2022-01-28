@@ -40,7 +40,10 @@ public class ExplosiveBarrel : MonoBehaviour
     public ExplosiveTrigger m_triggerType = 0;
     public BarrelGameData m_stats;
     public BarrelVisualData m_visuals;
+    [Header("Explode Logic")]
     public LayerMask m_damageMask;
+    public bool m_damageOtherBarrels = true;
+    public bool m_ignoreOtherBarrels = false;
     
     public bool m_triggered = false;
 
@@ -138,17 +141,32 @@ public class ExplosiveBarrel : MonoBehaviour
     {
          int mask = collision.gameObject.layer;
 
-        if (m_triggerType == ExplosiveTrigger.Touch && (1<<mask & m_damageMask.value) == m_damageMask.value)
+        if (m_triggerType == ExplosiveTrigger.Touch && (1<<mask & m_damageMask.value) == 1<<mask)
         {
 
             TakeDamage(1);
         }
+
+
 
         if (m_stats.m_exploded == true)
         {
             if (collision.gameObject.tag == "Player")
             {
                 m_handler.TakeDamage(m_stats.m_damage);
+            }
+
+            if (collision.gameObject.tag == "ExplosiveBarrel")
+            {
+                if (m_ignoreOtherBarrels)
+                {
+                    Physics2D.IgnoreCollision(m_exlosivetrigger, collision.collider, true);
+                }
+
+                if (m_damageOtherBarrels)
+                {
+                    collision.gameObject.GetComponent<ExplosiveBarrel>().TakeDamage(m_stats.m_damage);
+                }
             }
 
             var enemyhp = collision.gameObject.GetComponent<EnemyHealth>();
