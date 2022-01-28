@@ -110,7 +110,7 @@ public class PortalTeleport : MonoBehaviour
                 //also push away from contacted wall
                 portalDist += oDir switch
                 {
-                    HitDirection.Bottom => Vector3.up,
+                    HitDirection.Bottom => Vector3.up * 2.0f,
                     HitDirection.Top => Vector3.down,
                     HitDirection.Left => Vector3.right,
                     HitDirection.Right => Vector3.left,
