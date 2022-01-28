@@ -66,7 +66,7 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
     {
         if (!gameStart)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.anyKeyDown)
             {
                 gameStart = true;
                 if (SFX != null)
