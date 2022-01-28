@@ -7,17 +7,18 @@ public class ErinScribner_IceNum : MonoBehaviour
 {
     public Text IceText;
     private ErinScribner_PaintTile paint;
-    private int currentNum = 0;
+    private float currentNum = 0f;
     private bool recharge = false;
+    private float rechargeSpeed = 0f;
     // Start is called before the first frame update
     void Start()
     {
        
         GameObject check = GameObject.Find("ErinScribner_PlaceBlock");
         paint = check.GetComponent<ErinScribner_PaintTile>();
-        IceText.text = "Ice: " + currentNum + "/" + paint.numPower;
-
-
+        IceText.text = "Ice: " + paint.numPower + "/" + paint.numPower;
+        rechargeSpeed = paint.rechargeSpeed;
+        currentNum = paint.numPower;
     }
 
     // Update is called once per frame
@@ -25,21 +26,23 @@ public class ErinScribner_IceNum : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.I) && recharge == false)
         {
-            currentNum++;
+            currentNum--;
         }
         
-        if(currentNum >= (paint.numPower + 1))
+        if(currentNum <= 0)
         {
+            currentNum = 0;
             recharge = true;
         }
        
         if(recharge == true)
         {
-            currentNum--;
+            currentNum += rechargeSpeed;
         }
 
-        if(currentNum == 0)
+        if(currentNum >= paint.numPower)
         {
+            currentNum = paint.numPower;
             recharge = false;
         }
 

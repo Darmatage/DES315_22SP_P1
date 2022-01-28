@@ -8,7 +8,8 @@ public class McKinleyRoshak_Dash : MonoBehaviour
     private PlayerMove move;
     private float timer = 0.0f;
     private bool isDashing = false;
-    private const float dashTime = 0.25f; 
+    public float dashTime = 0.25f;
+    public float cooldownTime = 0.33f;
 
     public float dashSpeed = 3.0f;
     private float baseSpeed;
@@ -17,26 +18,30 @@ public class McKinleyRoshak_Dash : MonoBehaviour
     {
         Player = GameObject.Find("Player");
         move = Player.GetComponent<PlayerMove>();
-        baseSpeed = 3.0f;
+        baseSpeed = 5.0f;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(isDashing == false)
+        timer += Time.fixedDeltaTime;
+        if (isDashing == false)
         {
-            isDashing = Input.GetKey(KeyCode.F);
-            timer = 0.0f;
-            
+            if(timer >= cooldownTime && Input.GetKey(KeyCode.F))
+            {
+                isDashing = true;
+                timer = 0.0f;
+            }
         }
         if(isDashing)
         {
-            timer += Time.fixedDeltaTime;
+            
             move.speed = dashSpeed;
             if (timer >= dashTime)
             {
                 isDashing = false;
                 move.speed = baseSpeed;
+                timer = 0.0f;
             }
         }
     }
