@@ -43,6 +43,7 @@ TagManager:
   - VisionRange
   - PortalAllowed
   - CC_StatusText
+  - Switch
   layers:
   - Default
   - TransparentFX
