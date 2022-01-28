@@ -4,24 +4,22 @@ using UnityEngine;
 
 public class HemieChoi_Boomerang : MonoBehaviour
 {
-    [SerializeField] private float rotationSpeed;
-    [SerializeField] private float movingSpeed;
+    [SerializeField] private float rotationSpeed = 1000.0f;
+    [SerializeField] private float movingSpeed = 8.0f;
     private bool isRotating;
     private Vector3 targetPos;
     private bool isThrowing;
     [SerializeField] private bool isDropped;
-    [SerializeField] private bool isHolding;
+    [SerializeField] private bool isHolding = true;
     private GameObject playerObj;
-    [SerializeField] private float timer;
+    [SerializeField] private float MaxTimer = 5.0f;
+    private float timer;
     Collider2D m_collider;
 
     // Start is called before the first frame update
     void Start()
     {
-        rotationSpeed = 1000.0f;
-        movingSpeed = 8.0f;
         playerObj = GameObject.Find("Player");
-        isHolding = true;
         timer = 0;
         m_collider = GetComponent<Collider2D>();
     }
@@ -64,7 +62,7 @@ public class HemieChoi_Boomerang : MonoBehaviour
             }
         }
 
-        if(Vector2.Distance(transform.position, targetPos) <= 0.01f || timer > 0.5f)
+        if(Vector2.Distance(transform.position, targetPos) <= 0.01f || timer > MaxTimer)
         {
             isThrowing = false;
         }
