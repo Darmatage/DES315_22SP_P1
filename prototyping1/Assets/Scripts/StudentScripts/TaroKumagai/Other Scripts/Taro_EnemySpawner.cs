@@ -16,6 +16,7 @@ public class Taro_EnemySpawner : MonoBehaviour
         StartCoroutine("ScanForPlayer");
     }
 
+
     IEnumerator ScanForPlayer()
     {
         while(true)

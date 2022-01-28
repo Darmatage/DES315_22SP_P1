@@ -49241,6 +49241,12 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1330015859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3530746435627036704, guid: 401a933dbd2195744a4fb43f251707d7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1450860515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1352114718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49248,6 +49254,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3905525772901226794, guid: a16d177dd0f231941a256836dec55ce6,
+        type: 3}
+      propertyPath: DoorObj
+      value: 
+      objectReference: {fileID: 1330015859}
     - target: {fileID: 4376212491650683087, guid: a16d177dd0f231941a256836dec55ce6,
         type: 3}
       propertyPath: m_Name

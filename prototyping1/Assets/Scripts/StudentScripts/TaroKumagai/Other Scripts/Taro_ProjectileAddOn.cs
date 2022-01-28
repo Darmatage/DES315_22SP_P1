@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Taro_ProjectileAddOn : MonoBehaviour
 {
+    // Donest work?
     private void OnTriggerEnter2D(Collider2D collision)
     {
        GameObject hit = collision.gameObject;
