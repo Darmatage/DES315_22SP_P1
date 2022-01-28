@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5996552712492110064}
   - component: {fileID: 7043284390438583091}
   m_Layer: 0
-  m_Name: MonsterSlime
+  m_Name: SlowingSlime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
