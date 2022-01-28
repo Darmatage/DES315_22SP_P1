@@ -249,8 +249,11 @@ MonoBehaviour:
       m_NumAlphaKeys: 2
   m_damageMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 3136
   m_triggered: 0
+  m_deleteMask:
+    serializedVersion: 2
+    m_Bits: 0
   m_indicator: {fileID: 8704763472087167412}
   m_renderer: {fileID: 2955012074025261690}
   m_explodeSound: {fileID: 6345630020965390310}
