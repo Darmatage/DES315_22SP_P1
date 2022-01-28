@@ -177,12 +177,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f9985a9105d6704f9ad622a2a307284, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beamPrefab: {fileID: 4402205038157868770, guid: ffdfbab8ec3951d4db44d3edc97dbcc7,
+  beamPrefab: {fileID: 2291302644676608766, guid: b41a3687873704a47adf68fce299c81e,
     type: 3}
   speed: 1
   direction: {x: 0, y: 0, z: 0}
-  hunger: 0
-  range: 6
+  hunger: 0.1
+  range: 4
   damage: 5
 --- !u!58 &-7201365882587852267
 CircleCollider2D:
@@ -199,7 +199,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
 --- !u!1 &6710991542897530346
 GameObject:
   m_ObjectHideFlags: 0

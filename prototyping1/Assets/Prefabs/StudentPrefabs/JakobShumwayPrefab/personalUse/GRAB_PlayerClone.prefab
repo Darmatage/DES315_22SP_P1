@@ -268,7 +268,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c189ebfeaa7864d47ac6e8e5fdedd2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeDis: 9
+  pushClone: 1
+  playerDrag: 2
+  cloneDrag: 8
   shadowSpawner: {fileID: 0}
 --- !u!1 &4837014550895868452
 GameObject:

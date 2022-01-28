@@ -41,7 +41,7 @@ TagManager:
   - Health
   - Jewel
   - VisionRange
-  - Taro_ColorBlock
+  - PortalAllowed
   layers:
   - Default
   - TransparentFX
@@ -67,7 +67,7 @@ TagManager:
   - 
   - GrateOpen
   - 
-  - OnlyCollideWIthColorBlocks
+  - 
   - 
   - 
   - 
