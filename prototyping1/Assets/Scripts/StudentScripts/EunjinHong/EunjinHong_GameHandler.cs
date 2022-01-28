@@ -157,7 +157,7 @@ public class EunjinHong_GameHandler : MonoBehaviour
 
 	public void StartGame()
 	{
-		SceneManager.LoadScene("TeacherSampleScene");
+		SceneManager.LoadScene("EunjinHongScene");
 	}
 
 }
