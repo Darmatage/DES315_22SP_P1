@@ -73182,6 +73182,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 920497098, guid: 666c842d52116a04fac306987f744383, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409502018925287273, guid: 666c842d52116a04fac306987f744383,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Ability Gauge: '
+      objectReference: {fileID: 0}
     - target: {fileID: 8451585964067353410, guid: 666c842d52116a04fac306987f744383,
         type: 3}
       propertyPath: m_Name
