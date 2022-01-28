@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 18261238}
   - component: {fileID: 18261237}
   - component: {fileID: 18261236}
+  - component: {fileID: 18261239}
   m_Layer: 0
   m_Name: TilemapSpikes
   m_TagString: Untagged
@@ -1055,6 +1056,19 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!114 &18261239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18261231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1442690e7e685d147b4c42d353116a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tags: []
 --- !u!1 &251074920
 GameObject:
   m_ObjectHideFlags: 0
@@ -17929,6 +17943,26 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &322305649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 852736819979555607, guid: f15318afe2a4d8741a715281e186ed04,
+    type: 3}
+  m_PrefabInstance: {fileID: 6853139540415881831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &322305650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322305649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1442690e7e685d147b4c42d353116a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tags:
+  - CanGoThroughPortals
 --- !u!1001 &465733204
 PrefabInstance:
   m_ObjectHideFlags: 0

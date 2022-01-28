@@ -97,7 +97,7 @@ public class PortalTeleport : MonoBehaviour
             }
             
             //some exclusionary checks
-            if (!other.gameObject.CompareTag("Player"))
+            if (!COTags.CompareTag(other.gameObject, "CanGoThroughPortals"))
             {
                 isValidTele = false;
             }
@@ -128,8 +128,8 @@ public class PortalTeleport : MonoBehaviour
             //for feedback
             var shouldFizzle = false;
             
-            //collision with player not valid
-            if (other.gameObject.CompareTag("Player"))
+            //collision with player and other goodies not valid
+            if (COTags.CompareTag(other.gameObject, "PortalPassThru"))
             {
                 isCollisionValid = false;
             }
