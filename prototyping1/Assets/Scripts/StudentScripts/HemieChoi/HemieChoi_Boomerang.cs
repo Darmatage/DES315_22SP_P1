@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class HemieChoi_Boomerang : MonoBehaviour
 {
-    private float rotationSpeed;
-    private float movingSpeed;
+    [SerializeField] private float rotationSpeed = 1000.0f;
+    [SerializeField] private float movingSpeed = 8.0f;
     private bool isRotating;
     private Vector3 targetPos;
     private bool isThrowing;
-    private bool isDropped;
-    [SerializeField] private bool isHolding;
+    [SerializeField] private bool isDropped;
+    [SerializeField] private bool isHolding = true;
     private GameObject playerObj;
+    [SerializeField] private float MaxTimer = 5.0f;
     private float timer;
+    Collider2D m_collider;
 
     // Start is called before the first frame update
     void Start()
     {
-        rotationSpeed = 1000.0f;
-        movingSpeed = 8.0f;
         playerObj = GameObject.Find("Player");
-        isHolding = true;
         timer = 0;
+        m_collider = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -33,6 +33,7 @@ public class HemieChoi_Boomerang : MonoBehaviour
         {
             isThrowing = true;
             isHolding = false;
+            isDropped = false;
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPos = new Vector3(mousePos.x, mousePos.y, 0);
             //targetPos.x = Mathf.Clamp(targetPos.x, targetPos.x >= 0 ? targetPos.x - (targetPos.x - 3.0f) : targetPos.x + (targetPos.x - 3.0f))
@@ -61,7 +62,7 @@ public class HemieChoi_Boomerang : MonoBehaviour
             }
         }
 
-        if(Vector2.Distance(transform.position, targetPos) <= 0.01f || timer > 0.5f)
+        if(Vector2.Distance(transform.position, targetPos) <= 0.01f || timer > MaxTimer)
         {
             isThrowing = false;
         }
@@ -70,6 +71,7 @@ public class HemieChoi_Boomerang : MonoBehaviour
         {
             timer = 0;
         }
+
     }
 
     private void ThrowBoomerang()
@@ -98,7 +100,7 @@ public class HemieChoi_Boomerang : MonoBehaviour
             isHolding = true;
             isDropped = false;
         }
-        if (other.gameObject.tag.Equals("monsterShooter"))
+        if (other.gameObject.tag.Equals("monsterShooter") && !isHolding && !isDropped)
         {
             Destroy(other.gameObject);
         }

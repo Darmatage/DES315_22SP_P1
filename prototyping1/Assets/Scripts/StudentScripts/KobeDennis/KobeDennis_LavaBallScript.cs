@@ -130,8 +130,12 @@ public class KobeDennis_LavaBallScript : MonoBehaviour
         {
             CustomDestroyObject(collision.gameObject.transform);
         }
+        else if(collision.gameObject.GetComponent<KobeDennis_WaterTileScript>())
+        {
+
+        }
         //For now destory this object if it collide with anything
-        if (!collision.gameObject.CompareTag("Player"))
+        else if (!collision.gameObject.CompareTag("Player"))
         {
             CustomDestroyObject();
 
