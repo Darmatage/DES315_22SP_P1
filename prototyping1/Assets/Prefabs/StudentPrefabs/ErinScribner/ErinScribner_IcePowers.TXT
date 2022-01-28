@@ -1,27 +1,47 @@
 Hello! This file will explain how to set up my ice power feature.
 
 1) Put ErinScribner_PlaceBlock inside of your level. Make sure
-   its position is (0,0,0) for both this and its attached art asset. 
+   its position is (0,0,0)
 
-2) You will see that PlaceBlock has a script 
-   called ErinScribner_IcePowers. I'll go over what each of the 
-   public variables do:
-   Ice Block            -> The attached art asset of the ice block
-   Max Num              -> The max number of times a player can 
-                           use the ice block power
-   Destructable Tilemap -> The tile layer that the ice power is 
-                           able to detroy
-   Range Destroy        -> How many blocks can the ice destroy around
-                           it? (I recommend keeping this to 2)
+2) ErinScribner_PressI says which button to press in order to activate the ice powers. 
+   I recommend putting it wherever you want the player to first use said ice powers. 
 
-3) There is a prefab called ErinScribner_IceBlock. If you click
-   on it and scroll down, you'll see there is a script attached to
-   it called ErinScribner_IceHeal. I'll go over what each of the 
-   public variables do:
-   Heal        -> How much health the player restores at a time
-   Damage Time -> The interval at how much time it takes the player
-                  to heal
+3) ErinScribner_IceNum is a hud element that tells the player how many ice powers they can use 
+   before they need to recharge. Drag ErinScribner_IceNum below ImageHealth, and adjust its position
+   as needed. 
 
-Lastly, when a player presses I, they will use their ice powers. 
-And that's it! If you run into any issues, or have suggestions on
-how to improve this feature, please let me know. 
+4) Place ErinScribner_IceLayer tile layer under Grid with all of
+   the other tile layers. IMPORTANT: Make sure ErinScribner_IceLayer
+   has a higher layer number then whichever layer you want the ice
+   to cover. Ex: setting lava layer to 5, and IceLayer to 6 
+
+5) When you click on ErinScribner_PlaceBlock, you will see that 
+   there is a script attached called ErinScribner_PaintTile. I'll
+   go over what each of the variables do:
+   
+   Paint Tilemap: An empty tile layer that you want the ice on. This is
+                  where ErinScribner_IceLayer goes.
+   
+   Range Tilemap: This is where you'd put whichever layer you'd like 
+                  ice to be able to cover
+
+   Range Paint:   How far can the ice can go
+
+   Can Paint:     A boolean that states whether ice can appear or not.
+          
+   Heal:          How much hp can the character heal? 
+  
+   Damage Time:   How quickly does the player heal from taking damage? 
+
+   Num Power  :   How many times the player can use their ice powers 
+                  before having to recharge
+
+   Recharge Speed:How quickly does the player recharge their ice power
+
+1/26/2022 Notice: As of the date listed, the player is able to shoot 
+                  ice around them by pressing "I". The player also 
+                  heals on the ice closest to them. The ice powers
+                  also need to recharge after a given time & number of
+                  uses.  
+
+

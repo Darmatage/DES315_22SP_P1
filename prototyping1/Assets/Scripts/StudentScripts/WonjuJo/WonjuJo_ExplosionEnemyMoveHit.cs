@@ -22,7 +22,6 @@ public class WonjuJo_ExplosionEnemyMoveHit : MonoBehaviour
 	Rigidbody2D RB;
 
 	WonjuJo_ExplosionEnemy ExplosionEnemy;
-
 	void Start()
 	{
 		RB = GetComponent<Rigidbody2D>();
