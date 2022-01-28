@@ -100,7 +100,7 @@ public class PlayerLaunch : MonoBehaviour
         else if (Input.GetMouseButton(0) && canDash && mouseDown)
         {
             holdTime += Time.deltaTime;
-            if (holdTime > 0.5f)
+            if (holdTime > 0.25f)
                 ChargeLaunch();
 
         }
