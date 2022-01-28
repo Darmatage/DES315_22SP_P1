@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 3175548003303747797}
   - component: {fileID: 3175548003303747755}
   - component: {fileID: 6345630020965390310}
+  - component: {fileID: 77506490554794952}
   m_Layer: 0
   m_Name: ExplosiveBarrel
   m_TagString: ExplosiveBarrel
@@ -372,6 +373,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &77506490554794952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3175548003303747793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1442690e7e685d147b4c42d353116a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tags:
+  - CanGoThroughPortals
+  - ExplosiveBarrel
 --- !u!1 &5259698651621241877
 GameObject:
   m_ObjectHideFlags: 0
