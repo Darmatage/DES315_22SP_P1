@@ -143,6 +143,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MirrorEnemyPrefab: {fileID: 6182403438914012340, guid: 8a240a538afbfd24c99ddb61219ecef7,
     type: 3}
+  MaxHealth: 5
   Radius: 3
   ShardDamage: 5
   TimeBetweenSwaps: 5
@@ -197,7 +198,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 1
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
