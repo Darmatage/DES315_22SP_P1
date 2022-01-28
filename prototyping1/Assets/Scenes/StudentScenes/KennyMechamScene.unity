@@ -563,7 +563,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8557583117409336378, guid: 0330bb9e522858c4eb83c4b2fbd6c148, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0330bb9e522858c4eb83c4b2fbd6c148, type: 3}
 --- !u!1 &251074920
 GameObject:
@@ -17613,7 +17614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2fdb964f7a5254bbb532eb38165b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObj: {fileID: 0}
+  playerObj: {fileID: 1986467900}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -20686,23 +20687,26 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1074537971}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1986467907
+--- !u!1 &2115055898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1283846235326148580, guid: 0330bb9e522858c4eb83c4b2fbd6c148,
+    type: 3}
+  m_PrefabInstance: {fileID: 38083030}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2115055899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986467900}
+  m_GameObject: {fileID: 2115055898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf54eb8e493b3694fb785dc687c8e87a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1442690e7e685d147b4c42d353116a02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
-  damage: 0
-  speed: 0
-  lives: 0
-  attackCooldown: 0
+  _tags:
+  - Enemy
 --- !u!1001 &436433730132509138
 PrefabInstance:
   m_ObjectHideFlags: 0
