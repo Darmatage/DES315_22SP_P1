@@ -10,8 +10,7 @@ public class Taro_ColorSwitchObject : MonoBehaviour
     public SpriteRenderer sprite;
     public Tilemap tilemap;
 
-
-    private void OnCollisionTrigger(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         var possibleProjectile = collision.gameObject;
         Projectile projectile = possibleProjectile.GetComponent<Projectile>();
@@ -21,7 +20,7 @@ public class Taro_ColorSwitchObject : MonoBehaviour
             Destroy(possibleProjectile);
     }
 
-    public bool isActive()
+    private bool isActive()
     {
         return SwitchColor == Taro_ColorSwitchManager.GetActiveSwitchColor();
     }
@@ -32,7 +31,7 @@ public class Taro_ColorSwitchObject : MonoBehaviour
         if (isActive())
         {
             // Will now collide with the player
-            gameObject.layer = LayerMask.NameToLayer("Enemy");
+            gameObject.layer = LayerMask.NameToLayer("Default");
 
             // Making the object opaque
             if (sprite)
