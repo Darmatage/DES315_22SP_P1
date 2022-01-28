@@ -60514,6 +60514,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LavaProjectileManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1029575356085884681, guid: 95faa8583cad5fa468140c3595187a02,
+        type: 3}
+      propertyPath: fireRate
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 1029575356085884918, guid: 95faa8583cad5fa468140c3595187a02,
         type: 3}
       propertyPath: m_RootOrder

@@ -10,12 +10,12 @@ public class JacobBurke_Cloning : MonoBehaviour
 
     public GameObject shadowSpawner;
 
-    private Vector3 change; // player movement direction
+    public Vector3 change; // player movement direction
     private Rigidbody2D rb2d;
     private Rigidbody2D playerRb2d;
     private Animator anim;
     private bool isAlive = true;
-    private float speed; // player movement speed
+    public float speed; // player movement speed
 
     GameObject player;
     private float ogPlayerSpeed;

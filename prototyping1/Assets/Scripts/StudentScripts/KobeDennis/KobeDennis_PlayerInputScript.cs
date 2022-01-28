@@ -11,11 +11,14 @@ public class KobeDennis_PlayerInputScript : MonoBehaviour
     private Vector3 fireDirection;
     [SerializeField]
     private Vector3 lastFireDirection;
-    public KeyCode fireKey = KeyCode.Space;
-
     public GameObject Lavaball_prefab;
     private Transform playerTransform;
     private Tilemap lavaTilemap;
+
+    [Header("Lava Projectile Settings")]
+    public KeyCode fireKey = KeyCode.Space;
+    public float fireRate = 1.0f;
+    private float nextFire = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +30,10 @@ public class KobeDennis_PlayerInputScript : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(fireKey))
+        if (Input.GetKeyDown(fireKey) && Time.time > nextFire)
         {
+            nextFire = Time.time + fireRate;
+
             var lavaBall = Instantiate(Lavaball_prefab, playerTransform.position + lastFireDirection, Quaternion.identity) as GameObject;
 
             lavaBall.GetComponent<KobeDennis_LavaBallScript>().SetDirection(lastFireDirection);
