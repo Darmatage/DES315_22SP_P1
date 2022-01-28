@@ -38,7 +38,7 @@ public class Taro_ColorSwitchObject : MonoBehaviour
         else
         {
             // No longer collides with the player
-            gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
+            gameObject.layer = LayerMask.NameToLayer("IgnorePlayerAndEnemy");
 
             
             // Making the object opaque

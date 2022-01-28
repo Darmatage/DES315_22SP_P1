@@ -155,8 +155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84ea73151c12678448f2e9ee0158b521, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage_: 2
+  lifetime_: 4
   hit_animation: {fileID: 828083053115005703, guid: aa76d2cc38d0394459bca1bd5e7e54cb,
     type: 3}
-  speed: 10
-  lifetime: 1
-  damage: 1
+  speed: 2

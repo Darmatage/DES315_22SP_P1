@@ -6,6 +6,7 @@ public class JasonHunt_HammerScript : MonoBehaviour
 {
     public float HammerRange = 1;
     public GameObject player;
+    public GameObject uiElement;
     public bool SelfDestruct = false;
     private float timer = 2;
     bool hasHammer = false;
@@ -16,6 +17,8 @@ public class JasonHunt_HammerScript : MonoBehaviour
     {
         blocks = GameObject.FindGameObjectsWithTag("JasonHuntBreakable");
 
+        uiElement.SetActive(false);
+
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -23,6 +26,11 @@ public class JasonHunt_HammerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hasHammer)
+        {
+            uiElement.SetActive(true);
+        }
+
         if (Input.GetMouseButtonDown(0) && hasHammer && !SelfDestruct)
         {
             //swing hammer (animation coming eventually)

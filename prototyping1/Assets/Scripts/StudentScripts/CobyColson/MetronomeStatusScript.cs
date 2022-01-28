@@ -31,7 +31,7 @@ public class MetronomeStatusScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textObject = GameObject.Find("StatusText");
+        textObject = GameObject.FindGameObjectWithTag("CC_StatusText");
         text = textObject.GetComponent<Text>();
         rect = textObject.GetComponent<RectTransform>();
         SetTextToPreset(presets[3]);

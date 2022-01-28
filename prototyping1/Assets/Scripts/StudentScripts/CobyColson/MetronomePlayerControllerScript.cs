@@ -10,6 +10,7 @@ public class MetronomePlayerControllerScript : PlayerMove
     {
         base.Start();
         rb = GetComponent<Rigidbody2D>();
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
     }
 
     protected override void FixedUpdate()

@@ -7,13 +7,18 @@ public class ScottFadoBristowButtonScript : MonoBehaviour
 {
     public float HueTime = 5.0f;
 
-    List<(float, float, float)> rainbow;
+    //public List<(float, float, float)> rainbow;
+
+    public Color[] rainbow;
+
     float timer = 0;
     int cIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
-        rainbow = new List<(float, float, float)>();
+        /*
+        if(rainbow == null)
+            rainbow = new List<(float, float, float)>();
 
         //Lets add the colors
         //RED
@@ -28,6 +33,7 @@ public class ScottFadoBristowButtonScript : MonoBehaviour
         rainbow.Add((0, 1, 0));
         //YELLOW
         rainbow.Add((1, 1, 0));
+        */
 
         //Then we loop
     }
@@ -36,20 +42,32 @@ public class ScottFadoBristowButtonScript : MonoBehaviour
     void Update()
     {
 
+
+
         timer += Time.deltaTime/HueTime;
 
-       
-
-        float r = Mathf.Lerp(rainbow[cIndex].Item1, rainbow[(cIndex + 1) % rainbow.Count].Item1, timer); ;
-        float g = Mathf.Lerp(rainbow[cIndex].Item2, rainbow[(cIndex + 1) % rainbow.Count].Item2, timer); ;
-        float b = Mathf.Lerp(rainbow[cIndex].Item3, rainbow[(cIndex + 1) % rainbow.Count].Item3, timer); ;
-        Image button = gameObject.GetComponent<Image>();
-        button.color = new Color(r, g, b);
-
-        if(timer >= HueTime)
+        if (rainbow.Length > 0)
         {
-            timer = 0;
-            cIndex = (cIndex + 1) % rainbow.Count;
+
+            float r = Mathf.Lerp(rainbow[cIndex].r, rainbow[(cIndex + 1) % rainbow.Length].r, timer);
+            float g = Mathf.Lerp(rainbow[cIndex].g, rainbow[(cIndex + 1) % rainbow.Length].g, timer);
+            float b = Mathf.Lerp(rainbow[cIndex].b, rainbow[(cIndex + 1) % rainbow.Length].b, timer);
+            Image button = gameObject.GetComponent<Image>();
+            if (button != null)
+            {
+                button.color = new Color(r, g, b);
+            }
+            Text text = gameObject.GetComponent<Text>();
+            if (text != null)
+            {
+                text.color = new Color(r, g, b);
+            }
+
+            if (timer >= HueTime)
+            {
+                timer = 0;
+                cIndex = (cIndex + 1) % rainbow.Length;
+            }
         }
     }
 }
