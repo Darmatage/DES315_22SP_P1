@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7674265646131848053}
   - component: {fileID: 8256989438493273871}
   m_Layer: 0
-  m_Name: BraedanEnemySpawner
+  m_Name: BraedanEnemySpawnOnDestroy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyToSpawn: {fileID: 8795562353032092023, guid: 117912aae34130e45b11eedfbd1d4b41,
     type: 3}
+  spawnOnTimer: 0
   SpawnTime: 5
+  spawnOnDestroy: 1
+  spawnInRange: 0
+  spawnRange: 0
+  spawnNum: 0
 --- !u!1 &8083166035804322260
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +123,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 556689874364435070, guid: b154f6fc666119941b93d436638127ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
