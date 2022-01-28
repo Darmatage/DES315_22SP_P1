@@ -15,7 +15,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
     // format MM::SS
     public string timeLevelStopsGettingHard;
-
+    private float timeDeductions = 0.0f;
     //public float mediumPoint = 1.75f;
     //public float hardPoint = 2.50f;
 
@@ -45,16 +45,26 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     public int howManyTilesPerInterval = 1;
     public bool increment_HowManyTiles_WhenSpawned = false;
     private int prev = 0;
+
+
+    public float animationLength = 1.5f;
+    private float animationTimer = 1.5f;
+    private int timesAnimationHasBeenPlayed = 0;
+    private bool play = false;
+
+    private Coroutine coroutineStarted;
     // Start is called before the first frame update
     void Start()
     {
         // Text Box to Display the time
         timerText = gameObject.GetComponent<Text>();
         timerText.color = startColor;
-
+        animationTimer = animationLength;
         // All the enemies in the scene
         allEnemiesInScene.Add(GameObject.Find("MonsterSkull"));
         allEnemiesInScene.Add(GameObject.Find("MonsterSlime"));
+
+        allEnemiesInScene.Add(GameObject.Find("MonsterSkull (1)"));
         //Time.timeScale = startingScale;
         //pointToLerpTo = mediumPoint;
     }
@@ -62,7 +72,12 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float timeElasped = (Time.timeSinceLevelLoad);
+        float timeElasped = (Time.timeSinceLevelLoad) - timeDeductions;
+        if (timeElasped < 0.0f)
+        {
+            timeElasped = 0.0f;
+        }
+
         string minutes = "";
         string seconds = "";
         string milliSeconds = "";
@@ -79,11 +94,11 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         }
 
         float totalTime = (getMinutes() * 60) + getSeconds();
-        speedToLerp = Mathf.Abs(totalTime - timeElasped) * (1.0f/4000.0f);
+        speedToLerp = Mathf.Abs(totalTime - timeElasped) * (1.0f / 4000.0f);
         minutes += ((int)mins).ToString();
         seconds += ((int)secs).ToString();
         milliSeconds = Mathf.RoundToInt((timeElasped * 100) % 100).ToString();
-        
+
         timerText.text = minutes + ":" + seconds + ":" + milliSeconds;
         timerText.color = Color.Lerp(timerText.color, endColor, speedToLerp * Time.deltaTime);
 
@@ -96,6 +111,38 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         {
             spawnLavaTile(startNumOfTilesToSpawn);
             prev = seconds_int;
+        }
+
+        CheckAnimation(secs, mins);
+    }
+
+    private void CheckAnimation(float secs, float mins)
+    {
+        if (Mathf.Approximately(18.0f, Mathf.Round(secs)) && timesAnimationHasBeenPlayed == 0)
+        {
+            ++timesAnimationHasBeenPlayed;
+            animationTimer = animationLength;
+            PlayBlinkAnimation();
+            play = true;
+        }
+
+        if (Mathf.Approximately(1.0f, Mathf.Round(mins * 10.0f) * 0.1f) && timesAnimationHasBeenPlayed == 1)
+        {
+            ++timesAnimationHasBeenPlayed;
+            animationTimer = animationLength;
+            PlayBlinkAnimation();
+            play = true;
+        }
+
+        if (play)
+        {
+            animationTimer -= Time.deltaTime;
+        }
+
+        if (animationTimer <= 0.0f)
+        {
+            StopBlinkAnimation();
+            play = false;
         }
     }
 
@@ -208,8 +255,39 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         }
     }
 
+    public void AddDeduction(float toAdd)
+    {
+        timeDeductions += toAdd;       
+    }
     public Vector3Int Random(Vector3Int min, Vector3Int max)
     {
         return new Vector3Int(UnityEngine.Random.Range(min.x, max.x), UnityEngine.Random.Range(min.y, max.y), UnityEngine.Random.Range(min.z, max.z));
+    }
+
+    private void PlayBlinkAnimation()
+    {
+        coroutineStarted = StartCoroutine(Blink());
+    }
+
+    private void StopBlinkAnimation()
+    {
+        StopCoroutine(coroutineStarted);
+    }
+
+    IEnumerator Blink()
+    {
+        while (true)
+        {
+            if (Mathf.Round(timerText.color.a) == 0.0f)
+            {
+                timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 1.0f);
+                yield return new WaitForSeconds(0.5f);
+            }
+            else
+            {
+                timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 0.0f);
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
     }
 }
