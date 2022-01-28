@@ -211,6 +211,8 @@ public class DanielNunes_Cannon : MonoBehaviour
                 //round the position of the cannon to 1 decimal place so it's as precise as possible
                 transform.position = new Vector2((float)Mathf.Round(transform.position.x * 10.0f) / 10.0f, (float)Mathf.Round(transform.position.y * 10.0f) / 10.0f);
 
+                FixPositioning();
+
                 //reset parenting
                 player.transform.parent = null;
 
@@ -258,6 +260,8 @@ public class DanielNunes_Cannon : MonoBehaviour
 
                 //round the position of the cannon to 1 decimal place so it's as precise as possible
                 transform.position = new Vector2((float)Mathf.Round(transform.position.x * 10.0f) / 10.0f, (float)Mathf.Round(transform.position.y * 10.0f) / 10.0f);
+
+                FixPositioning();
 
                 //reset parenting
                 player.transform.parent = null;
@@ -788,7 +792,7 @@ public class DanielNunes_Cannon : MonoBehaviour
 
         foreach (RaycastHit2D hit in rays)
         {
-            if (hit.collider.gameObject.name.Contains("Taro_Tilemap") && hit.distance < 0.5f)
+            if (hit.collider.gameObject.name.Contains("Taro_Tilemap") && hit.distance < 0.25f)
             {
                 if (hit.collider.gameObject.layer != LayerMask.NameToLayer("IgnorePlayer"))
                 {
@@ -800,6 +804,94 @@ public class DanielNunes_Cannon : MonoBehaviour
                     transform.Find("Trigger").GetComponent<BoxCollider2D>().enabled = false;
                 }
             }
+        }
+    }
+
+    private void FixPositioning()
+    {
+        //the cannons are offset by 0.5. Occasionally, there can be a glitch where moving the cannon doesn't
+        //fully move it (i.e. from x = 0.5 to 1.5, but lerp screws up and stops at 1.4, which is potentially bad)
+        //so, we make sure the tenths place is always a 5
+
+        bool fineX = false;
+        bool fineY = false;
+
+        Vector3 position = transform.position;
+
+        //fix the x position
+
+        float newX = 0.0f;
+
+        // 1.4 - 1 = 0.4
+        float x_decimal = Mathf.Abs(position.x) - (int)Mathf.Abs(position.x);
+        // 4
+        int x_integer = (int)(x_decimal * 10.0f);
+        // 4 != 5
+        if (x_integer != 5)
+        {
+            //if positive
+            if (position.x >= 0)
+            {
+                newX = (float)((int)Mathf.Abs(position.x)) + 0.5f; 
+            }
+            //if negative
+            else
+            {
+                newX = (float)((int)Mathf.Abs(position.x)) - 0.5f;
+            }
+        }
+        else
+        {
+            fineX = true;
+        }
+
+        //fix the y position
+
+        float newY = 0.0f;
+
+        // 1.4 - 1 = 0.4
+        float y_decimal = Mathf.Abs(position.y) - (int)Mathf.Abs(position.y);
+        // 4
+        int y_integer = (int)(y_decimal * 10.0f);
+        // 4 != 5
+        if (y_integer != 5)
+        {
+            //if positive
+            if (position.y >= 0)
+            {
+                newY = (float)((int)Mathf.Abs(position.y)) + 0.5f;
+            }
+            //if negative
+            else
+            {
+                newY = (float)((int)Mathf.Abs(position.y)) - 0.5f;
+            }
+        }
+        else
+        {
+            fineY = true;
+        }
+
+
+        //if the values were already fine
+        if (fineX && fineY)
+        {
+            return;
+        }
+        //if only the x position was screwed up
+        else if (!fineX && fineY)
+        {
+            transform.position = new Vector2(newX, transform.position.y);
+        }
+        //if only the y position was screwed up
+        else if (!fineY && fineX)
+        {
+            transform.position = new Vector2(transform.position.x, newY);
+        }
+        //if both x and y were screwed up
+        else
+        {
+            transform.position = new Vector2(newX, newY);
         }
     }
 }
