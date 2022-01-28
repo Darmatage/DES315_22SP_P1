@@ -31,6 +31,7 @@ public class B03_EnemyAI : MonoBehaviour
 
 	private float retreatTimer;
 
+	[SerializeField] Vector3 ModifiedPosition = new Vector3();
 	[SerializeField] private AIState nextState = AIState.FIND;
 	private AIState currState = AIState.INVALID;
 	private AIState prevState = AIState.INVALID;
@@ -84,7 +85,7 @@ public class B03_EnemyAI : MonoBehaviour
 		}
 		else if (collision.gameObject.tag == "Player")
 		{
-			//gameHandlerObj.TakeDamage(Damage);
+			gameHandlerObj.TakeDamage(Damage);
 
 			//EnemyLives -= EnemyLives;
 			//rend.material.color = new Color(2.4f, 0.9f, 0.9f, 0.5f);
@@ -120,7 +121,11 @@ public class B03_EnemyAI : MonoBehaviour
 		switch (currState)
 		{
 			case AIState.MOVE:
-				if (pathMove()) setState(AIState.FIND);
+				if (pathMove())
+                {
+					pathFinding.Goal = target.position;
+					setState(AIState.FIND);
+				}
 				break;
 
 			case AIState.FIND:
@@ -128,7 +133,7 @@ public class B03_EnemyAI : MonoBehaviour
                 {
 					path = pathFinding.Path;
 
-					pathFinding.Goal = target.position;
+					//pathFinding.Goal = target.position;
 					setState(AIState.MOVE);
 				}
 				break;
@@ -181,10 +186,11 @@ public class B03_EnemyAI : MonoBehaviour
     {
 		if (path.Count != 0)
 		{
-			transform.position = Vector2.MoveTowards(transform.position, path[path.Count - 1], Speed * Time.deltaTime);
-			if (transform.position == path[path.Count - 1]) path.Remove(transform.position);
+			transform.position = Vector2.MoveTowards(transform.position, path[path.Count - 1] + ModifiedPosition, Speed * Time.deltaTime);
+			if (transform.position == path[path.Count - 1] + ModifiedPosition) path.Remove(transform.position);
 			return false;
 		}
+
 		else return true;
 	}
 
@@ -193,17 +199,17 @@ public class B03_EnemyAI : MonoBehaviour
 		nextState = state;
     }
 
-	void fieldOfView()
+	void FieldOfView()
     {
 
     }
 
-    bool findPlayer()
+    bool FindPlayer()
     {
         return false;
     }
 
-    bool seekPlayer()
+    bool SeekPlayer()
     {
         return false;
     }
