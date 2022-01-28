@@ -200,7 +200,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   damage: 1
-  EnemyLives: 3
   retreatTime: 3
 --- !u!114 &503090289199649980
 MonoBehaviour:
@@ -217,4 +216,5 @@ MonoBehaviour:
   health: 1
   multiplications: 4
   time_between_multiplications: 5
-  enemy_object: {fileID: 0}
+  enemy_object: {fileID: 5126438271358432353}
+  enemy_art: {fileID: 0}
