@@ -134,6 +134,9 @@ public class BenThompson_DockingBehavior : MonoBehaviour
                 // Player is no longer in a boat
                 isPlayerInBoat = false;
 
+                // Set the boat tag back to normal
+                boatCollidingWith.gameObject.tag = "BenThompsonBoat";
+
                 // Set the docked boat to the boat the player has just left
                 dockedBoat = boatCollidingWith.gameObject;
 
@@ -151,6 +154,7 @@ public class BenThompson_DockingBehavior : MonoBehaviour
                 {
                     boatController.EnterBoat();
                     isPlayerInBoat = true;
+                    dockedBoat.gameObject.tag = "Player";
                 }
             }
         }
@@ -169,7 +173,7 @@ public class BenThompson_DockingBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "BenThompsonBoat")
+        if (collision.gameObject.tag == "BenThompsonBoat" || (collision.gameObject.tag == "Player" && isPlayerInBoat))
         {
             boatCollidingWith = collision.gameObject;
             boatInRange = true;
@@ -298,13 +302,13 @@ public class BenThompson_DockingBehavior : MonoBehaviour
         }
 
         // If the object that leaves is a boat
-        if(collision.gameObject.tag == "BenThompsonBoat" && isPlayerInBoat)
+        if((collision.gameObject.tag == "BenThompsonBoat" && isPlayerInBoat) || (collision.gameObject.tag == "Player" && isPlayerInBoat))
         {
             // The boat that is docked is no longer docked
             dockedBoat = null;
         }
 
-        if (collision.gameObject.tag == "BenThompsonBoat")
+        if (collision.gameObject.tag == "BenThompsonBoat" || (collision.gameObject.tag == "Player" && isPlayerInBoat))
         {
             boatInRange = false;
             boatCollidingWith = null;

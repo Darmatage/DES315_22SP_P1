@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 6345630020965390310}
   m_Layer: 0
   m_Name: ExplosiveBarrel
-  m_TagString: Untagged
+  m_TagString: ExplosiveBarrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,7 +249,12 @@ MonoBehaviour:
       m_NumAlphaKeys: 2
   m_damageMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 3136
+  m_ignoreMask:
+    serializedVersion: 2
+    m_Bits: 8192
+  m_damageOtherBarrels: 1
+  m_ignoreOtherBarrels: 0
   m_triggered: 0
   m_indicator: {fileID: 8704763472087167412}
   m_renderer: {fileID: 2955012074025261690}

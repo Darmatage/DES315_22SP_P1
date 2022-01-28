@@ -40,6 +40,9 @@ public class WonjuJo_ExplosionEnemy : MonoBehaviour
 
     public void MonsterTakeDamge(int damage)
     {
+        StopCoroutine(ChangeColor());
+        StartCoroutine(ChangeColor());
+
         MonsterHealth -= damage;
         if (MonsterHealth <= 0)
         {
@@ -54,21 +57,6 @@ public class WonjuJo_ExplosionEnemy : MonoBehaviour
         if (IsDead)
         { 
             Destroy(ExplosionEnemy, ExplosionDelay);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "bullet")
-        {
-            StopCoroutine(ChangeColor());
-            StartCoroutine(ChangeColor());
-        }
-
-        if (collision.gameObject.tag == "Player" && PM.GetIsAttack())
-        {
-            StopCoroutine(ChangeColor());
-            StartCoroutine(ChangeColor());
         }
     }
 
