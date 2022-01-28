@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2183250204350075386}
   m_Layer: 0
   m_Name: Taro_TilemapColorTriggerBlockStub
-  m_TagString: Taro_ColorBlock
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,3 +236,5 @@ MonoBehaviour:
   InactiveAlpha: 0.3
   sprite: {fileID: 0}
   tilemap: {fileID: 3526372456868778303}
+  boxCollider: {fileID: 0}
+  CompositeCollider2D: {fileID: 238232979045256479}
