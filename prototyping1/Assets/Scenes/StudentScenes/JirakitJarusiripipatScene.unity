@@ -73098,11 +73098,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: JirakitJarusiripipat_Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1505835795932395057, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
       propertyPath: SFX
@@ -73140,16 +73135,6 @@ PrefabInstance:
       objectReference: {fileID: 544684748}
     - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
-      propertyPath: UsingText.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
-      propertyPath: readyText.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
       propertyPath: UsingText.Array.data[0]
       value: 
       objectReference: {fileID: 8451585963909236348}
@@ -73158,11 +73143,6 @@ PrefabInstance:
       propertyPath: UsingText.Array.data[1]
       value: 
       objectReference: {fileID: 8451585963909236347}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
-      propertyPath: notReadyText.Array.size
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
       propertyPath: readyText.Array.data[0]
@@ -73185,22 +73165,12 @@ PrefabInstance:
       objectReference: {fileID: 1076064162}
     - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
-      propertyPath: thingsToDestroy.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
       propertyPath: thingsToDestroy.Array.data[0]
       value: 
       objectReference: {fileID: 22892017}
     - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
         type: 3}
       propertyPath: thingsToDestroy.Array.data[1]
-      value: 
-      objectReference: {fileID: 1609587539}
-    - target: {fileID: 4738596172473925985, guid: fd1617fcb9dceb044842abd3e762b080,
-        type: 3}
-      propertyPath: thingsToDestroy.Array.data[2]
       value: 
       objectReference: {fileID: 1609587539}
     m_RemovedComponents: []
@@ -73212,52 +73182,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 395435231, guid: 666c842d52116a04fac306987f744383, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 471352976, guid: 666c842d52116a04fac306987f744383, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 920497098, guid: 666c842d52116a04fac306987f744383, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 920497100, guid: 666c842d52116a04fac306987f744383, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: d2d482bd2c1ca2c4bbea676177fa24c0,
+    - target: {fileID: 3409502018925287273, guid: 666c842d52116a04fac306987f744383,
         type: 3}
-    - target: {fileID: 1690890526, guid: 666c842d52116a04fac306987f744383, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 361
-      objectReference: {fileID: 0}
-    - target: {fileID: 1690890526, guid: 666c842d52116a04fac306987f744383, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -337
-      objectReference: {fileID: 0}
-    - target: {fileID: 1690890527, guid: 666c842d52116a04fac306987f744383, type: 3}
       propertyPath: m_Text
-      value: Press Any Key to Proceed
-      objectReference: {fileID: 0}
-    - target: {fileID: 1690890527, guid: 666c842d52116a04fac306987f744383, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 44
-      objectReference: {fileID: 0}
-    - target: {fileID: 1944805024, guid: 666c842d52116a04fac306987f744383, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      value: 'Ability Gauge: '
       objectReference: {fileID: 0}
     - target: {fileID: 8451585964067353410, guid: 666c842d52116a04fac306987f744383,
         type: 3}
       propertyPath: m_Name
       value: JirakitJarusiripipat_GameHandlerCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 8451585964067353410, guid: 666c842d52116a04fac306987f744383,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8451585964067353413, guid: 666c842d52116a04fac306987f744383,
         type: 3}
@@ -73313,11 +73250,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8451585964390751998, guid: 666c842d52116a04fac306987f744383,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 666c842d52116a04fac306987f744383, type: 3}
