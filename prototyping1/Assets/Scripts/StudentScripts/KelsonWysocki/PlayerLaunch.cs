@@ -32,7 +32,8 @@ public class PlayerLaunch : MonoBehaviour
 
     private float launchSpeedToUse;
     private float launchStartTime;
-    private bool isLaunching = false;
+    [HideInInspector]
+    public bool isLaunching = false;
     private float holdTime;
     private float launchDistanceToUse;
 
