@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class HemieChoi_Boomerang : MonoBehaviour
 {
-    private float rotationSpeed;
-    private float movingSpeed;
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float movingSpeed;
     private bool isRotating;
     private Vector3 targetPos;
     private bool isThrowing;
-    private bool isDropped;
+    [SerializeField] private bool isDropped;
     [SerializeField] private bool isHolding;
     private GameObject playerObj;
-    private float timer;
+    [SerializeField] private float timer;
 
     // Start is called before the first frame update
     void Start()
@@ -98,7 +98,7 @@ public class HemieChoi_Boomerang : MonoBehaviour
             isHolding = true;
             isDropped = false;
         }
-        if (other.gameObject.tag.Equals("monsterShooter"))
+        if (other.gameObject.tag.Equals("monsterShooter") && !isHolding && !isDropped)
         {
             Destroy(other.gameObject);
         }
