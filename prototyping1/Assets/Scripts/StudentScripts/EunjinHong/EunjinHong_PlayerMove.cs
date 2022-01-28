@@ -14,18 +14,25 @@ public class EunjinHong_PlayerMove : MonoBehaviour
     private bool isAlive = true;
 
     private Renderer rend;
-
+    private EunjinHong_GameHandler gameHandlerObj;
 
     public bool isDashing;
     private Vector3 moveDir;
 
     [SerializeField] private LayerMask dashLayerMask;
 
+    public bool attack = false;
+
 
     protected virtual void Start()
     {
         anim = gameObject.GetComponentInChildren<Animator>();
         rend = GetComponentInChildren<Renderer>();
+
+        if (GameObject.FindGameObjectWithTag("GameHandler") != null)
+        {
+            gameHandlerObj = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<EunjinHong_GameHandler>();
+        }
 
         if (gameObject.GetComponent<Rigidbody2D>() != null)
         {
@@ -60,11 +67,16 @@ public class EunjinHong_PlayerMove : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 anim.SetTrigger("Attack");
+                attack = true;
             }
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                isDashing = true;
+                if(gameHandlerObj.Stamina > 0)
+                {
+                    isDashing = true;
+                    gameHandlerObj.UseStamina(1);
+                }
             }
         } //else playerDie(); //run this function from the GameHandler instead
 
@@ -86,47 +98,6 @@ public class EunjinHong_PlayerMove : MonoBehaviour
             rb2d.MovePosition(dashPosition);
             isDashing = false;
         }
-        //if (isAlive == true)
-        //{
-        //    change = Vector3.zero;
-        //    change.x = Input.GetAxisRaw("Horizontal");
-        //    change.y = Input.GetAxisRaw("Vertical");
-        //    UpdateAnimationAndMove();
-
-        //    if (Input.GetAxis("Horizontal") > 0)
-        //    {
-        //        Vector3 newScale = transform.localScale;
-        //        newScale.x = 1.0f;
-        //        transform.localScale = newScale;
-        //    }
-        //    else if (Input.GetAxis("Horizontal") < 0)
-        //    {
-        //        Vector3 newScale = transform.localScale;
-        //        newScale.x = -1.0f;
-        //        transform.localScale = newScale;
-        //    }
-
-        //    if (Input.GetKey(KeyCode.Space))
-        //    {
-        //        anim.SetTrigger("Attack");
-        //    }
-
-
-        //    if (isDashing)
-        //    {
-        //        float dashAmount = 50f;
-        //        Vector3 dashPosition = transform.localScale + moveDir * dashAmount;
-
-        //        RaycastHit2D raycastHit2d = Physics2D.Raycast(transform.localScale, moveDir, dashAmount, dashLayerMask);
-        //        if (raycastHit2d.collider != null)
-        //        {
-        //            dashPosition = raycastHit2d.point;
-        //        }
-
-        //        rb2d.MovePosition(dashPosition);
-        //        isDashing = false;
-        //    }
-        //} //else playerDie(); //run this function from the GameHandler instead
     }
 
 
@@ -174,7 +145,18 @@ public class EunjinHong_PlayerMove : MonoBehaviour
         }
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && attack == true)
+        {
+            EunjinHong_MonsterHandler monsterHandler = collision.gameObject.GetComponent<EunjinHong_MonsterHandler>();
+            if (monsterHandler)
+            {
+                monsterHandler.MonsterTakeDamge(5);
+                attack = false;
+            }
+        }
+    }
     protected virtual IEnumerator ChangeColor()
     {
         // color values are R, G, B, and alpha, each 0-255 divided by 100
