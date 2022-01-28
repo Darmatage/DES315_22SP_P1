@@ -29526,6 +29526,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1147010882}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1147010885 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7783233680225620342, guid: da20567aee1ca7f4c8b8b7c2a7ff2670,
+    type: 3}
+  m_PrefabInstance: {fileID: 1147010882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1154219603
 GameObject:
   m_ObjectHideFlags: 0
@@ -30120,6 +30126,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DaeunJeong_MysteriousChest
       objectReference: {fileID: 0}
+    - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
+        type: 3}
+      propertyPath: Canvas
+      value: 
+      objectReference: {fileID: 1147010885}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11cc93131166a7b45938aa955f74fae1, type: 3}
 --- !u!1 &1591988049
@@ -30656,6 +30667,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: DaeunJeong_MysteriousChest (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
+        type: 3}
+      propertyPath: Canvas
+      value: 
+      objectReference: {fileID: 1147010885}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11cc93131166a7b45938aa955f74fae1, type: 3}
 --- !u!1001 &1799653262
