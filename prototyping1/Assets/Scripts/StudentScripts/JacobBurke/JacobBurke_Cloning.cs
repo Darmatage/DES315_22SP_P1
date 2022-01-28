@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class JacobBurke_Cloning : MonoBehaviour
 {
-    public float lifeDis = 10f;
+    public bool pushClone = false;
+    public float playerDrag = 1500f;
+    public float cloneDrag = 1500f;
 
     public GameObject shadowSpawner;
 
@@ -37,6 +39,9 @@ public class JacobBurke_Cloning : MonoBehaviour
 
         if (player.GetComponent<Rigidbody2D>() != null)
             playerRb2d = player.GetComponent<Rigidbody2D>();
+
+        rb2d.drag = playerDrag;
+        playerRb2d.drag = cloneDrag;
     }
 
     void FixedUpdate()
@@ -61,7 +66,7 @@ public class JacobBurke_Cloning : MonoBehaviour
                 player.GetComponent<PlayerMove>().speed = 0;
                 rb2d.bodyType = RigidbodyType2D.Dynamic;
 
-                if(isAlive)
+                if(isAlive && !pushClone)
                     playerRb2d.bodyType = RigidbodyType2D.Static;
 
                 change = Vector3.zero;
@@ -74,7 +79,10 @@ public class JacobBurke_Cloning : MonoBehaviour
             {
                 player.GetComponent<PlayerMove>().speed = ogPlayerSpeed;
                 anim.SetBool("Walk", false);
+
+                if(!pushClone)
                 rb2d.bodyType = RigidbodyType2D.Static;
+
                 playerRb2d.bodyType = RigidbodyType2D.Dynamic;
             }
 

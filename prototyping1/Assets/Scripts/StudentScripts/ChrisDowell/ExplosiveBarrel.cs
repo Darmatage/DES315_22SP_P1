@@ -40,11 +40,14 @@ public class ExplosiveBarrel : MonoBehaviour
     public ExplosiveTrigger m_triggerType = 0;
     public BarrelGameData m_stats;
     public BarrelVisualData m_visuals;
+    [Header("Explode Logic")]
     public LayerMask m_damageMask;
+    public bool m_damageOtherBarrels = true;
+    public bool m_ignoreOtherBarrels = false;
     
     public bool m_triggered = false;
 
-    //public LayerMask m_deleteMask; // Deletes objects if explodes
+    public LayerMask m_deleteMask; // Deletes objects if explodes
     public SpriteRenderer m_indicator;
     private CircleCollider2D m_exlosivetrigger;
     private GameHandler m_handler;
@@ -136,19 +139,34 @@ public class ExplosiveBarrel : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+         int mask = collision.gameObject.layer;
 
-
-        if (m_triggerType == ExplosiveTrigger.Touch)
+        if (m_triggerType == ExplosiveTrigger.Touch && (1<<mask & m_damageMask.value) == 1<<mask)
         {
 
             TakeDamage(1);
         }
+
+
 
         if (m_stats.m_exploded == true)
         {
             if (collision.gameObject.tag == "Player")
             {
                 m_handler.TakeDamage(m_stats.m_damage);
+            }
+
+            if (collision.gameObject.tag == "ExplosiveBarrel")
+            {
+                if (m_ignoreOtherBarrels)
+                {
+                    Physics2D.IgnoreCollision(m_exlosivetrigger, collision.collider, true);
+                }
+
+                if (m_damageOtherBarrels)
+                {
+                    collision.gameObject.GetComponent<ExplosiveBarrel>().TakeDamage(m_stats.m_damage);
+                }
             }
 
             var enemyhp = collision.gameObject.GetComponent<EnemyHealth>();
@@ -182,7 +200,7 @@ public class ExplosiveBarrel : MonoBehaviour
     {
 
     }
-    private void Explode()
+    public void Explode()
     {
         m_explodeSound.PlayOneShot(m_explodeSound.clip);
         m_stats.m_exploded = true;
@@ -199,32 +217,30 @@ public class ExplosiveBarrel : MonoBehaviour
 
         Invoke("DestroySelf", m_explodeTime);
 
-        //var hit = Physics2D.CircleCastAll(transform.position, m_stats.m_explosiveRadius, dir, 0, m_damageMask, Mathf.NegativeInfinity, Mathf.Infinity);
+        //var hit = Physics2D.OverlapCircleAll(transform.position, m_radius);
+        ////var hit = Physics2D.CircleCastAll(transform.position, m_stats.m_explosiveRadius, dir, 0, m_damageMask, Mathf.NegativeInfinity, Mathf.Infinity);
 
         //foreach (var obj in hit)
         //{
-        //    // Get vector from object ot target
-        //    obj.rigidbody.AddForce(obj.normal * m_stats.m_pushforce);
 
-        //    if (obj.collider.tag == "Player")
+
+        //    if (obj.tag == "Enemy")
         //    {
-        //        m_handler.TakeDamage(m_stats.m_damage);
-        //        continue;
-        //    }
-
-
-        //    // Get come component script and add it here to deal damage since we dont have some externalized health script?!?!?!!?
-        //    // TODO: figure out how to damage multiple enemies with DIFFERING SCRIPTS LIKE HOLY SHIT WHY
-        //    if (obj.collider.tag == "Enemy")
-        //    {
-        //        // I gotta somehow adjust their hp lol
-
-        //        // I will add some damage stuff later
-        //        // If you end up using my prefab please let me know on teams (c.dowell@digipen.edu) or discord (Frost#0006)
-        //        // DISCORD IS PREFERRED IM MOST LIKELY GOING TO IGNORE TEAMS
-
+        //        // Get Distance and normal
+        //        Vector3 pos = obj.transform.position;
 
         //    }
+            // Get come component script and add it here to deal damage since we dont have some externalized health script?!?!?!!?
+            // TODO: figure out how to damage multiple enemies with DIFFERING SCRIPTS LIKE HOLY SHIT WHY
+            {
+                // I gotta somehow adjust their hp lol
+
+                // I will add some damage stuff later
+                // If you end up using my prefab please let me know on teams (c.dowell@digipen.edu) or discord (Frost#0006)
+                // DISCORD IS PREFERRED IM MOST LIKELY GOING TO IGNORE TEAMS
+
+
+            }
 
         //}
 
