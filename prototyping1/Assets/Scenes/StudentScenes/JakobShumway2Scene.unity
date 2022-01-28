@@ -25895,7 +25895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5d8f9309ea3d64b8176c6ce0bf3f36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyLives: 30
+  EnemyLives: 15
   isStunned: 0
   stunTime: 5
 --- !u!114 &7409698553912452715
@@ -26014,7 +26014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c786d10b44119004eb8858b53ae0c327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceRequired: 12
+  forceRequired: 10
   dmgAmount: 1
 --- !u!4 &8638682282500992642
 Transform:
@@ -26063,5 +26063,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c786d10b44119004eb8858b53ae0c327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceRequired: 12
+  forceRequired: 10
   dmgAmount: 1

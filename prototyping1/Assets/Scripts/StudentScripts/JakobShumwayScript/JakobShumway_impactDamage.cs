@@ -21,7 +21,30 @@ public class JakobShumway_impactDamage : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.GetComponent<EnemyHealth>())
+        if (gameObject.GetComponent<EnemyHealth>())
+        {
+            if (Mathf.Abs(col.gameObject.GetComponent<Rigidbody2D>().velocity.x) +
+                Mathf.Abs(col.gameObject.GetComponent<Rigidbody2D>().velocity.y) > forceRequired ||
+                Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.x) +
+                Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.y) > forceRequired)
+            {
+                for (int i = 0; i < dmgAmount; i++)
+                    gameObject.GetComponent<EnemyHealth>().HitEnemy();
+            }
+        }
+
+        if (gameObject.GetComponent<JakobShumway_destroyBox>())
+        {
+            if (Mathf.Abs(col.gameObject.GetComponent<Rigidbody2D>().velocity.x) +
+                Mathf.Abs(col.gameObject.GetComponent<Rigidbody2D>().velocity.y) > forceRequired ||
+                Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.x) +
+                Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.y) > forceRequired)
+            {
+                gameObject.GetComponent<JakobShumway_destroyBox>().boxHealth -= dmgAmount;
+            }
+        }
+
+        /*if (col.gameObject.GetComponent<EnemyHealth>())
         {
             if (Mathf.Abs(col.gameObject.GetComponent<Rigidbody2D>().velocity.x) + 
                 Mathf.Abs(col.gameObject.GetComponent<Rigidbody2D>().velocity.y) > forceRequired)
@@ -29,6 +52,6 @@ public class JakobShumway_impactDamage : MonoBehaviour
                 for (int i = 0; i < dmgAmount; i++)
                     col.gameObject.GetComponent<EnemyHealth>().HitEnemy();
             }
-        }
+        }*/
     }
 }

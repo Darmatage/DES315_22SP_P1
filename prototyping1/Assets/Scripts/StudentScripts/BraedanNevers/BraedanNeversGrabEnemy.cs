@@ -65,6 +65,8 @@ public class BraedanNeversGrabEnemy : MonoBehaviour
                 projectileClone = Instantiate(projectilePrefab, transform.position, transform.rotation);
                 projectileClone.GetComponent<BraedanProjectile>().isHeld = true;
 
+                projectileClone.transform.localScale = other.transform.localScale;
+
                 SpriteRenderer projectileSpriteRenderer = projectileClone.transform.GetChild(0).GetComponent<SpriteRenderer>();
                 SpriteRenderer enemySpriteRenderer = other.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
                 projectileSpriteRenderer.sprite = enemySpriteRenderer.sprite;
