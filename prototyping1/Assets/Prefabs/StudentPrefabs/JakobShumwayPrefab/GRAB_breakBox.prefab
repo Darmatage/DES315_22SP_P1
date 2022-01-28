@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c786d10b44119004eb8858b53ae0c327, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceRequired: 10
+  forceRequired: 8
   dmgAmount: 1
 --- !u!114 &1382473310714091349
 MonoBehaviour:
