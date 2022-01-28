@@ -129,7 +129,7 @@ MonoBehaviour:
   - {fileID: 4341723124793324371, guid: 3e44e9f182034ff478a3385b2089afaa, type: 3}
   - {fileID: 8338678195165020796, guid: dd239e327d7d7d844a7927f0b92fb97c, type: 3}
   colorTag: Red
-  defaultWaveExpireTime: 5
+  defaultWaveExpireTime: 1
   defaultRevealTime: 5
   defaultExpansionVelocity: 70
   defaultCooldown: 5

@@ -41,6 +41,8 @@ TagManager:
   - Health
   - Jewel
   - VisionRange
+  - PortalAllowed
+  - CC_StatusText
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,8 @@ public class FrankieCamarilloFireBlast : MonoBehaviour
 
     public int damage_ = 1;
     public float range_ = 10.0f;
+
+    private float cooldown = 0.0f;
 	
 	public float deleteFireDelay = 2f;
 	
@@ -39,20 +41,27 @@ public class FrankieCamarilloFireBlast : MonoBehaviour
             */
 
 
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (cooldown <=0.0f)
+            {
+                Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            Vector3 direction = mouseWorld;
+                Vector3 direction = mouseWorld;
 
-            float AngleRad = Mathf.Atan2(direction.y - player_.transform.position.y, direction.x - player_.transform.position.x);
+                float AngleRad = Mathf.Atan2(direction.y - player_.transform.position.y, direction.x - player_.transform.position.x);
 
-            float AngleDeg = ((180 / Mathf.PI) *AngleRad) - 90;
+                float AngleDeg = ((180 / Mathf.PI) * AngleRad) - 90;
 
-            Vector3 spawnPos = new Vector3(player_.transform.position.x, player_.transform.position.y, 0);
-            GameObject fireColumn = Instantiate(FireProjectile, spawnPos, Quaternion.Euler(0, 0, AngleDeg));
-			
-			StartCoroutine(DeleteFireColumn(fireColumn));
+                Vector3 spawnPos = new Vector3(player_.transform.position.x, player_.transform.position.y, 0);
+                GameObject fireColumn = Instantiate(FireProjectile, spawnPos, Quaternion.Euler(0, 0, AngleDeg));
+
+                StartCoroutine(DeleteFireColumn(fireColumn));
+                cooldown = 1.0f;
+            }
 
         }
+
+        cooldown -= Time.deltaTime;
+
     }
 	
 	
