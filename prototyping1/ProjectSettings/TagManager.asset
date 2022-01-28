@@ -42,6 +42,7 @@ TagManager:
   - Jewel
   - VisionRange
   - PortalAllowed
+
   layers:
   - Default
   - TransparentFX
@@ -67,7 +68,7 @@ TagManager:
   - 
   - GrateOpen
   - 
-  - 
+  - OnlyCollideWIthColorBlocks
   - 
   - 
   - 
