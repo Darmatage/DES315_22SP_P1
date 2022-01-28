@@ -16,6 +16,9 @@ public class DanielNunes_Cannon : MonoBehaviour
 
     //if the cannon can be fired
     public bool usable;
+    //for manipulating controls panel
+    //public bool inRange;
+    //public bool heldOnto;
 
     private bool pushing;
     private bool pulling;
@@ -43,7 +46,8 @@ public class DanielNunes_Cannon : MonoBehaviour
         eRIGHT, //to the right of the cannon
         eUP,    //above the cannon
         eLEFT,  //to the left of the cannon
-        eDOWN   //below the cannon
+        eDOWN,  //below the cannon
+        //eNOWHERE
     }
 
     public Where whereIsPlayer;
@@ -90,7 +94,7 @@ public class DanielNunes_Cannon : MonoBehaviour
     void Update()
     {
         RangeAndInputCheck();
-
+        
         //if the cannon is usable, isn't being pushed and/or pulled, and we press the shoot button
         //we also cannot shoot if there is already an instance of a cannonball
         if (usable && !pushing && !pulling && !rotating && Input.GetKeyDown(shootKey))
@@ -127,6 +131,11 @@ public class DanielNunes_Cannon : MonoBehaviour
         }
 
         Sink();
+
+        if (!sinking)
+        {
+            OnTarosTiles();
+        }
     }
 
     private void GetPlayerDirection(GameObject player)
@@ -202,6 +211,8 @@ public class DanielNunes_Cannon : MonoBehaviour
                 //round the position of the cannon to 1 decimal place so it's as precise as possible
                 transform.position = new Vector2((float)Mathf.Round(transform.position.x * 10.0f) / 10.0f, (float)Mathf.Round(transform.position.y * 10.0f) / 10.0f);
 
+                FixPositioning();
+
                 //reset parenting
                 player.transform.parent = null;
 
@@ -250,6 +261,8 @@ public class DanielNunes_Cannon : MonoBehaviour
                 //round the position of the cannon to 1 decimal place so it's as precise as possible
                 transform.position = new Vector2((float)Mathf.Round(transform.position.x * 10.0f) / 10.0f, (float)Mathf.Round(transform.position.y * 10.0f) / 10.0f);
 
+                FixPositioning();
+
                 //reset parenting
                 player.transform.parent = null;
 
@@ -277,9 +290,17 @@ public class DanielNunes_Cannon : MonoBehaviour
             //see where the player is relative to the cannon
             GetPlayerDirection(player);
 
+            //if (!heldOnto)
+            //{
+            //    inRange = true;
+            //}
+
             //if we hold down this key, we are holding onto the cannon
             if (Input.GetKey(holdKey))
             {
+                //heldOnto = true;
+                //inRange = false;
+
                 //snap the player depending on where they are located relative to the cannon
                 SnapPlayer();
 
@@ -290,16 +311,16 @@ public class DanielNunes_Cannon : MonoBehaviour
                 //if we pressed up while above the cannon
                 //if we pressed down while below the cannon
                 //if any of these conditions were met, we are pulling the cannon
-                if (Input.GetKey(KeyCode.A) && whereIsPlayer == Where.eLEFT ||
-                    Input.GetKey(KeyCode.D) && whereIsPlayer == Where.eRIGHT ||
-                    Input.GetKey(KeyCode.W) && whereIsPlayer == Where.eUP ||
-                    Input.GetKey(KeyCode.S) && whereIsPlayer == Where.eDOWN)
+                if (Input.GetAxisRaw("Horizontal") < 0 && whereIsPlayer == Where.eLEFT ||
+                    Input.GetAxisRaw("Horizontal") > 0 && whereIsPlayer == Where.eRIGHT ||
+                    Input.GetAxisRaw("Vertical") > 0   && whereIsPlayer == Where.eUP ||
+                    Input.GetAxisRaw("Vertical") < 0   && whereIsPlayer == Where.eDOWN)
                 {
                     //if we tried pulling in a particular direction when there was something up ahead
-                    if ((Input.GetKey(KeyCode.A) && somethingNearLeft ||
-                         Input.GetKey(KeyCode.D) && somethingNearRight ||
-                         Input.GetKey(KeyCode.W) && somethingNearTop ||
-                         Input.GetKey(KeyCode.S) && somethingNearBottom) && playerHere)
+                    if ((Input.GetAxisRaw("Horizontal") < 0 && somethingNearLeft ||
+                         Input.GetAxisRaw("Horizontal") > 0 && somethingNearRight ||
+                         Input.GetAxisRaw("Vertical") > 0   && somethingNearTop ||
+                         Input.GetAxisRaw("Vertical") < 0   && somethingNearBottom) && playerHere)
                     {
                         //don't pull the cannon
                         return;
@@ -336,16 +357,16 @@ public class DanielNunes_Cannon : MonoBehaviour
                 //if we pressed up while below the cannon
                 //if we pressed down while above the cannon
                 //if any of these conditions were met, we are pushing the cannon
-                else if (Input.GetKey(KeyCode.A) && whereIsPlayer == Where.eRIGHT ||
-                         Input.GetKey(KeyCode.D) && whereIsPlayer == Where.eLEFT ||
-                         Input.GetKey(KeyCode.W) && whereIsPlayer == Where.eDOWN ||
-                         Input.GetKey(KeyCode.S) && whereIsPlayer == Where.eUP)
+                else if (Input.GetAxisRaw("Horizontal") < 0 && whereIsPlayer == Where.eRIGHT ||
+                         Input.GetAxisRaw("Horizontal") > 0 && whereIsPlayer == Where.eLEFT ||
+                         Input.GetAxisRaw("Vertical") > 0   && whereIsPlayer == Where.eDOWN ||
+                         Input.GetAxisRaw("Vertical") < 0   && whereIsPlayer == Where.eUP)
                 {
                     //if we tried pushing in a particular direction when there was something up ahead
-                    if (Input.GetKey(KeyCode.A) && somethingOnLeft ||
-                        Input.GetKey(KeyCode.D) && somethingOnRight ||
-                        Input.GetKey(KeyCode.W) && somethingOnTop ||
-                        Input.GetKey(KeyCode.S) && somethingOnBottom)
+                    if (Input.GetAxisRaw("Horizontal") < 0 && somethingOnLeft ||
+                        Input.GetAxisRaw("Horizontal") > 0 && somethingOnRight ||
+                        Input.GetAxisRaw("Vertical") > 0   && somethingOnTop ||
+                        Input.GetAxisRaw("Vertical") < 0   && somethingOnBottom)
                     {
                         //don't push the cannon
                         return;
@@ -380,10 +401,17 @@ public class DanielNunes_Cannon : MonoBehaviour
             }
             //else if (Input.GetKeyUp(holdKey))
             //{
-            //    //unlock the player
-            //    //stop the holding animation
+            //    heldOnto = false;
+            //    inRange = true;
             //}
         }
+        //else
+        //{
+        //    inRange = false;
+        //    heldOnto = false;
+        //    //player is not in range, so player is nowhere near the cannon to have a relative direction
+        //    whereIsPlayer = Where.eNOWHERE;
+        //}
     }
 
     private void Rotate()
@@ -420,10 +448,11 @@ public class DanielNunes_Cannon : MonoBehaviour
                 //if the player is to the right of the cannon and presses down
                 //if the player is above the cannon and presses right
                 //if the pllayer is below the cannon and presses left
-                if ((whereIsPlayer == Where.eLEFT && Input.GetKey(KeyCode.W)) ||
-                    (whereIsPlayer == Where.eRIGHT && Input.GetKey(KeyCode.S)) ||
-                    (whereIsPlayer == Where.eUP && Input.GetKey(KeyCode.D)) ||
-                    (whereIsPlayer == Where.eDOWN && Input.GetKey(KeyCode.A)))
+                //if ((whereIsPlayer == Where.eLEFT && Input.GetAxisRaw("Vertical") > 0) ||
+                //    (whereIsPlayer == Where.eRIGHT && Input.GetAxisRaw("Vertical") < 0) ||
+                //    (whereIsPlayer == Where.eUP && Input.GetAxisRaw("Horizontal") > 0) ||
+                //    (whereIsPlayer == Where.eDOWN && Input.GetAxisRaw("Horizontal") < 0))
+                if (Input.GetKey(KeyCode.E))
                 {
                     //we are rotating
                     rotating = true;
@@ -440,10 +469,11 @@ public class DanielNunes_Cannon : MonoBehaviour
                 //if the player is to the right of the cannon and presses up
                 //if the player is above the cannon and presses left
                 //if the player is below the cannon and presses right
-                else if ((whereIsPlayer == Where.eLEFT && Input.GetKey(KeyCode.S)) ||
-                         (whereIsPlayer == Where.eRIGHT && Input.GetKey(KeyCode.W)) ||
-                         (whereIsPlayer == Where.eUP && Input.GetKey(KeyCode.A)) ||
-                         (whereIsPlayer == Where.eDOWN && Input.GetKey(KeyCode.D)))
+                //else if ((whereIsPlayer == Where.eLEFT && Input.GetAxisRaw("Vertical") < 0) ||
+                //         (whereIsPlayer == Where.eRIGHT && Input.GetAxisRaw("Vertical") > 0) ||
+                //         (whereIsPlayer == Where.eUP && Input.GetAxisRaw("Horizontal") < 0) ||
+                //         (whereIsPlayer == Where.eDOWN && Input.GetAxisRaw("Horizontal") > 0))
+                else if (Input.GetKey(KeyCode.Q))
                 {
                     //we are rotating
                     rotating = true;
@@ -545,7 +575,7 @@ public class DanielNunes_Cannon : MonoBehaviour
         foreach (RaycastHit2D hit in rays)
         {
             //check to see if it's hitting something with a physical collider (NOT OURSELVES NOR THE PLAYER)
-            if (!hit.collider.isTrigger && !hit.collider.gameObject.name.Contains("Nunes_Cannon") && !hit.collider.gameObject.CompareTag("Player"))
+            if (AdditionalRaycastChecks(hit))
             {
                 //if the distance of the ray is less than or equal to 1 unit, then it's right next to the cannon
                 if (hit.distance <= 1.0f)
@@ -574,7 +604,7 @@ public class DanielNunes_Cannon : MonoBehaviour
         foreach (RaycastHit2D hit in rays)
         {
             //check to see if it's hitting something with a physical collider (NOT OURSELVES NOR THE PLAYER)
-            if (!hit.collider.isTrigger && !hit.collider.gameObject.name.Contains("Nunes_Cannon") && !hit.collider.gameObject.CompareTag("Player"))
+            if (AdditionalRaycastChecks(hit))
             {
                 //if the distance of the ray is less than or equal to 1 unit, then it's right next to the cannon
                 if (hit.distance <= 1.0f)
@@ -602,7 +632,7 @@ public class DanielNunes_Cannon : MonoBehaviour
         foreach (RaycastHit2D hit in rays)
         {
             //check to see if it's hitting something with a physical collider (NOT OURSELVES NOR THE PLAYER)
-            if (!hit.collider.isTrigger && !hit.collider.gameObject.name.Contains("Nunes_Cannon") && !hit.collider.gameObject.CompareTag("Player"))
+            if (AdditionalRaycastChecks(hit))
             {
                 //if the distance of the ray is less than or equal to 1 unit, then it's right next to the cannon
                 if (hit.distance <= 1.0f)
@@ -630,7 +660,7 @@ public class DanielNunes_Cannon : MonoBehaviour
         foreach (RaycastHit2D hit in rays)
         {
             //check to see if it's hitting something with a physical collider (NOT OURSELVES NOR THE PLAYER)
-            if (!hit.collider.isTrigger && !hit.collider.gameObject.name.Contains("Nunes_Cannon") && !hit.collider.gameObject.CompareTag("Player"))
+            if (AdditionalRaycastChecks(hit))
             {
                 //if the distance of the ray is less than or equal to 1 unit, then it's right next to the cannon
                 if (hit.distance <= 1.0f)
@@ -650,6 +680,41 @@ public class DanielNunes_Cannon : MonoBehaviour
                 playerHere = true;
             }
         }
+    }
+
+    private bool AdditionalRaycastChecks(RaycastHit2D hit)
+    {
+        //returning true means we don't want the cannon to be moved
+
+        //add as many checks as you want to this statement. If they all evaluate to true, then we ignore collision
+        //if it isn't a trigger collider
+        //if it isn't ourselves
+        //if it isn't the player
+        if (!hit.collider.isTrigger && !hit.collider.gameObject.name.Contains("Nunes_Cannon") &&
+            !hit.collider.gameObject.CompareTag("Player"))
+        {
+            //if Taro's tiles exist in the scene
+            if (FindObjectOfType<Taro_ColorSwitchManager>())
+            {
+                //if it's Taro's tile block
+                if (hit.collider.gameObject.name.Contains("Taro_Tile"))
+                {
+                    //if the block is in the default collision layer
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Default"))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        return false;
     }
 
     public void ResetContacts()
@@ -707,7 +772,7 @@ public class DanielNunes_Cannon : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //if in the sand
-        if (collision.gameObject.name.Equals("TilemapSand"))
+        if (collision.gameObject.name.Contains("Nunes_TilemapSand"))
         {
             sinking = true;
             shrinkTimer = 0.0f;
@@ -715,6 +780,118 @@ public class DanielNunes_Cannon : MonoBehaviour
             //disable all colliders on cannon
             GetComponent<BoxCollider2D>().enabled = false;
             transform.Find("Trigger").GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+
+    private void OnTarosTiles()
+    {
+        //this is to see if we're on top of one of Taro's swith blocks (ONLY IF IT'S ACTIVE)
+
+        //send out a raycast to the right of the cannon
+        RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, Vector2.right);
+
+        foreach (RaycastHit2D hit in rays)
+        {
+            if (hit.collider.gameObject.name.Contains("Taro_Tilemap") && hit.distance < 0.25f)
+            {
+                if (hit.collider.gameObject.layer != LayerMask.NameToLayer("IgnorePlayerAndEnemy"))
+                {
+                    sinking = true;
+                    shrinkTimer = 0.0f;
+
+                    //disable all colliders on cannon
+                    GetComponent<BoxCollider2D>().enabled = false;
+                    transform.Find("Trigger").GetComponent<BoxCollider2D>().enabled = false;
+                }
+            }
+        }
+    }
+
+    private void FixPositioning()
+    {
+        //the cannons are offset by 0.5. Occasionally, there can be a glitch where moving the cannon doesn't
+        //fully move it (i.e. from x = 0.5 to 1.5, but lerp screws up and stops at 1.4, which is potentially bad)
+        //so, we make sure the tenths place is always a 5
+
+        bool fineX = false;
+        bool fineY = false;
+
+        Vector3 position = transform.position;
+
+        //fix the x position
+
+        float newX = 0.0f;
+
+        // 1.4 - 1 = 0.4
+        float x_decimal = Mathf.Abs(position.x) - (int)Mathf.Abs(position.x);
+        // 4
+        int x_integer = (int)(x_decimal * 10.0f);
+        // 4 != 5
+        if (x_integer != 5)
+        {
+            //if positive
+            if (position.x >= 0)
+            {
+                newX = (float)((int)Mathf.Abs(position.x)) + 0.5f; 
+            }
+            //if negative
+            else
+            {
+                newX = (float)((int)Mathf.Abs(position.x)) - 0.5f;
+            }
+        }
+        else
+        {
+            fineX = true;
+        }
+
+        //fix the y position
+
+        float newY = 0.0f;
+
+        // 1.4 - 1 = 0.4
+        float y_decimal = Mathf.Abs(position.y) - (int)Mathf.Abs(position.y);
+        // 4
+        int y_integer = (int)(y_decimal * 10.0f);
+        // 4 != 5
+        if (y_integer != 5)
+        {
+            //if positive
+            if (position.y >= 0)
+            {
+                newY = (float)((int)Mathf.Abs(position.y)) + 0.5f;
+            }
+            //if negative
+            else
+            {
+                newY = (float)((int)Mathf.Abs(position.y)) - 0.5f;
+            }
+        }
+        else
+        {
+            fineY = true;
+        }
+
+
+        //if the values were already fine
+        if (fineX && fineY)
+        {
+            return;
+        }
+        //if only the x position was screwed up
+        else if (!fineX && fineY)
+        {
+            transform.position = new Vector2(newX, transform.position.y);
+        }
+        //if only the y position was screwed up
+        else if (!fineY && fineX)
+        {
+            transform.position = new Vector2(transform.position.x, newY);
+        }
+        //if both x and y were screwed up
+        else
+        {
+            transform.position = new Vector2(newX, newY);
         }
     }
 }

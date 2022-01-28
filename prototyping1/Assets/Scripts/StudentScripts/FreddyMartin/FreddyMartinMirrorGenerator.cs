@@ -19,7 +19,15 @@ public class FreddyMartinMirrorGenerator : MonoBehaviour
     {
         GetComponent<CircleCollider2D>().radius = Radius;
 
-        transform.GetChild(0).transform.localScale = Vector3.one * (Radius / 6.0f);
+        ParticleSystem effectRing = GetComponentInChildren<ParticleSystem>();
+
+        var shape = effectRing.shape;
+        shape.radius = Radius * 4.0f;
+
+        var emission = effectRing.emission;
+        emission.rateOverTime = 16.66f * Radius;
+
+        effectRing.Play();
 
         currHealth = MaxHealth;
     }

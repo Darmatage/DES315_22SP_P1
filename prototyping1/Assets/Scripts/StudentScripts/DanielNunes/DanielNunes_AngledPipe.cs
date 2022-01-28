@@ -55,11 +55,11 @@ public class DanielNunes_AngledPipe : MonoBehaviour
         //in reality, playerPosition is the center of the player collider (which is near the legs)
         Vector3 playerPosition = new Vector3(player.transform.position.x - 0.15f, player.transform.position.y - 0.55f, 0);
 
-        //only rotate when the player is in range of the cannon and it isn't already being pushed or pulled
+        //only rotate when the player is in range of the cannon and it isn't already being pushed or pulled or rotated
         if (Vector3.Magnitude(transform.position - playerPosition) < proximity && !rotating)
         {
             //if we pressed this key while we were not already rotating
-            if (!rotating && Input.GetKeyDown(rotateKey))
+            if (Input.GetKey(KeyCode.Q))
             {
                 //we are rotating
                 rotating = true;
@@ -69,6 +69,17 @@ public class DanielNunes_AngledPipe : MonoBehaviour
                 originalRot = transform.rotation.eulerAngles;
                 //new rotation will be 90 degree counterclockwise
                 newRot = originalRot + new Vector3(0, 0, 90.0f);
+            }
+            else if (Input.GetKey(KeyCode.E))
+            {
+                //we are rotating
+                rotating = true;
+                rotateTimer = 0.0f;
+
+                //get the original rotation of the cannon
+                originalRot = transform.rotation.eulerAngles;
+                //new rotation will be 90 degree clockwise
+                newRot = originalRot - new Vector3(0, 0, 90.0f);
             }
         }
 

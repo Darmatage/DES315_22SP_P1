@@ -24,13 +24,14 @@ public class MetronomeStatusScript : MonoBehaviour
         new StatusPreset("", Color.clear)
     };
 
-    public GameObject textObject;
+    private GameObject textObject;
     Text text;
     RectTransform rect;
 
     // Start is called before the first frame update
     void Start()
     {
+        textObject = GameObject.FindGameObjectWithTag("CC_StatusText");
         text = textObject.GetComponent<Text>();
         rect = textObject.GetComponent<RectTransform>();
         SetTextToPreset(presets[3]);

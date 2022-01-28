@@ -36,6 +36,13 @@ TagManager:
   - JulianBlackstone_Totem
   - BraedanNeversBreakable
   - MysteriousChest
+  - ExplosiveBarrel
+  - Coin
+  - Health
+  - Jewel
+  - VisionRange
+  - PortalAllowed
+  - CC_StatusText
   layers:
   - Default
   - TransparentFX
@@ -72,6 +79,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 
+    uniqueID: 4226735327
     locked: 0
   - name: FogOfWar
     uniqueID: 3427076239

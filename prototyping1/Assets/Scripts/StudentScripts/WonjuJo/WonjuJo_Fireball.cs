@@ -15,7 +15,6 @@ public class WonjuJo_Fireball : MonoBehaviour
     Vector2 Target;
     private Transform playerTrans;
 
-
     void Start()
     {
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
@@ -52,10 +51,6 @@ public class WonjuJo_Fireball : MonoBehaviour
             Explosion.MonsterTakeDamge(15);
             Destroy(gameObject);
         }
-        //if(collision.gameObject.tag == "Torch")
-        //{
-
-        //}
     }
 
     private void FixedUpdate()

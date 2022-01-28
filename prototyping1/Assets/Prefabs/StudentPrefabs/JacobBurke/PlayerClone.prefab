@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5083882728942341449}
   - component: {fileID: 1418790299807930420}
   - component: {fileID: 8868480867146382681}
+  - component: {fileID: 7518647257595168002}
+  - component: {fileID: -5541535703627068920}
   m_Layer: 10
   m_Name: PlayerClone
   m_TagString: Untagged
@@ -164,8 +166,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c189ebfeaa7864d47ac6e8e5fdedd2ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeDis: 9
+  pushClone: 0
+  playerDrag: 0
+  cloneDrag: 0
   shadowSpawner: {fileID: 0}
+  change: {x: 0, y: 0, z: 0}
+  speed: 7
+--- !u!114 &7518647257595168002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507644654366225919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7b7fed64f53b94485499322667adac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 1
+  SwitchColor: 4
+--- !u!114 &-5541535703627068920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507644654366225919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c795a5018a18c3f4c90fdd3701063006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  attackCircle: {fileID: 8494758612793768825, guid: 6252782d569ee8640b0fd3e273de6d25,
+    type: 3}
 --- !u!1 &1422017959269338563
 GameObject:
   m_ObjectHideFlags: 0

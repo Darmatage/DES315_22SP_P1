@@ -62,6 +62,17 @@ public class WonjuJo_PlayerHandler : MonoBehaviour
 		PlayerHealth = 100;
 		SceneManager.LoadScene("MainMenu");
 	}
+	public void Heal(int healAmount)
+	{
+		PlayerHealth += healAmount;
+
+		if (PlayerHealth >= PlayerHealthStart)
+		{
+			return;
+		}
+
+		UpdateHealth();
+	}
 
 	void FixedUpdate()
 	{

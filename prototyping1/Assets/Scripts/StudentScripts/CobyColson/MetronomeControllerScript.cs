@@ -5,11 +5,16 @@ using UnityEngine;
 public class MetronomeControllerScript : MonoBehaviour
 {
     public GameObject barPrefab;
-    public GameObject metronomeMarker;
+    public GameObject statusTextPrefab;
+    public GameObject metronomeMarkerPrefab;
+    private GameObject metronomeMarker;
     private GameObject canvas;
     private List<GameObject> barsList;
     private MetronomeStatusScript status;
+    private GameHandler handler;
+    private GameObject player;
     private MetronomePlayerControllerScript pMove;
+    private Animator pAnim;
     private AudioSource[] audioSources;
     public int bars;
     private int canvasHalfWidth = 640;
@@ -17,13 +22,36 @@ public class MetronomeControllerScript : MonoBehaviour
     public float perfectThreshold;
     public float goodThreshold;
     private bool actionThisBeat = false;
+
+    void Awake()
+    {
+        canvas = GameObject.Find("Canvas");
+
+        // Spawn objects
+        GameObject statusText = Instantiate(statusTextPrefab) as GameObject;
+        statusText.transform.SetParent(canvas.transform);
+        statusText.GetComponent<RectTransform>().anchoredPosition = new Vector3(0.0f, -210.0f, -3.0f);
+
+        metronomeMarker = Instantiate(metronomeMarkerPrefab) as GameObject;
+        metronomeMarker.transform.SetParent(canvas.transform);
+        metronomeMarker.GetComponent<RectTransform>().anchoredPosition = new Vector3(0.0f, -283.0f, 0.0f);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        handler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
+        player = GameObject.Find("Player");
+        if (player.GetComponent<PlayerMove>() != null)
+        {
+            Destroy(player.GetComponent<PlayerMove>());
+        }
+        pMove = player.AddComponent<MetronomePlayerControllerScript>();
+        pAnim = player.GetComponentInChildren<Animator>();
+
+        //metronomeMarker = GameObject.Find("MetronomeMarker");
         barsList = new List<GameObject>();
-        canvas = GameObject.Find("Canvas");
         status = GetComponent<MetronomeStatusScript>();
-        pMove = GameObject.Find("Player").GetComponent<MetronomePlayerControllerScript>();
         audioSources = GetComponents<AudioSource>();
         if (bars % 2 != 0)
         {
@@ -71,6 +99,10 @@ public class MetronomeControllerScript : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             move = Vector3.left;
+
+            Vector3 newScale = player.transform.localScale;
+			newScale.x = -1.0f;
+			player.transform.localScale = newScale;
         }
         else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
         {
@@ -79,6 +111,10 @@ public class MetronomeControllerScript : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             move = Vector3.right;
+
+            Vector3 newScale = player.transform.localScale;
+			newScale.x = 1.0f;
+			player.transform.localScale = newScale;
         }
         if (move != Vector3.zero && !actionThisBeat)
         {
@@ -87,6 +123,7 @@ public class MetronomeControllerScript : MonoBehaviour
                 pMove.MovePlayer(move);
                 if (preset.text == MetronomeStatusScript.presets[0].text)
                 {
+                    MetronomeBarScript.barSpeed += 0.5f * Mathf.Sqrt(MetronomeBarScript.barSpeed);
                     audioSources[0].pitch = 1.0f;
                 }
                 else if (preset.text == MetronomeStatusScript.presets[1].text)
@@ -98,9 +135,17 @@ public class MetronomeControllerScript : MonoBehaviour
             else
             {
                 audioSources[2].Play(0);
+                MetronomeBarScript.barSpeed = MetronomeBarScript.initialBarSpeed;
+                pAnim.SetTrigger("Hurt");
+                handler.TakeDamage(5);
             }
             status.SetTextToPreset(preset);
             actionThisBeat = true;
+            pAnim.SetBool("Walk", true);
+        }
+        else
+        {
+            pAnim.SetBool("Walk", false);
         }
     }
 
