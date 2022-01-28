@@ -17,12 +17,6 @@ public class Grate : MonoBehaviour
         Toggle();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Open()
     {
         open = true;
