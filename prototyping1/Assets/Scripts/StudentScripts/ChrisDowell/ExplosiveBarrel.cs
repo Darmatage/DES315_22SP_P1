@@ -140,7 +140,7 @@ public class ExplosiveBarrel : MonoBehaviour
     bool CheckIfOnLayer(int layer, LayerMask mask)
     {
         // Compares if the bit value of the layer is on the mask
-        return (mask.value & 1<<layer) == mask.value;
+        return (1 << layer & mask.value) == 1 << layer;
 
     }
 
