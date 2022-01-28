@@ -5,7 +5,7 @@ using UnityEngine;
 public class MetronomeControllerScript : MonoBehaviour
 {
     public GameObject barPrefab;
-    public GameObject metronomeMarker;
+    private GameObject metronomeMarker;
     private GameObject canvas;
     private List<GameObject> barsList;
     private MetronomeStatusScript status;
@@ -20,6 +20,7 @@ public class MetronomeControllerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        metronomeMarker = GameObject.Find("MetronomeMarker");
         barsList = new List<GameObject>();
         canvas = GameObject.Find("Canvas");
         status = GetComponent<MetronomeStatusScript>();

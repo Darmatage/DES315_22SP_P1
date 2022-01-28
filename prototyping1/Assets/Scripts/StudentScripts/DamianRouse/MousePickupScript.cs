@@ -4,23 +4,35 @@ using UnityEngine;
 
 public class MousePickupScript : MonoBehaviour
 {
-  public MousePickupScript instance_;
-  public GameObject holding_;
-  public GameObject mayHold_;
-  public bool grid_;
-  public bool canGrab_;
-  public bool canLetGo_;
-  public bool change_;
+  public static MousePickupScript instance_;
 
+  [Header("Layer Settings")]
+  public LayerMask layersWithPickupObjects_;
+  [Header("Cursor Settings")]
   public GameObject cursor_;
+
+
   public Color black_;
   public Color white_;
   public Color red_;
   public Color green_;
+  [Header("Cursor Debugs")]
+  public Vector2 worldPosition_;
+
+  [Header("Main Debugs")]
+
+  public GameObject holding_;
+  public GameObject mayHold_;
+  public bool grid_;
+  public bool canGrab_;
+  public bool canLetGo_ = true;
+  public bool change_;
+  public List<CanGrab> onGrid_ = new List<CanGrab>();
 
   // Start is called before the first frame update
   void Awake()
   {
+    //singleton
     if (instance_ != null)
     {
       Debug.Log("Too many MousePickupScript");
@@ -31,36 +43,95 @@ public class MousePickupScript : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    //Vector3 mouse = Input.mousePosition;
-    //Ray castPoint = Camera.main.ScreenPointToRay(mouse);
-    //RaycastHit hit;
-    //if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
-    //{
-    //  cursor_.transform.position = hit.point;
-    //}
+    MoveCursorToMouse();
+    CheckIfOverGrabbable();
+    ClickCheck();
+    UpdateCursor();
+  }
 
+  void MoveCursorToMouse()
+  {
+    //get the position of the mouse in world space
     Vector2 screenPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-    Vector2 worldPosition = Camera.main.ScreenToWorldPoint(screenPosition);
+    worldPosition_ = Camera.main.ScreenToWorldPoint(screenPosition);
 
-    float increase = 0;//Input.mouseScrollDelta.y;
+    //move the cursor to position
+    cursor_.transform.position = new Vector3(worldPosition_.x, worldPosition_.y, cursor_.transform.position.z);
+  }
 
-    cursor_.transform.position = new Vector3(worldPosition.x, worldPosition.y, cursor_.transform.position.z + increase);
+  void CheckIfOverGrabbable()
+  {
+    //raw cast down from mouse
+    RaycastHit2D hit = Physics2D.Raycast(worldPosition_, Vector2.up, 0.01f, layersWithPickupObjects_);
+    if (hit.collider != null)
+    {
+      //pickup not locked grabbables
+      CanGrab cG = hit.collider.gameObject.GetComponent<CanGrab>();
+      if (cG && cG.locked_ == false)
+      {
+        mayHold_ = hit.collider.gameObject;
+        change_ = true;
+        canGrab_ = true;
+        return;
+      }
 
+    }
 
+    //Nothing to grab
+    if (canGrab_)
+      change_ = true;
+    canGrab_ = false;
+    mayHold_ = null;
+  }
+
+  void ClickCheck()
+  {
+    //click
     if (Input.GetButtonDown("Fire1"))
     {
-      if(!holding_ && mayHold_)
+      //grab if not holding
+      if (!holding_ && mayHold_)
       {
         Grab();
-      } 
-      else if(holding_)
+      }
+      else if (holding_ && canLetGo_)
       {
         Release();
       }
     }
+  }
 
-    
+  void Grab()
+  {
+    //hold what was holdable
+    holding_ = mayHold_;
+    //set parent
+    holding_.transform.SetParent(cursor_.transform);
 
+    //Tell the grabbed object to do what it should do
+    CanGrab cG = holding_.GetComponent<CanGrab>();
+    if (cG)
+      cG.Grab();
+  }
+
+  void Release()
+  {
+    //Tell the grabbed object to do release scripts if it can be released
+    CanGrab cG = holding_.GetComponent<CanGrab>();
+    if (cG)
+    {
+      cG.Release();
+    }
+
+    //empty grabber
+    holding_.transform.SetParent(null);
+    holding_ = null;
+    change_ = true;
+  }
+
+  void UpdateCursor()
+  {
+    //update the color of the cursor based of if it's can/is holding
     if (change_)
     {
       var renderer = cursor_.GetComponent<Renderer>();
@@ -69,47 +140,50 @@ public class MousePickupScript : MonoBehaviour
         renderer.material.SetColor("_Color", white_);
       else if (holding_ == null && canGrab_ == true)
         renderer.material.SetColor("_Color", green_);
+      else if (holding_ == true && canLetGo_ == false)
+        renderer.material.SetColor("_Color", red_);
+      else if (holding_ == true && canLetGo_ == true)
+        renderer.material.SetColor("_Color", green_);
 
       change_ = false;
     }
-
-    //RaycastHit2D cast = Physics2D.BoxCast(worldPosition, new Vector2(1,1), 0, Vector2.zero);
-    RaycastHit2D cast =Physics2D.Raycast(worldPosition + Vector2.up, -Vector2.up);
-    RaycastHit2D cast2 = Physics2D.Raycast(worldPosition - Vector2.up, Vector2.up);
-
-    if (cast && cast2)
-    {
-      if(cast.collider.transform.position == cast2.collider.transform.position)
-      {
-        CanGrab cG = cast.collider.gameObject.GetComponent<CanGrab>();
-        if (cG)
-        {
-         mayHold_ = cast.collider.gameObject;
-         change_ = true;
-         canGrab_ = true;
-          return;
-        }
-      }
-      //Debug.Log(cast.collider.name + "  " + cast2.collider.name); 
-    }
-    
-      if (canGrab_)
-        change_ = true;
-      canGrab_ = false;
-    mayHold_ = null;
-      //Debug.Log("nothing");
   }
 
-  void Grab()
+  public Vector3Int GetCursorIntPosition()
   {
-    holding_ = mayHold_;
-    holding_.transform.SetParent(cursor_.transform);
+    Vector3 vec = cursor_.transform.position;
+    //offset for better placement
+    return new Vector3Int(Mathf.RoundToInt(vec.x - 0.8f), Mathf.RoundToInt(vec.y - 0.3f), (int)vec.z);
   }
 
-  void Release()
+  public void CanLetGoToggle(bool status)
   {
-    holding_.transform.SetParent(null);
-    holding_ = null;
+    if (status == canLetGo_)
+      return;
+    canLetGo_ = status;
     change_ = true;
+  }
+
+  public void AddToGrid(CanGrab cG)
+  {
+    onGrid_.Add(cG);
+  }
+
+  public void RemoveFromGrid(CanGrab cG)
+  {
+    onGrid_.Remove(cG);
+  }
+
+  public bool GridSpotTaken(Vector3Int pos)
+  {
+    foreach(CanGrab c in onGrid_)
+    {
+      if(c)
+      {
+        if (c.gridPos_ == pos)
+          return true;
+      }
+    }
+    return false;
   }
 }

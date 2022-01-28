@@ -17,11 +17,30 @@ public class WonjuJo_MonsterHandler : MonoBehaviour
     void Start()
     {
         if (!PM)
-            Debug.Log("There is no PM");
+        {
+            Debug.Log("[WonjuJo_MonsterHandler] - There is no PlayerMovement reference.");
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player != null)
+            {
+                WonjuJo_PlayerMovement pm = player.GetComponent<WonjuJo_PlayerMovement>();
+
+                if (pm != null)
+                {
+                    PM = pm;
+                    Debug.Log("[WonjuJo_MonsterHandler] - Found PlayerMovement reference.");
+                }
+            }
+        }
     }
+
 
     public void MonsterTakeDamge(int damage)
     {
+        StopCoroutine(ChangeColor());
+        StartCoroutine(ChangeColor());
+
         MonsterHealth -= damage;
         if (MonsterHealth <= 0)
         {
@@ -36,21 +55,6 @@ public class WonjuJo_MonsterHandler : MonoBehaviour
         if(IsDead)
         {
             Destroy(Monster);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "bullet")
-        {
-            StopCoroutine(ChangeColor());
-            StartCoroutine(ChangeColor());
-        }
-
-        if (collision.gameObject.tag == "Player" && PM.GetIsAttack())
-        {
-            StopCoroutine(ChangeColor());
-            StartCoroutine(ChangeColor());
         }
     }
 

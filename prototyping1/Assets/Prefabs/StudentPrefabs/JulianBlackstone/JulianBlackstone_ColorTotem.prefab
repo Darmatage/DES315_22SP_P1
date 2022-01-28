@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 95
+  m_SortingOrder: 80
   m_Sprite: {fileID: -929928241728976721, guid: 903acd15ba7bb5f43836431a859584cb,
     type: 3}
   m_Color: {r: 1, g: 0, b: 0.09465361, a: 1}
@@ -125,9 +125,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorWavePrefabList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 5958893638023719683, guid: 69d37419b6624594ca9f330e7757251d, type: 3}
+  - {fileID: 4341723124793324371, guid: 3e44e9f182034ff478a3385b2089afaa, type: 3}
+  - {fileID: 8338678195165020796, guid: dd239e327d7d7d844a7927f0b92fb97c, type: 3}
   colorTag: Red
   defaultWaveExpireTime: 5
   defaultRevealTime: 5

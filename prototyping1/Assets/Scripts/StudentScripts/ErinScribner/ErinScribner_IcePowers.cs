@@ -8,9 +8,9 @@ public class ErinScribner_IcePowers : MonoBehaviour
 {
     private GameHandler gameHandlerObj;
     private Transform playerTrans;
-    public GameObject iceBlock;
-    public int maxNum = 4;
-    private int limit = 0;
+   // public GameObject iceBlock;
+    //public int maxNum = 4;
+    //private int limit = 0;
 
     public Tilemap destructableTilemap;
     private List<Vector3> tileWorldLocations;
@@ -23,7 +23,7 @@ public class ErinScribner_IcePowers : MonoBehaviour
             gameHandlerObj = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
         }
         playerTrans = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        limit = maxNum;
+       // limit = maxNum;
 
         Init();
     }
@@ -48,10 +48,10 @@ public class ErinScribner_IcePowers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I) && limit > 0)
+        if (Input.GetKeyDown(KeyCode.I)/* && limit > 0*/)
         {
            // GameObject iceblock = GameObject.Find("IceBlock");
-            Vector3 playerFeet = new Vector3(playerTrans.position.x, playerTrans.position.y - .8f, playerTrans.position.z);
+           /* Vector3 playerFeet = new Vector3(playerTrans.position.x, playerTrans.position.y - .8f, playerTrans.position.z);
             GameObject iceBlockNew = Instantiate(iceBlock, playerFeet, Quaternion.identity);
 
             Vector3 playerFeet2 = new Vector3(playerTrans.position.x - 1.0f, playerTrans.position.y, playerTrans.position.z);
@@ -64,9 +64,9 @@ public class ErinScribner_IcePowers : MonoBehaviour
             GameObject iceBlockNew4 = Instantiate(iceBlock, playerFeet4, Quaternion.identity);
 
             Vector3 playerFeet5 = new Vector3(playerTrans.position.x, playerTrans.position.y, playerTrans.position.z);
-            GameObject iceBlockNew5 = Instantiate(iceBlock, playerFeet5, Quaternion.identity);
+            GameObject iceBlockNew5 = Instantiate(iceBlock, playerFeet5, Quaternion.identity);*/
 
-            limit--;
+            //limit--;
 
             // GameObject player = GameObject.Find("Player");
 

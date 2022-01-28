@@ -1,0 +1,4 @@
+Instructions:
+1. Drop in scene
+2.Go to script to adjust damage, detect distance, flying speed.
+3. Adjust fly direction to according to spikes rotation.
