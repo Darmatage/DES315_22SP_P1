@@ -18477,8 +18477,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1711548215581857244, guid: 5c46a33a717dc2348a5a39fa4f53fed0,
-        type: 3}
+      objectReference: {fileID: 2128970017}
     - target: {fileID: 779397159792320515, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -18487,7 +18486,7 @@ PrefabInstance:
     - target: {fileID: 779397159792320515, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameHandler, Assembly-CSharp
+      value: WonjuJo_PlayerHandler, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1806154120203081548, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
@@ -18498,12 +18497,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1711548215581857244, guid: 5c46a33a717dc2348a5a39fa4f53fed0,
-        type: 3}
+      objectReference: {fileID: 2128970017}
     - target: {fileID: 2217770974307422671, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Resume
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217770974307422671, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WonjuJo_PlayerHandler, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2928651003253072495, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
@@ -18880,6 +18883,18 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11cc93131166a7b45938aa955f74fae1, type: 3}
+--- !u!114 &2128970017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6436074296609122999, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
+    type: 3}
+  m_PrefabInstance: {fileID: 2003152372}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ab36f366510b4479ce5ba5eb1a62f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &436433730132509138
 PrefabInstance:
   m_ObjectHideFlags: 0
