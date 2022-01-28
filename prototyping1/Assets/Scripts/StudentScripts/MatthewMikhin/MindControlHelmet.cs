@@ -92,7 +92,12 @@ public class MindControlHelmet : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.RightAlt))
         {
-            enemyComp.enabled = true;            transform.parent = player.transform;
+            if (onPlayer)
+            {
+                return;
+            }
+            enemyComp.enabled = true;            
+            transform.parent = player.transform;
             transform.localPosition = new Vector3(0, 0, 0);
             camera.playerObj = player.gameObject;
             onPlayer = true;
