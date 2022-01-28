@@ -58,8 +58,8 @@ TagManager:
   - WaterSafe
   - IgnorePlayer
   - IgnorePlayerAndEnemy
-  - 
-  - 
+  - Wall
+  - PassableWall
   - BorderLayer_CEGP
   - BlockLayer_CEGP
   - FogOfWarMain
