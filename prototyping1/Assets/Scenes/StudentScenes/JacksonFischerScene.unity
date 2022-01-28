@@ -32058,6 +32058,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6184523527724851510, guid: 3447bbe25532f834986bf6a3e775bcaf,
         type: 3}
+      propertyPath: PlayerSprite
+      value: 
+      objectReference: {fileID: 6853139540415881834}
+    - target: {fileID: 6184523527724851510, guid: 3447bbe25532f834986bf6a3e775bcaf,
+        type: 3}
       propertyPath: PlayerAnimator
       value: 
       objectReference: {fileID: 6853139540415881833}
@@ -50636,6 +50641,12 @@ Transform:
 --- !u!95 &6853139540415881833 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 1832428498886437806, guid: f15318afe2a4d8741a715281e186ed04,
+    type: 3}
+  m_PrefabInstance: {fileID: 6853139540415881831}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6853139540415881834 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7010654374224563763, guid: f15318afe2a4d8741a715281e186ed04,
     type: 3}
   m_PrefabInstance: {fileID: 6853139540415881831}
   m_PrefabAsset: {fileID: 0}
