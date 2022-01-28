@@ -794,7 +794,7 @@ public class DanielNunes_Cannon : MonoBehaviour
         {
             if (hit.collider.gameObject.name.Contains("Taro_Tilemap") && hit.distance < 0.25f)
             {
-                if (hit.collider.gameObject.layer != LayerMask.NameToLayer("IgnorePlayer"))
+                if (hit.collider.gameObject.layer != LayerMask.NameToLayer("IgnorePlayerAndEnemy"))
                 {
                     sinking = true;
                     shrinkTimer = 0.0f;
