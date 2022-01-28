@@ -49,10 +49,6 @@ public class SethMerrill_beamScript : MonoBehaviour
 			{
 				gh.TakeDamage(damage);
 			}
-			else
-			{
-				Debug.Log(rc.collider.gameObject.name);
-			}
 		}
 	}
 	

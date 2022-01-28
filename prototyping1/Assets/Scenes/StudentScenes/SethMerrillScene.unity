@@ -17553,7 +17553,7 @@ GameObject:
   - component: {fileID: 915919626}
   m_Layer: 0
   m_Name: TilemapWalls
-  m_TagString: Untagged
+  m_TagString: PortalAllowed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21844,6 +21844,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4503928720654438546, guid: ebaa86f2b71f84545856dc7980fc4035,
+        type: 3}
+      propertyPath: plyTransform
+      value: 
+      objectReference: {fileID: 1501427879}
     - target: {fileID: 4503928720654438547, guid: ebaa86f2b71f84545856dc7980fc4035,
         type: 3}
       propertyPath: m_Name
@@ -21851,6 +21856,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebaa86f2b71f84545856dc7980fc4035, type: 3}
+--- !u!4 &1501427879 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5174094196587440800, guid: f15318afe2a4d8741a715281e186ed04,
+    type: 3}
+  m_PrefabInstance: {fileID: 6853139540415881831}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1528870003 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 412980851578624884, guid: e37dfe756aac6e442856ce7b8ce28396,
