@@ -1,5 +1,8 @@
 READMME for Switch Color Blocks
 
+//-------------------------------//
+//----- Switch Color Blocks -----//
+//-------------------------------//
 COLOR BLOCKS - Blocks the phase into existance when the active color is matching the blocks.
 1. Put "Taro_ColorSwitchManager" anywhere in your scene
 	1a. This can be used to set the default color setting for your color blocks
@@ -18,3 +21,12 @@ COLOR SWITCHES - Switches to change the active color
 COLOR TRIGGERS - Objects that can interact with switches to change the active color
 1. To any object attach the following component "Taro_ColorSwitchTrigger".
 2. This should now allow the object to trigger switches. (REQUIRES SOME FORM OF COllIDER2D)
+
+
+
+//---------------------------------------//
+//------ OTHER, COMPLETELY OPTIONAL -----//
+//---------------------------------------//
+
+HEALTH PICKUP
+- In the other folder there is a health pickup, feel free to use it pretty self explanatory
