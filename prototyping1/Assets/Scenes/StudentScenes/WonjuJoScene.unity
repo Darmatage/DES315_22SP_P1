@@ -12910,7 +12910,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ThingsCanGetFromChest.Array.data[0]
       value: 
-      objectReference: {fileID: 412980851578624884, guid: e37dfe756aac6e442856ce7b8ce28396,
+      objectReference: {fileID: 1366386549815548970, guid: 03edeb4928d9964408e55fce9011532b,
         type: 3}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
@@ -18657,7 +18657,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ThingsCanGetFromChest.Array.data[0]
       value: 
-      objectReference: {fileID: 412980851578624884, guid: e37dfe756aac6e442856ce7b8ce28396,
+      objectReference: {fileID: 1366386549815548970, guid: 03edeb4928d9964408e55fce9011532b,
         type: 3}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
@@ -18861,7 +18861,7 @@ PrefabInstance:
         type: 3}
       propertyPath: ThingsCanGetFromChest.Array.data[0]
       value: 
-      objectReference: {fileID: 412980851578624884, guid: e37dfe756aac6e442856ce7b8ce28396,
+      objectReference: {fileID: 1366386549815548970, guid: 03edeb4928d9964408e55fce9011532b,
         type: 3}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
