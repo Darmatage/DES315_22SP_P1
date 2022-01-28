@@ -35,11 +35,15 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
     private GameHandler gameHandlerObj; // player takes damage
     private Vector2 center;             // object's pivot point/initial starting position
     private float angle;                // uses rotate speed and updates with delta time for sin & cos angles
+    AudioSource audio;                  // player hurt audio clip
+    SpriteRenderer sprite;              // disk sprite
 
     // Start is called before the first frame update
     void Start()
     {
         center = transform.position; // set pivot point
+        audio = GetComponent<AudioSource>(); // grab hurt audio for player damage
+        sprite = GetComponentInChildren<SpriteRenderer>();
 
         // Game handler to handle player damage
         GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
@@ -112,6 +116,14 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             gameHandlerObj.TakeDamage(damage);
+            audio.Play();
+            sprite.color = new Color(1, 0, 0);
         }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+            sprite.color = new Color(1, 1, 1, 1);
     }
 }
