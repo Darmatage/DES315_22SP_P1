@@ -106,9 +106,21 @@ public class FreddyMartinMirrorEnemy : MonoBehaviour
         var shape = beamSystem.shape;
         shape.radius = Vector3.Distance(player.transform.position, transform.position) / 2.0f;
 
-        // Set emission rate
+        // Set emission rate and color
         var emission = beamSystem.emission;
         emission.rateOverTime = 180.0f * (swapTimer / timeBetweenSwaps) *
             Vector3.Distance(player.transform.position, transform.position);
+
+        var main = beamSystem.main;
+
+        if (timeBetweenSwaps - swapTimer <= 0.75f)
+        {
+            main.startColor = Color.red;
+        }
+        else
+        {
+            main.startColor = (swapTimer / (timeBetweenSwaps - 0.75f)) * Color.yellow +
+                (1 - swapTimer / (timeBetweenSwaps - 0.75f)) * Color.cyan;
+        }
     }
 }
