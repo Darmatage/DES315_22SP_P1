@@ -1,0 +1,35 @@
+UI Prefabs:
+- BenThompsonBoatChargeIndicatorBorder prefab should be placed inside of your GameHandlerCanvas/Canvas object as a child.
+  This is the prefab that allows the charging indicator to appear when the player is charging up their movement.
+
+Tilemap Prefabs:
+- Both the TilemapShoreline and TilemapWater prefabs should be children of your Grid object that contains your tilemaps.
+- These are both empty tilemaps which you can edit to produce the water/shoreline boundaries required for smooth integration
+  of the boat into your level.
+
+- The water tilemap should contain water tiles that the player can't walk on but the boat can move on.
+- The shoreline tilemap should contain tiles that the player can walk on but the boat cannot drive on.
+
+- I recommend using the sand tile for the shoreline and placing tiles wherever your grass meets the water for a nice beach effect.
+
+Boat and Dock Prefabs:
+- The dock is an object that should be lined up nicely along a shore line.
+- The blue section of the dock is where the boat is allowed to park, and the tiles underneath this section should be on the water tilemap. 
+- IMPORTANT: The tiles underneath the dock need to be on the shoreline tilemap in order for the player to walk on the dock and the boat to not
+	     be able to drive through the dock. I suggest using the brown dirt as the underlying tile image so that it matches nicely with the dock
+             if you don't perfectly line it up. 
+
+- The boat prefab is simply an object that can be placed in the scene as a normal object would be.
+- IMPORTANT: If you place a boat inside a dock and intend the player to be able to use that boat when they first get on the dock,
+  	     PLEASE, PLEASE remember to edit the dock object and inside the BenThompson_DockingBehavior component place the boat
+	     that is parked in the dock's collider inside the Docked Boat field. This will ensure that the player is able to interact
+	     with the parked boat in the dock when it first starts up.
+
+BenThompsonBoatControlsSceneHandler Prefab
+- This assists in reseting the controls when you come from a new scene due to the underlying code used to make the prompts appear.
+  Just place it inside your scene and it will work its magic as you come and go.
+
+
+Contact Info:
+If you are struggling with any of the prefabs mentioned above or want to talk about specific tweaks you may want, please feel free to
+contact me on Teams(ben.thompson) or Email (ben.thompson@digipen.edu)  

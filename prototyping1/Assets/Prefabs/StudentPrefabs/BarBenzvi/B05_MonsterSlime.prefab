@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7721378278322908515}
   - component: {fileID: 3031446237433206579}
   - component: {fileID: 4638059096841816839}
-  - component: {fileID: 2899359058929925134}
   - component: {fileID: 1826537973109746423}
+  - component: {fileID: 8886013116817984744}
   m_Layer: 6
   m_Name: B05_MonsterSlime
   m_TagString: Untagged
@@ -82,22 +82,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2899359058929925134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 676937257323240654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abd8a2f9a87083244ad10fb34c7401cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  damage: 0
-  EnemyLives: 3
-  retreatTime: 3
 --- !u!114 &1826537973109746423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +100,21 @@ MonoBehaviour:
   SpawnParent: {fileID: 0}
   QTETimescale: 0
   DestroyOnTriggeredQTESuccess: 1
+--- !u!114 &8886013116817984744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676937257323240654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d138ac085d8343e4e8ca2e60875820e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  EnemyLives: 3
+  retreatTime: 3
 --- !u!1 &5121196452622983595
 GameObject:
   m_ObjectHideFlags: 0

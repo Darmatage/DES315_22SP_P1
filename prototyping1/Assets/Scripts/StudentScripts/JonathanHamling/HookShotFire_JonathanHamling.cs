@@ -22,12 +22,15 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
     [HideInInspector]
     public bool isPull = false;
     private bool isGrappled = false;
+    private bool isLaunched = false;
     
     Vector2 target;
     GameObject targetObj;
 
     [SerializeField] 
     private GameObject Player;
+    [SerializeField]
+    private Transform positionRot;
 
 
     private void Start()
@@ -84,8 +87,27 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
             }
             else if (Vector2.Distance(transform.position, targetObj.transform.position) < .5f)
             {
+
+                if (Input.GetButton("Fire2"))
+                {
+                    if (targetObj.GetComponent<Rigidbody2D>())
+                    {
+                        isLaunched = true;
+
+                        isPull = false;
+                        isGrappled = false;
+                    }
+                }
+
                 line.enabled = false;
             }
+        }
+
+        if (isLaunched == true)
+        {
+            targetObj.GetComponent<Rigidbody2D>().AddForce(positionRot.right * shootSpeed, ForceMode2D.Impulse);
+
+            isLaunched = false;
         }
     }
 

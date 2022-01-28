@@ -27,8 +27,6 @@ public class Kiara_Hide : MonoBehaviour
     {
         if(col.gameObject.tag == "Player")
         {
-            Debug.Log("Player is in cave.");
-
             GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
             
             foreach (GameObject enemy in Enemies)
@@ -37,6 +35,14 @@ public class Kiara_Hide : MonoBehaviour
                 tempScript.attackPlayer = false;
                 tempScript.canSeePlayer = false;
             }
+
+            //change player color
+            SpriteRenderer playerRender = col.gameObject.GetComponentInChildren<SpriteRenderer>();
+            playerRender.color = new Color(0.478f, 0.922f, 1);
+
+            //change cave color
+            SpriteRenderer caveRender = GetComponentInChildren<SpriteRenderer>();
+            caveRender.color = new Color(0, 0, 0);
         }
     }
 
@@ -44,16 +50,21 @@ public class Kiara_Hide : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            Debug.Log("Player exited cave.");
-
             GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
             foreach (GameObject enemy in Enemies)
             {
                 Kiara_AlteredMonsterMoveHit tempScript = enemy.GetComponent<Kiara_AlteredMonsterMoveHit>();
-                tempScript.attackPlayer = true;
                 tempScript.canSeePlayer = true;
             }
+
+            //change player color
+            SpriteRenderer playerRender = col.gameObject.GetComponentInChildren<SpriteRenderer>();
+            playerRender.color = new Color(1, 1, 1);
+
+            //change cave color
+            SpriteRenderer caveRender = GetComponentInChildren<SpriteRenderer>();
+            caveRender.color = new Color(1, 1, 1);
         }
     }
 }

@@ -5,13 +5,13 @@ using UnityEngine;
 public class BraedanNeversGrabEnemy : MonoBehaviour
 {
     public float projectileSpeed;
-    public bool IsAttachedToPlayer = false;
-    public bool IsHoldingEnemy = false;
-    public bool EnemyInRange = false;
+    private bool IsAttachedToPlayer = false;
+    private bool IsHoldingEnemy = false;
+    private bool EnemyInRange = false;
 
     public GameObject projectilePrefab;
-    public GameObject projectileClone = null;
-
+    
+    private GameObject projectileClone = null;
 
 
     // Start is called before the first frame update
@@ -19,7 +19,6 @@ public class BraedanNeversGrabEnemy : MonoBehaviour
     {
         if (transform.root.gameObject.tag == "Player")
             IsAttachedToPlayer = true;
-
     }
 
     // Update is called once per frame
@@ -34,11 +33,13 @@ public class BraedanNeversGrabEnemy : MonoBehaviour
             if(Input.GetMouseButton(1))
             {
                 IsHoldingEnemy = false;
+                projectileClone.GetComponent<BraedanProjectile>().isHeld = false;
                 Rigidbody2D rigidbody2D = projectileClone.GetComponent<Rigidbody2D>();
                 Vector2 direction;
                 direction.x = Input.GetAxisRaw("Horizontal");
                 direction.y = Input.GetAxisRaw("Vertical");
                 direction.Normalize();
+                rigidbody2D.AddTorque(223);
                 if(direction.x != 0.0f || direction.y != 0.0f)
                     rigidbody2D.velocity = (direction * projectileSpeed);
                 else
@@ -55,13 +56,16 @@ public class BraedanNeversGrabEnemy : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if(other.gameObject.layer == 6)
+        if(other.gameObject.layer == 6 && IsAttachedToPlayer)
         {
             if(Input.GetMouseButton(0) && !IsHoldingEnemy)
             {
                 IsHoldingEnemy = true;
                 EnemyInRange = false;   
                 projectileClone = Instantiate(projectilePrefab, transform.position, transform.rotation);
+                projectileClone.GetComponent<BraedanProjectile>().isHeld = true;
+
+                projectileClone.transform.localScale = other.transform.localScale;
 
                 SpriteRenderer projectileSpriteRenderer = projectileClone.transform.GetChild(0).GetComponent<SpriteRenderer>();
                 SpriteRenderer enemySpriteRenderer = other.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();

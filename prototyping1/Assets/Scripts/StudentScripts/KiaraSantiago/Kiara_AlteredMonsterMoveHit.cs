@@ -44,14 +44,41 @@ public class Kiara_AlteredMonsterMoveHit : MonoBehaviour
 		//int playerHealth = GameHandler.PlayerHealth; //access script directly in the case of a static variable 
 		if (target != null)
 		{
+			//if not on screen dont seek out player
+			if(GetComponentInChildren<Renderer>().isVisible)
+            {
+				attackPlayer = true;
+            }
+            else
+            {
+				attackPlayer = false;
+            }
+
+			//show player cannot be seen if in cave
+			SpriteRenderer enemyRender = GetComponentInChildren<SpriteRenderer>();
+			if (!canSeePlayer)
+			{
+				//change enemy color - lighter color
+				enemyRender.color = new Color(0.945f, 0.482f, 0.475f);
+			}
+			else
+			{
+				//change enemy color - normal red
+				enemyRender.color = new Color(0.549f, 0.067f, 0.059f);
+			}
+
 			//if ((attackPlayer == true) && (playerHealth >= 1)){
 			if (attackPlayer == true && canSeePlayer)
 			{
 				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
 			}
-			else if (attackPlayer == false)
+			else if (!canSeePlayer)
 			{
-				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * -1 * Time.deltaTime);
+				if (Vector2.Distance(transform.position, target.position) < 6.5f)
+				{
+					//float tempRandVal = Random.Range(0.5f, 1.5f);
+					transform.position = Vector2.MoveTowards(transform.position, target.position, speed * -1 * Time.deltaTime);
+				}
 			}
 		}
 	}

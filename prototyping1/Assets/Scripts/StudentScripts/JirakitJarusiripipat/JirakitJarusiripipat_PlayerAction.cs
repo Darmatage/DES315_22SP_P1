@@ -13,15 +13,18 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     public bool isUsingSkill = false;
     public bool canUseSkill = true;
     [SerializeField]
-    private int maxSkillGauge;
+    private float maxSkillGauge;
     [HideInInspector]
-    public int skillGauge;
+    public float skillGauge;
+    public GameObject skillBG;
     [Header("Melee")]
     [HideInInspector]
     public float timeToAttack;
     [SerializeField]
     private float timeToAttackCooldown;
     private float defaultTimeToAttackCooldown;
+    [SerializeField]
+    private Transform rotateParent;
     [SerializeField]
     private Transform attackPos;
     [SerializeField]
@@ -31,21 +34,79 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     [SerializeField]
     private float skillPlayerSpeed;
     private JirakitJarusiripipat_PlayerMove playermove;
+    [Header("SpawnEffect")]
+    [SerializeField]
+    private GameObject effect1;
+    [SerializeField]
+    private GameObject effect2;
+    [Header("SFX")]
+    [SerializeField]
+    JirakitJarusiripipat_SFX SFX;
+    bool soundCheck = false;
+    bool isFaceRight = true;
 
     public LayerMask whatIsEnemies;
+    [Header("UI")]
     public Text skillGaugeText;
+    public Text[] readyText;
+    public Text[] notReadyText;
+    public Text[] UsingText;
+
+    public Image cover;
+    public Image skillGaugeImage;
+
     // Start is called before the first frame update
     void Start()
     {
         defaultTimeToAttackCooldown = timeToAttackCooldown;
         playermove = GetComponent<JirakitJarusiripipat_PlayerMove>();
         defaultPlayerSpeed = playermove.speed;
+        //SFX.BGM.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && timeToAttack <= 0)
+        if(Input.GetKey(KeyCode.S) && isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, -90f);
+            
+        }
+        if (Input.GetKey(KeyCode.S) && !isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, 90f);
+
+        }
+        if (Input.GetKey(KeyCode.W) && isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, 90f);
+        }
+        if (Input.GetKey(KeyCode.W) && !isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, -90f);
+        }
+        if (Input.GetKey(KeyCode.A) && isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, 180);
+            isFaceRight = false;
+        }
+        if(Input.GetKey(KeyCode.A) && !isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, 0);
+            isFaceRight = false;
+        }
+        if (Input.GetKey(KeyCode.D) && !isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, 0f);
+            isFaceRight = true;
+        }
+        if (Input.GetKey(KeyCode.D) && isFaceRight)
+        {
+            rotateParent.eulerAngles = new Vector3(0, 0, 0f);
+            isFaceRight = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && timeToAttack <= 0)
         {
             playermove.anim.SetTrigger("Attack");
             Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPos.transform.position, attackRange, whatIsEnemies);
@@ -74,10 +135,16 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
                 
             }
             timeToAttack = timeToAttackCooldown;
+            cover.gameObject.SetActive(true);
         }
         else if(timeToAttack > 0)
         {
             timeToAttack -= Time.deltaTime;
+            cover.fillAmount = timeToAttack / timeToAttackCooldown;
+        }
+        else if(timeToAttack < 0.0f)
+        {
+            cover.gameObject.SetActive(false);
         }
         if(Input.GetKeyDown(KeyCode.G) && !isUsingSkill && canUseSkill)
         {
@@ -86,6 +153,12 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         if(isUsingSkill)
         {
             CheckDurationSkill();
+            for (int i = 0; i < readyText.Length; i++)
+            {
+                readyText[i].gameObject.SetActive(false);
+                notReadyText[i].gameObject.SetActive(false);
+                UsingText[i].gameObject.SetActive(true);
+            }
         }
         if(skillGauge == maxSkillGauge)
         {
@@ -93,6 +166,25 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         }
         //Debug.Log("Skill Gauge = " + skillGauge);
         UpdateSkillGauge();
+        if(canUseSkill && !isUsingSkill)
+        {
+            for (int i = 0; i < readyText.Length; i++)
+            {
+                readyText[i].gameObject.SetActive(true);
+                notReadyText[i].gameObject.SetActive(false);
+                UsingText[i].gameObject.SetActive(false);
+            }
+        }
+        else if(!canUseSkill && !isUsingSkill)
+        {
+            for (int i = 0; i < readyText.Length; i++)
+            {
+                readyText[i].gameObject.SetActive(false);
+                UsingText[i].gameObject.SetActive(false);
+                notReadyText[i].gameObject.SetActive(true);
+            }
+        }
+        skillGaugeImage.fillAmount = skillGauge/maxSkillGauge;
     }
     private void UpdateSkillGauge()
     {
@@ -111,6 +203,14 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         playermove.speed = skillPlayerSpeed;
         timeToAttackCooldown = 0.3f;
         skillGauge = 0;
+        skillBG.SetActive(true);
+        GameObject obj = Instantiate(effect1, transform.position, Quaternion.identity);
+        obj.transform.parent = gameObject.transform;
+
+        SFX.BGM.Pause();
+        SFX.Clock1.Play();
+        SFX.Skill1.Play();
+        soundCheck = false;
     }
 
     private void AfterSkill()
@@ -119,6 +219,18 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         canUseSkill = false;
         playermove.speed = defaultPlayerSpeed;
         timeToAttackCooldown = defaultTimeToAttackCooldown;
+        SFX.BGM.Play();
+        SFX.Clock2.Stop();
+        SFX.Skill2.Play();
+        GameObject obj = Instantiate(effect1, transform.position, Quaternion.identity);
+        obj.transform.parent = gameObject.transform;
+        for (int i = 0; i < readyText.Length; i++)
+        {
+            readyText[i].gameObject.SetActive(false);
+            notReadyText[i].gameObject.SetActive(true);
+            UsingText[i].gameObject.SetActive(false);
+        }
+        skillBG.SetActive(false);
     }
 
     private void CheckDurationSkill()
@@ -130,6 +242,12 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         else if (currentSkillDuration <= 0.0f)
         {
             AfterSkill();
+        }
+        if(currentSkillDuration <= 4.0f && !soundCheck)
+        {
+            SFX.Clock2.Play();
+            SFX.Clock1.Stop();
+            soundCheck = true;
         }
     }
 }

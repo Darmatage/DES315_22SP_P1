@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8622996587333277412}
   - component: {fileID: 6854189612802431479}
   - component: {fileID: 7419966506197399658}
+  - component: {fileID: 3375252766356819654}
   m_Layer: 6
   m_Name: MonsterSkull
   m_TagString: monsterShooter
@@ -99,7 +100,20 @@ MonoBehaviour:
   startTimeBtwShots: 2
   projectile: {fileID: 2897097587681159296, guid: 0573994f43b58e94c98a3612cbefb2af,
     type: 3}
+--- !u!114 &3375252766356819654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4078256246479289528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5d8f9309ea3d64b8176c6ce0bf3f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   EnemyLives: 30
+  isStunned: 0
 --- !u!1 &7089100292027298927
 GameObject:
   m_ObjectHideFlags: 0

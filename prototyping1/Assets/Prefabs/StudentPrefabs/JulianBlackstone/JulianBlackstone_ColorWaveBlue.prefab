@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8988010575239325213}
   - component: {fileID: 2515201859589287462}
   - component: {fileID: -7575066681461190072}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: JulianBlackstone_ColorWaveBlue
   m_TagString: JulianBlackstone_Totem
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

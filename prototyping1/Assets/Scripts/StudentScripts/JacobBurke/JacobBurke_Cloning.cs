@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class JacobBurke_Cloning : MonoBehaviour
 {
-    public float lifeDis = 10f;
-    public float summonTime = 100.0f;
+    public bool pushClone = false;
+    public float playerDrag = 1500f;
+    public float cloneDrag = 1500f;
 
-    private Vector3 change; // player movement direction
+    public GameObject shadowSpawner;
+
+    public Vector3 change; // player movement direction
     private Rigidbody2D rb2d;
+    private Rigidbody2D playerRb2d;
     private Animator anim;
     private bool isAlive = true;
-    private float speed; // player movement speed
+    public float speed; // player movement speed
 
     GameObject player;
     private float ogPlayerSpeed;
@@ -31,9 +35,13 @@ public class JacobBurke_Cloning : MonoBehaviour
         shadowParticles = GetComponentInChildren<ParticleSystem>();
 
         if (gameObject.GetComponent<Rigidbody2D>() != null)
-        {
             rb2d = GetComponent<Rigidbody2D>();
-        }
+
+        if (player.GetComponent<Rigidbody2D>() != null)
+            playerRb2d = player.GetComponent<Rigidbody2D>();
+
+        rb2d.drag = playerDrag;
+        playerRb2d.drag = cloneDrag;
     }
 
     void FixedUpdate()
@@ -57,6 +65,10 @@ public class JacobBurke_Cloning : MonoBehaviour
             {
                 player.GetComponent<PlayerMove>().speed = 0;
                 rb2d.bodyType = RigidbodyType2D.Dynamic;
+
+                if(isAlive && !pushClone)
+                    playerRb2d.bodyType = RigidbodyType2D.Static;
+
                 change = Vector3.zero;
                 change.x = Input.GetAxisRaw("Horizontal");
                 change.y = Input.GetAxisRaw("Vertical");
@@ -67,14 +79,18 @@ public class JacobBurke_Cloning : MonoBehaviour
             {
                 player.GetComponent<PlayerMove>().speed = ogPlayerSpeed;
                 anim.SetBool("Walk", false);
+
+                if(!pushClone)
                 rb2d.bodyType = RigidbodyType2D.Static;
+
+                playerRb2d.bodyType = RigidbodyType2D.Dynamic;
             }
 
             if (Input.GetKey(KeyCode.Space))
             {
                 anim.SetTrigger("Attack");
             }
-        } //else playerDie(); //run this function from the GameHandler instead
+        }
     }
 
     void UpdateAnimationAndMove()
@@ -97,14 +113,11 @@ public class JacobBurke_Cloning : MonoBehaviour
     void Update()
     {
         //If certain distance, vanish
-        if (Vector3.Distance(player.transform.position, transform.position) > lifeDis)
+        if (!GetComponent<Renderer>().isVisible)
             DestroyClone();
 
-        //If certain time, vanish
-        //if (summonTime > 0)
-            //summonTime -= Time.deltaTime;
-        //else
-            //DestroyClone();
+        if (Input.GetKeyDown(KeyCode.R))
+            DestroyClone();
 
         //E to teleport
         if(Input.GetKeyDown(KeyCode.E))
@@ -118,8 +131,11 @@ public class JacobBurke_Cloning : MonoBehaviour
 
     void DestroyClone()
     {
+        isAlive = false;
+        shadowSpawner.GetComponent<SpriteRenderer>().enabled = true;
         player.GetComponent<PlayerMove>().speed = ogPlayerSpeed;
         shadowParticles.Play();
+        playerRb2d.bodyType = RigidbodyType2D.Dynamic;
         Destroy(gameObject, 0.5f);
     }
 }

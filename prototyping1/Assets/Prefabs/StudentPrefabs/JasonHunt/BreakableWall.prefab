@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8809501648483111490}
   - component: {fileID: 8809501648483111549}
   - component: {fileID: 8809501648483111491}
+  - component: {fileID: 7299668714976557406}
   m_Layer: 0
   m_Name: BreakableWall
   m_TagString: JasonHuntBreakable
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8809501648483111548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.49, y: 5.51, z: 0}
+  m_LocalPosition: {x: -2.5, y: 5.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8809501649676272221}
@@ -80,6 +81,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7299668714976557406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8809501648483111548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437d6902d4e4563479debbee2f2246ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8809501649676272220
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 8809501649676272220}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 6.26, y: 6.26, z: 6.26}
   m_Children: []
   m_Father: {fileID: 8809501648483111490}
   m_RootOrder: 0
@@ -152,8 +165,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 50
-  m_Sprite: {fileID: 6908732097058694728, guid: 33b86c38efb9967459b5854f7005438f,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68c14155ce34bf94db8647cb8201317e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

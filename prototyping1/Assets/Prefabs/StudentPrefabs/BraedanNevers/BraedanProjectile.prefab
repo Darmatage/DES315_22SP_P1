@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: -1096734483900122681}
   m_Layer: 11
   m_Name: BraedanProjectile
-  m_TagString: Untagged
+  m_TagString: monsterShooter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,3 +166,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04b982accbc68e4191c15ccaddca25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHeld: 0

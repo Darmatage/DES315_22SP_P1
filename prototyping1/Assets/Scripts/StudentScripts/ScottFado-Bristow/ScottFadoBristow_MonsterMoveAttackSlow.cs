@@ -8,10 +8,15 @@ public class ScottFadoBristow_MonsterMoveAttackSlow : MonoBehaviour
 	public float speed = 4f;
 	private Transform target;
 	public float attackSlow = 1;
+	public float AgroRange = 4.0f;
 	public int EnemyLives = 3;
 	private Renderer rend;
 	private GameHandler gameHandlerObj;
 	private Animator anim;
+
+	public float WanderOffset = 5.0f;
+	public float WanderSpeedMultiplier = 0.5f;
+	private float wanderRotation = 0.0f;
 
 	//The lowest value the speed can get to
 	private const float speedFloor = 1.0f;
@@ -34,6 +39,8 @@ public class ScottFadoBristow_MonsterMoveAttackSlow : MonoBehaviour
 		{
 			gameHandlerObj = gameHandlerLocation.GetComponent<GameHandler>();
 		}
+
+		wanderRotation = Random.Range(0, 360.0f);
 	}
 
 	void Update()
@@ -41,14 +48,26 @@ public class ScottFadoBristow_MonsterMoveAttackSlow : MonoBehaviour
 		//int playerHealth = GameHandler.PlayerHealth; //access script directly in the case of a static variable 
 		if (target != null)
 		{
-			//if ((attackPlayer == true) && (playerHealth >= 1)){
-			if (attackPlayer == true)
+			//If in range of target
+			if ((transform.position - target.position).sqrMagnitude < AgroRange * AgroRange)
 			{
-				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+
+				//if ((attackPlayer == true) && (playerHealth >= 1)){
+				if (attackPlayer == true)
+				{
+					transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+				}
+				else if (attackPlayer == false)
+				{
+					transform.position = Vector2.MoveTowards(transform.position, target.position, speed * -1 * Time.deltaTime);
+				}
 			}
-			else if (attackPlayer == false)
+            else 
 			{
-				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * -1 * Time.deltaTime);
+				//Wander!
+				wanderRotation += Random.Range(-WanderOffset, WanderOffset);
+				Vector3 wanderDest = transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * wanderRotation), Mathf.Sin(Mathf.Deg2Rad * wanderRotation));
+				transform.position = Vector2.MoveTowards(transform.position, wanderDest, speed * WanderSpeedMultiplier  * Time.deltaTime);
 			}
 		}
 	}
@@ -76,6 +95,7 @@ public class ScottFadoBristow_MonsterMoveAttackSlow : MonoBehaviour
 			//Gets the players move script
 			PlayerMove player = collision.gameObject.GetComponent<PlayerMove>();
 
+			float oldS = player.speed;
 			player.speed = Mathf.Max(speedFloor, player.speed - attackSlow);
 
 
@@ -84,7 +104,7 @@ public class ScottFadoBristow_MonsterMoveAttackSlow : MonoBehaviour
 			ScottFadoBristow_SlimeBoots muddyBoots = collision.gameObject.GetComponent<ScottFadoBristow_SlimeBoots>();
 			if(muddyBoots)
             {
-				muddyBoots.Attatch();
+				muddyBoots.Attatch(collision.gameObject, oldS - player.speed);
 				//Destroy(transform.parent);
 				Destroy(gameObject);
             }
