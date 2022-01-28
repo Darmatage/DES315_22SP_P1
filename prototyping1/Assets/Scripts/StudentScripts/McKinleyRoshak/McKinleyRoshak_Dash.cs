@@ -13,12 +13,18 @@ public class McKinleyRoshak_Dash : MonoBehaviour
 
     public float dashSpeed = 3.0f;
     private float baseSpeed;
+
+    public GameObject LavaObject;
+    private Lava lavaScript;
+
+    public KeyCode DashKey = KeyCode.Q;
     // Start is called before the first frame update
     void Start()
     {
         Player = GameObject.Find("Player");
         move = Player.GetComponent<PlayerMove>();
         baseSpeed = 5.0f;
+        lavaScript = LavaObject.GetComponent<Lava>();
     }
 
     // Update is called once per frame
@@ -27,10 +33,11 @@ public class McKinleyRoshak_Dash : MonoBehaviour
         timer += Time.fixedDeltaTime;
         if (isDashing == false)
         {
-            if(timer >= cooldownTime && Input.GetKey(KeyCode.F))
+            if(timer >= cooldownTime && Input.GetKey(DashKey))
             {
                 isDashing = true;
                 timer = 0.0f;
+                lavaScript.damage = 0;
             }
         }
         if(isDashing)
@@ -42,6 +49,7 @@ public class McKinleyRoshak_Dash : MonoBehaviour
                 isDashing = false;
                 move.speed = baseSpeed;
                 timer = 0.0f;
+                lavaScript.damage = 1;
             }
         }
     }
