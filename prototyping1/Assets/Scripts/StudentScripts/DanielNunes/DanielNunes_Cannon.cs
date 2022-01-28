@@ -94,7 +94,7 @@ public class DanielNunes_Cannon : MonoBehaviour
     void Update()
     {
         RangeAndInputCheck();
-
+        
         //if the cannon is usable, isn't being pushed and/or pulled, and we press the shoot button
         //we also cannot shoot if there is already an instance of a cannonball
         if (usable && !pushing && !pulling && !rotating && Input.GetKeyDown(shootKey))
@@ -131,6 +131,11 @@ public class DanielNunes_Cannon : MonoBehaviour
         }
 
         Sink();
+
+        if (!sinking)
+        {
+            OnTarosTiles();
+        }
     }
 
     private void GetPlayerDirection(GameObject player)
@@ -771,6 +776,30 @@ public class DanielNunes_Cannon : MonoBehaviour
             //disable all colliders on cannon
             GetComponent<BoxCollider2D>().enabled = false;
             transform.Find("Trigger").GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+
+    private void OnTarosTiles()
+    {
+        //this is to see if we're on top of one of Taro's swith blocks (ONLY IF IT'S ACTIVE)
+
+        //send out a raycast to the right of the cannon
+        RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, Vector2.right);
+
+        foreach (RaycastHit2D hit in rays)
+        {
+            if (hit.collider.gameObject.name.Contains("Taro_Tilemap") && hit.distance < 0.5f)
+            {
+                if (hit.collider.gameObject.layer != LayerMask.NameToLayer("IgnorePlayer"))
+                {
+                    sinking = true;
+                    shrinkTimer = 0.0f;
+
+                    //disable all colliders on cannon
+                    GetComponent<BoxCollider2D>().enabled = false;
+                    transform.Find("Trigger").GetComponent<BoxCollider2D>().enabled = false;
+                }
+            }
         }
     }
 }

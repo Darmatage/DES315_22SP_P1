@@ -43,6 +43,9 @@ public class DanielNunes_Cannonball : MonoBehaviour
         //So, use the right vector of the cannon in this calculation.
         GetComponent<Rigidbody2D>().velocity = transform.parent.right * speed;
 
+        //we don't want to be a child of the cannon we were instantiated from anymore
+        transform.parent = null;
+
         //create cannon particles
         //cannonball creates these particles so you can't constantly create them when spamming shoot on the cannon itself
         GameObject p = Instantiate(cannonParticles, null);
@@ -121,8 +124,8 @@ public class DanielNunes_Cannonball : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        //if we collided with one of Taro's tilemap blocks
-        else if (collision.gameObject.name.Contains("Taro_Tilemap"))
+        //if we collided with one of Taro's tilemap blocks while it is on the default collision layer
+        else if (collision.gameObject.name.Contains("Taro_Tilemap") && collision.gameObject.layer == LayerMask.NameToLayer("Default"))
         {
             //despawn cannonball
             CreateParticles();
