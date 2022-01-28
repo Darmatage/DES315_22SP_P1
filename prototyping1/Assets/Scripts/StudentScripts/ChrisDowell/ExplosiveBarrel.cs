@@ -22,7 +22,7 @@ public class ExplosiveBarrel : MonoBehaviour
         [System.NonSerialized] public float m_dt = 0;
         [System.NonSerialized] public int m_hp = 10;
         [Header("Statistics")]
-        public int m_maxHP = 10;
+        public int m_maxHP = 3;
         public int m_damage = 25;
         public float m_explosiveRadius = 2f;
         public float m_pushforce = 1;
@@ -45,6 +45,7 @@ public class ExplosiveBarrel : MonoBehaviour
     public LayerMask m_ignoreMask; // Ignores collissions with objects on this layer
     public bool m_damageOtherBarrels = true;
     public bool m_ignoreOtherBarrels = false;
+    public bool m_lockPosition = true;
     
     public bool m_triggered = false;
 
@@ -229,7 +230,12 @@ public class ExplosiveBarrel : MonoBehaviour
         m_exlosivetrigger.radius = m_startRadius;
         m_rb.mass = 100f; // Set mass so it wont move lmao
         m_rb.drag = 100f;
-        m_rb.constraints = RigidbodyConstraints2D.FreezePosition;
+
+        if (m_lockPosition)
+        {
+            m_rb.constraints = RigidbodyConstraints2D.FreezePosition;
+
+        }
 
         Invoke("DestroySelf", m_explodeTime);
 
