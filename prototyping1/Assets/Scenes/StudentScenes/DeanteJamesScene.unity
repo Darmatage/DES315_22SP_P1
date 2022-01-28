@@ -20798,6 +20798,68 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: lavaMap
+      value: 
+      objectReference: {fileID: 1596600662}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: lavaTile
+      value: 
+      objectReference: {fileID: 11400000, guid: 54047f8100659b646baba20e1699ea29,
+        type: 2}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: skull_projectile
+      value: 
+      objectReference: {fileID: 2897097587681159296, guid: 0573994f43b58e94c98a3612cbefb2af,
+        type: 3}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: skull_hardestSpeed
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: slime_hardestSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: spawnTilesInterval
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: howManyTilesPerInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: spawnTilesIntervalPerMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: timeLevelStopsGettingHard
+      value: 03:00
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: spawnTilesIntervalPerSecond
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: skull_hardestStoppingDistance
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1859795741457668696, guid: a55d8d0171dcba2488c712a4a2082111,
+        type: 3}
+      propertyPath: increment_HowManyTiles_WhenSpawned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a55d8d0171dcba2488c712a4a2082111, type: 3}
 --- !u!1001 &3194199321100419772
