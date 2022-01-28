@@ -250,10 +250,12 @@ MonoBehaviour:
   m_damageMask:
     serializedVersion: 2
     m_Bits: 3136
-  m_triggered: 0
-  m_deleteMask:
+  m_ignoreMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
+  m_damageOtherBarrels: 1
+  m_ignoreOtherBarrels: 0
+  m_triggered: 0
   m_indicator: {fileID: 8704763472087167412}
   m_renderer: {fileID: 2955012074025261690}
   m_explodeSound: {fileID: 6345630020965390310}
