@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 [RequireComponent(typeof(B03_AStarPathFinding))]
+[RequireComponent(typeof(B03_TerrainAnaylsis))]
 public class B03_EnemyAI : MonoBehaviour
 {
     enum AIState
@@ -28,6 +29,7 @@ public class B03_EnemyAI : MonoBehaviour
 	private Renderer render = null;
 	private Animator animator = null;
 	private B03_AStarPathFinding pathFinding = null;
+	private B03_TerrainAnaylsis terrainAnaylsis = null;
 
 	private float retreatTimer;
 
@@ -53,10 +55,12 @@ public class B03_EnemyAI : MonoBehaviour
 		}
 
 		pathFinding = GetComponent<B03_AStarPathFinding>();
+		terrainAnaylsis = GetComponent<B03_TerrainAnaylsis>();
 
 		Assert.IsNotNull(target, "There was no player found.");
 		Assert.IsNotNull(gameHandlerObj, "There was no handler found.");
 		Assert.IsNotNull(pathFinding, "How do you not have an A* path finding compoent on this?!?");
+		Assert.IsNotNull(terrainAnaylsis, "How do you not have an terrain anaylsis compoent on this?!?");
 	}
 
 	void Update()
