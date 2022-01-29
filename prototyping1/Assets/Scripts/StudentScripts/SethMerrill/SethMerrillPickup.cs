@@ -20,7 +20,7 @@ public class SethMerrillPickup : MonoBehaviour
 	{
 		if(other.gameObject.tag == "Player")
 		{
-			GameObject.FindWithTag("GameHandler").GetComponent<GameHandler>().TakeDamage(1000);
+			GameObject.FindWithTag("GameHandler").GetComponent<GameHandler>().Heal(1000);
 			Destroy(gameObject);
 		}
 	}

@@ -20,17 +20,10 @@ public class SethMerrill_beamScript : MonoBehaviour
     void Update()
     {
 		pos = transform.position;
-		playerPos = GameObject.FindWithTag("Player").transform.position;
+		Vector2 pp = GameObject.FindWithTag("Player").transform.position;
+		playerPos = pp + GameObject.FindWithTag("Player").GetComponent<Collider2D>().offset;
 		Debug.DrawRay(pos, playerPos-pos, Color.red);
-		if(Vector3.Distance(pos, playerPos) <= range)
-		{
-			LookAt();
-		}
-		else
-		{
-			LookAround();
-		}
-		See();
+		LookAround();
 		//Debug.Log(gh.gameObject.name);
     }
 	
@@ -52,20 +45,6 @@ public class SethMerrill_beamScript : MonoBehaviour
 		}
 	}
 	
-	void LookAt()
-	{
-		Vector3 v = Vector3.Normalize(playerPos - pos);
-		float f = Vector2.Angle(v, new Vector2(0,1));
-		float f2 = Vector2.Angle(v, new Vector2(0,-1));
-		
-		Vector3 q = transform.eulerAngles;
-		if(playerPos.x < pos.x)
-			q.z = f;
-		else
-			q.z = -f;
-		transform.eulerAngles = q;
-	}
-	
 	void LookAround()
 	{
 		Vector3 q = transform.eulerAngles;
@@ -73,18 +52,13 @@ public class SethMerrill_beamScript : MonoBehaviour
 		float f = Vector2.Angle(v, new Vector2(0,1));
 		float f2 = Vector2.Angle(v, new Vector2(0,-1));
 		
-		if(Vector3.Distance(pos, playerPos) > range * 2)
-		{
-			q.z+=.5f;
-		}
-		else
-		{
-			if(playerPos.x < pos.x)
-				q.z = f;
-			else
-				q.z = -f;
-			transform.eulerAngles = q;
-		}
+		q.z+=.5f;
 		transform.eulerAngles = q;
+	}
+	
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		See();
+		Debug.Log(other.gameObject.name);
 	}
 }

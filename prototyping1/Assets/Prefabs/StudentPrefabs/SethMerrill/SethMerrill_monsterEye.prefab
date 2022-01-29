@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6710991542162814940}
-  - component: {fileID: 6710991542162814941}
   - component: {fileID: 4005441344218218543}
   - component: {fileID: 6287539208517157784}
   - component: {fileID: 8905207464685949158}
-  - component: {fileID: -7201365882587852267}
+  - component: {fileID: 1331726527060618448}
   m_Layer: 0
   m_Name: SethMerrill_monsterEye
   m_TagString: Untagged
@@ -36,27 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &6710991542162814941
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6710991542162814943}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
 --- !u!82 &4005441344218218543
 AudioSource:
   m_ObjectHideFlags: 0
@@ -180,11 +158,10 @@ MonoBehaviour:
   beamPrefab: {fileID: 2291302644676608766, guid: b41a3687873704a47adf68fce299c81e,
     type: 3}
   speed: 1
-  direction: {x: 0, y: 0, z: 0}
   hunger: 0.1
   range: 4
   damage: 5
---- !u!58 &-7201365882587852267
+--- !u!58 &1331726527060618448
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

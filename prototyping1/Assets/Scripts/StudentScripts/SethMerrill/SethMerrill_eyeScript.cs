@@ -31,9 +31,9 @@ public class SethMerrill_eyeScript : MonoBehaviour
 		
         beamInstance.transform.position = transform.position;
 		
-		direction.x = (Vector3.Normalize(playerPos - pos) * hunger).x + ((float)RNG.NextDouble() - 0.5f) * (1.0f - hunger);
-		direction.y = (Vector3.Normalize(playerPos - pos) * hunger).y + ((float)RNG.NextDouble() - 0.5f) * (1.0f - hunger);	
+		//direction.x = (Vector3.Normalize(playerPos - pos) * hunger).x + ((float)RNG.NextDouble() - 0.5f) * (1.0f - hunger);
+		//direction.y = (Vector3.Normalize(playerPos - pos) * hunger).y + ((float)RNG.NextDouble() - 0.5f) * (1.0f - hunger);	
 		
-		transform.position += Vector3.Normalize(direction) * speed * Time.deltaTime;
+		//transform.position += Vector3.Normalize(direction) * speed * Time.deltaTime;
     }
 }
