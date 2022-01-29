@@ -5,10 +5,13 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour{
 	
 	public int EnemyLives = 3;
+	private int startEnemyLives; 
 	private GameHandler gameHandlerObj;
 	
 	private Animator anim;
 	private Renderer rend;
+	private Color startColor;
+	private float enemyAlpha = 1f;
 	
 	public bool isStunned = false;
 	public float stunTime = 5f;
@@ -17,7 +20,9 @@ public class EnemyHealth : MonoBehaviour{
     void Start(){
 		anim = gameObject.GetComponentInChildren<Animator>();
 		rend = GetComponentInChildren<Renderer> ();
+		startColor = rend.material.color;
 		stuncounter = stunTime;
+		startEnemyLives = EnemyLives;
     }
 
 	void FixedUpdate(){
@@ -52,8 +57,12 @@ public class EnemyHealth : MonoBehaviour{
 			//gameHandlerObj.AddScore (1);
 			Destroy(gameObject);
 		}
-		else yield return new WaitForSeconds(0.5f);
-		rend.material.color = Color.white;
+		else {yield return new WaitForSeconds(0.5f);
+			//rend.material.color = Color.white;
+			enemyAlpha = EnemyLives / startEnemyLives;
+			if (enemyAlpha < 0.2f){enemyAlpha = 0.6f;}
+			rend.material.color = new Vector4(startColor.r, startColor.b, startColor.g, enemyAlpha);
+		}
 	}
 	
 }
