@@ -1,0 +1,4 @@
+Simply drop the checkpoint into the scene, and set up the pointers via the inspector. 
+
+One of the important things is that my feature lowers the players max health to only five, 
+because otherwise having so much health defeats the point of the checkpoints according to the current

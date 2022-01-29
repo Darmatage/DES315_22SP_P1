@@ -7,11 +7,20 @@ public class JulianBlackstone_ColorSystem : MonoBehaviour
     public string colorTag = "Red";
     public bool hideOnActivation = false;
 
+    public GameObject ItemOutline;
+    public bool ShowOutlineOfObject = false;
+
     private float internalTimer = 0.0f;
     private SpriteRenderer mySprite;
 
     private void Start()
     {
+        if (ItemOutline != null)
+        {
+            ItemOutline.SetActive(ShowOutlineOfObject);
+        }
+
+
         mySprite = GetComponent<SpriteRenderer>();
 
         if (mySprite == null)

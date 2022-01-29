@@ -19,11 +19,18 @@ public class GenericSwitch : MonoBehaviour
 
 	public List<string> tags = new List<string> { "Player" };
 
-	private bool on = false;
+	public bool on = false;
+
+	private bool on_internal = false;
+
 
 	void Start()
 	{
-		ArtSwitchOff();
+		on_internal = on;
+		if (on_internal)
+			ArtSwitchOn();
+		else
+			ArtSwitchOff();
 	}
 
 	private void ArtSwitchOn()
@@ -41,15 +48,15 @@ public class GenericSwitch : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		// don't switch off if not desired.
-		if (toggle || on)
+		if (toggle || !on_internal)
 		{
 			foreach (string t in tags)
 			{
 				if (other.gameObject.tag == t)
 				{
-					on = !on;
+					on_internal = !on_internal;
 					
-					if (on)
+					if (on_internal)
 					{
 						ArtSwitchOn();
 						OnSwitchOnEvent.Invoke();

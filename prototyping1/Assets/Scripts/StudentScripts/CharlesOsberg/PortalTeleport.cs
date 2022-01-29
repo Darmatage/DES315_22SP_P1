@@ -14,6 +14,12 @@ public class PortalTeleport : MonoBehaviour
 
     private const float portalExclusionZone = 1.0f;
 
+    [SerializeField] private AudioClip portalTeleportSfx = null;
+    [SerializeField] private AudioClip portalLandSfx = null;
+    private AudioSource audio = null;
+
+    [SerializeField] private GameObject portalFizz = null;
+    
     private new Rigidbody2D rigidbody;
 
     public enum HitDirection
@@ -28,6 +34,7 @@ public class PortalTeleport : MonoBehaviour
 
     private void Awake()
     {
+        audio = GetComponent<AudioSource>();
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -58,6 +65,8 @@ public class PortalTeleport : MonoBehaviour
                 rawPos.x = Mathf.Ceil(rawPos.x);
                 break;
         }
+        
+        audio.PlayOneShot(portalLandSfx);
         
         transform.position = rawPos;
         PortalGun.NotifyPortalSuccess(isPortal2);
@@ -94,7 +103,7 @@ public class PortalTeleport : MonoBehaviour
             }
             
             //some exclusionary checks
-            if (!other.gameObject.CompareTag("Player"))
+            if (!COTags.CompareTag(other.gameObject, "CanGoThroughPortals"))
             {
                 isValidTele = false;
             }
@@ -102,12 +111,12 @@ public class PortalTeleport : MonoBehaviour
             if (isValidTele)
             {
                 //push away a bit so we don't immediately teleport back and forth
-                portalDist += (other.transform.position - transform.position).normalized * pushAmt;
+                portalDist -= (other.transform.position - transform.position);
 
                 //also push away from contacted wall
                 portalDist += oDir switch
                 {
-                    HitDirection.Bottom => Vector3.up,
+                    HitDirection.Bottom => Vector3.up * 2.0f,
                     HitDirection.Top => Vector3.down,
                     HitDirection.Left => Vector3.right,
                     HitDirection.Right => Vector3.left,
@@ -115,6 +124,7 @@ public class PortalTeleport : MonoBehaviour
                 };
                 
                 other.transform.position += portalDist;
+                audio.PlayOneShot(portalTeleportSfx);
             }
 
         }
@@ -125,8 +135,8 @@ public class PortalTeleport : MonoBehaviour
             //for feedback
             var shouldFizzle = false;
             
-            //collision with player not valid
-            if (other.gameObject.CompareTag("Player"))
+            //collision with player and other goodies not valid
+            if (COTags.CompareTag(other.gameObject, "PortalPassThru"))
             {
                 isCollisionValid = false;
             }
@@ -196,6 +206,7 @@ public class PortalTeleport : MonoBehaviour
 
             if (shouldFizzle)
             {
+                Instantiate(portalFizz, transform.position, transform.rotation);
                 Destroy(gameObject);
             }
         }
