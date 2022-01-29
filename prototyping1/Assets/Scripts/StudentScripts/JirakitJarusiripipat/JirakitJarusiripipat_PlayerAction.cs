@@ -258,7 +258,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "EditorOnly")
+        if(collision.gameObject.tag == "WallDoor")
         {
             gameManager.hitActive = true;
             gameManager.waveText.gameObject.SetActive(true);
