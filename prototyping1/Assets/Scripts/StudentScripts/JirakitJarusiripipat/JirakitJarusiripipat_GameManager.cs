@@ -47,8 +47,7 @@ public class JirakitJarusiripipat_GameManager : MonoBehaviour
     [SerializeField]
     Image instruction;
 
-    [SerializeField]
-    private bool gameStart = true;
+    public bool gameStart = true;
     private bool gameEnd = false;
     private bool doorOpen = false;
 
