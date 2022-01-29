@@ -1934,7 +1934,7 @@ PrefabInstance:
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
       propertyPath: range
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
@@ -2023,7 +2023,7 @@ PrefabInstance:
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
       propertyPath: range
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
@@ -25907,7 +25907,7 @@ PrefabInstance:
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
       propertyPath: range
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
@@ -26233,7 +26233,7 @@ PrefabInstance:
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
       propertyPath: range
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
@@ -26728,7 +26728,7 @@ PrefabInstance:
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
       propertyPath: range
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
@@ -32340,7 +32340,7 @@ PrefabInstance:
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
       propertyPath: range
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
@@ -34020,7 +34020,7 @@ PrefabInstance:
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
       propertyPath: range
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8905207464685949158, guid: d89dcd2ee213fdf4f89f58a1a2988f59,
         type: 3}
@@ -34348,7 +34348,7 @@ PrefabInstance:
     - target: {fileID: 6551937145445057747, guid: 401a933dbd2195744a4fb43f251707d7,
         type: 3}
       propertyPath: NextScene
-      value: TeacherSampleScene
+      value: SethMerrillScene
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 401a933dbd2195744a4fb43f251707d7, type: 3}
