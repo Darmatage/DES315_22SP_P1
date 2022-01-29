@@ -63,6 +63,11 @@ public class MultiplyEnemy : MonoBehaviour
 
     void SpawnChild(Transform transform)
     {
+        if (enemy_object == null)
+        {
+            return;
+        }
+
         GameObject child_object = Instantiate(enemy_object);
         int child_multiplications = multiplications / 2;
 
