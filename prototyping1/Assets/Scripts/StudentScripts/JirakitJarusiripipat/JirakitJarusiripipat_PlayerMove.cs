@@ -83,7 +83,7 @@ public class JirakitJarusiripipat_PlayerMove : MonoBehaviour
 
 	public void playerHit()
 	{
-		if (isAlive == true)
+		if (isAlive == true && !playerAction.isUsingSkill)
 		{
 			anim.SetTrigger("Hurt");
 			StopCoroutine(ChangeColor());

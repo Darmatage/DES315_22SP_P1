@@ -31,8 +31,17 @@ public class DanielNunes_Crate : MonoBehaviour
             Instantiate(particles, transform);
 
             //reset all cannon contacts briefly (in the event a crate was shot right next to us)
-            DanielNunes_Cannon cannonThatShotTheBallAtMe = collision.gameObject.transform.parent.GetComponent<DanielNunes_Cannon>();
-            cannonThatShotTheBallAtMe.ResetContacts();
+            //DanielNunes_Cannon cannonThatShotTheBallAtMe = collision.gameObject.transform.parent.GetComponent<DanielNunes_Cannon>();
+            //cannonThatShotTheBallAtMe.ResetContacts();
+
+            //get all cannons in the scene
+            DanielNunes_Cannon[] cannons = FindObjectsOfType<DanielNunes_Cannon>();
+            //go through all cannons and...
+            for (int i = 0; i < cannons.Length; ++i)
+            {
+                //...briefly reset each of their raycast contacts
+                cannons[i].ResetContacts();
+            }
         }
     }
 }

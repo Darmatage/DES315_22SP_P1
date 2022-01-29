@@ -7,7 +7,7 @@ public class SethMerrill_eyeScript : MonoBehaviour
 	public GameObject beamPrefab;
 	private GameObject beamInstance;
 	public float speed = 1.0f;
-	public Vector3 direction;
+	private Vector3 direction;
 	static System.Random RNG;
 	public float hunger;
 	public float range;
@@ -17,8 +17,9 @@ public class SethMerrill_eyeScript : MonoBehaviour
     void Start()
     {
 		beamInstance = Instantiate(beamPrefab, transform.position, Quaternion.identity);
+		beamInstance.transform.localScale = new Vector3(1.0f, range, 1.0f);
+		beamInstance.GetComponent<SethMerrill_beamScript>().range = range;
 		if(RNG == null) RNG = new System.Random();
-		hunger = (float)RNG.NextDouble();
 		gh = GameObject.FindWithTag("GameHandler").GetComponent<GameHandler>();
     }
 
