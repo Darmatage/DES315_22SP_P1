@@ -1,3 +1,0 @@
-Portal gun. Left and right click to fire portals from the player.
-
-Drop the PortalSystem prefab anywhere in the scene to enable.

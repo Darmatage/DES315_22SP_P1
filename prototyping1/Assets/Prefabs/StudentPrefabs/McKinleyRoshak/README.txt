@@ -1,4 +1,0 @@
-The dash prefab can be dropped into any scene as it's own object. It allows the player to dash by pushing the dash button (default mapped to f, but can be remapped very easily in the object editor)
-When dashing, the player will move much faster for a short time, and then must wait a short time until they can dash again.
-Dash causes player to take no damage from lava while dashing, but has no effect on other damage sources. 
-MAKE SURE TO ADD THE LAVA TILEMAP OBJECT TO YOUR INSTANCE OF THE PREFAB ONCE YOU PLACE IT IN THE SCENE! Lava will still do damage unless the script has a valic reference to the lava added in the editor.
