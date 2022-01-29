@@ -63,8 +63,11 @@ public class MultiplyEnemy : MonoBehaviour
 
     void SpawnChild(Transform transform)
     {
-        
         GameObject child_object = Instantiate(this.gameObject);
+        
+        if (child_object == null)
+            return;
+
         int child_multiplications = multiplications / 2;
 
         MultiplyEnemy child_multiply_info = (MultiplyEnemy)child_object.GetComponent(typeof(MultiplyEnemy));
