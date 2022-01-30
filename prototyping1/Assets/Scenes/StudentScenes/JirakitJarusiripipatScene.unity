@@ -914,7 +914,7 @@ GameObject:
   - component: {fileID: 22892018}
   m_Layer: 0
   m_Name: Activate Start
-  m_TagString: EditorOnly
+  m_TagString: WallDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -932,18 +932,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.00000011920929}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.0023346, y: 2.0023348}
   m_EdgeRadius: 0
 --- !u!212 &22892019
 SpriteRenderer:
@@ -986,8 +986,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: ec64bf2605b4fc14f8dd6b1a9f338915, type: 3}
   m_Color: {r: 0.9372549, g: 0.8645648, b: 0.41176474, a: 0.5411765}
   m_FlipX: 0
   m_FlipY: 0
@@ -1006,8 +1005,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22892017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.89, y: -4.3001, z: 0}
-  m_LocalScale: {x: 4.9454, y: 2.7152944, z: 1}
+  m_LocalPosition: {x: 29.02, y: -4.77, z: 0}
+  m_LocalScale: {x: 3.3649, y: 1.4855, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 22

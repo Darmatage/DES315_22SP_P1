@@ -17,6 +17,11 @@ public class B05_EnemyMove : MonoBehaviour
 	public float retreatTime = 3.0f;
 	private bool attackPlayer = true;
 
+	public float StunTime = 3.0f;
+	bool stunned = false;
+
+	float stunTimer = 0.0f;
+
 	void Start()
 	{
 		anim = gameObject.GetComponentInChildren<Animator>();
@@ -30,6 +35,16 @@ public class B05_EnemyMove : MonoBehaviour
 
 	void Update()
 	{
+		if(stunned)
+        {
+			stunTimer -= Time.deltaTime;
+			if(stunTimer <= 0.0f)
+            {
+				stunned = false;
+            }
+			return;
+        }
+
 		//int playerHealth = GameHandler.PlayerHealth; //access script directly in the case of a static variable 
 		if (target != null)
 		{
@@ -72,18 +87,31 @@ public class B05_EnemyMove : MonoBehaviour
 		}
 	}
 
-	IEnumerator GetHit()
-	{
-		anim.SetTrigger("Hurt");
+	public void HitEnemy()
+    {
 		EnemyLives -= 1;
-		// color values are R, G, B, and alpha, each divided by 100
-		rend.material.color = new Color(2.4f, 0.9f, 0.9f, 0.5f);
+
+		stunned = true;
+		stunTimer = StunTime;
+
 		if (EnemyLives < 1)
 		{
 			//gameHandlerObj.AddScore (1);
 			Destroy(gameObject);
 		}
-		else yield return new WaitForSeconds(0.5f);
+		else
+        {
+			StopCoroutine("GetHit");
+			StartCoroutine("GetHit");
+		}	}
+
+	IEnumerator GetHit()
+	{
+		anim.SetTrigger("Hurt");
+		// color values are R, G, B, and alpha, each divided by 100
+		rend.material.color = new Color(2.4f, 0.9f, 0.9f, 0.5f);
+
+		yield return new WaitForSeconds(0.5f);
 		rend.material.color = Color.white;
 	}
 

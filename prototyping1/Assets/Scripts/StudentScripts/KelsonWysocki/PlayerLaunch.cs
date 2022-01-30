@@ -32,11 +32,12 @@ public class PlayerLaunch : MonoBehaviour
 
     private float launchSpeedToUse;
     private float launchStartTime;
-    private bool isLaunching = false;
+    [HideInInspector]
+    public bool isLaunching = false;
     private float holdTime;
     private float launchDistanceToUse;
 
-    private float damageAreaSize = 2f;
+    private float damageAreaSize = 1f;
     private float damageAreaSizeToUse;
 
     private float originalCameraSize;
@@ -201,7 +202,8 @@ public class PlayerLaunch : MonoBehaviour
         Invoke(nameof(EndLaunch), launchTime);
         damageArea = Instantiate(damageAreaPrefab);
         Vector2 newSize = new Vector2(damageAreaSizeToUse, damageAreaSizeToUse);
-        damageArea.GetComponent<CapsuleCollider2D>().size = newSize;
+        //damageArea.GetComponent<CapsuleCollider2D>().size = newSize;
+        damageArea.transform.localScale = newSize;
 
         player.tag = "bullet";
     }
