@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DanielNunes_AngledPipe : MonoBehaviour
 {
-    [SerializeField]
-    private KeyCode rotateKey;
+    //[SerializeField]
+    //private KeyCode rotateKey;
 
     //reference to player object
     private GameObject player;
@@ -25,6 +25,9 @@ public class DanielNunes_AngledPipe : MonoBehaviour
 
     [SerializeField]
     private GameObject pipeParticles;
+
+    [SerializeField]
+    private AudioSource sound_woosh;
 
     //public enum Orientations
     //{
@@ -69,6 +72,8 @@ public class DanielNunes_AngledPipe : MonoBehaviour
                 originalRot = transform.rotation.eulerAngles;
                 //new rotation will be 90 degree counterclockwise
                 newRot = originalRot + new Vector3(0, 0, 90.0f);
+
+                sound_woosh.Play();
             }
             else if (Input.GetKey(KeyCode.E))
             {
@@ -80,6 +85,8 @@ public class DanielNunes_AngledPipe : MonoBehaviour
                 originalRot = transform.rotation.eulerAngles;
                 //new rotation will be 90 degree clockwise
                 newRot = originalRot - new Vector3(0, 0, 90.0f);
+
+                sound_woosh.Play();
             }
         }
 

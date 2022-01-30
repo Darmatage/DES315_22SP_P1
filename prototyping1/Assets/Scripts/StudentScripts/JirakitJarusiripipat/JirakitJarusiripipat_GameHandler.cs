@@ -87,17 +87,21 @@ public class JirakitJarusiripipat_GameHandler : MonoBehaviour
 
 	public void TakeDamage(int damage)
 	{
-		PlayerHealth -= damage;
-		if (PlayerHealth <= 0)
-		{
-			PlayerHealth = 0;
-			playerObj.GetComponent<JirakitJarusiripipat_PlayerMove>().playerDie();
-			isDead = true;
+		if(!playerObj.GetComponent<JirakitJarusiripipat_PlayerAction>().isUsingSkill)
+        {
+			PlayerHealth -= damage;
+			if (PlayerHealth <= 0)
+			{
+				PlayerHealth = 0;
+				playerObj.GetComponent<JirakitJarusiripipat_PlayerMove>().playerDie();
+				isDead = true;
+			}
+			else
+			{
+				playerObj.GetComponent<JirakitJarusiripipat_PlayerMove>().playerHit();
+			}
 		}
-		else
-		{
-			playerObj.GetComponent<JirakitJarusiripipat_PlayerMove>().playerHit();
-		}
+		
 		UpdateHealth();
 	}
 	

@@ -12,11 +12,17 @@ public class MindControlHelmet : MonoBehaviour
     MonoBehaviour enemyComp = null;
     bool onPlayer = true;
     float playerMoveSpeed = 0;
+    bool toDisable = false;
+    bool isKinematic = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             enemies.Add(collision.transform);
+        }
+        else if (!onPlayer && collision.CompareTag("Switch"))
+        {
+            toDisable = true;
         }
     }
 
@@ -54,6 +60,7 @@ public class MindControlHelmet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         if(Input.GetKeyDown(KeyCode.Space) && enemies.Count > 0)
         {
             Transform enemy = GetClosestEnemy();
@@ -73,22 +80,29 @@ public class MindControlHelmet : MonoBehaviour
                     enemyComp = enemy.GetComponent<MonsterShootMove>();
                 }
                 enemyComp.enabled = false;
+                isKinematic = enemyComp.GetComponent<Rigidbody2D>().isKinematic;
+                enemyComp.GetComponent<Rigidbody2D>().isKinematic = false;
                 transform.parent = enemy;
                 transform.localPosition = new Vector3(0, 0, 0);
                 camera.playerObj = enemy.gameObject;
-                onPlayer = false;
+                onPlayer = false;  
                 player.speed = 0;
             }
             
         }
         if (Input.GetKeyDown(KeyCode.RightAlt))
         {
-            enemyComp.enabled = true;
+            if (onPlayer)
+            {
+                return;
+            }
+            enemyComp.enabled = true;            
             transform.parent = player.transform;
             transform.localPosition = new Vector3(0, 0, 0);
             camera.playerObj = player.gameObject;
             onPlayer = true;
             player.speed = playerMoveSpeed;
+            enemyComp.GetComponent<Rigidbody2D>().isKinematic = isKinematic;
         }
 
         
@@ -109,6 +123,22 @@ public class MindControlHelmet : MonoBehaviour
 
         }
         //else playerDie(); //run this function from the GameHandler instead
+    }
+
+    private void LateUpdate()
+    {
+        if (toDisable)
+        {
+            toDisable = false;
+            enemyComp.enabled = true;
+            enemyComp.transform.tag = "Untagged";
+            transform.parent = player.transform;
+            transform.localPosition = new Vector3(0, 0, 0);
+            camera.playerObj = player.gameObject;
+            onPlayer = true;
+            enemyComp.GetComponent<Rigidbody2D>().isKinematic = isKinematic;
+            player.speed = playerMoveSpeed;
+            }
     }
 
 }
