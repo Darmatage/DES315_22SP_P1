@@ -58,99 +58,130 @@ public class MetronomeControllerScript : MonoBehaviour
             // Number of bars must be even
             ++bars;
         }
-        float spacing = 2 * canvasHalfWidth / bars;
-        float xPos = -canvasHalfWidth;
         for (int i = 0; i < bars; ++i)
         {
-            if (i == (bars / 2))
-            {
-                xPos += spacing;
-            }
             GameObject bar = Instantiate(barPrefab) as GameObject;
             barsList.Add(bar);
             bar.transform.SetParent(metronomeMarker.transform, false);
-            bar.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, 0.0f);
-            xPos += spacing;
         }
+        Debug.Log(barsList.Count);
+        ResetBarPositions();
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool valid = false;
-        Vector3 move = Vector3.zero;
-        MetronomeStatusScript.StatusPreset preset = MetronomeStatusScript.presets[2];
-        for (int i = 0; i < bars; ++i)
+        if (Time.timeScale >= 1.0f)
         {
-            if (Mathf.Abs(barsList[i].GetComponent<RectTransform>().anchoredPosition.x) < goodThreshold)
+            if (!metronomeMarker.activeSelf)
             {
-                valid = true;
-                preset = MetronomeStatusScript.presets[1];
-                if (Mathf.Abs(barsList[i].GetComponent<RectTransform>().anchoredPosition.x) < perfectThreshold)
+                metronomeMarker.SetActive(true);
+                for (int i = 0; i < barsList.Count; ++i)
                 {
-                    preset = MetronomeStatusScript.presets[0];
+                    barsList[i].SetActive(true);
+                }
+                ResetBarPositions();
+            }
+
+            bool valid = false;
+            Vector3 move = Vector3.zero;
+            MetronomeStatusScript.StatusPreset preset = MetronomeStatusScript.presets[2];
+            for (int i = 0; i < bars; ++i)
+            {
+                if (Mathf.Abs(barsList[i].GetComponent<RectTransform>().anchoredPosition.x) < goodThreshold)
+                {
+                    valid = true;
+                    preset = MetronomeStatusScript.presets[1];
+                    if (Mathf.Abs(barsList[i].GetComponent<RectTransform>().anchoredPosition.x) < perfectThreshold)
+                    {
+                        preset = MetronomeStatusScript.presets[0];
+                    }
                 }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
-        {
-            move = Vector3.up;
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-        {
-            move = Vector3.left;
-
-            Vector3 newScale = player.transform.localScale;
-			newScale.x = -1.0f;
-			player.transform.localScale = newScale;
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
-        {
-            move = Vector3.down;
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-        {
-            move = Vector3.right;
-
-            Vector3 newScale = player.transform.localScale;
-			newScale.x = 1.0f;
-			player.transform.localScale = newScale;
-        }
-        if (move != Vector3.zero && !actionThisBeat)
-        {
-            if (valid)
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
-                pMove.MovePlayer(move);
-                if (preset.text == MetronomeStatusScript.presets[0].text)
+                move = Vector3.up;
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+            {
+                move = Vector3.left;
+
+                Vector3 newScale = player.transform.localScale;
+                newScale.x = -1.0f;
+                player.transform.localScale = newScale;
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            {
+                move = Vector3.down;
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+            {
+                move = Vector3.right;
+
+                Vector3 newScale = player.transform.localScale;
+                newScale.x = 1.0f;
+                player.transform.localScale = newScale;
+            }
+            if (move != Vector3.zero && !actionThisBeat)
+            {
+                if (valid)
                 {
-                    MetronomeBarScript.barSpeed += 0.5f * Mathf.Sqrt(MetronomeBarScript.barSpeed);
-                    audioSources[0].pitch = 1.0f;
+                    pMove.MovePlayer(move);
+                    if (preset.text == MetronomeStatusScript.presets[0].text)
+                    {
+                        MetronomeBarScript.barSpeed += 0.25f * Mathf.Sqrt(MetronomeBarScript.barSpeed);
+                        audioSources[0].pitch = 1.0f;
+                    }
+                    else if (preset.text == MetronomeStatusScript.presets[1].text)
+                    {
+                        audioSources[0].pitch = 0.8f;
+                    }
+                    audioSources[0].Play(0);
                 }
-                else if (preset.text == MetronomeStatusScript.presets[1].text)
+                else
                 {
-                    audioSources[0].pitch = 0.8f;
+                    audioSources[2].Play(0);
+                    MetronomeBarScript.barSpeed = MetronomeBarScript.initialBarSpeed;
+                    pAnim.SetTrigger("Hurt");
+                    handler.TakeDamage(5);
                 }
-                audioSources[0].Play(0);
+                status.SetTextToPreset(preset);
+                actionThisBeat = true;
+                pAnim.SetBool("Walk", true);
             }
             else
             {
-                audioSources[2].Play(0);
-                MetronomeBarScript.barSpeed = MetronomeBarScript.initialBarSpeed;
-                pAnim.SetTrigger("Hurt");
-                handler.TakeDamage(5);
+                pAnim.SetBool("Walk", false);
             }
-            status.SetTextToPreset(preset);
-            actionThisBeat = true;
-            pAnim.SetBool("Walk", true);
         }
         else
         {
-            pAnim.SetBool("Walk", false);
+            metronomeMarker.SetActive(false);
+            for (int i = 0; i < barsList.Count; ++i)
+            {
+                barsList[i].SetActive(false);
+            }
         }
     }
 
     public void ResetActions()
     {
         actionThisBeat = false;
+    }
+
+    private void ResetBarPositions()
+    {
+        float spacing = 2 * canvasHalfWidth / bars;
+        float xPos = -canvasHalfWidth;
+        for (int i = 0; i < barsList.Count; ++i)
+        {
+            if (i == (barsList.Count / 2))
+            {
+                xPos += spacing;
+            }
+            
+            barsList[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, 0.0f);
+            xPos += spacing;
+        }
     }
 }
