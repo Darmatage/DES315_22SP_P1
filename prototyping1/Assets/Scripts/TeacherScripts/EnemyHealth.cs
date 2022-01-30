@@ -43,14 +43,17 @@ public class EnemyHealth : MonoBehaviour{
 	
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag == "bullet") {
+			anim.SetTrigger("Hurt");
+			EnemyLives -= 1;
+			enemyAlpha = EnemyLives / startEnemyLives;
+			if (enemyAlpha < 0.5f){enemyAlpha = 0.5f;}
+			
 			StopCoroutine("GetHit");
 			StartCoroutine("GetHit");
 		}
 	}
 	
 	IEnumerator GetHit(){
-		anim.SetTrigger("Hurt");
-		EnemyLives -= 1;
 		// color values are R, G, B, and alpha, each divided by 100
 		rend.material.color = new Color(2.4f, 0.9f, 0.9f, 0.5f);
 		if (EnemyLives < 1){
@@ -59,8 +62,6 @@ public class EnemyHealth : MonoBehaviour{
 		}
 		else {yield return new WaitForSeconds(0.5f);
 			//rend.material.color = Color.white;
-			enemyAlpha = EnemyLives / startEnemyLives;
-			if (enemyAlpha < 0.2f){enemyAlpha = 0.6f;}
 			rend.material.color = new Vector4(startColor.r, startColor.b, startColor.g, enemyAlpha);
 		}
 	}
