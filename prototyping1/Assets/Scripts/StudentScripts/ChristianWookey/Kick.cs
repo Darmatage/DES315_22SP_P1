@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Kick : MonoBehaviour
 {
-    public GameObject ArtPivot;
-    public SpriteRenderer Art;
+    public GameObject KickInstance;
     public Animator PlayerAnimator;
-    public float KickTime = 0.35f;
-    public float KickDelay = 0.15f;
+    public SpriteRenderer PlayerSprite;
 
-
-    private Animator animator;
+    private bool InCombo = false;
+    private float KickPower = 0f;
+    private float KickComboTimer = 0f;
+    private float KickComboMin = 1f;
+    private float KickComboMax = 0f;
 
     void Start()
     {
-        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -26,14 +26,54 @@ public class Kick : MonoBehaviour
         else
            transform.localScale = new Vector3(1, 1);
 
+        if (InCombo)
+        {
+            if (KickComboTimer >= KickComboMin && KickComboTimer <= KickComboMax)
+            {
+                PlayerSprite.color = new Color(4f, 2f, 0f);
+            }
+            else
+            {
+                PlayerSprite.color = Color.white;
+            }
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
+            if (InCombo)
+            {
+                if (KickComboTimer >= KickComboMin && KickComboTimer <= KickComboMax)
+                {
+                    KickPower = Mathf.Clamp(KickPower + 0.5f, 0f, 2.5f);
+                }
+                else
+                {
+                    InCombo = false;
+                    KickPower = 0f;
+                    PlayerSprite.color = Color.white;
+                }
+            }
+            else
+            {
+                InCombo = true;
+            }
+
+            GameObject kickInst = GameObject.Instantiate(KickInstance, transform, false);
+
             Vector2 off = Camera.main.WorldToScreenPoint(transform.position) - Input.mousePosition;
             float z = Mathf.Atan2(off.y, off.x) * Mathf.Rad2Deg + 180f;
-            ArtPivot.transform.eulerAngles = new Vector3(0f, 0f, z );
-            animator.SetTrigger("Kick");
+
+            kickInst.transform.eulerAngles = new Vector3(0f, 0f, z);
+            kickInst.transform.localPosition = new Vector3(0f, 0f, 0f);
+            kickInst.GetComponent<KickWhoosh>().SetPower(KickPower + 0.5f);
+
             PlayerAnimator.SetTrigger("Kick");
+            KickComboTimer = 0f;
+            PlayerSprite.color = Color.white;
         }
+
+        if (InCombo)
+            KickComboTimer += Time.deltaTime;
     }
 
 }

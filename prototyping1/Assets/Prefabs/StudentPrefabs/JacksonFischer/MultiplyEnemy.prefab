@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6178945033321065514}
   - component: {fileID: 8057723025587579989}
   - component: {fileID: 4258683864054512732}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: monster_art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,9 +118,9 @@ GameObject:
   - component: {fileID: 4290372878465933046}
   - component: {fileID: 503090289199649980}
   - component: {fileID: 7628494668674066469}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MultiplyEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

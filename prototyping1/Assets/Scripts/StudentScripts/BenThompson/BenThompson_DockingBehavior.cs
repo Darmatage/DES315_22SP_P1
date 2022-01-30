@@ -23,10 +23,15 @@ public class BenThompson_DockingBehavior : MonoBehaviour
     private GameObject boatCollidingWith = null;
     private bool justExitedBoat = false;
 
+    private bool firstCollision = true;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(dockedBoat)
+        {
+            
+        }
     }
 
     // Update is called once per frame
@@ -47,6 +52,9 @@ public class BenThompson_DockingBehavior : MonoBehaviour
             // If the user presses E to exit the boat
             if (Input.GetKeyDown(KeyCode.E))
             {
+                // Set the boat tag back to normal
+                boatCollidingWith.gameObject.tag = "BenThompsonBoat";
+
                 // Get the player from the boat
                 GameObject player = GameObject.FindGameObjectWithTag("Player");
 
@@ -134,11 +142,11 @@ public class BenThompson_DockingBehavior : MonoBehaviour
                 // Player is no longer in a boat
                 isPlayerInBoat = false;
 
-                // Set the boat tag back to normal
-                boatCollidingWith.gameObject.tag = "BenThompsonBoat";
-
                 // Set the docked boat to the boat the player has just left
                 dockedBoat = boatCollidingWith.gameObject;
+
+                // Eliminate the collision
+                boatCollidingWith = null;
 
                 // Just exited Boat
                 justExitedBoat = true;
@@ -173,6 +181,21 @@ public class BenThompson_DockingBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // If the boat we are colliding with is docked and this is the first rounds of collision
+        if (collision.gameObject.tag == "BenThompsonBoat" && firstCollision)
+        {
+            // Ignore it
+
+            firstCollision = false;
+            if (collision.gameObject == dockedBoat)
+                return;
+        }
+        else if(dockedBoat == null)
+        {
+            firstCollision = false;
+        }
+            
+
         if (collision.gameObject.tag == "BenThompsonBoat" || (collision.gameObject.tag == "Player" && isPlayerInBoat))
         {
             boatCollidingWith = collision.gameObject;

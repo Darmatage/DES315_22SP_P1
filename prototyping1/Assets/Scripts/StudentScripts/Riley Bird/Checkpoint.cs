@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    public static Checkpoint LastCheckpoint { get; private set; }
+
     public GameObject SwitchOffArt;
     public GameObject SwitchOnArt;
     //private bool isActive;
-    public GameObject CheckpointObj;
-    public GameObject Handler;
     public GameObject PlayerObj;
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,6 @@ public class Checkpoint : MonoBehaviour
         SwitchOffArt.SetActive(true);
         SwitchOnArt.SetActive(false);
         //isActive = false;
-        GameHandler.PlayerHealth = 5;
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -25,17 +24,24 @@ public class Checkpoint : MonoBehaviour
         {
             SwitchOffArt.SetActive(false);
             SwitchOnArt.SetActive(true);
-            //isActive = true;
-            CheckpointObj.GetComponent<Checkpoint>();
+            if (LastCheckpoint != this)
+            {
+                if (LastCheckpoint)
+                {
+                    LastCheckpoint.SwitchOffArt.SetActive(true);
+                    LastCheckpoint.SwitchOnArt.SetActive(false);
+                }
+                LastCheckpoint = this;
+            }
         }
     }
 
     private void Update()
     {
-        if(GameHandler.PlayerHealth < 2)
+        if(GameHandler.PlayerHealth <= 2)
         {
-            GameHandler.PlayerHealth = 5;
-            PlayerObj.transform.position = new Vector3(4.6f, -4.2f, 0.0f);
+            GameHandler.PlayerHealth = 100;
+            PlayerObj.transform.position = LastCheckpoint.gameObject.transform.position;
         }
     }
 

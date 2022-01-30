@@ -41,6 +41,9 @@ TagManager:
   - Health
   - Jewel
   - VisionRange
+  - PortalAllowed
+  - CC_StatusText
+  - Switch
   layers:
   - Default
   - TransparentFX
@@ -57,8 +60,8 @@ TagManager:
   - WaterSafe
   - IgnorePlayer
   - IgnorePlayerAndEnemy
-  - 
-  - 
+  - Wall
+  - PassableWall
   - BorderLayer_CEGP
   - BlockLayer_CEGP
   - FogOfWarMain

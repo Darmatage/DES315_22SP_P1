@@ -1,0 +1,26 @@
+Overview: A short ranged attack that will instantly destory an enemy.
+
+Public Variables: These are going to change soon
+	- Damage: This is redundent as now the attack just destorys any enemy in one hit
+	- Range: This currently doesn't affect anything but will soon have a function
+	- Delete Fire Delay: how long the projectile lasts in the world
+	Will soon have a cooldown variable to control
+
+Description:
+The mechanic is added into the game via adding the FireBlastTool Prefab into the 
+game world. All you have to do is drag it into play. You can set the projectile life
+in the public variables. In fact if you wanted to. You can instead instantiate anything 
+with the fire blast tool by replacing the prefab in the public variables with any
+other prefab.
+
+You spawn in the projectile with either the F key or right click, it will be rotate towards the mouse.
+
+Future Plans:
+	- Have the length work.
+	- Have a public cooldown variable.
+	- Add pushback into the mechanic.
+	
+Contact me!
+email: frankie.camarillo@digipen.edu
+discord: TheFrankster#7373
+Teams: Frankie Camarillo
