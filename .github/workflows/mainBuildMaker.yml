@@ -25,7 +25,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ${{ env.PROJECT_PATH }}/Library
-          key: CachedLibrary
+          key: CachedLibrary01
 
       - name: Unity - Builder
         uses: game-ci/unity-builder@v2.0.0-alpha-14
