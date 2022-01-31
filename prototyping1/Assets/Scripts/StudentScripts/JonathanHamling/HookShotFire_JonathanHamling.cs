@@ -22,38 +22,24 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
     [HideInInspector]
     public bool isPull = false;
     private bool isGrappled = false;
-<<<<<<< HEAD
     private bool isLaunched = false;
-=======
-<<<<<<< Updated upstream
->>>>>>> 4ffb102 (Updated Level - Changes to MageHand)
-    
-=======
     private bool isLaunched = false;
 
     Vector2 mousPos;
->>>>>>> Stashed changes
     Vector2 target;
     GameObject targetObj;
 
     [SerializeField] 
     private GameObject Player;
-<<<<<<< HEAD
     [SerializeField]
     private Transform positionRot;
-=======
-<<<<<<< Updated upstream
-=======
     [SerializeField]
     private GameObject handImage;
     [SerializeField]
     private Transform positionRot;
->>>>>>> Stashed changes
 
     public Sprite[] hands;
     public SpriteRenderer handRend;
->>>>>>> 4ffb102 (Updated Level - Changes to MageHand)
-
 
     private void Start()
     {
@@ -62,12 +48,6 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
 
     private void Update()
     {
-<<<<<<< HEAD
-        if (Input.GetButtonDown("Fire1") && !isGrappled)
-=======
-<<<<<<< Updated upstream
-        if (Input.GetMouseButtonDown(0) && !isGrappled)
-=======
         mousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 player = Player.transform.position;
@@ -82,10 +62,8 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
         {
             handImage.SetActive(false);
         }
-            
+
         if (Input.GetButtonDown("Fire1") && !isGrappled)
->>>>>>> Stashed changes
->>>>>>> 4ffb102 (Updated Level - Changes to MageHand)
         {
             Grapple();
         }
@@ -120,41 +98,18 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
         }
         else if (isPull)
         {
-<<<<<<< HEAD
-            Vector2 grapplePos = Vector2.Lerp(targetObj.transform.position, transform.position, retractSpeed * Time.deltaTime);
-=======
-<<<<<<< Updated upstream
-            Vector2 grapplePos = Vector2.Lerp(targetObj.transform.position, transform.position, shootSpeed * Time.deltaTime);
->>>>>>> 4ffb102 (Updated Level - Changes to MageHand)
-
-            targetObj.transform.position = grapplePos;
-=======
             // mouse position on screen
             // Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             Vector2 direction = targetObj.transform.position - transform.position;
->>>>>>> Stashed changes
 
             // Raycast for grapple
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDistance, whatCanGrapple);
 
-<<<<<<< HEAD
-            if ((Vector2.Distance(transform.position, targetObj.transform.position) < .5f) && !Input.GetButton("Fire1"))
-=======
-<<<<<<< Updated upstream
-            if (Vector2.Distance(transform.position, targetObj.transform.position) < .5f)
-=======
             if (hit.collider != null)
->>>>>>> Stashed changes
             {
                 // Is it grappleable?
                 if (hit.collider.tag == "Pullable")
                 {
-
-<<<<<<< Updated upstream
-                // are we ready to stop the rope?
-                line.enabled = false;
-            }
-=======
                     Vector2 grapplePos = Vector2.Lerp(targetObj.transform.position, mousPos, shootSpeed * Time.deltaTime);
 
                     targetObj.transform.position = grapplePos;
@@ -202,7 +157,6 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
                 }
             }
             else
->>>>>>> 4ffb102 (Updated Level - Changes to MageHand)
             {
                 isPull = false;
                 isGrappled = false;
@@ -212,29 +166,6 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
                 handImage.SetActive(false);
                 handRend.sprite = hands[0];
             }
-            else if (Vector2.Distance(transform.position, targetObj.transform.position) < .5f)
-            {
-
-                if (Input.GetButton("Fire2"))
-                {
-                    if (targetObj.GetComponent<Rigidbody2D>())
-                    {
-                        isLaunched = true;
-
-                        isPull = false;
-                        isGrappled = false;
-                    }
-                }
-
-                line.enabled = false;
-            }
-        }
-
-        if (isLaunched == true)
-        {
-            targetObj.GetComponent<Rigidbody2D>().AddForce(positionRot.right * shootSpeed, ForceMode2D.Impulse);
-
-            isLaunched = false;
         }
 
         if (isLaunched == true)
@@ -250,7 +181,6 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
             targetObj.GetComponent<Rigidbody2D>().AddForce(targetObj.transform.right * shootSpeed, ForceMode2D.Impulse);
 
             isLaunched = false;
->>>>>>> Stashed changes
         }
     }
 
@@ -314,15 +244,7 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
         // Gotta lerp this real quick
         for (; i < distance.magnitude; i += shootSpeed * Time.deltaTime)
         {
-<<<<<<< HEAD
-            newPos = Vector2.Lerp(transform.position, targetObj.transform.position, i / distance.magnitude);
-=======
-<<<<<<< Updated upstream
-            newPos = Vector2.Lerp(transform.position, target, i / timeLerped);
-=======
             newPos = Vector2.Lerp(mousPos, targetObj.transform.position, i / distance.magnitude);
->>>>>>> Stashed changes
->>>>>>> 4ffb102 (Updated Level - Changes to MageHand)
 
             line.SetPosition(0, mousPos);
             line.SetPosition(1, newPos);
