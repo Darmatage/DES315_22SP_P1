@@ -159,7 +159,8 @@ public class ExplosiveBarrel : MonoBehaviour
         if (m_triggerType == ExplosiveTrigger.Touch && CheckIfOnLayer(mask, m_damageMask))
         {
 
-            TakeDamage(1);
+            m_triggered = true;
+
         }
 
 

@@ -6,6 +6,4 @@ There is a Regen prefab that if placed in level will allow the player to regener
 
 There are 2 new tilemaps, DepthOfField and HealingWater. DepthOfField is another object layer with max order so you can walk behind things as the player such as the trees in my level, and HealingWater creates a regen pool for the player to rest in.
 
-Future Plans: (Depending on user feedback and time I have)
--SFX/VFX/Particles for healing and damage
--Bloodborn combat (you can gain back health lost for a short time, by damaging enemies)
+There is also a Water asset that is an animated magic water that I use to add particles, just click and drag it into the level over wherever you put down the healing water for a better signifier.

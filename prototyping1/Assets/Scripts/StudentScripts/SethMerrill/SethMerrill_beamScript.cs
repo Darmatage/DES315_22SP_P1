@@ -9,6 +9,7 @@ public class SethMerrill_beamScript : MonoBehaviour
 	Vector3 pos;
 	Vector3 playerPos;
 	public float range;
+	public GameObject parentObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,17 +21,10 @@ public class SethMerrill_beamScript : MonoBehaviour
     void Update()
     {
 		pos = transform.position;
-		playerPos = GameObject.FindWithTag("Player").transform.position;
+		Vector2 pp = GameObject.FindWithTag("Player").transform.position;
+		playerPos = pp + GameObject.FindWithTag("Player").GetComponent<Collider2D>().offset;
 		Debug.DrawRay(pos, playerPos-pos, Color.red);
-		if(Vector3.Distance(pos, playerPos) <= range)
-		{
-			LookAt();
-		}
-		else
-		{
-			LookAround();
-		}
-		See();
+		LookAround();
 		//Debug.Log(gh.gameObject.name);
     }
 	
@@ -45,25 +39,16 @@ public class SethMerrill_beamScript : MonoBehaviour
 		Debug.DrawRay(start, direction*(range-dist));
 		if(rc.collider)
 		{
+			//Debug.Log(rc.collider.gameObject.name);
 			if(rc.collider.gameObject.tag == "Player")
 			{
 				gh.TakeDamage(damage);
+				parentObj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
+				AudioSource[] audio = parentObj.GetComponents<AudioSource>();
+				audio[1].Play();
 			}
+			//transform.localScale = new Vector3(1.0f, Vector2.Distance(rc.collider.transform.position, pos), 1.0f);
 		}
-	}
-	
-	void LookAt()
-	{
-		Vector3 v = Vector3.Normalize(playerPos - pos);
-		float f = Vector2.Angle(v, new Vector2(0,1));
-		float f2 = Vector2.Angle(v, new Vector2(0,-1));
-		
-		Vector3 q = transform.eulerAngles;
-		if(playerPos.x < pos.x)
-			q.z = f;
-		else
-			q.z = -f;
-		transform.eulerAngles = q;
 	}
 	
 	void LookAround()
@@ -73,18 +58,18 @@ public class SethMerrill_beamScript : MonoBehaviour
 		float f = Vector2.Angle(v, new Vector2(0,1));
 		float f2 = Vector2.Angle(v, new Vector2(0,-1));
 		
-		if(Vector3.Distance(pos, playerPos) > range * 2)
-		{
-			q.z+=.5f;
-		}
-		else
-		{
-			if(playerPos.x < pos.x)
-				q.z = f;
-			else
-				q.z = -f;
-			transform.eulerAngles = q;
-		}
+		q.z+=.5f;
 		transform.eulerAngles = q;
 	}
+	
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		See();
+	}
+	
+	void OnTriggerExit2D(Collider2D other)
+	{
+		parentObj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+	}
+	
 }

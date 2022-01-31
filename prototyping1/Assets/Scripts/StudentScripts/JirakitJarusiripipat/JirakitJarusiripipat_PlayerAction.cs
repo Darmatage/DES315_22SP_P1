@@ -54,7 +54,13 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
 
     public Image cover;
     public Image skillGaugeImage;
+    [SerializeField]
+    JirakitJarusiripipat_GameManager gameManager;
 
+    [SerializeField]
+    private GameObject[] thingsToDestroy;
+    [SerializeField]
+    private GameObject wall;
     // Start is called before the first frame update
     void Start()
     {
@@ -207,7 +213,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         GameObject obj = Instantiate(effect1, transform.position, Quaternion.identity);
         obj.transform.parent = gameObject.transform;
 
-        SFX.BGM.Pause();
+        //SFX.BGM.Pause();
         SFX.Clock1.Play();
         SFX.Skill1.Play();
         soundCheck = false;
@@ -219,7 +225,7 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
         canUseSkill = false;
         playermove.speed = defaultPlayerSpeed;
         timeToAttackCooldown = defaultTimeToAttackCooldown;
-        SFX.BGM.Play();
+        //SFX.BGM.Play();
         SFX.Clock2.Stop();
         SFX.Skill2.Play();
         GameObject obj = Instantiate(effect1, transform.position, Quaternion.identity);
@@ -248,6 +254,19 @@ public class JirakitJarusiripipat_PlayerAction : MonoBehaviour
             SFX.Clock2.Play();
             SFX.Clock1.Stop();
             soundCheck = true;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "WallDoor")
+        {
+            gameManager.hitActive = true;
+            gameManager.waveText.gameObject.SetActive(true);
+            wall.SetActive(true);
+            foreach (var item in thingsToDestroy)
+            {
+                Destroy(item);
+            }
         }
     }
 }

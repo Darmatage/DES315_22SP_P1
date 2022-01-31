@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3294450357376018458}
   - component: {fileID: 7974169957758197458}
-  - component: {fileID: 694457234134440029}
+  - component: {fileID: 7170067499038758881}
   m_Layer: 7
   m_Name: Taro_PickupHealth
   m_TagString: Untagged
@@ -59,7 +59,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8, y: 0.75}
   m_EdgeRadius: 0
---- !u!114 &694457234134440029
+--- !u!114 &7170067499038758881
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

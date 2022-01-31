@@ -1,4 +1,23 @@
-Just drag and drop the prefab into scene.
+Steps:
+Drag and drop:
+ - MonsterSlimeAI
+ - TerrainAnaylsis
+
+Set variables:
+ Enemy:
+  - Main Grid - To the main tilemap grid
+  - Non-Collidibles - To any thing on the map you want the AI to avoid
+  - Debug Visual - To a new tilemap that will display color when the AI is pathing
+ TerrainAnaylsis:
+  - Visibility Blockers - To the the wall tilemap
+  - Openness Tilemap - To a new tile map that will display openness debug info.
+  - Visibility Tilemap - To a new tile map that will display visibiliity debug info.
+
+Goto the triple dots and click AnalyzeOpennes
+Goto the triple dots and click AnalyzeVisibility - this will take between 30 sec to a minute
+
+You can disable both openness and visibility tilemaps.
+
 You'll find two scripts on the enemy: A Star Path Finding and Enemy AI
 
 Options: A Star
