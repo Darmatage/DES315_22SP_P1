@@ -12,28 +12,20 @@ public class WonjuJo_Fireball : MonoBehaviour
 
     public Renderer FireballRenderer;
 
-    Vector2 Target;
     private Transform playerTrans;
+    Vector3 direction;
 
     void Start()
     {
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
-        Target = new Vector2(playerTrans.position.x, playerTrans.position.y);
-
-        if(playerTrans.localScale.x < 0)
-        {
-            Target.x -= 20;
-        }
-        else
-        {
-            Target.x += 20;
-            FireballRenderer.transform.localScale = new Vector3(-1, 1, 1);
-        }
+        
+        direction = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
     }
 
     private void Update()
-    {        
-        transform.position = Vector2.MoveTowards(transform.position, Target, Speed* Time.deltaTime);
+    {       
+        transform.position = Vector2.MoveTowards(transform.position, direction, Speed* Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

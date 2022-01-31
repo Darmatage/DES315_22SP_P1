@@ -14,6 +14,9 @@ public class PortalTeleport : MonoBehaviour
 
     private const float portalExclusionZone = 1.0f;
 
+    [SerializeField] private AudioClip portalTeleportSfx = null;
+    [SerializeField] private AudioClip portalLandSfx = null;
+    private new AudioSource audio = null;
 
     [SerializeField] private GameObject portalFizz = null;
     
@@ -31,6 +34,7 @@ public class PortalTeleport : MonoBehaviour
 
     private void Awake()
     {
+        audio = GetComponent<AudioSource>();
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
@@ -61,6 +65,8 @@ public class PortalTeleport : MonoBehaviour
                 rawPos.x = Mathf.Ceil(rawPos.x);
                 break;
         }
+        
+        audio.PlayOneShot(portalLandSfx);
         
         transform.position = rawPos;
         PortalGun.NotifyPortalSuccess(isPortal2);
@@ -118,6 +124,7 @@ public class PortalTeleport : MonoBehaviour
                 };
                 
                 other.transform.position += portalDist;
+                audio.PlayOneShot(portalTeleportSfx);
             }
 
         }

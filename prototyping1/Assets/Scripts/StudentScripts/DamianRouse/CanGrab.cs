@@ -25,6 +25,8 @@ public abstract class CanGrab : MonoBehaviour
   public Vector3Int pos_;
   public bool willFill_ = false;
   public Vector3Int gridPos_ = Vector3Int.zero;
+  public string aboveThisTile_ = "";
+  public int pastLayer_;
 
 
   public CanGrab()
@@ -34,7 +36,23 @@ public abstract class CanGrab : MonoBehaviour
 
   public virtual void Start()
   {
+    if (gridPlacement_)
+    {
+      gridPos_ = MousePickupScript.instance_.Vec3toVec3Int(transform.position);
+      MousePickupScript.instance_.AddToGrid(this);
+    }
 
+    if(locked_)
+    {
+      if (seperateSprite_)
+        seperateSprite_.GetComponent<SpriteRenderer>().color = lockColor_;
+      else
+      {
+        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+        if (sr)
+          sr.color = lockColor_;
+      }
+    }
   }
 
   // Update is called once per frame
@@ -69,6 +87,9 @@ public abstract class CanGrab : MonoBehaviour
   {
     grabbed_ = true;
     change_ = true;
+
+    pastLayer_ = gameObject.layer;
+    gameObject.layer = 13;
 
     if(gridPlacement_)
     {
@@ -114,7 +135,8 @@ public abstract class CanGrab : MonoBehaviour
 
           if(placementMap_.GetTile(pos) != null)
           {
-            
+            aboveThisTile_ = placementMap_.GetTile(pos).name;
+
             placementMap_.SetColor(pos, Color.red);
 
             willFill_ = true;
@@ -158,8 +180,15 @@ public abstract class CanGrab : MonoBehaviour
         locked_ = true;
         if(seperateSprite_)
           seperateSprite_.GetComponent<SpriteRenderer>().color = lockColor_;
+        else
+        {
+          SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+          if(sr)
+            sr.color = lockColor_;
+        }
       }
     }
+    gameObject.layer = pastLayer_;
     grabbed_ = false;
     change_ = true;
   }

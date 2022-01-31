@@ -34,7 +34,7 @@ public class BenThompson_PromptPulse : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        transform.parent.localScale = new Vector3(1 / transform.parent.lossyScale.x, 1 / transform.parent.lossyScale.y, 1);
     }
 
     // Update is called once per frame

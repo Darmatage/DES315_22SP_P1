@@ -83,14 +83,32 @@ public class BenThompson_BoatController : MonoBehaviour
 
     [SerializeField]
     ParticleSystem boatWaterTrail;
+
+    [SerializeField]
+    AudioClip damage;
+
+    [SerializeField]
+    AudioClip moving;
+
+    [SerializeField]
+    AudioClip bumping;
+
+    [SerializeField]
+    public AudioClip getInOutBoat;
+
+    private void Awake()
+    {
+        // Grab the boat charge indicator
+        boatChargeIndicator = GameObject.Find("BenThompsonBoatChargeIndicator");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         // Deactivate the player sprite
         playerSprite.SetActive(false);
 
-        // Grab the boat charge indicator
-        boatChargeIndicator = GameObject.Find("BenThompsonBoatChargeIndicator");
+        
         if(boatChargeIndicator)
         {
             boatChargeIndicator.transform.parent.parent.gameObject.SetActive(false);
@@ -235,6 +253,12 @@ public class BenThompson_BoatController : MonoBehaviour
                     {
                         chargeImage.color = Color.Lerp(Orange, Red, (chargeFill - 0.66f) / 0.33f);
                     }
+
+                    AudioSource fillAudio = boatChargeIndicator.transform.parent.parent.GetComponent<AudioSource>();
+                    if(fillAudio)
+                    {
+                        fillAudio.pitch = chargeFill + 0.5f;
+                    }
                 }
                 
             } 
@@ -251,6 +275,8 @@ public class BenThompson_BoatController : MonoBehaviour
            
             // Move the boat forwards
             boatBody.AddForce(transform.up * boatThrust, ForceMode2D.Impulse);
+
+            AudioSource.PlayClipAtPoint(moving, transform.position);
 
             // Apply the cooldown timer
             cooldownTimer = cooldownTime;
@@ -338,6 +364,8 @@ public class BenThompson_BoatController : MonoBehaviour
            // Player is now in the boat
            playerInBoat = true;
 
+            AudioSource.PlayClipAtPoint(getInOutBoat, transform.position);
+
            // Show the player as though they were in the boat
            playerSprite.SetActive(true);
 
@@ -385,8 +413,41 @@ public class BenThompson_BoatController : MonoBehaviour
         firstTimeRidingBoatInScene = true;
     }
 
-    private void ManageUIDeletionTimers()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        AudioSource.PlayClipAtPoint(bumping, transform.position);
 
+        if(collision.gameObject.name == "TilemapSpikes" || collision.gameObject.tag == "lava")
+        {
+            AudioSource.PlayClipAtPoint(damage, transform.position);
+            StartCoroutine(damageAnimation(1.0f));
+        }
+    }
+
+    IEnumerator damageAnimation(float flickerTime)
+    {
+        SpriteRenderer[] sps = gameObject.GetComponentsInChildren<SpriteRenderer>();
+
+        while (flickerTime > 0)
+        {
+            foreach (SpriteRenderer sp in sps)
+            {
+                if (sp.gameObject.name == "Player_art")
+                    continue;
+
+                sp.enabled = !sp.enabled;
+            }
+
+            flickerTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        foreach (SpriteRenderer sp in sps)
+        {
+            if (sp.gameObject.name == "Player_art")
+                continue;
+
+            sp.enabled = true;
+        }
     }
 }
