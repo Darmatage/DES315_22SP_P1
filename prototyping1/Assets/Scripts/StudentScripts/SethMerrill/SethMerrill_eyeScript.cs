@@ -19,6 +19,8 @@ public class SethMerrill_eyeScript : MonoBehaviour
 		beamInstance = Instantiate(beamPrefab, transform.position, Quaternion.identity);
 		beamInstance.transform.localScale = new Vector3(1.0f, range, 1.0f);
 		beamInstance.GetComponent<SethMerrill_beamScript>().range = range;
+		beamInstance.GetComponent<SethMerrill_beamScript>().parentObj = gameObject;
+		beamInstance.GetComponent<SethMerrill_beamScript>().damage = damage;
 		if(RNG == null) RNG = new System.Random();
 		gh = GameObject.FindWithTag("GameHandler").GetComponent<GameHandler>();
     }
@@ -30,10 +32,6 @@ public class SethMerrill_eyeScript : MonoBehaviour
 		Vector3 playerPos = GameObject.FindWithTag("Player").transform.position;
 		
         beamInstance.transform.position = transform.position;
-		
-		direction.x = (Vector3.Normalize(playerPos - pos) * hunger).x + ((float)RNG.NextDouble() - 0.5f) * (1.0f - hunger);
-		direction.y = (Vector3.Normalize(playerPos - pos) * hunger).y + ((float)RNG.NextDouble() - 0.5f) * (1.0f - hunger);	
-		
-		transform.position += Vector3.Normalize(direction) * speed * Time.deltaTime;
+		beamInstance.transform.localScale = new Vector3(1.0f, range, 1.0f);
     }
 }
