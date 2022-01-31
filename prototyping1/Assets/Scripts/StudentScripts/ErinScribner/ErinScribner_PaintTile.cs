@@ -16,7 +16,7 @@ public class ErinScribner_PaintTile : MonoBehaviour
 
     public int heal = 1;
     public float damageTime = 0.5f;
-    private bool isHealing = false;
+    public bool isHealing = false;
     private float damageTimer = 0f;
     private GameHandler gameHandlerObj;
 
