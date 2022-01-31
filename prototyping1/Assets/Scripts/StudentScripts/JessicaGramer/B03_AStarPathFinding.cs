@@ -39,7 +39,7 @@ public class B03_AStarPathFinding : MonoBehaviour
     public Vector3 Goal = new Vector3Int(0, 0, 0);
     public Vector3 Begin = new Vector3Int(0, 0, 0);
     public List<Vector3> Path = new List<Vector3>(); // list of world positions
-    public PathResult prevResult = PathResult.IMPOSSIBLE; // please no changy, needed for external code
+    public PathResult PrevResult = PathResult.IMPOSSIBLE; // please no changy, needed for external code
     [Header("Misc.")]
     public HeuristicType Heuristic = HeuristicType.OCTILE;
     public float HeuristicWeight = 1.0f;
@@ -82,7 +82,7 @@ public class B03_AStarPathFinding : MonoBehaviour
             Path = new List<Vector3>();
             currStart = gridLayout.WorldToCell(Begin);
             currGoal = gridLayout.WorldToCell(Goal);
-            prevResult = PathResult.PROCESSING;
+            PrevResult = PathResult.PROCESSING;
 
             openList_ = new List<B03_Node>();
             closedList_ = new List<B03_Node>();
@@ -103,7 +103,7 @@ public class B03_AStarPathFinding : MonoBehaviour
         }
 
         if(timer > 0.0f) timer -= Time.deltaTime;
-        else if(prevResult == PathResult.PROCESSING) prevResult = ComputePath();
+        else if(PrevResult == PathResult.PROCESSING) PrevResult = ComputePath();
     }
 
     public PathResult ComputePath()
