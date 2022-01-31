@@ -1598,6 +1598,7 @@ GameObject:
   - component: {fileID: 8405455185184881397}
   - component: {fileID: 8405455185184881398}
   - component: {fileID: 6557583061814489068}
+  - component: {fileID: 1367538850543961743}
   m_Layer: 5
   m_Name: B05_QuickTimeEvent
   m_TagString: Untagged
@@ -1684,15 +1685,19 @@ MonoBehaviour:
   - ParentObject: {fileID: 8405455183310339983}
     BackgroundObject: {fileID: 8405455183177625116}
     DisplayObject: {fileID: 8405455184659992437}
+    SuccessSFX: {fileID: 8300000, guid: adb817fd6f5bb1c4bb585bbe6d406aa7, type: 3}
   - ParentObject: {fileID: 8405455183635672279}
     BackgroundObject: {fileID: 8405455184977291055}
     DisplayObject: {fileID: 8405455183628507839}
+    SuccessSFX: {fileID: 8300000, guid: 75dda5c89a49a63468f9d6169324dec5, type: 3}
   - ParentObject: {fileID: 8405455184689640781}
     BackgroundObject: {fileID: 8405455185279090143}
     DisplayObject: {fileID: 8405455184943398738}
+    SuccessSFX: {fileID: 8300000, guid: 1d5cb7b7799c7084ea5b4548fb186436, type: 3}
   - ParentObject: {fileID: 8405455184262018880}
     BackgroundObject: {fileID: 8405455183845279550}
     DisplayObject: {fileID: 8405455183477214744}
+    SuccessSFX: {fileID: 8300000, guid: 69339ef54d1548b47ac4f3309f8a4f1f, type: 3}
   PossibleComboButtons:
   - KeysToPress: 1301000064000000
     KeyColor: {r: 0.8679245, g: 0.8121596, b: 0.16703449, a: 1}
@@ -1717,6 +1722,104 @@ MonoBehaviour:
   MinFireballSize: 20
   MaxFireballSize: 100
   FireballFlyTime: 0.3
+  WrongKeySFX: {fileID: 8300000, guid: 361a07a6099ca3a4286c3741bee98f5d, type: 3}
+  FireballImpactSFX: {fileID: 8300000, guid: e17813ef1cbda004bbb38c6f99b1a5ff, type: 3}
+--- !u!82 &1367538850543961743
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8405455185184881392}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8405455185279090143
 GameObject:
   m_ObjectHideFlags: 0
