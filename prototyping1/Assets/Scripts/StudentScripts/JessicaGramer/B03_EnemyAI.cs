@@ -121,7 +121,7 @@ public class B03_EnemyAI : MonoBehaviour
 		switch (currState)
 		{
 			case AIState.MOVE:
-				if (pathMove())
+				if (pathFinding.prevResult == B03_AStarPathFinding.PathResult.COMPLETE && pathMove())
                 {
 					pathFinding.Goal = target.position;
 					setState(AIState.FIND);

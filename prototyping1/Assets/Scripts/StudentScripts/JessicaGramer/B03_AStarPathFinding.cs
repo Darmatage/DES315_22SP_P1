@@ -37,6 +37,7 @@ public class B03_AStarPathFinding : MonoBehaviour
     [Header("Path Requesting")]
     public bool NewRequest = true; // recaluclate path?
     public Vector3 Goal = new Vector3Int(0, 0, 0);
+    public Vector3 Begin = new Vector3Int(0, 0, 0);
     public List<Vector3> Path = new List<Vector3>(); // list of world positions
     public PathResult prevResult = PathResult.IMPOSSIBLE; // please no changy, needed for external code
     [Header("Misc.")]
@@ -79,7 +80,7 @@ public class B03_AStarPathFinding : MonoBehaviour
         if (NewRequest)
         {
             Path = new List<Vector3>();
-            currStart = gridLayout.WorldToCell(transform.position);
+            currStart = gridLayout.WorldToCell(Begin);
             currGoal = gridLayout.WorldToCell(Goal);
             prevResult = PathResult.PROCESSING;
 
