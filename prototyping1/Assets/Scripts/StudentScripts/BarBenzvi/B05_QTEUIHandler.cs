@@ -72,7 +72,12 @@ public class B05_QTEUIHandler : MonoBehaviour
             gHandler = gameHandlerLocation.GetComponent<GameHandler>();
         }
 
-        aSource = GetComponent<AudioSource>();
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if(playerObj != null)
+        {
+            aSource = playerObj.GetComponent<AudioSource>();
+        }
+        
 
         keyCombo.Clear();
         if(TimerBar != null)
