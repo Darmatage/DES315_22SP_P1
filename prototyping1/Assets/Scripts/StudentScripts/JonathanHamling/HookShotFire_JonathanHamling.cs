@@ -22,25 +22,18 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
     [HideInInspector]
     public bool isPull = false;
     private bool isGrappled = false;
-<<<<<<< Updated upstream
-    
-=======
     private bool isLaunched = false;
 
     Vector2 mousPos;
->>>>>>> Stashed changes
     Vector2 target;
     GameObject targetObj;
 
     [SerializeField] 
     private GameObject Player;
-<<<<<<< Updated upstream
-=======
     [SerializeField]
     private GameObject handImage;
     [SerializeField]
     private Transform positionRot;
->>>>>>> Stashed changes
 
     public Sprite[] hands;
     public SpriteRenderer handRend;
@@ -53,9 +46,6 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
 
     private void Update()
     {
-<<<<<<< Updated upstream
-        if (Input.GetMouseButtonDown(0) && !isGrappled)
-=======
         mousPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 player = Player.transform.position;
@@ -72,7 +62,6 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
         }
             
         if (Input.GetButtonDown("Fire1") && !isGrappled)
->>>>>>> Stashed changes
         {
             Grapple();
         }
@@ -107,34 +96,19 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
         }
         else if (isPull)
         {
-<<<<<<< Updated upstream
-            Vector2 grapplePos = Vector2.Lerp(targetObj.transform.position, transform.position, shootSpeed * Time.deltaTime);
-
-            targetObj.transform.position = grapplePos;
-=======
             // mouse position on screen
             // Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             Vector2 direction = targetObj.transform.position - transform.position;
->>>>>>> Stashed changes
 
             // Raycast for grapple
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDistance, whatCanGrapple);
 
-<<<<<<< Updated upstream
-            if (Vector2.Distance(transform.position, targetObj.transform.position) < .5f)
-=======
             if (hit.collider != null)
->>>>>>> Stashed changes
             {
                 // Is it grappleable?
                 if (hit.collider.tag == "Pullable")
                 {
 
-<<<<<<< Updated upstream
-                // are we ready to stop the rope?
-                line.enabled = false;
-            }
-=======
                     Vector2 grapplePos = Vector2.Lerp(targetObj.transform.position, mousPos, shootSpeed * Time.deltaTime);
 
                     targetObj.transform.position = grapplePos;
@@ -206,7 +180,6 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
             targetObj.GetComponent<Rigidbody2D>().AddForce(targetObj.transform.right * shootSpeed, ForceMode2D.Impulse);
 
             isLaunched = false;
->>>>>>> Stashed changes
         }
     }
 
@@ -270,11 +243,7 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
         // Gotta lerp this real quick
         for (; i < timeLerped; i += shootSpeed * Time.deltaTime)
         {
-<<<<<<< Updated upstream
-            newPos = Vector2.Lerp(transform.position, target, i / timeLerped);
-=======
             newPos = Vector2.Lerp(mousPos, targetObj.transform.position, i / distance.magnitude);
->>>>>>> Stashed changes
 
             line.SetPosition(0, mousPos);
             line.SetPosition(1, newPos);
