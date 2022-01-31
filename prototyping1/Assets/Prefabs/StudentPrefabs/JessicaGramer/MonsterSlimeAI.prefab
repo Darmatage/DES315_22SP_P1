@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7677190934555343080}
   - component: {fileID: 3151631962863108792}
   - component: {fileID: 633303310964951364}
-  - component: {fileID: 633303310964951367}
+  - component: {fileID: 2664336119145792440}
   m_Layer: 6
   m_Name: MonsterSlimeAI
   m_TagString: Untagged
@@ -79,7 +79,7 @@ MonoBehaviour:
   - {fileID: 0}
   canMoveDiagonal: 1
   DebugVisusal: {fileID: 0}
-  DebugColoring: 0
+  DebugColoring: 1
   openList: {fileID: 11400000, guid: 7394628918ff045478a125555d8c8e85, type: 2}
   closedList: {fileID: 11400000, guid: e6739b2dbaf563343b71ddb7f766bbd8, type: 2}
   goalTile: {fileID: 11400000, guid: 23685939f9d40f047a5f825d1586d6ab, type: 2}
@@ -91,7 +91,7 @@ MonoBehaviour:
   prevResult: 2
   Heuristic: 0
   HeuristicWeight: 1
---- !u!114 &633303310964951367
+--- !u!114 &2664336119145792440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,7 +106,8 @@ MonoBehaviour:
   Speed: 4
   Damage: 1
   EnemyLives: 3
-  RetreatTime: 2
+  RetreatTime: 3
+  ModifiedPosition: {x: 0, y: 0, z: 0}
   nextState: 1
 --- !u!1 &5097830491303375904
 GameObject:

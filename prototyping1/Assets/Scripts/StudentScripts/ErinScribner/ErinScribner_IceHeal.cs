@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ErinScribner_IceHeal : MonoBehaviour
 {
-	public int heal = 1;
-	public float damageTime = 0.5f;
+	private int heal = 1;
+	private float damageTime = 0.5f;
 	private bool isHealing = false;
 	private float damageTimer = 0f;
 	private GameHandler gameHandlerObj;
-	
-	
+	private ErinScribner_PaintTile paint;
+
 	void Start()
 	{
 
@@ -18,10 +18,16 @@ public class ErinScribner_IceHeal : MonoBehaviour
 		{
 			gameHandlerObj = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
 		}
+		GameObject check = GameObject.Find("ErinScribner_PlaceBlock");
+		paint = check.GetComponent<ErinScribner_PaintTile>();
+		heal = paint.heal;
+		damageTime = paint.damageTime;
+		
 	}
 
 	void FixedUpdate()
 	{
+		isHealing = paint.isHealing;
 		if (isHealing == true)
 		{
 			damageTimer += 0.1f;
@@ -32,24 +38,4 @@ public class ErinScribner_IceHeal : MonoBehaviour
 			}
 		}
 	}
-
-	void OnTriggerStay2D(Collider2D other)
-	{
-
-		if (other.gameObject.tag == "Player")
-		{
-			isHealing = true;
-			
-		}
-	}
-
-	void OnTriggerExit2D(Collider2D other)
-	{
-		if (other.gameObject.tag == "Player")
-		{
-			isHealing = false;
-			
-		}
-	}
-
 }

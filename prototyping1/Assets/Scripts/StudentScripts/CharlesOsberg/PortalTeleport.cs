@@ -16,7 +16,7 @@ public class PortalTeleport : MonoBehaviour
 
     [SerializeField] private AudioClip portalTeleportSfx = null;
     [SerializeField] private AudioClip portalLandSfx = null;
-    private AudioSource audio = null;
+    private new AudioSource audio = null;
 
     [SerializeField] private GameObject portalFizz = null;
     

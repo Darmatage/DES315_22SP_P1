@@ -19,6 +19,7 @@ public class ErinScribner_IceNum : MonoBehaviour
         IceText.text = "Ice: " + paint.numPower + "/" + paint.numPower;
         rechargeSpeed = paint.rechargeSpeed;
         currentNum = paint.numPower;
+        
     }
 
     // Update is called once per frame

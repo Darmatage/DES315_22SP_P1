@@ -6,6 +6,8 @@ public class MonsterShootMove : MonoBehaviour {
 	public float speed = 2f;
 	public float stoppingDistance = 4f; // when enemy stops moving towards player
 	public float retreatDistance = 3f; // when enemy moves away from approaching player
+	public float attackRange = 10f; // threshold distance for enemy to attack player
+	
 	private float timeBtwShots;
 	public float startTimeBtwShots = 2;
 	public GameObject projectile;
@@ -39,11 +41,13 @@ public class MonsterShootMove : MonoBehaviour {
 	}
 
 	void Update () {
+		float DistToPlayer = Vector2.Distance(transform.position, player.position);
+		
 		isStunned = gameObject.GetComponent<EnemyHealth>().isStunned;
-		if ((player != null) && (isStunned == false)) {
+		if ((player != null) && (isStunned == false) && (DistToPlayer <= attackRange)) {
 
 			// approach player
-			if (Vector2.Distance (transform.position, player.position) > stoppingDistance) {
+			if (DistToPlayer > stoppingDistance) {
 				transform.position = Vector2.MoveTowards (transform.position, player.position, (speed/2) * Time.deltaTime);
 				//anim.SetBool("Walk", true); // Walk bool DNE error
 				Vector2 lookDir = PlayerVect - rb.position;
@@ -52,13 +56,13 @@ public class MonsterShootMove : MonoBehaviour {
 			}
 
 			// stop moving
-			else if (Vector2.Distance (transform.position, player.position) < stoppingDistance && Vector2.Distance (transform.position, player.position) > retreatDistance) {
+			else if (DistToPlayer < stoppingDistance && DistToPlayer > retreatDistance) {
 				transform.position = this.transform.position;
 				//anim.SetBool("Walk", false); // Walk bool DNE error
 			}
 
 			// retreat from player
-			else if (Vector2.Distance (transform.position, player.position) < retreatDistance) {
+			else if (DistToPlayer < retreatDistance) {
 				transform.position = Vector2.MoveTowards (transform.position, player.position, -speed * Time.deltaTime);
 				//anim.SetBool("Walk", true); // Walk bool DNE error
 			}
@@ -73,6 +77,11 @@ public class MonsterShootMove : MonoBehaviour {
 			}
 		}
 	}
+	
+	//DISPLAY the range of enemy's attack when selected in the Editor
+    void OnDrawGizmosSelected(){
+              Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
 
 //	void OnCollisionEnter2D(Collision2D collision){
 //		if (collision.gameObject.tag == "bullet") {
