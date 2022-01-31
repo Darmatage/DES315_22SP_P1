@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PortalGun : MonoBehaviour
 {
-    [SerializeField] private Transform plyTransform = null;
+    private Transform plyTransform = null;
     
     [SerializeField] private GameObject portalObject1 = null;
     [SerializeField] private GameObject portalObject2 = null;
@@ -19,14 +19,26 @@ public class PortalGun : MonoBehaviour
     [SerializeField] private SpriteRenderer crosshair2 = null;
     [SerializeField] private Sprite crosshair2Empty = null;
     [SerializeField] private Sprite crosshair2Full = null;
-
+    
+    private new AudioSource audio = null;
+    
     private static PortalGun instance = null;
+
+    private void Start()
+    {
+        plyTransform = GameObject.FindWithTag("Player").transform;
+    }
 
     private PortalGun()
     {
         instance = this;
     }
-    
+
+    private void Awake()
+    {
+        audio = GetComponent<AudioSource>();
+    }
+
     public static void NotifyPortalSuccess(bool isPortal2)
     {
         if (!isPortal2)
@@ -58,6 +70,8 @@ public class PortalGun : MonoBehaviour
         var pDelta = wPos - pPos;
         portalInstance.GetComponent<PortalTeleport>().Throw(new Vector2(pDelta.x, pDelta.y));
 
+        audio.Play();
+        
         return portalInstance;
     }
 

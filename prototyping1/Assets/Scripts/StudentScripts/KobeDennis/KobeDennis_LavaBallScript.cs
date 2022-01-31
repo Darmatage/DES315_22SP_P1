@@ -22,7 +22,6 @@ public class KobeDennis_LavaBallScript : MonoBehaviour
     private Tilemap lavaTilemap;
 
 
-
     public void SetDirection(Vector3 dir)
     {
         direction = dir;
@@ -112,7 +111,10 @@ public class KobeDennis_LavaBallScript : MonoBehaviour
         if (lavaTilePos == null)
             lavaTilePos = gameObject.transform;
 
-     //   StartCoroutine(CameraShake(0.15f,0.4f));
+
+
+
+        //   StartCoroutine(CameraShake(0.15f,0.4f));
 
         Instantiate(lavaTile_obj, lavaTilePos.position, Quaternion.identity);
 
@@ -128,14 +130,28 @@ public class KobeDennis_LavaBallScript : MonoBehaviour
         //If it collide with an enenmy or another lava ball destory itself
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy") || collision.gameObject.CompareTag("bullet"))
         {
+
             CustomDestroyObject(collision.gameObject.transform);
         }
-        //For now destory this object if it collide with anything
-        if (!collision.gameObject.CompareTag("Player"))
+        else if(collision.gameObject.GetComponent<KobeDennis_WaterTileScript>())
         {
+
+        }
+        //For now destory this object if it collide with anything
+        else if (!collision.gameObject.CompareTag("Player"))
+        {
+
             CustomDestroyObject();
 
           //  Destroy(gameObject);
+
+        }
+        else if (collision.gameObject)
+        {
+
+            CustomDestroyObject();
+
+            //  Destroy(gameObject);
 
         }
 

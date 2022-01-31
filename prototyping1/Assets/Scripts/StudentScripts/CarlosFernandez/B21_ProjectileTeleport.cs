@@ -21,8 +21,8 @@ public class B21_ProjectileTeleport : MonoBehaviour
     [SerializeField] [Range(1.0f, 10.0f)] private float projectileSpeed = 1.0f;
     [SerializeField] [Range(0.1f, 10.0f)] private float travelDuration = 0.1f;
     [SerializeField] [Range(0.0f, 20.0f)] private float cooldownDuration = 0.0f;
-    [SerializeField] private KeyCode shootKeybind = KeyCode.E;
-    [SerializeField] private KeyCode cancelShootKeybind = KeyCode.R;
+    [SerializeField] public KeyCode shootKeybind = KeyCode.E;
+    [SerializeField] public KeyCode cancelShootKeybind = KeyCode.R;
 
     private GameObject playerObject;
     private GameObject projectile;
@@ -30,18 +30,20 @@ public class B21_ProjectileTeleport : MonoBehaviour
 
     private bool projectileHasBeenShot = false;
     private float projectileDistanceCounter = 0.0f;
-    private float cooldownTimer = 0.0f;
+    public float cooldownTimer = 0.0f;
     private Vector3 shootDirection;
     private Vector2 lastVelocity;
     private GameObject playerCamera;
+    private float cameraResetFloat;
 
     // Start is called before the first frame update
     void Start()
     {
         playerObject = GameObject.FindWithTag("Player");
         playerCamera = GameObject.FindWithTag("MainCamera");
-
+        cameraResetFloat = Camera.main.orthographicSize;
         projectileDistanceCounter = travelDuration;
+        
     }
 
     // Update is called once per frame
@@ -71,7 +73,7 @@ public class B21_ProjectileTeleport : MonoBehaviour
                 Destroy(projectile);
             }
 
-            Camera.main.orthographicSize = 5.0f;
+            Camera.main.orthographicSize = cameraResetFloat;
         }
         
         if (Input.GetKeyDown(shootKeybind))
@@ -98,7 +100,7 @@ public class B21_ProjectileTeleport : MonoBehaviour
                 DrawTeleportLine();
                 playerObject.transform.position = projectile.transform.position;
                 Destroy(projectile);
-                Camera.main.orthographicSize = 5.0f;
+                Camera.main.orthographicSize = cameraResetFloat;
 
             }
         }

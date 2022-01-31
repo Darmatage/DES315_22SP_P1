@@ -10,10 +10,6 @@ public class GameHandler : MonoBehaviour
 	public static int PlayerHealth = 100;
 	public int PlayerHealthStart = 100;
 
-	public GameObject staminaText;
-	public static int Stamina = 50;
-	public int StaminaStart = 50;
-
 	private GameObject playerObj;
 	private bool isDead = false;
 	private float deathTime = 10.0f;
@@ -29,7 +25,11 @@ public class GameHandler : MonoBehaviour
 		}
 
 		Scene thisScene = SceneManager.GetActiveScene();
-		if (thisScene.name == "MainMenu"){PlayerHealth = PlayerHealthStart;}
+		if (thisScene.name == "MainMenu")
+		{
+			PlayerHealth = PlayerHealthStart;
+		}
+
 
 		UpdateHealth();
 		pauseMenuUI.SetActive(false);
@@ -96,11 +96,6 @@ public class GameHandler : MonoBehaviour
 		healthTextTemp.text = "HEALTH: " + PlayerHealth;
 	}
 
-	public void UpdateStamina()
-    {
-		Text staminaTextTemp = staminaText.GetComponent<Text>();
-		staminaTextTemp.text = "STAMINA: " + Stamina;
-    }
 	public void MainMenu(){
 		SceneManager.LoadScene("MainMenu");
 	}

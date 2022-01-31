@@ -38,6 +38,9 @@ public class KaiKawashima_BurnableObject : MonoBehaviour
                 extinguished = true;
                 objectToBurn.GetComponent<BoxCollider2D>().isTrigger = true;
                 sprite.enabled = false;
+                waterBucket.UseWater();
+                waterBucket.DeactivateHUD();
+                waterBucket.imageIndicator.SetActive(false);
             }
         }
     }
@@ -53,8 +56,9 @@ public class KaiKawashima_BurnableObject : MonoBehaviour
                 {
                     withinRange = true;
                     // display message
-                    // "PRESS E"
+                    waterBucket.imageIndicator.SetActive(true);
                 }
+                waterBucket.ActivateHUD();
             }
         }
     }
@@ -65,6 +69,8 @@ public class KaiKawashima_BurnableObject : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         { 
             withinRange = false;
+            waterBucket.DeactivateHUD();
+            waterBucket.imageIndicator.SetActive(false);
         }
     }
 }

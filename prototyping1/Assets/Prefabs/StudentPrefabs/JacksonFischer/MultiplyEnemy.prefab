@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6178945033321065514}
   - component: {fileID: 8057723025587579989}
   - component: {fileID: 4258683864054512732}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: monster_art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,9 +117,10 @@ GameObject:
   - component: {fileID: 3561811805031295337}
   - component: {fileID: 4290372878465933046}
   - component: {fileID: 503090289199649980}
-  m_Layer: 0
+  - component: {fileID: 7628494668674066469}
+  m_Layer: 6
   m_Name: MultiplyEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,7 +201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   damage: 1
-  EnemyLives: 3
   retreatTime: 3
 --- !u!114 &503090289199649980
 MonoBehaviour:
@@ -218,3 +218,19 @@ MonoBehaviour:
   multiplications: 4
   time_between_multiplications: 5
   enemy_object: {fileID: 0}
+  enemy_art: {fileID: 0}
+--- !u!114 &7628494668674066469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5126438271358432353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5d8f9309ea3d64b8176c6ce0bf3f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyLives: 3
+  isStunned: 0
+  stunTime: 5

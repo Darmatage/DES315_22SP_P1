@@ -40,6 +40,10 @@ TagManager:
   - Coin
   - Health
   - Jewel
+  - VisionRange
+  - PortalAllowed
+  - CC_StatusText
+  - Switch
   layers:
   - Default
   - TransparentFX
@@ -56,8 +60,8 @@ TagManager:
   - WaterSafe
   - IgnorePlayer
   - IgnorePlayerAndEnemy
-  - 
-  - 
+  - Wall
+  - PassableWall
   - BorderLayer_CEGP
   - BlockLayer_CEGP
   - FogOfWarMain
@@ -76,6 +80,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 
+    uniqueID: 4226735327
     locked: 0
   - name: FogOfWar
     uniqueID: 3427076239

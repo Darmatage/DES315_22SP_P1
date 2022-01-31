@@ -6,12 +6,16 @@ Hello! This file will explain how to set up my ice power feature.
 2) ErinScribner_PressI says which button to press in order to activate the ice powers. 
    I recommend putting it wherever you want the player to first use said ice powers. 
 
-3) Place ErinScribner_IceLayer tile layer under Grid with all of
+3) ErinScribner_IceNum is a hud element that tells the player how many ice powers they can use 
+   before they need to recharge. Drag ErinScribner_IceNum below ImageHealth, and adjust its position
+   as needed. 
+
+4) Place ErinScribner_IceLayer tile layer under Grid with all of
    the other tile layers. IMPORTANT: Make sure ErinScribner_IceLayer
    has a higher layer number then whichever layer you want the ice
    to cover. Ex: setting lava layer to 5, and IceLayer to 6 
 
-4) When you click on ErinScribner_PlaceBlock, you will see that 
+5) When you click on ErinScribner_PlaceBlock, you will see that 
    there is a script attached called ErinScribner_PaintTile. I'll
    go over what each of the variables do:
    

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 864441453461747352}
   - component: {fileID: 1168950795211430991}
   - component: {fileID: 6484676984837471611}
+  - component: {fileID: 2128592148513256311}
   m_Layer: 14
   m_Name: B21_TeleportPrefab
   m_TagString: Untagged
@@ -47,11 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53152c13186baee4c9a77d51ceb272fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileSpeed: 1
-  travelDuration: 0.1
+  projectileSpeed: 2
+  travelDuration: 2
   cooldownDuration: 0
   shootKeybind: 101
   cancelShootKeybind: 114
+  cooldownTimer: 0
 --- !u!212 &8866436679199516625
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -91,7 +93,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1382494675
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b5bbb4f431692b54f801d51d14e88b98, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5254902}
@@ -179,8 +181,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1382494675
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -240,3 +242,16 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &2128592148513256311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6316615293460003396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a4e6ddb06955e43beae0d3da3a70d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textColor: {r: 1, g: 1, b: 1, a: 1}

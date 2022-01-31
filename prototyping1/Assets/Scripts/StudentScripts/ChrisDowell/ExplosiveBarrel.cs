@@ -22,7 +22,7 @@ public class ExplosiveBarrel : MonoBehaviour
         [System.NonSerialized] public float m_dt = 0;
         [System.NonSerialized] public int m_hp = 10;
         [Header("Statistics")]
-        public int m_maxHP = 10;
+        public int m_maxHP = 3;
         public int m_damage = 25;
         public float m_explosiveRadius = 2f;
         public float m_pushforce = 1;
@@ -40,11 +40,15 @@ public class ExplosiveBarrel : MonoBehaviour
     public ExplosiveTrigger m_triggerType = 0;
     public BarrelGameData m_stats;
     public BarrelVisualData m_visuals;
-    public LayerMask m_damageMask;
+    [Header("Explode Logic")]
+    public LayerMask m_damageMask; // Damages objects on this mask
+    public LayerMask m_ignoreMask; // Ignores collissions with objects on this layer
+    public bool m_damageOtherBarrels = true;
+    public bool m_ignoreOtherBarrels = false;
+    public bool m_lockPosition = true;
     
     public bool m_triggered = false;
 
-    //public LayerMask m_deleteMask; // Deletes objects if explodes
     public SpriteRenderer m_indicator;
     private CircleCollider2D m_exlosivetrigger;
     private GameHandler m_handler;
@@ -134,21 +138,53 @@ public class ExplosiveBarrel : MonoBehaviour
 
     }
 
+    bool CheckIfOnLayer(int layer, LayerMask mask)
+    {
+        // Compares if the bit value of the layer is on the mask
+        return (1 << layer & mask.value) == 1 << layer;
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+         int mask = collision.gameObject.layer;
 
+        // ignore
+        if (CheckIfOnLayer(mask, m_ignoreMask))
+        {
+            Physics2D.IgnoreCollision(m_exlosivetrigger, collision.collider, true);
+        }
 
-        if (m_triggerType == ExplosiveTrigger.Touch)
+        // check touch: anything on damage mask can trigger it
+        if (m_triggerType == ExplosiveTrigger.Touch && CheckIfOnLayer(mask, m_damageMask))
         {
 
-            TakeDamage(1);
+            m_triggered = true;
+
         }
+
+
+
+
 
         if (m_stats.m_exploded == true)
         {
             if (collision.gameObject.tag == "Player")
             {
                 m_handler.TakeDamage(m_stats.m_damage);
+            }
+
+            if (collision.gameObject.tag == "ExplosiveBarrel")
+            {
+                if (m_ignoreOtherBarrels)
+                {
+                    Physics2D.IgnoreCollision(m_exlosivetrigger, collision.collider, true);
+                }
+
+                if (m_damageOtherBarrels)
+                {
+                    collision.gameObject.GetComponent<ExplosiveBarrel>().TakeDamage(m_stats.m_damage);
+                }
             }
 
             var enemyhp = collision.gameObject.GetComponent<EnemyHealth>();
@@ -182,7 +218,7 @@ public class ExplosiveBarrel : MonoBehaviour
     {
 
     }
-    private void Explode()
+    public void Explode()
     {
         m_explodeSound.PlayOneShot(m_explodeSound.clip);
         m_stats.m_exploded = true;
@@ -195,36 +231,39 @@ public class ExplosiveBarrel : MonoBehaviour
         m_exlosivetrigger.radius = m_startRadius;
         m_rb.mass = 100f; // Set mass so it wont move lmao
         m_rb.drag = 100f;
-        m_rb.constraints = RigidbodyConstraints2D.FreezePosition;
+
+        if (m_lockPosition)
+        {
+            m_rb.constraints = RigidbodyConstraints2D.FreezePosition;
+
+        }
 
         Invoke("DestroySelf", m_explodeTime);
 
-        //var hit = Physics2D.CircleCastAll(transform.position, m_stats.m_explosiveRadius, dir, 0, m_damageMask, Mathf.NegativeInfinity, Mathf.Infinity);
+        //var hit = Physics2D.OverlapCircleAll(transform.position, m_radius);
+        ////var hit = Physics2D.CircleCastAll(transform.position, m_stats.m_explosiveRadius, dir, 0, m_damageMask, Mathf.NegativeInfinity, Mathf.Infinity);
 
         //foreach (var obj in hit)
         //{
-        //    // Get vector from object ot target
-        //    obj.rigidbody.AddForce(obj.normal * m_stats.m_pushforce);
 
-        //    if (obj.collider.tag == "Player")
+
+        //    if (obj.tag == "Enemy")
         //    {
-        //        m_handler.TakeDamage(m_stats.m_damage);
-        //        continue;
-        //    }
-
-
-        //    // Get come component script and add it here to deal damage since we dont have some externalized health script?!?!?!!?
-        //    // TODO: figure out how to damage multiple enemies with DIFFERING SCRIPTS LIKE HOLY SHIT WHY
-        //    if (obj.collider.tag == "Enemy")
-        //    {
-        //        // I gotta somehow adjust their hp lol
-
-        //        // I will add some damage stuff later
-        //        // If you end up using my prefab please let me know on teams (c.dowell@digipen.edu) or discord (Frost#0006)
-        //        // DISCORD IS PREFERRED IM MOST LIKELY GOING TO IGNORE TEAMS
-
+        //        // Get Distance and normal
+        //        Vector3 pos = obj.transform.position;
 
         //    }
+            // Get come component script and add it here to deal damage since we dont have some externalized health script?!?!?!!?
+            // TODO: figure out how to damage multiple enemies with DIFFERING SCRIPTS LIKE HOLY SHIT WHY
+            {
+                // I gotta somehow adjust their hp lol
+
+                // I will add some damage stuff later
+                // If you end up using my prefab please let me know on teams (c.dowell@digipen.edu) or discord (Frost#0006)
+                // DISCORD IS PREFERRED IM MOST LIKELY GOING TO IGNORE TEAMS
+
+
+            }
 
         //}
 
