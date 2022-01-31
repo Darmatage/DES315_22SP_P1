@@ -30432,7 +30432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feed22749aadcc249a4ab0a1fdbeb5ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 5
   change: {x: 0, y: 0, z: 0}
   isDashing: 0
   dashLayerMask:
