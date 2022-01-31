@@ -92,12 +92,12 @@ public class EunjinHong_GameHandler : MonoBehaviour
 		if (PlayerHealth <= 0)
 		{
 			PlayerHealth = 0;
-			playerObj.GetComponent<PlayerMove>().playerDie();
+			playerObj.GetComponent<EunjinHong_PlayerMove>().playerDie();
 			isDead = true;
 		}
 		else
 		{
-			playerObj.GetComponent<PlayerMove>().playerHit();
+			playerObj.GetComponent<EunjinHong_PlayerMove>().playerHit();
 		}
 		UpdateHealth();
 	}
