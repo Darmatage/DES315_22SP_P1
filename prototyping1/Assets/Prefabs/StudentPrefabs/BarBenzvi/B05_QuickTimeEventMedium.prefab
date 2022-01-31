@@ -1910,21 +1910,27 @@ MonoBehaviour:
   - ParentObject: {fileID: 5881307788916290883}
     BackgroundObject: {fileID: 5881307789057254608}
     DisplayObject: {fileID: 5881307790250968505}
+    SuccessSFX: {fileID: 8300000, guid: adb817fd6f5bb1c4bb585bbe6d406aa7, type: 3}
   - ParentObject: {fileID: 5881307789127296539}
     BackgroundObject: {fileID: 5881307790469967331}
     DisplayObject: {fileID: 5881307789201952883}
+    SuccessSFX: {fileID: 8300000, guid: 75dda5c89a49a63468f9d6169324dec5, type: 3}
   - ParentObject: {fileID: 5881307790296645505}
     BackgroundObject: {fileID: 5881307790772549395}
     DisplayObject: {fileID: 5881307790571369886}
+    SuccessSFX: {fileID: 8300000, guid: 1d5cb7b7799c7084ea5b4548fb186436, type: 3}
   - ParentObject: {fileID: 5881307790120418700}
     BackgroundObject: {fileID: 5881307789454347762}
     DisplayObject: {fileID: 5881307789352649940}
+    SuccessSFX: {fileID: 8300000, guid: 69339ef54d1548b47ac4f3309f8a4f1f, type: 3}
   - ParentObject: {fileID: 2769667177009151790}
     BackgroundObject: {fileID: 4793528225677695237}
     DisplayObject: {fileID: 3028065785965068479}
+    SuccessSFX: {fileID: 8300000, guid: 5db399514cd9a8e4290a3b822b99a0f5, type: 3}
   - ParentObject: {fileID: 751534482359525278}
     BackgroundObject: {fileID: 4945199743779352259}
     DisplayObject: {fileID: 8790388285096651768}
+    SuccessSFX: {fileID: 8300000, guid: 3444838c71a127f41bffb8c5773b6cf9, type: 3}
   PossibleComboButtons:
   - KeysToPress: 1301000064000000
     KeyColor: {r: 0.8679245, g: 0.8121596, b: 0.16703449, a: 1}
@@ -1949,6 +1955,8 @@ MonoBehaviour:
   MinFireballSize: 20
   MaxFireballSize: 100
   FireballFlyTime: 0.3
+  WrongKeySFX: {fileID: 8300000, guid: 361a07a6099ca3a4286c3741bee98f5d, type: 3}
+  FireballImpactSFX: {fileID: 8300000, guid: e17813ef1cbda004bbb38c6f99b1a5ff, type: 3}
 --- !u!1 &7459380137748174895
 GameObject:
   m_ObjectHideFlags: 0
