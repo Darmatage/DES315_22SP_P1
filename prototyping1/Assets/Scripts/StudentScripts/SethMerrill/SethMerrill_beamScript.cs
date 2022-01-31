@@ -9,6 +9,7 @@ public class SethMerrill_beamScript : MonoBehaviour
 	Vector3 pos;
 	Vector3 playerPos;
 	public float range;
+	public GameObject parentObj;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +39,15 @@ public class SethMerrill_beamScript : MonoBehaviour
 		Debug.DrawRay(start, direction*(range-dist));
 		if(rc.collider)
 		{
+			//Debug.Log(rc.collider.gameObject.name);
 			if(rc.collider.gameObject.tag == "Player")
 			{
 				gh.TakeDamage(damage);
+				parentObj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.green;
+				AudioSource[] audio = parentObj.GetComponents<AudioSource>();
+				audio[1].Play();
 			}
+			//transform.localScale = new Vector3(1.0f, Vector2.Distance(rc.collider.transform.position, pos), 1.0f);
 		}
 	}
 	
@@ -59,6 +65,11 @@ public class SethMerrill_beamScript : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		See();
-		Debug.Log(other.gameObject.name);
 	}
+	
+	void OnTriggerExit2D(Collider2D other)
+	{
+		parentObj.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
+	}
+	
 }
