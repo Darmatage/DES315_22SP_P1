@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2090379292874809022}
   - component: {fileID: 2090379292874809017}
   - component: {fileID: 2090379292874809016}
+  - component: {fileID: -3079422144542628186}
   m_Layer: 0
   m_Name: ErinScribner_PlaceBlock
   m_TagString: Untagged
@@ -78,3 +79,18 @@ MonoBehaviour:
   heal: 1
   damageTime: 0.5
   numPower: 2
+  rechargeSpeed: 0.1
+--- !u!114 &-3079422144542628186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2090379292874809019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159f00ce5a2319743a0e94b4b644d591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particles: {fileID: 6453609185728710264, guid: ecc4fae05bf9a9146b9ae4c3670bbb30,
+    type: 3}
