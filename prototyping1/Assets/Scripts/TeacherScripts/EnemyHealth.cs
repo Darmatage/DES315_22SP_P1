@@ -61,7 +61,7 @@ public class EnemyHealth : MonoBehaviour{
 			Destroy(gameObject);
 		}
 		else {yield return new WaitForSeconds(0.5f);
-			//rend.material.color = Color.white;
+			//rend.material.color = Color.white; //this is extra
 			rend.material.color = new Vector4(startColor.r, startColor.b, startColor.g, enemyAlpha);
 		}
 	}
