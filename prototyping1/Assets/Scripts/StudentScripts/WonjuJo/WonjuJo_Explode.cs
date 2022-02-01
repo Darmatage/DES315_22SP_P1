@@ -22,34 +22,48 @@ public class WonjuJo_Explode : MonoBehaviour
         playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
 
         if (!ExplosionEnemy)
+        {
             Debug.Log("There is no explosion enemy");
+        }
 
         GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
+
         if (gameHandlerLocation != null)
         {
             gameHandlerObj = gameHandlerLocation.GetComponent<WonjuJo_PlayerHandler>();
         }
-
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (ExplosionEnemy.GetIsDead() && !Once)
+        if (collision.gameObject.tag == "Player")
         {
-            if (collision.gameObject.tag == "Player")
+            Hit = true;
+
+            if (ExplosionEnemy.GetIsDead() && !Once)
             {
                 Once = true;
-                Hit = true;
-                if (Hit)
-                    StartCoroutine(Delay(1.8f));
+
+                StartCoroutine(Delay(1.8f));
             }
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Hit = false;
+        }
+    }
+
     IEnumerator Delay(float time)
     {
         yield return new WaitForSeconds(time);
-        
-        gameHandlerObj.TakeDamage(20);
 
+        if (Hit)
+        {
+            gameHandlerObj.TakeDamage(20);
+        }
     }
 }
