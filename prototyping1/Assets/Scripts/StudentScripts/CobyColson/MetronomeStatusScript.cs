@@ -22,7 +22,7 @@ public class MetronomeStatusScript : MonoBehaviour
         new StatusPreset("GOOD!", Color.cyan),
         new StatusPreset("MISS", Color.red),
         new StatusPreset("", Color.clear),
-        new StatusPreset("Get a PERFECT.", Color.magenta)
+        new StatusPreset("Get a PERFECT...", Color.black)
     };
 
     private GameObject textObject;
