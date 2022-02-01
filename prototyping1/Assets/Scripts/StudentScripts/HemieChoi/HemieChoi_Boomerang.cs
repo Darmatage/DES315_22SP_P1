@@ -15,6 +15,8 @@ public class HemieChoi_Boomerang : MonoBehaviour
     [SerializeField] private float MaxTimer = 5.0f;
     private float timer;
     Collider2D m_collider;
+    public static AudioClip boomerangDropSound;
+    static AudioSource audioSrc;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,8 @@ public class HemieChoi_Boomerang : MonoBehaviour
         playerObj = GameObject.Find("Player");
         timer = 0;
         m_collider = GetComponent<Collider2D>();
+        boomerangDropSound = Resources.Load<AudioClip>("Media/StudentMedia/HemieChoi/Audio/Drop");
+        audioSrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -109,6 +113,7 @@ public class HemieChoi_Boomerang : MonoBehaviour
             isThrowing = false;
             isDropped = true;
             isRotating = false;
+            audioSrc.PlayOneShot(boomerangDropSound);
         }
     }
 }
