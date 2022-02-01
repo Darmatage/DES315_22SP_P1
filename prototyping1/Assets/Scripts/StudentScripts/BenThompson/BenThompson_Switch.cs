@@ -13,11 +13,16 @@ public class BenThompson_Switch : MonoBehaviour
 		public UnityEvent ue;
 
 
+		[SerializeField]
+		SpriteRenderer minimapLock;
+
 		// Start is called before the first frame update
 		void Start()
 		{
 				sp.sprite = SwitchOffArt;
 				sp.color = offColor;
+
+				minimapLock.color = offColor;
 		}
 
 		void OnTriggerEnter2D(Collider2D other)
@@ -26,6 +31,7 @@ public class BenThompson_Switch : MonoBehaviour
 				{
 						sp.sprite = SwitchOnArt;
 						sp.color = onColor;
+						minimapLock.enabled = false;
 						ue.Invoke();
 				}
 		}
