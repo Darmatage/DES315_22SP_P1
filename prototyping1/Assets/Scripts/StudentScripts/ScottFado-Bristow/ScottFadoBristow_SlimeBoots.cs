@@ -19,10 +19,13 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
     private int wiggleCount = 0;
     private GameObject player;
 
+    private float originalScaleX;
+
     // Start is called before the first frame update
     void Start()
     {
         slimes = new Stack<(GameObject, float)>();
+        originalScaleX = MashToggle.transform.localScale.x;
     }
 
     // Update is called once per frame
@@ -31,6 +34,12 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
         //Alright!! Wiggle check
         //Check if player is moving left to right
         float input = Input.GetAxisRaw("Horizontal");
+
+        Vector3 flipscale = MashToggle.transform.localScale;
+        //Set the sign so it flips
+        flipscale.x = originalScaleX * gameObject.transform.localScale.x / Mathf.Abs(gameObject.transform.localScale.x);
+        MashToggle.transform.localScale = flipscale;
+        
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
