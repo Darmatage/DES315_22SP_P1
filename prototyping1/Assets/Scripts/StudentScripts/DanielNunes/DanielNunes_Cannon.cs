@@ -705,7 +705,7 @@ public class DanielNunes_Cannon : MonoBehaviour
                 if (hit.collider.gameObject.name.Contains("Taro_Tile"))
                 {
                     //if the block is in the default collision layer
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Default"))
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Color_Blocks"))
                     {
                         return true;
                     }
