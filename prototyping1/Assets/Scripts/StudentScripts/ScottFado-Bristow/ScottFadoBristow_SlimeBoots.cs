@@ -8,6 +8,11 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
     public GameObject AttatchSlime;
     public Vector2 BootsOffset;
     public Vector2 SlimeOffset;
+
+    public int MashAmount = 20;
+
+    public GameObject MashToggle;
+
     private Stack<(GameObject, float)> slimes;
     private float wiggleTimer = 4;
     private bool wiggleDir = false;
@@ -26,25 +31,20 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
         //Alright!! Wiggle check
         //Check if player is moving left to right
         float input = Input.GetAxisRaw("Horizontal");
-        if(input > 0)
+
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(wiggleDir == false)
-            {
-                wiggleCount++;
-                wiggleDir = true;
-            }
+            //SpriteRenderer sr = MashToggle.GetComponent<SpriteRenderer>();
+            //sr.sprite = ToggleOn;
+            wiggleCount++;
         }
-        else if (input < 0)
+        else
         {
-            if (wiggleDir == true)
-            {
-                wiggleCount++;
-                wiggleDir = false;
-         
-            }
+            //SpriteRenderer sr = MashToggle.GetComponent<SpriteRenderer>();
+            //sr.sprite = ToggleOff;
         }
 
-        if(wiggleCount >= 10)
+        if(wiggleCount >= MashAmount)
         {
             Detach();
             wiggleCount = 0;
@@ -57,13 +57,22 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
     public void Attatch(GameObject p, float speedDiff)
     {
         //Create the new child and attatch it to this object
+
+        if(slimes.Count == 0)
+        {
+            MashToggle.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+        }
+
         GameObject newSlime = Instantiate(AttatchSlime, transform, false);
         float x = BootsOffset.x + Random.Range(-SlimeOffset.x, SlimeOffset.x);
         float y = BootsOffset.y + Random.Range(-SlimeOffset.y, SlimeOffset.y);
         newSlime.transform.localPosition = new Vector3(x, y, newSlime.transform.position.z);
-        slimes.Push((newSlime, speedDiff));
 
+
+        slimes.Push((newSlime, speedDiff));
         player = p;
+
+        
 
     }
 
@@ -76,6 +85,13 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
             GameObject s = p.Item1;
             s.GetComponent<ScottFadoBristow_BootSlimeControl>().Kill();
             player.GetComponent<PlayerMove>().speed += p.Item2;
+        }
+
+        if(slimes.Count == 0)
+        {
+            
+            MashToggle.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+            
         }
     }
 
