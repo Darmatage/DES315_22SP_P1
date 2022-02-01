@@ -28996,7 +28996,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385027938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.39, y: 1.16, z: 2}
+  m_LocalPosition: {x: -7.33, y: 1.16, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 454395306}
@@ -38859,6 +38859,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   damageTime: 0.5
+  canDamage: 1
+  MageHand: {fileID: 0}
 --- !u!1001 &1776436975
 PrefabInstance:
   m_ObjectHideFlags: 0
