@@ -13,7 +13,7 @@ public class BenThompson_DestroyTurnWall : MonoBehaviour
             if (child == transform)
                 continue;
 
-            if(child.gameObject.activeSelf == true)
+            if(child.gameObject.activeSelf == true && child.gameObject.name != "MinimapDoor")
             {
                 return;
             }
