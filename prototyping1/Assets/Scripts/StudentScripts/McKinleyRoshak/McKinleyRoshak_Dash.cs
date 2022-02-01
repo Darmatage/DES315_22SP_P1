@@ -18,6 +18,8 @@ public class McKinleyRoshak_Dash : MonoBehaviour
     private Lava lavaScript;
 
     public KeyCode DashKey = KeyCode.Q;
+
+    private ParticleSystem particles;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class McKinleyRoshak_Dash : MonoBehaviour
         move = Player.GetComponent<PlayerMove>();
         baseSpeed = 5.0f;
         lavaScript = LavaObject.GetComponent<Lava>();
+        particles = gameObject.GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -37,7 +40,10 @@ public class McKinleyRoshak_Dash : MonoBehaviour
             {
                 isDashing = true;
                 timer = 0.0f;
-                lavaScript.damage = 0;
+                lavaScript.canDamage = false;
+                transform.position = Player.GetComponent<Transform>().position;
+                particles.Play();
+
             }
         }
         if(isDashing)
@@ -49,7 +55,7 @@ public class McKinleyRoshak_Dash : MonoBehaviour
                 isDashing = false;
                 move.speed = baseSpeed;
                 timer = 0.0f;
-                lavaScript.damage = 1;
+                lavaScript.canDamage = true;
             }
         }
     }

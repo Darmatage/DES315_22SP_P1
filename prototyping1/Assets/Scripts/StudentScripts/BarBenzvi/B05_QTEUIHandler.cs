@@ -9,6 +9,7 @@ public class B05_QTEUIButtonData
     public GameObject ParentObject = null;
     public GameObject BackgroundObject = null;
     public GameObject DisplayObject = null;
+    public AudioClip SuccessSFX = null;
 }
 
 
@@ -46,6 +47,9 @@ public class B05_QTEUIHandler : MonoBehaviour
     public float MaxFireballSize = 100;
     public float FireballFlyTime = 0.3f;
 
+    public AudioClip WrongKeySFX = null;
+    public AudioClip FireballImpactSFX = null;
+
     Vector2 playerFireballPos = new Vector2();
     Vector2 enemyFireballPos = new Vector2();
 
@@ -57,6 +61,7 @@ public class B05_QTEUIHandler : MonoBehaviour
     bool succeeded = false;
 
     GameHandler gHandler = null;
+    AudioSource aSource = null;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +71,13 @@ public class B05_QTEUIHandler : MonoBehaviour
         {
             gHandler = gameHandlerLocation.GetComponent<GameHandler>();
         }
+
+        GameObject playerObj = GameObject.FindWithTag("Player");
+        if(playerObj != null)
+        {
+            aSource = playerObj.GetComponent<AudioSource>();
+        }
+        
 
         keyCombo.Clear();
         if(TimerBar != null)
@@ -120,6 +132,11 @@ public class B05_QTEUIHandler : MonoBehaviour
                     B05_EventManager.CallQTEFailure();
                 }
                 B05_EventManager.CallQTEEnded();
+                if(aSource != null)
+                {
+                    aSource.Stop();
+                    aSource.PlayOneShot(FireballImpactSFX);
+                }
                 Destroy(gameObject);
             }
 
@@ -142,6 +159,11 @@ public class B05_QTEUIHandler : MonoBehaviour
                     bg.GetComponent<B05_ColorInterpolator>().TargetColor = CorrectColor;
                     bParent.GetComponent<B05_ConstantTransformMovement>().Velocity = CorrectFlyoffVelocity;
 
+                    if (aSource != null)
+                    {
+                        aSource.PlayOneShot(KeyButtonDisplays[currIndex].SuccessSFX);
+                    }
+
                     ++currIndex;
                     if (currIndex == keyCombo.Count)
                     {
@@ -156,6 +178,11 @@ public class B05_QTEUIHandler : MonoBehaviour
                 if(gHandler != null)
                 {
                     gHandler.TakeDamage(IncorrectKeyDamage);
+                }
+                if(aSource != null)
+                {
+                    aSource.Stop();
+                    aSource.PlayOneShot(WrongKeySFX);
                 }
             }
         }

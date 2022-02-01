@@ -44,6 +44,7 @@ TagManager:
   - PortalAllowed
   - CC_StatusText
   - Switch
+  - Taro_ColorBlock
   layers:
   - Default
   - TransparentFX
@@ -72,7 +73,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Color_Blocks
   - 
   - 
   - 

@@ -199,11 +199,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetTag: Player
-  QuickTimeEventPrefab: {fileID: 5881307790807576636, guid: 26c03c9b00e9efa488c28e1137aa9df1,
+  QuickTimeEventPrefab: {fileID: 4061639758879629586, guid: 922b3791b39ff344da40c708039ea492,
     type: 3}
   SpawnParent: {fileID: 0}
   QTETimescale: 0
   DestroyOnTriggeredQTESuccess: 1
+  GetsHitOnTriggeredQTESuccess: 0
   DestroyOnSuccessDelay: 0.5
 --- !u!114 &228519414076698516
 MonoBehaviour:
@@ -220,3 +221,4 @@ MonoBehaviour:
   speed: 1
   EnemyLives: 3
   retreatTime: 3
+  StunTime: 3
