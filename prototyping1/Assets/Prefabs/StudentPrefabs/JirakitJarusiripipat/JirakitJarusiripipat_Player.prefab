@@ -100,6 +100,7 @@ MonoBehaviour:
   canUseSkill: 0
   maxSkillGauge: 10
   skillGauge: 0
+  skillBG: {fileID: 0}
   timeToAttack: 0
   timeToAttackCooldown: 0.8
   rotateParent: {fileID: 7957374624267614764}
@@ -113,11 +114,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   skillGaugeText: {fileID: 0}
-  readyText: []
-  notReadyText: []
-  UsingText: []
+  readyText:
+  - {fileID: 0}
+  - {fileID: 0}
+  notReadyText:
+  - {fileID: 0}
+  - {fileID: 0}
+  UsingText:
+  - {fileID: 0}
+  - {fileID: 0}
   cover: {fileID: 0}
   skillGaugeImage: {fileID: 0}
+  gameManager: {fileID: 0}
+  thingsToDestroy:
+  - {fileID: 0}
+  - {fileID: 0}
+  wall: {fileID: 0}
 --- !u!114 &2391722290754411632
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PortalGun : MonoBehaviour
 {
-    [SerializeField] private Transform plyTransform = null;
+    private Transform plyTransform = null;
     
     [SerializeField] private GameObject portalObject1 = null;
     [SerializeField] private GameObject portalObject2 = null;
@@ -19,14 +19,38 @@ public class PortalGun : MonoBehaviour
     [SerializeField] private SpriteRenderer crosshair2 = null;
     [SerializeField] private Sprite crosshair2Empty = null;
     [SerializeField] private Sprite crosshair2Full = null;
-
+    
+    private new AudioSource audio = null;
+    
     private static PortalGun instance = null;
+
+    private void Start()
+    {
+        plyTransform = GameObject.FindWithTag("Player").transform;
+    }
 
     private PortalGun()
     {
         instance = this;
     }
-    
+
+    private void Awake()
+    {
+        audio = GetComponent<AudioSource>();
+    }
+
+    private void ClearPortal(bool isPortal2)
+    {
+        if (!isPortal2)
+        {
+            crosshair1.sprite = crosshair1Empty;
+        }
+        else
+        {
+            crosshair2.sprite = crosshair2Empty;
+        }
+    }
+
     public static void NotifyPortalSuccess(bool isPortal2)
     {
         if (!isPortal2)
@@ -58,6 +82,8 @@ public class PortalGun : MonoBehaviour
         var pDelta = wPos - pPos;
         portalInstance.GetComponent<PortalTeleport>().Throw(new Vector2(pDelta.x, pDelta.y));
 
+        audio.Play();
+        
         return portalInstance;
     }
 
@@ -75,10 +101,12 @@ public class PortalGun : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            ClearPortal(false);
             curPor1 = FirePortal(portalObject1, curPor1);
         }
         if (Input.GetButtonDown("Fire2"))
         {
+            ClearPortal(true);
             curPor2 = FirePortal(portalObject2, curPor2);
         }
 

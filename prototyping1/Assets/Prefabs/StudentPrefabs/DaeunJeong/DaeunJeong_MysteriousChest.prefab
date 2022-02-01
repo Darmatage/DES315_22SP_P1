@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &2705200810839189959
 MonoBehaviour:
@@ -82,7 +82,7 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   UIPanelPrefab: {fileID: 6992962902643755826, guid: 198e1076d01df9d4999a2b9497ba1860,
     type: 3}
-  shouldSpawnDoor: 0
+  UIManager: {fileID: 0}
   shouldSpawnSwitch: 0
 --- !u!1 &5110714817576088400
 GameObject:

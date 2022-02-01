@@ -7,8 +7,10 @@ public class Lava : MonoBehaviour
 	public int damage = 1;
 	public float damageTime = 0.5f;
 	private bool isDamaging = false;
+	public bool canDamage = true;
 	private float damageTimer = 0f;
 	private GameHandler gameHandlerObj;
+	public HookShotFire_JonathanHamling MageHand;
 
 	void Start () {
 
@@ -28,7 +30,7 @@ public class Lava : MonoBehaviour
 	}
 
 	void OnTriggerStay2D(Collider2D other){
-		if (other.gameObject.tag == "Player") {
+		if ((other.gameObject.tag == "Player")&&(canDamage==true)&&(!MageHand.isRetract)) {
 			isDamaging = true;
 		}
 	}

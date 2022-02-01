@@ -34,7 +34,15 @@ public class KobeDennis_PlayerInputScript : MonoBehaviour
         {
             nextFire = Time.time + fireRate;
 
-            var lavaBall = Instantiate(Lavaball_prefab, playerTransform.position + lastFireDirection, Quaternion.identity) as GameObject;
+            var offset = Vector3.zero;
+
+            //Reposition the projectile if the player is shooting down
+            if (lastFireDirection.y <= -1f)
+            {
+                offset = new Vector3(0, -1f, 0f);
+
+            }
+            var lavaBall = Instantiate(Lavaball_prefab, playerTransform.position + offset + lastFireDirection, Quaternion.identity) as GameObject;
 
             lavaBall.GetComponent<KobeDennis_LavaBallScript>().SetDirection(lastFireDirection);
 

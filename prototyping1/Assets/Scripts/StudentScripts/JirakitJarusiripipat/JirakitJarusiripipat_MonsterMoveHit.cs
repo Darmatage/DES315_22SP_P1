@@ -27,7 +27,8 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 
 	[SerializeField]
 	private Image healthFill;
-
+	[SerializeField]
+	JirakitJarusiripipat_GameManager gameManager;
 	void Start()
 	{
 		anim = gameObject.GetComponentInChildren<Animator>();
@@ -42,33 +43,67 @@ public class JirakitJarusiripipat_MonsterMoveHit : MonoBehaviour
 		{
 			gameHandlerObj = gameHandlerLocation.GetComponent<JirakitJarusiripipat_GameHandler>();
 		}
+		
 	
 	}
 
 	void Update()
 	{
-		//int playerHealth = GameHandler.PlayerHealth; //access script directly in the case of a static variable 
-		if (target != null /*&& playerInArea*/)
+		if (gameManager != null)
 		{
-			//if ((attackPlayer == true) && (playerHealth >= 1)){
-			if (attackPlayer == true)
-			{
-				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-			}
-			else if (attackPlayer == false)
-			{
-				transform.position = Vector2.MoveTowards(transform.position, target.position, speed * -1 * Time.deltaTime);
-			}
-			if (target.gameObject.GetComponent<JirakitJarusiripipat_PlayerAction>().isUsingSkill)
+			if (gameManager.gameStart)
             {
-				speed = 1;
-            }
-			else
-            {
-				speed = defaultSpeed;
-            }
+				//int playerHealth = GameHandler.PlayerHealth; //access script directly in the case of a static variable 
+				if (target != null /*&& playerInArea*/)
+				{
+					//if ((attackPlayer == true) && (playerHealth >= 1)){
+					if (attackPlayer == true)
+					{
+						transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+					}
+					else if (attackPlayer == false)
+					{
+						transform.position = Vector2.MoveTowards(transform.position, target.position, speed * -1 * Time.deltaTime);
+					}
+					if (target.gameObject.GetComponent<JirakitJarusiripipat_PlayerAction>().isUsingSkill)
+					{
+						speed = 1;
+					}
+					else
+					{
+						speed = defaultSpeed;
+					}
+				}
+				healthFill.fillAmount = EnemyLives / maxEnemyLives;
+			}
+
 		}
-		healthFill.fillAmount = EnemyLives / maxEnemyLives;
+		else
+        {
+
+			//int playerHealth = GameHandler.PlayerHealth; //access script directly in the case of a static variable 
+			if (target != null /*&& playerInArea*/)
+			{
+				//if ((attackPlayer == true) && (playerHealth >= 1)){
+				if (attackPlayer == true)
+				{
+					transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+				}
+				else if (attackPlayer == false)
+				{
+					transform.position = Vector2.MoveTowards(transform.position, target.position, speed * -1 * Time.deltaTime);
+				}
+				if (target.gameObject.GetComponent<JirakitJarusiripipat_PlayerAction>().isUsingSkill)
+				{
+					speed = 1;
+				}
+				else
+				{
+					speed = defaultSpeed;
+				}
+			}
+			healthFill.fillAmount = EnemyLives / maxEnemyLives;
+		}
 		
 	}
 

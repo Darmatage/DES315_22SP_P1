@@ -29,33 +29,35 @@ public class JasonHunt_HammerScript : MonoBehaviour
         if (hasHammer)
         {
             uiElement.SetActive(true);
-        }
 
-        if (Input.GetMouseButtonDown(0) && hasHammer && !SelfDestruct)
-        {
-            //swing hammer (animation coming eventually)
-            //if any objects tagged with "JasonHuntBreakable" are within HammerRange distance of the player, destroy those objects
             foreach (GameObject block in blocks)
             {
                 if (!block) continue;
                 //if distance between block and player is less than HammerRange
                 if (Vector3.Distance(block.GetComponent<Transform>().position, player.GetComponent<Transform>().position) <= HammerRange)
                 {
-                    //break block
-                    block.GetComponent<JasonHunt_BlockScript>().explode();
-                    Destroy(block);
+                    block.GetComponent<JasonHunt_BlockScript>().ToggleHighlight(true);
+                    if (Input.GetMouseButtonDown(0) && !SelfDestruct)
+                    {
+                        //break block
+                        block.GetComponent<JasonHunt_BlockScript>().explode();
+                        Destroy(block);
+                    }
+                }
+                else
+                {
+                    block.GetComponent<JasonHunt_BlockScript>().ToggleHighlight(false);
                 }
             }
 
             blocks = GameObject.FindGameObjectsWithTag("JasonHuntBreakable");
         }
-        else if (SelfDestruct)
+        if (SelfDestruct)
         {
             timer -= Time.deltaTime;
             if (timer <= 0)
                 Destroy(this.gameObject);
         }
-
     }
 
     void OnTriggerEnter2D(Collider2D other)
