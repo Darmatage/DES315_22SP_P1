@@ -165,29 +165,6 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
                 handImage.SetActive(false);
                 handRend.sprite = hands[0];
             }
-            else if (Vector2.Distance(transform.position, targetObj.transform.position) < .5f)
-            {
-
-                if (Input.GetButton("Fire2"))
-                {
-                    if (targetObj.GetComponent<Rigidbody2D>())
-                    {
-                        isLaunched = true;
-
-                        isPull = false;
-                        isGrappled = false;
-                    }
-                }
-
-                line.enabled = false;
-            }
-        }
-
-        if (isLaunched == true)
-        {
-            targetObj.GetComponent<Rigidbody2D>().AddForce(positionRot.right * shootSpeed, ForceMode2D.Impulse);
-
-            isLaunched = false;
         }
 
         if (isLaunched == true)
