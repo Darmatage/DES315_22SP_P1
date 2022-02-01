@@ -13,6 +13,9 @@ public class TaherRechargeScript : MonoBehaviour
 
   private GameObject circleObject;
 
+  private AudioSource audioSource;
+  private float audioTimer = 0.0f;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -23,6 +26,14 @@ public class TaherRechargeScript : MonoBehaviour
     startScale = script.startScale;
     endScale = script.endScale;
     currentScale = endScale;
+
+    audioSource = GetComponent<AudioSource>();
+  }
+
+  private void Update()
+  {
+    if(audioTimer >= 0.0f)
+    audioTimer -= Time.deltaTime;
   }
 
   private void OnCollisionStay2D(Collision2D collision)
@@ -43,6 +54,12 @@ public class TaherRechargeScript : MonoBehaviour
 
       tempscale.Set(currentScale, currentScale, 1.0f);
       circleObject.transform.localScale = tempscale;
+
+      if (audioTimer <= 0)
+      {
+        GetComponent<AudioSource>().Play();
+        audioTimer = 8.0f;
+      }
     }
   }
 

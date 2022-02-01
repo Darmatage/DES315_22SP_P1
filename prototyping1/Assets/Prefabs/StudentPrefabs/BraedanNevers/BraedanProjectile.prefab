@@ -166,6 +166,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d04b982accbc68e4191c15ccaddca25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakableWallTileMap: {fileID: 6475760797777077654, guid: eac6d62f135d88343b3cb5c88f8deac9,
-    type: 3}
   isHeld: 0
