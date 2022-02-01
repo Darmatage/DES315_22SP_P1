@@ -39,6 +39,18 @@ public class PortalGun : MonoBehaviour
         audio = GetComponent<AudioSource>();
     }
 
+    private void ClearPortal(bool isPortal2)
+    {
+        if (!isPortal2)
+        {
+            crosshair1.sprite = crosshair1Empty;
+        }
+        else
+        {
+            crosshair2.sprite = crosshair2Empty;
+        }
+    }
+
     public static void NotifyPortalSuccess(bool isPortal2)
     {
         if (!isPortal2)
@@ -89,10 +101,12 @@ public class PortalGun : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            ClearPortal(false);
             curPor1 = FirePortal(portalObject1, curPor1);
         }
         if (Input.GetButtonDown("Fire2"))
         {
+            ClearPortal(true);
             curPor2 = FirePortal(portalObject2, curPor2);
         }
 

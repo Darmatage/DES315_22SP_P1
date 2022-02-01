@@ -22,7 +22,8 @@ public class MetronomeControllerScript : MonoBehaviour
     public float perfectThreshold;
     public float goodThreshold;
     private bool actionThisBeat = false;
-
+    private bool actionStartedThisRound = false;
+    private float actionCooldownTime = 0.0f;
     void Awake()
     {
         canvas = GameObject.Find("Canvas");
@@ -73,18 +74,11 @@ public class MetronomeControllerScript : MonoBehaviour
     {
         if (Time.timeScale >= 1.0f)
         {
-            if (!metronomeMarker.activeSelf)
-            {
-                metronomeMarker.SetActive(true);
-                for (int i = 0; i < barsList.Count; ++i)
-                {
-                    barsList[i].SetActive(true);
-                }
-                ResetBarPositions();
-            }
+            actionCooldownTime -= Time.deltaTime;
+            EnableUI();
+            FadeInMusic();
 
             bool valid = false;
-            Vector3 move = Vector3.zero;
             MetronomeStatusScript.StatusPreset preset = MetronomeStatusScript.presets[2];
             for (int i = 0; i < bars; ++i)
             {
@@ -98,55 +92,43 @@ public class MetronomeControllerScript : MonoBehaviour
                     }
                 }
             }
-            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
-            {
-                move = Vector3.up;
-            }
-            else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
-            {
-                move = Vector3.left;
-
-                Vector3 newScale = player.transform.localScale;
-                newScale.x = -1.0f;
-                player.transform.localScale = newScale;
-            }
-            else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
-            {
-                move = Vector3.down;
-            }
-            else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
-            {
-                move = Vector3.right;
-
-                Vector3 newScale = player.transform.localScale;
-                newScale.x = 1.0f;
-                player.transform.localScale = newScale;
-            }
-            if (move != Vector3.zero && !actionThisBeat)
+            
+            Vector3 move = GetPlayerInput();
+            if (move != Vector3.zero && actionCooldownTime <= 0.0f)
             {
                 if (valid)
                 {
-                    pMove.MovePlayer(move);
                     if (preset.text == MetronomeStatusScript.presets[0].text)
                     {
-                        MetronomeBarScript.barSpeed += 0.25f * Mathf.Sqrt(MetronomeBarScript.barSpeed);
                         audioSources[0].pitch = 1.0f;
+                        if (!actionStartedThisRound) // Only start the game on a perfect hit
+                        {
+                            actionStartedThisRound = true;
+                            audioSources[3].Play();
+                        }
                     }
                     else if (preset.text == MetronomeStatusScript.presets[1].text)
                     {
                         audioSources[0].pitch = 0.8f;
+                        if (!actionStartedThisRound) // Delay game start for perfect hit
+                        {
+                            preset = MetronomeStatusScript.presets[4];
+                        }
                     }
-                    audioSources[0].Play(0);
+                    if (actionStartedThisRound)
+                    {
+                        pMove.MovePlayer(move);
+                        audioSources[0].Play(0);
+                    }
                 }
                 else
                 {
                     audioSources[2].Play(0);
-                    MetronomeBarScript.barSpeed = MetronomeBarScript.initialBarSpeed;
                     pAnim.SetTrigger("Hurt");
                     handler.TakeDamage(5);
                 }
                 status.SetTextToPreset(preset);
-                actionThisBeat = true;
+                actionCooldownTime = 0.33f;
                 pAnim.SetBool("Walk", true);
             }
             else
@@ -156,11 +138,8 @@ public class MetronomeControllerScript : MonoBehaviour
         }
         else
         {
-            metronomeMarker.SetActive(false);
-            for (int i = 0; i < barsList.Count; ++i)
-            {
-                barsList[i].SetActive(false);
-            }
+            DisableUI();
+            FadeOutMusic();
         }
     }
 
@@ -182,6 +161,91 @@ public class MetronomeControllerScript : MonoBehaviour
             
             barsList[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, 0.0f);
             xPos += spacing;
+        }
+    }
+
+    private void EnableUI()
+    {
+        if (!metronomeMarker.activeSelf)
+        {
+            metronomeMarker.SetActive(true);
+            for (int i = 0; i < barsList.Count; ++i)
+            {
+                barsList[i].SetActive(true);
+            }
+            ResetBarPositions();
+        }
+    }
+
+    private void DisableUI()
+    {
+        if (metronomeMarker.activeSelf)
+        {
+            metronomeMarker.SetActive(false);
+            for (int i = 0; i < barsList.Count; ++i)
+            {
+                barsList[i].SetActive(false);
+            }
+        }
+    }
+
+    private Vector3 GetPlayerInput()
+    {
+        Vector3 move = Vector3.zero;
+        if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+        {
+            move = Vector3.up;
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
+        {
+            move = Vector3.left;
+
+            Vector3 newScale = player.transform.localScale;
+            if (newScale.x > 0)
+            {
+                newScale.x = -newScale.x;
+            }
+            player.transform.localScale = newScale;
+        }
+        else if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+        {
+            move = Vector3.down;
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
+        {
+            move = Vector3.right;
+
+            Vector3 newScale = player.transform.localScale;
+            if (newScale.x < 0)
+            {
+                newScale.x = -newScale.x;
+            }
+            player.transform.localScale = newScale;
+        }
+        return move;
+    }
+
+    private void FadeInMusic()
+    {
+        if (!audioSources[3].isPlaying && actionStartedThisRound)
+        {
+            audioSources[3].Play();
+        }
+        if (audioSources[3].volume < 1.0f)
+        {
+            audioSources[3].volume += Time.unscaledDeltaTime;
+        }
+    }
+
+    private void FadeOutMusic()
+    {
+        if (audioSources[3].volume > 0.0f)
+        {
+            audioSources[3].volume -= Time.unscaledDeltaTime;
+        }
+        else if (audioSources[3].isPlaying)
+        {
+            audioSources[3].Stop();
         }
     }
 }

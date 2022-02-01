@@ -93,8 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6953613770667895903}
   - component: {fileID: 6953613770667895902}
-  - component: {fileID: 6953613770667895910}
   - component: {fileID: 5669858232776200131}
+  - component: {fileID: 155272705361738121}
   m_Layer: 0
   m_Name: SpawnedLavaTIle
   m_TagString: lava
@@ -143,20 +143,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &6953613770667895910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6953613770667895905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7da3dfe76d99ac04f8f279daee96a01e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  damageTime: 0.5
 --- !u!114 &5669858232776200131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +158,18 @@ MonoBehaviour:
   lifeTime: 5
   spriteRenderer: {fileID: 6953613769743105087}
   aphlaColor: {r: 1, g: 1, b: 1, a: 0.49803922}
+--- !u!114 &155272705361738121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6953613770667895905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a109d3314873a44f823891b29ee2e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  damageTime: 0.5
+  canDamage: 1

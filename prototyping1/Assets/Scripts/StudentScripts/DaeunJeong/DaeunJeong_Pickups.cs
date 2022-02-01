@@ -33,7 +33,6 @@ public class DaeunJeong_Pickups : MonoBehaviour
             if (gameHandlerCanvas == null)
             {
                 gameHandlerCanvas = GameObject.Find("GameHandlerCanvas");
-
                 eunjinPlayerHandler = gameHandlerCanvas.gameObject.GetComponentInChildren<EunjinHong_GameHandler>();
             }
             else

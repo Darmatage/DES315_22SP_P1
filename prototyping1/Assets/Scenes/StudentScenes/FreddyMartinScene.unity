@@ -458,7 +458,7 @@ PrefabInstance:
     - target: {fileID: 8013175765627725926, guid: af85c6c00a697a140bb458ba5680a7dc,
         type: 3}
       propertyPath: TimeBetweenSwaps
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8013175765627725926, guid: af85c6c00a697a140bb458ba5680a7dc,
         type: 3}
@@ -572,7 +572,7 @@ PrefabInstance:
     - target: {fileID: 8013175765627725926, guid: af85c6c00a697a140bb458ba5680a7dc,
         type: 3}
       propertyPath: ShardsDroppedBetweenSwaps
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af85c6c00a697a140bb458ba5680a7dc, type: 3}
@@ -101255,7 +101255,7 @@ PrefabInstance:
     - target: {fileID: 8013175765627725926, guid: af85c6c00a697a140bb458ba5680a7dc,
         type: 3}
       propertyPath: ShardsDroppedBetweenSwaps
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af85c6c00a697a140bb458ba5680a7dc, type: 3}
@@ -104593,7 +104593,7 @@ PrefabInstance:
     - target: {fileID: 8013175765627725926, guid: af85c6c00a697a140bb458ba5680a7dc,
         type: 3}
       propertyPath: ShardsDroppedBetweenSwaps
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af85c6c00a697a140bb458ba5680a7dc, type: 3}
@@ -105002,7 +105002,7 @@ PrefabInstance:
     - target: {fileID: 8013175765627725926, guid: af85c6c00a697a140bb458ba5680a7dc,
         type: 3}
       propertyPath: ShardsDroppedBetweenSwaps
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af85c6c00a697a140bb458ba5680a7dc, type: 3}
