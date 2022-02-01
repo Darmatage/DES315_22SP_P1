@@ -13,8 +13,8 @@ public class TaherCircleShrinkScript : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    currentScale = startScale;
-    tempscale.Set(startScale, startScale, 1.0f);
+    currentScale = endScale;
+    tempscale.Set(endScale, endScale, 1.0f);
     transform.localScale = tempscale;
   }
   
