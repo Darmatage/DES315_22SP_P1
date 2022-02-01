@@ -32700,6 +32700,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   damageTime: 0.5
+  canDamage: 1
+  MageHand: {fileID: 0}
 --- !u!1001 &1645742301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35027,7 +35029,7 @@ PrefabInstance:
     - target: {fileID: 6551937145445057747, guid: 401a933dbd2195744a4fb43f251707d7,
         type: 3}
       propertyPath: NextScene
-      value: GarryChenScene
+      value: TaroKumagaiScene
       objectReference: {fileID: 0}
     - target: {fileID: 7932778659117802276, guid: 401a933dbd2195744a4fb43f251707d7,
         type: 3}
