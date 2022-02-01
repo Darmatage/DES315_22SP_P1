@@ -1,8 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:prototyping1/Assets/Media/StudentMedia/Alex.Jalonen/TreadMillAnimation.anim.meta
 guid: 93a398be749163247ac143e019987bb9
+=======
+guid: 310e257cac937a0429806c3c6f0041f6
+>>>>>>> origin/JonathanHamling:prototyping1/Assets/Media/StudentMedia/JonathanHamling/Images/GarryChen_FogOfWarMain.renderTexture.meta
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 7400000
+  mainObjectFileID: 8400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

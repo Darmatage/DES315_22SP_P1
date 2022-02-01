@@ -125,7 +125,7 @@ public class DanielNunes_Cannonball : MonoBehaviour
             }
         }
         //if we collided with one of Taro's tilemap blocks while it is on the default collision layer
-        else if (collision.gameObject.name.Contains("Taro_Tilemap") && collision.gameObject.layer == LayerMask.NameToLayer("Default"))
+        else if (collision.gameObject.CompareTag("Taro_ColorBlock") && collision.gameObject.layer == LayerMask.NameToLayer("Color_Blocks"))
         {
             //despawn cannonball
             CreateParticles();

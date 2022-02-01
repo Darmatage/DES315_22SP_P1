@@ -7,6 +7,8 @@ public class JulianBlackstone_DisableVolumeScript : MonoBehaviour
     [SerializeField]
     private List<GameObject> wallsToApply = new List<GameObject>();
 
+    public float disableFor = 5.0f;
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -18,7 +20,7 @@ public class JulianBlackstone_DisableVolumeScript : MonoBehaviour
 
             if (currColorSys == null) continue; // skip if the object does not have a valid color system
 
-            currColorSys.ActivateColorEffect(5.0f);
+            currColorSys.ActivateColorEffect(disableFor);
         }
 
     }
