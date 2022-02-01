@@ -12,10 +12,14 @@ public class WonjuJo_Explode : MonoBehaviour
     // Start is called before the first frame update
 
     private bool Once = false;
+    private bool Hit = false;
+
+    private Transform playerTrans;
+
 
     void Start()
     {
-        //ExplosionEnemy = GetComponent<WonjuJo_ExplosionEnemy>();
+        playerTrans = GameObject.FindGameObjectWithTag("Player").transform;
 
         if (!ExplosionEnemy)
             Debug.Log("There is no explosion enemy");
@@ -25,6 +29,7 @@ public class WonjuJo_Explode : MonoBehaviour
         {
             gameHandlerObj = gameHandlerLocation.GetComponent<WonjuJo_PlayerHandler>();
         }
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -34,17 +39,16 @@ public class WonjuJo_Explode : MonoBehaviour
             if (collision.gameObject.tag == "Player")
             {
                 Once = true;
-
-                StartCoroutine(Delay(1.8f));
-            }            
+                Hit = true;
+                if (Hit)
+                    StartCoroutine(Delay(1.8f));
+            }
         }
-
-
     }
-
     IEnumerator Delay(float time)
     {
         yield return new WaitForSeconds(time);
+        
         gameHandlerObj.TakeDamage(20);
 
     }
