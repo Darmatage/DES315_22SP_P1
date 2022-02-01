@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Events;
 
 [RequireComponent(typeof(CircleCollider2D))]
 public class B03_Trigger : MonoBehaviour
