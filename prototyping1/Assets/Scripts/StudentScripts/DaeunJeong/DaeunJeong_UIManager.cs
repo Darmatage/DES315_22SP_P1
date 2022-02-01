@@ -76,7 +76,7 @@ public class DaeunJeong_UIManager : MonoBehaviour
                 text.GetComponent<Text>().text = "You feel better now!";
                 break;
             case DaeunJeong_Pickups.PICKUP_TYPE.JEWEL:
-                text.GetComponent<Text>().text = "You got a diamond! What a rich.";
+                text.GetComponent<Text>().text = "You got a diamond! You are rich!";
                 break;
         }
 
