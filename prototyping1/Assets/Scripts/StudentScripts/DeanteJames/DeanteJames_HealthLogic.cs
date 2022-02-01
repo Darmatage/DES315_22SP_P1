@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeanteJames_JewelLogic : MonoBehaviour
+public class DeanteJames_HealthLogic : MonoBehaviour
 {
+    public int HealthRegain = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +21,8 @@ public class DeanteJames_JewelLogic : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameObject timer = GameObject.Find("Timer");
-            timer.gameObject.GetComponent<DeanteJames_TimerLogic>().FreezeTime(true);
+            GameObject timer = GameObject.Find("GameHandler");
+            timer.gameObject.GetComponent<JirakitJarusiripipat_GameHandler>().Heal(HealthRegain);
             GameObject.Destroy(gameObject);
         }
     }
