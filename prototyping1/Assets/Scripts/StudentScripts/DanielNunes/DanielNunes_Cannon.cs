@@ -88,6 +88,11 @@ public class DanielNunes_Cannon : MonoBehaviour
     {
         moveTimer = maxMoveTime;
         player = GameObject.FindGameObjectWithTag("Player");
+
+        //round the position of the cannon to 1 decimal place so it's as precise as possible
+        transform.position = new Vector2((float)Mathf.Round(transform.position.x * 10.0f) / 10.0f, (float)Mathf.Round(transform.position.y * 10.0f) / 10.0f);
+        //approximate where the cannon should be if the user doesn't place it properly initially
+        FixPositioning();
     }
 
     // Update is called once per frame
@@ -178,25 +183,25 @@ public class DanielNunes_Cannon : MonoBehaviour
                 {
                     //if player is on right, push left
                     case Where.eRIGHT:
-                        transform.position = Vector3.Lerp(origin, f_left, moveTimer / maxMoveTime);
+                        transform.position = Vector3.MoveTowards(origin, f_left, moveTimer / maxMoveTime);
                         //increment timer
                         moveTimer += Time.deltaTime;
                         break;
                     //if player is above, push down
                     case Where.eUP:
-                        transform.position = Vector3.Lerp(origin, f_down, moveTimer / maxMoveTime);
+                        transform.position = Vector3.MoveTowards(origin, f_down, moveTimer / maxMoveTime);
                         //increment timer
                         moveTimer += Time.deltaTime;
                         break;
                     //if player is on left, push right
                     case Where.eLEFT:
-                        transform.position = Vector3.Lerp(origin, f_right, moveTimer / maxMoveTime);
+                        transform.position = Vector3.MoveTowards(origin, f_right, moveTimer / maxMoveTime);
                         //increment timer
                         moveTimer += Time.deltaTime;
                         break;
                     //if player is below, push up
                     case Where.eDOWN:
-                        transform.position = Vector3.Lerp(origin, f_up, moveTimer / maxMoveTime);
+                        transform.position = Vector3.MoveTowards(origin, f_up, moveTimer / maxMoveTime);
                         //increment timer
                         moveTimer += Time.deltaTime;
                         break;
@@ -700,7 +705,7 @@ public class DanielNunes_Cannon : MonoBehaviour
                 if (hit.collider.gameObject.name.Contains("Taro_Tile"))
                 {
                     //if the block is in the default collision layer
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Default"))
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Color_Blocks"))
                     {
                         return true;
                     }
@@ -832,12 +837,12 @@ public class DanielNunes_Cannon : MonoBehaviour
             //if positive
             if (position.x >= 0)
             {
-                newX = (float)((int)Mathf.Abs(position.x)) + 0.5f; 
+                newX = (float)((int)position.x) + 0.5f; 
             }
             //if negative
             else
             {
-                newX = (float)((int)Mathf.Abs(position.x)) - 0.5f;
+                newX = (float)((int)position.x) - 0.5f;
             }
         }
         else
@@ -859,12 +864,12 @@ public class DanielNunes_Cannon : MonoBehaviour
             //if positive
             if (position.y >= 0)
             {
-                newY = (float)((int)Mathf.Abs(position.y)) + 0.5f;
+                newY = (float)((int)position.y) + 0.5f;
             }
             //if negative
             else
             {
-                newY = (float)((int)Mathf.Abs(position.y)) - 0.5f;
+                newY = (float)((int)position.y) - 0.5f;
             }
         }
         else

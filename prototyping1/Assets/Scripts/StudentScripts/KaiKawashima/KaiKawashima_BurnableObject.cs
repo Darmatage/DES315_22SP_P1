@@ -40,6 +40,7 @@ public class KaiKawashima_BurnableObject : MonoBehaviour
                 sprite.enabled = false;
                 waterBucket.UseWater();
                 waterBucket.DeactivateHUD();
+                waterBucket.imageIndicator.SetActive(false);
             }
         }
     }
@@ -55,8 +56,9 @@ public class KaiKawashima_BurnableObject : MonoBehaviour
                 {
                     withinRange = true;
                     // display message
-                    waterBucket.ActivateHUD();
+                    waterBucket.imageIndicator.SetActive(true);
                 }
+                waterBucket.ActivateHUD();
             }
         }
     }
@@ -68,6 +70,7 @@ public class KaiKawashima_BurnableObject : MonoBehaviour
         { 
             withinRange = false;
             waterBucket.DeactivateHUD();
+            waterBucket.imageIndicator.SetActive(false);
         }
     }
 }
