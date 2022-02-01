@@ -17238,6 +17238,12 @@ PrefabInstance:
       propertyPath: Canvas
       value: 
       objectReference: {fileID: 1147010885}
+    - target: {fileID: 4192418003015035504, guid: ab241b1b00e80c64a8b1b43260ef51b7,
+        type: 3}
+      propertyPath: ThingsCanGetFromChest.Array.data[4]
+      value: 
+      objectReference: {fileID: 5351925179919206586, guid: de806e695f2d2db41bc411628da17e49,
+        type: 3}
     - target: {fileID: 4192418003015035506, guid: ab241b1b00e80c64a8b1b43260ef51b7,
         type: 3}
       propertyPath: m_RootOrder
@@ -17444,7 +17450,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -29318,6 +29324,12 @@ PrefabInstance:
       propertyPath: Canvas
       value: 
       objectReference: {fileID: 1147010885}
+    - target: {fileID: 4192418003015035504, guid: ab241b1b00e80c64a8b1b43260ef51b7,
+        type: 3}
+      propertyPath: ThingsCanGetFromChest.Array.data[4]
+      value: 
+      objectReference: {fileID: 5351925179919206586, guid: de806e695f2d2db41bc411628da17e49,
+        type: 3}
     - target: {fileID: 4192418003015035506, guid: ab241b1b00e80c64a8b1b43260ef51b7,
         type: 3}
       propertyPath: m_RootOrder
@@ -29619,6 +29631,12 @@ PrefabInstance:
       propertyPath: Canvas
       value: 
       objectReference: {fileID: 1147010885}
+    - target: {fileID: 4192418003015035504, guid: ab241b1b00e80c64a8b1b43260ef51b7,
+        type: 3}
+      propertyPath: ThingsCanGetFromChest.Array.data[4]
+      value: 
+      objectReference: {fileID: 5351925179919206586, guid: de806e695f2d2db41bc411628da17e49,
+        type: 3}
     - target: {fileID: 4192418003015035506, guid: ab241b1b00e80c64a8b1b43260ef51b7,
         type: 3}
       propertyPath: m_RootOrder
@@ -29822,7 +29840,7 @@ Transform:
   - {fileID: 848928572}
   - {fileID: 646551294}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1191284573
 PrefabInstance:
@@ -30328,6 +30346,12 @@ PrefabInstance:
       propertyPath: Canvas
       value: 
       objectReference: {fileID: 1147010885}
+    - target: {fileID: 4192418003015035504, guid: ab241b1b00e80c64a8b1b43260ef51b7,
+        type: 3}
+      propertyPath: ThingsCanGetFromChest.Array.data[4]
+      value: 
+      objectReference: {fileID: 5351925179919206586, guid: de806e695f2d2db41bc411628da17e49,
+        type: 3}
     - target: {fileID: 4192418003015035506, guid: ab241b1b00e80c64a8b1b43260ef51b7,
         type: 3}
       propertyPath: m_RootOrder
@@ -31178,6 +31202,12 @@ PrefabInstance:
       propertyPath: Canvas
       value: 
       objectReference: {fileID: 1147010885}
+    - target: {fileID: 4192418003015035504, guid: ab241b1b00e80c64a8b1b43260ef51b7,
+        type: 3}
+      propertyPath: ThingsCanGetFromChest.Array.data[4]
+      value: 
+      objectReference: {fileID: 5351925179919206586, guid: de806e695f2d2db41bc411628da17e49,
+        type: 3}
     - target: {fileID: 4192418003015035506, guid: ab241b1b00e80c64a8b1b43260ef51b7,
         type: 3}
       propertyPath: m_RootOrder
@@ -31383,75 +31413,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 947ca36026c5fe8468807e1069dc5754, type: 3}
---- !u!1001 &6494146963836257472
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2101946633281926121, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101946633281926121, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 7.5478115
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101946633281926121, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -16.891195
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101946633281926121, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101946633281926121, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101946633281926121, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101946633281926121, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101946633281926121, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101946633281926121, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101946633281926121, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2101946633281926121, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3301540316712180689, guid: 2e682bbbf276e8041881e4094b5e1107,
-        type: 3}
-      propertyPath: m_Name
-      value: DaeunJeong_PickupCoin
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2e682bbbf276e8041881e4094b5e1107, type: 3}
 --- !u!1001 &6853139540415881831
 PrefabInstance:
   m_ObjectHideFlags: 0
