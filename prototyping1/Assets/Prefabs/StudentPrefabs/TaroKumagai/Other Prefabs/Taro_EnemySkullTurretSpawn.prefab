@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3294450357376018458}
   - component: {fileID: 1580429160976337090}
   m_Layer: 7
-  m_Name: Taro_EnemySkullSpawn
+  m_Name: Taro_EnemySkullTurretSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,6 +128,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2897097587681159296, guid: 789a792056dc1aa498d7f8446275bcd7,
         type: 3}
+    - target: {fileID: 8622996587333277412, guid: 370f8cfdc2b46a14ea799b5e0116b058,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 370f8cfdc2b46a14ea799b5e0116b058, type: 3}
 --- !u!1 &6155731756999082813 stripped

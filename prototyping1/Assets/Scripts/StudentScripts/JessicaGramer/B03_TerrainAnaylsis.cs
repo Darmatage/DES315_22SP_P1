@@ -49,13 +49,12 @@ public class B03_2DLayer
 
 public class B03_TerrainAnaylsis : MonoBehaviour
 {
-    [SerializeField] Tilemap visibilityBlockers = null;
+    [SerializeField] public Tilemap VisibilityBlockers = null;
     [Header("Openness Layer")]
     [SerializeField] B03_2DLayer opennessLayer = null;
     [SerializeField] Tilemap opennessTilemap = null;
     [SerializeField] bool showOpenness = false;
     [SerializeField] Vector3 opennessColor = new Vector3(0.0f, 0.0f, 1.0f);
-    bool prev_openness = false;
 
     [Header("Visibility Layer")]
     [SerializeField] B03_2DLayer visibilityLayer = null;
@@ -63,9 +62,8 @@ public class B03_TerrainAnaylsis : MonoBehaviour
     [SerializeField] bool showVisibility = false;
     [SerializeField] Vector3 visibilityColor = new Vector3(1.0f, 0.0f, 0.0f);
     [SerializeField] float visibilityMagicNumber = 160.0f;
-    bool prev_visibility = false;
 
-    Vector3Int zeroPosition;
+    public Vector3Int ZeroPosition;
 
     const int NORTH = 0b1000;
     const int EAST = 0b0100;
@@ -77,28 +75,24 @@ public class B03_TerrainAnaylsis : MonoBehaviour
     const int SOUTH_WEST = 0b0011;
     const int NORTH_WEST = 0b1001;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-
+        ZeroPosition = VisibilityBlockers.cellBounds.min;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(prev_openness != showOpenness || showVisibility != prev_visibility)
-        {
-            UpdateDebugColoring();
-        }
+        
     }
 
     [ContextMenu("UpdateDebugColoring")]
     private void UpdateDebugColoring()
     {
-        zeroPosition = visibilityBlockers.cellBounds.min;
-        foreach (Vector3Int position in visibilityBlockers.cellBounds.allPositionsWithin)
+        ZeroPosition = VisibilityBlockers.cellBounds.min;
+        foreach (Vector3Int position in VisibilityBlockers.cellBounds.allPositionsWithin)
         {
-            Vector3Int curr_pos = position - zeroPosition;
+            Vector3Int curr_pos = position - ZeroPosition;
             if (showOpenness && opennessLayer != null)
             {
                 opennessTilemap.SetTileFlags(position, TileFlags.None);
@@ -126,14 +120,14 @@ public class B03_TerrainAnaylsis : MonoBehaviour
     [ContextMenu("AnalyzeOpenness")]
     public void AnalyzeOpenness()
     {
-        zeroPosition = visibilityBlockers.cellBounds.min;
-        opennessLayer = new B03_2DLayer(visibilityBlockers.cellBounds.size);
+        ZeroPosition = VisibilityBlockers.cellBounds.min;
+        opennessLayer = new B03_2DLayer(VisibilityBlockers.cellBounds.size);
 
-        foreach (Vector3Int position in visibilityBlockers.cellBounds.allPositionsWithin)
+        foreach (Vector3Int position in VisibilityBlockers.cellBounds.allPositionsWithin)
         {
 
-            float distance = distanceClosestWall(position);
-            Vector3Int curr_pos = position - zeroPosition;
+            float distance = DistanceClosestWall(position);
+            Vector3Int curr_pos = position - ZeroPosition;
             if (distance == 0) opennessLayer[curr_pos.x, curr_pos.y] = 0.0f;
             else opennessLayer[curr_pos.x, curr_pos.y] = 1.0f / distance;
 
@@ -148,19 +142,19 @@ public class B03_TerrainAnaylsis : MonoBehaviour
     [ContextMenu("AnalyzeVisibility")]
     public void AnalyzeVisibility()
     {
-        zeroPosition = visibilityBlockers.cellBounds.min;
-        visibilityLayer = new B03_2DLayer(visibilityBlockers.cellBounds.size);
+        ZeroPosition = VisibilityBlockers.cellBounds.min;
+        visibilityLayer = new B03_2DLayer(VisibilityBlockers.cellBounds.size);
 
-        foreach (Vector3Int position0 in visibilityBlockers.cellBounds.allPositionsWithin)
+        foreach (Vector3Int position0 in VisibilityBlockers.cellBounds.allPositionsWithin)
         {
-            Vector3Int curr_pos = position0 - zeroPosition;
+            Vector3Int curr_pos = position0 - ZeroPosition;
             int count = 0;
 
-            foreach (Vector3Int position1 in visibilityBlockers.cellBounds.allPositionsWithin)
+            foreach (Vector3Int position1 in VisibilityBlockers.cellBounds.allPositionsWithin)
             {
                 if(position0 != position1)
                 {
-                    if (isClearPath(position0, position1)) ++count;
+                    if (IsClearPath(position0, position1)) ++count;
                 }
             }
 
@@ -174,22 +168,52 @@ public class B03_TerrainAnaylsis : MonoBehaviour
         }
     }
 
-    float distanceClosestWall(Vector3Int position)
+    public void NormalizeSoloOccupancy(B03_2DLayer layer)
+    {
+        /*
+            Determine the maximum value in the given layer, and then divide the value
+            for every cell in the layer by that amount.  This will keep the values in the
+            range of [0, 1].  Negative values should be left unmodified.
+        */
+
+        // WRITE YOUR CODE HERE
+        float max_value = 0.0f;
+
+        // find max value
+        foreach(Vector3Int position in VisibilityBlockers.cellBounds.allPositionsWithin)
+        {
+            max_value = Mathf.Max(layer[position.x - ZeroPosition.x, position.y - ZeroPosition.y], max_value);
+        }
+
+        // divide the value
+        foreach (Vector3Int position in VisibilityBlockers.cellBounds.allPositionsWithin)
+        {
+            Vector3Int curr_position = position - ZeroPosition;
+            {
+                //max_value = std::max(layer.get_value(row, col), max_value);
+                float curr_value = layer[curr_position.x, curr_position.y];
+                if (curr_value > 0) curr_value /= max_value;
+                layer[curr_position.x, curr_position.y] = curr_value;
+            }
+        }
+    }
+
+    float DistanceClosestWall(Vector3Int position)
     {
         float distance = Mathf.Max(Mathf.Abs(position.x) + 1, Mathf.Abs(position.y + 1));
-        if (visibilityBlockers.HasTile(position)) return 0.0f;
+        if (VisibilityBlockers.HasTile(position)) return 0.0f;
 
-        foreach (Vector3Int xy in visibilityBlockers.cellBounds.allPositionsWithin)
+        foreach (Vector3Int xy in VisibilityBlockers.cellBounds.allPositionsWithin)
         {
             Vector3 delta = xy - position;
-            if (visibilityBlockers.HasTile(xy))
+            if (VisibilityBlockers.HasTile(xy))
                 distance = Mathf.Min(Mathf.Sqrt((delta.x * delta.x) + (delta.y * delta.y) + (delta.z * delta.z)), distance);
         }
 
         return distance;
     }
 
-    bool isClearPath(Vector3Int position0, Vector3Int position1)
+    bool IsClearPath(Vector3Int position0, Vector3Int position1)
     {
         /*
             Two cells (row0, col0) and (row1, col1) are visible to each other if a line
@@ -202,51 +226,51 @@ public class B03_TerrainAnaylsis : MonoBehaviour
     
         // WRITE YOUR CODE HERE
     
-        float distance = Vector3.Distance(visibilityBlockers.CellToWorld(position0), visibilityBlockers.CellToWorld(position1));
+        float distance = Vector3.Distance(VisibilityBlockers.CellToWorld(position0), VisibilityBlockers.CellToWorld(position1));
     
-        Vector3 point_one = visibilityBlockers.CellToWorld(position0);
-        Vector3 point_two = visibilityBlockers.CellToWorld(position1);
+        Vector3 point_one = VisibilityBlockers.CellToWorld(position0);
+        Vector3 point_two = VisibilityBlockers.CellToWorld(position1);
     
         Vector3Int min = new Vector3Int(Mathf.Min(position0.x, position1.x), Mathf.Min(position0.y, position1.y), Mathf.Min(position0.z, position1.z));
         Vector3Int max = new Vector3Int(Mathf.Max(position0.x, position1.x), Mathf.Max(position0.y, position1.y), Mathf.Max(position0.z, position1.z));
 
         // loop though row
-        BoundsInt bounds = visibilityBlockers.cellBounds;
+        BoundsInt bounds = VisibilityBlockers.cellBounds;
         bounds.SetMinMax(min, max);
         for(int x = min.x; x <= max.x; ++x)
             for(int y = min.y; y <= max.y; ++y)
             {
                 Vector3Int position = new Vector3Int(x, y, 0);
-                if (visibilityBlockers.HasTile(position))
+                if (VisibilityBlockers.HasTile(position))
                 {
-                    Vector3 wall = visibilityBlockers.CellToWorld(position);
+                    Vector3 wall = VisibilityBlockers.CellToWorld(position);
                     Vector3 wall_center = wall;
 
                     Vector3 lower_left = wall_center;
-                    lower_left.x -= distance / visibilityBlockers.size.x;
-                    lower_left.y -= distance / visibilityBlockers.size.y;
+                    lower_left.x -= distance / VisibilityBlockers.size.x;
+                    lower_left.y -= distance / VisibilityBlockers.size.y;
                     Vector3 upper_left = wall_center;
-                    upper_left.x -= distance / visibilityBlockers.size.x;
-                    upper_left.y += distance / visibilityBlockers.size.y;
+                    upper_left.x -= distance / VisibilityBlockers.size.x;
+                    upper_left.y += distance / VisibilityBlockers.size.y;
 
                     Vector3 lower_right = wall_center;
-                    lower_right.x += distance / visibilityBlockers.size.x;
-                    lower_right.y -= distance / visibilityBlockers.size.y;
+                    lower_right.x += distance / VisibilityBlockers.size.x;
+                    lower_right.y -= distance / VisibilityBlockers.size.y;
                     Vector3 upper_right = wall_center;
-                    upper_right.x += distance / visibilityBlockers.size.x;
-                    upper_right.y += distance / visibilityBlockers.size.y;
+                    upper_right.x += distance / VisibilityBlockers.size.x;
+                    upper_right.y += distance / VisibilityBlockers.size.y;
 
-                    if (lineIntersect(point_one, point_two, upper_left, upper_right)) return false;
-                    if (lineIntersect(point_one, point_two, upper_right, lower_right)) return false;
-                    if (lineIntersect(point_one, point_two, lower_right, lower_left)) return false;
-                    if (lineIntersect(point_one, point_two, lower_left, upper_left)) return false;
+                    if (LineIntersect(point_one, point_two, upper_left, upper_right)) return false;
+                    if (LineIntersect(point_one, point_two, upper_right, lower_right)) return false;
+                    if (LineIntersect(point_one, point_two, lower_right, lower_left)) return false;
+                    if (LineIntersect(point_one, point_two, lower_left, upper_left)) return false;
                 }
             }
     
         return true;
     }
 
-    bool lineIntersect(Vector3 point0_0, Vector3 point0_1, Vector3 point1_0, Vector3 point1_1)
+    bool LineIntersect(Vector3 point0_0, Vector3 point0_1, Vector3 point1_0, Vector3 point1_1)
     {
         Vector3 line0 = point0_1 - point0_0;
         Vector3 line1 = point1_1 - point1_0;
@@ -280,104 +304,17 @@ public class B03_TerrainAnaylsis : MonoBehaviour
         return true;
     }
 
-    public B03_2DLayer AnalyzeVisibleToCell(Vector3Int position)
+    void SetWall(ref int walls, int wall_to_set)
     {
-        /*
-            For every cell in the given layer mark it with 1.0 if it is visible to the given cell, 
-            0.5 if it isn't visible but is next to a visible cell,
-            or 0.0 otherwise.
-
-            Two cells are visible to each other if a line between their centerpoints doesn't
-            intersect the four boundary lines of every wall cell.  Make use of the is_clear_path
-            helper function.
-        */
-        B03_2DLayer layer = new B03_2DLayer(visibilityBlockers.cellBounds.size);
-
-        foreach(var position0 in visibilityBlockers.cellBounds.allPositionsWithin)
-        {
-            Vector3Int curr_pos = position0 - zeroPosition;
-            if (isClearPath(position, position0)) layer[curr_pos.x, curr_pos.y] = 1.0f;
-            else if (!visibilityBlockers.HasTile(position0))
-            {
-                bool is_set = false;
-                int walls = 0b1111;
-
-                // check NORTH
-                Vector3Int n_position = new Vector3Int(position0.x, position0.y + 1, position0.z);
-                if (checkDirection(ref walls, position0, NORTH) && isClearPath(position, n_position))
-                {
-                    layer[curr_pos.x, curr_pos.y] = 0.5f;
-                    is_set = true;
-                }
-                // check EAST
-                n_position.Set(position0.x + 1, position0.y, position0.z);
-                if (checkDirection(ref walls, position0, EAST) && isClearPath(position, n_position))
-                {
-                    layer[curr_pos.x, curr_pos.y] = 0.5f;
-                    is_set = true;
-                }
-                // check SOUTH
-                n_position.Set(position0.x, position0.y - 1, position0.z);
-                if (checkDirection(ref walls, position0, SOUTH) && isClearPath(position, n_position))
-                {
-                    layer[curr_pos.x, curr_pos.y] = 0.5f;
-                    is_set = true;
-                }
-                // check WEST
-                n_position.Set(position0.x - 1, position0.y, position0.z);
-                if (checkDirection(ref walls, position0, WEST) && isClearPath(position, n_position))
-                {
-                    layer[curr_pos.x, curr_pos.y] = 0.5f;
-                    is_set = true;
-                }
-
-                // check NORTH EAST
-                n_position.Set(position0.x + 1, position0.y + 1, position0.z);
-                if (checkDirection(ref walls, position0, NORTH_EAST) && isClearPath(position, n_position))
-                {
-                    layer[curr_pos.x, curr_pos.y] = 0.5f;
-                    is_set = true;
-                }
-                // SOUTH EAST
-                n_position.Set(position0.x + 1, position0.y - 1, position0.z);
-                if (checkDirection(ref walls, position0, SOUTH_EAST) && isClearPath(position, n_position))
-                {
-                    layer[curr_pos.x, curr_pos.y] = 0.5f;
-                    is_set = true;
-                }
-                // SOUTH WEST
-                n_position.Set(position0.x - 1, position0.y - 1, position0.z);
-                if (checkDirection(ref walls, position0, SOUTH_WEST) && isClearPath(position, n_position))
-                {
-                    layer[curr_pos.x, curr_pos.y] = 0.5f;
-                    is_set = true;
-                }
-                // NORTH WEST
-                n_position.Set(position0.x - 1, position0.y + 1, position0.z);
-                if (checkDirection(ref walls, position0, NORTH_WEST) && isClearPath(position, n_position))
-                {
-                    layer[curr_pos.x, curr_pos.y] = 0.5f;
-                    is_set = true;
-                }
-
-                if (!is_set) layer[curr_pos.x, curr_pos.y] = 0.0f;
-            }
-        }
-
-        return layer;
+      walls ^= wall_to_set;
     }
 
-    void setWall(ref int walls, int wall_to_set)
-    {
-      walls = walls ^ wall_to_set;
-    }
-
-    bool checkWall(int walls, int wall_to_check)
+    bool CheckWall(int walls, int wall_to_check)
     {
         return (walls & wall_to_check) == wall_to_check;
     }
 
-    bool checkDirection(ref int walls, Vector3Int curr_pos, int direction)
+    bool CheckDirection(ref int walls, Vector3Int curr_pos, int direction)
     {
         int n_x = curr_pos.x;
         int n_y = curr_pos.y;
@@ -386,54 +323,46 @@ public class B03_TerrainAnaylsis : MonoBehaviour
         {
             n_y += 1;
             Vector3Int pos = new Vector3Int(n_x, n_y, 0);
-            if (visibilityBlockers.HasTile(pos)) setWall(ref walls, NORTH);
+            if (VisibilityBlockers.HasTile(pos)) SetWall(ref walls, NORTH);
             else return true;
         }
         else if (direction == EAST)
         {
             n_x += 1;
             Vector3Int pos = new Vector3Int(n_x, n_y, 0);
-            if (visibilityBlockers.HasTile(pos)) setWall(ref walls, EAST);
+            if (VisibilityBlockers.HasTile(pos)) SetWall(ref walls, EAST);
             else return true;
         }
         else if (direction == SOUTH)
         {
             n_y -= 1;
             Vector3Int pos = new Vector3Int(n_x, n_y, 0);
-            if (visibilityBlockers.HasTile(pos)) setWall(ref walls, SOUTH);
+            if (VisibilityBlockers.HasTile(pos)) SetWall(ref walls, SOUTH);
             else return true;
         }
         else if (direction == WEST)
         {
             n_x -= 1;
             Vector3Int pos = new Vector3Int(n_x, n_y, 0);
-            if (visibilityBlockers.HasTile(pos)) setWall(ref walls, WEST);
+            if (VisibilityBlockers.HasTile(pos)) SetWall(ref walls, WEST);
             else return true;
         }
 
         else if (direction == NORTH_EAST)
         {
-            n_x += 1; n_y += 1;
-            Vector3Int pos = new Vector3Int(n_x, n_y, 0);
-            if (checkWall(walls, NORTH_EAST)) return true;
+            if (CheckWall(walls, NORTH_EAST)) return true;
         }
         else if (direction == SOUTH_EAST)
         {
-            n_x += 1; n_y -= 1;
-            Vector3Int pos = new Vector3Int(n_x, n_y, 0);
-            if (checkWall(walls, SOUTH_EAST)) return true;
+            if (CheckWall(walls, SOUTH_EAST)) return true;
         }
         else if (direction == SOUTH_WEST)
         {
-            n_x -= 1; n_y -= 1;
-            Vector3Int pos = new Vector3Int(n_x, n_y, 0);
-            if (checkWall(walls, SOUTH_WEST)) return true;
+            if (CheckWall(walls, SOUTH_WEST)) return true;
         }
         else if (direction == NORTH_WEST)
         {
-            n_x -= 1; n_y += 1;
-            Vector3Int pos = new Vector3Int(n_x, n_y, 0);
-            if (checkWall(walls, NORTH_WEST)) return true;
+            if (CheckWall(walls, NORTH_WEST)) return true;
         }
         return false;
     }

@@ -7,7 +7,7 @@ public class MetronomeBarScript : MonoBehaviour
     enum Direction { Left, Right };
     private Direction direction;
     private RectTransform rect;
-    public static float barSpeed = 300;
+    public static float barSpeed = 356f;
     public static float initialBarSpeed;
     private float canvasHalfWidth = 640;
     private AudioSource[] audioSources;
@@ -58,7 +58,7 @@ public class MetronomeBarScript : MonoBehaviour
             {
                 audioSources[1].Play(0);
             }
-            controller.ResetActions();
+            //controller.ResetActions();
         }
     }
 }
