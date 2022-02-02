@@ -8,8 +8,15 @@ using System.Linq;
 public class DeanteJames_TimerLogic : MonoBehaviour
 {
     private Text timerText;
+
     [SerializeField]
     public GameObject flyingText;
+
+    // Children
+    public GameObject indicatorArrow;
+    public GameObject indicatorBar;
+    public float unitsToTheRight = 0.0f;
+
     //private List<GameObject> allEnemiesInScene = new List<GameObject>();
 
     private bool GameHasStarted = false;
@@ -97,19 +104,23 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         timerText.color = startColor;
         animationTimer = animationLength;
         colorLastLerped = timerText.color;
+
+        HideDifficultyBar();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.anyKeyDown)
-        { GameHasStarted = true; }
+        { 
+          GameHasStarted = true;
+          ShowDifficultyBar();
+        }
 
         if (!GameHasStarted)
         { return; }
 
         timeElasped += Time.deltaTime - timeDeductions;
-        timeDeductions = 0.0f;
 
         UpdateFreezeData();
 
@@ -136,13 +147,23 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         if (!timeFreeze)
         {
             float totalTime = (getMinutes(timeForHardDifficulty) * 60) + getSeconds(timeForHardDifficulty);
-            speedToLerp = Mathf.Abs(totalTime - timeElasped) * (1.0f / 4000.0f);
+            speedToLerp = Mathf.Abs(totalTime - timeElasped) * (1.0f / 11000.0f);
             minutes += ((int)mins).ToString();
             seconds += ((int)secs).ToString();
             milliSeconds = Mathf.RoundToInt((timeElasped * 100) % 100).ToString();
 
             timerText.text = minutes + ":" + seconds + ":" + milliSeconds;
             timerText.color = Color.Lerp(colorLastLerped, endColor, speedToLerp * Time.deltaTime);
+
+            if (timeDeductions <= 0.0f)
+            {
+                updateIndicatorArrow(speedToLerp, unitsToTheRight);
+            }
+            else
+            {
+                updateIndicatorArrow(speedToLerp, timeDeductions * unitsToTheRight);
+            }
+
             colorLastLerped = timerText.color;
         }
 
@@ -161,6 +182,8 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         }
 
         CheckAnimation(secs, mins);
+
+        timeDeductions = 0.0f;
     }
 
     private void UpdateFreezeData()
@@ -394,5 +417,43 @@ public class DeanteJames_TimerLogic : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
         }
+    }
+
+    private void HideDifficultyBar()
+    {
+        Image arrow = indicatorArrow.GetComponent<Image>();
+        Image bar = indicatorBar.GetComponent<Image>();
+
+        // Hide the difficulty indicator
+        Color col = arrow.color;
+        col.a = 0;
+        arrow.color = col;
+
+        col = bar.color;
+        col.a = 0;
+        bar.color = col;
+    }
+
+    private void ShowDifficultyBar()
+    {
+        Image arrow = indicatorArrow.GetComponent<Image>();
+        Image bar = indicatorBar.GetComponent<Image>();
+
+        // Hide the difficulty indicator
+        Color col = arrow.color;
+        col.a = 1;
+        arrow.color = col;
+
+        col = bar.color;
+        col.a = 1;
+        bar.color = col;
+    }
+
+    private void updateIndicatorArrow(float speed, float unitsToTheRight)
+    {
+        Vector3 right = indicatorArrow.transform.position;
+        right.x += unitsToTheRight;
+
+        indicatorArrow.transform.position = Vector3.Lerp(indicatorArrow.transform.position, right, speed * Time.deltaTime);
     }
 }
