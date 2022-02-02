@@ -21,7 +21,7 @@ public class DeanteJames_JewelLogic : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameObject timer = GameObject.Find("Timer");
-            timer.gameObject.GetComponent<DeanteJames_TimerLogic>().AddDeduction(25.0f);
+            timer.gameObject.GetComponent<DeanteJames_TimerLogic>().FreezeTime(true);
             GameObject.Destroy(gameObject);
         }
     }
