@@ -509,6 +509,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4046232232613980283, guid: 8f9efeba9d46a844d916e1a1be56729c,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6999581664129075595, guid: 8f9efeba9d46a844d916e1a1be56729c,
         type: 3}
       propertyPath: SpawnParent
@@ -15688,6 +15693,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4046232232613980283, guid: 8f9efeba9d46a844d916e1a1be56729c,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6999581664129075595, guid: 8f9efeba9d46a844d916e1a1be56729c,
         type: 3}
       propertyPath: SpawnParent
@@ -16778,6 +16788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   damageTime: 0.5
+  canDamage: 1
 --- !u!1001 &1633508704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17458,6 +17469,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: B05_MonsterSlime
       objectReference: {fileID: 0}
+    - target: {fileID: 1113186833095407452, guid: 79a8cfa01f291d9489183e7e006c70c6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1826537973109746423, guid: 79a8cfa01f291d9489183e7e006c70c6,
         type: 3}
       propertyPath: SpawnParent
@@ -17557,6 +17573,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 17367220637557334, guid: cb92b1291f733904f8b61ef035c53a03,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3118700872826766386, guid: cb92b1291f733904f8b61ef035c53a03,
         type: 3}
       propertyPath: m_RootOrder
