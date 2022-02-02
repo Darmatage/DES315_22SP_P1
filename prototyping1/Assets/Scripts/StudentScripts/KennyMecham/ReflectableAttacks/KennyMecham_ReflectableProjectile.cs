@@ -28,14 +28,16 @@ public class KennyMecham_ReflectableProjectile : KennyMecham_ReflectableAttackBa
   protected override void OnAttack(GameObject target)
   {
     tags_to_hit_ = COTags.GetAllGameObjectTags(target);
-    m_target_direction = target.transform.position - Attacker.transform.position;
+    m_target_direction = (target.transform.position - Attacker.transform.position).normalized;
   }
   protected override void OnReflect(GameObject reflector)
   {
-    current_lifetime_ = lifetime_;
-   
+    if (reflector == attacker_)
+      return;
+
     var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    m_target_direction = mousePos - reflector.transform.position;
+    m_target_direction = (mousePos - reflector.transform.position);
+    m_target_direction.Normalize();
     target_ = attacker_;
     attacker_ = reflector;
     current_lifetime_ = lifetime_;

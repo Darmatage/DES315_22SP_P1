@@ -108670,6 +108670,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 48111814150998806, guid: 437db16d6f2eaa44894867663ee18e0a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 952346237778758167, guid: 437db16d6f2eaa44894867663ee18e0a,
         type: 3}
       propertyPath: m_RootOrder
@@ -108725,14 +108730,39 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2362430449681827626, guid: 437db16d6f2eaa44894867663ee18e0a,
+        type: 3}
+      propertyPath: lives
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362430449681827626, guid: 437db16d6f2eaa44894867663ee18e0a,
+        type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2362430449681827626, guid: 437db16d6f2eaa44894867663ee18e0a,
+        type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4696406718790087584, guid: 437db16d6f2eaa44894867663ee18e0a,
         type: 3}
       propertyPath: m_Name
       value: KennyMecham_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4696406718790087584, guid: 437db16d6f2eaa44894867663ee18e0a,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4914021680177315133, guid: 437db16d6f2eaa44894867663ee18e0a,
         type: 3}
       propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6167670181086633579, guid: 437db16d6f2eaa44894867663ee18e0a,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7092593025668143048, guid: 437db16d6f2eaa44894867663ee18e0a,
