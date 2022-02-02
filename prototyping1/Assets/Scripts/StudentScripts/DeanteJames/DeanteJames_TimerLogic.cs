@@ -17,13 +17,22 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     public GameObject indicatorBar;
     public float unitsToTheRight = 0.0f;
 
+
+
     //private List<GameObject> allEnemiesInScene = new List<GameObject>();
 
     private bool GameHasStarted = false;
+    private bool GameIsPaused = false;
+    private GameObject toDelete = null;
+
+    public float coinDeductionLength = 10.0f;
+    public float coinDeductionTimer = 0.0f;
     // Set in inspector
     public Color startColor = Color.green;
     public Color endColor = Color.red;
     private Color colorLastLerped;
+    private float origTimeScale = 0.0f;
+
     [SerializeField]
     public GameObject wave_manager;
 
@@ -104,6 +113,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         timerText.color = startColor;
         animationTimer = animationLength;
         colorLastLerped = timerText.color;
+        origTimeScale = Time.timeScale;
 
         HideDifficultyBar();
     }
@@ -113,11 +123,17 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     {
         if (Input.anyKeyDown)
         { 
-          GameHasStarted = true;
-          ShowDifficultyBar();
+            GameHasStarted = true;
+            if (GameIsPaused)
+            {
+                GameIsPaused = false;
+                unPauseGame();
+            }
+
+            ShowDifficultyBar();
         }
 
-        if (!GameHasStarted)
+        if (!GameHasStarted || GameIsPaused)
         { return; }
 
         timeElasped += Time.deltaTime - timeDeductions;
@@ -161,7 +177,13 @@ public class DeanteJames_TimerLogic : MonoBehaviour
             }
             else
             {
-                updateIndicatorArrow(speedToLerp, timeDeductions * unitsToTheRight);
+                // lerp the arrow indicator back for x amount of seconds
+                updateIndicatorArrow(speedToLerp, -(timeDeductions + unitsToTheRight));
+                coinDeductionTimer -= Time.deltaTime;
+                if (coinDeductionTimer <= 0.0f)
+                {
+                    timeDeductions = 0.0f;
+                }
             }
 
             colorLastLerped = timerText.color;
@@ -172,6 +194,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         {
             // if the mins and secs match up the 
             MakeAllEnemiesStronger(mins, secs);
+            Time.timeScale = 0.0f;
         }
 
         int seconds_int = (int)secs;
@@ -182,8 +205,6 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         }
 
         CheckAnimation(secs, mins);
-
-        timeDeductions = 0.0f;
     }
 
     private void UpdateFreezeData()
@@ -378,6 +399,8 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         rb.velocity = randVel;
         rb.gravityScale = 5.5f;
         rb.AddForce(new Vector3(2.0f, 2.0f));
+
+        coinDeductionTimer = coinDeductionLength;
     }
 
     public void FreezeTime(bool freeze)
@@ -447,6 +470,23 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         col = bar.color;
         col.a = 1;
         bar.color = col;
+    }
+
+    // Other game objects are able to pause the game
+    public void pauseGame(GameObject obj)
+    {
+        GameIsPaused = true;
+        Time.timeScale = 0.0f;
+        
+        // Save the tool tip object to delete later
+        toDelete = obj;
+    }
+
+    private void unPauseGame()
+    {
+        GameIsPaused = false;
+        Time.timeScale = origTimeScale;
+        GameObject.Destroy(toDelete);
     }
 
     private void updateIndicatorArrow(float speed, float unitsToTheRight)
