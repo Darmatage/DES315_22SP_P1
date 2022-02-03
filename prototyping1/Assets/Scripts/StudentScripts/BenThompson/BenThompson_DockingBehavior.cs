@@ -77,6 +77,8 @@ public class BenThompson_DockingBehavior : MonoBehaviour
                     // Set the status of the in boat flag to false because the player is no longer in the boat
                     boatController.SetPlayerInBoat(false);
 
+                    AudioSource.PlayClipAtPoint(boatController.getInOutBoat, transform.position);
+
                     //GameObject controllerPlayer = boatController.GetPlayer();
                     //if(controllerPlayer)
                     //{
