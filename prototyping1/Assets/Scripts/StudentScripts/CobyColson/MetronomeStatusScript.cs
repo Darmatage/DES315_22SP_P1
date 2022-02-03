@@ -21,7 +21,8 @@ public class MetronomeStatusScript : MonoBehaviour
         new StatusPreset("PERFECT!", Color.yellow),
         new StatusPreset("GOOD!", Color.cyan),
         new StatusPreset("MISS", Color.red),
-        new StatusPreset("", Color.clear)
+        new StatusPreset("", Color.clear),
+        new StatusPreset("Get a PERFECT...", Color.black)
     };
 
     private GameObject textObject;
@@ -31,7 +32,7 @@ public class MetronomeStatusScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textObject = GameObject.Find("StatusText");
+        textObject = GameObject.FindGameObjectWithTag("CC_StatusText");
         text = textObject.GetComponent<Text>();
         rect = textObject.GetComponent<RectTransform>();
         SetTextToPreset(presets[3]);

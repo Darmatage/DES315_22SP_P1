@@ -15,7 +15,8 @@ public class DaeunJeong_Pickups : MonoBehaviour
     public PICKUP_TYPE pickupType;
     private GameObject chest;
     private DaeunJeong_UIManager UIManager;
-    private WonjuJo_PlayerHandler playerHandler;
+    private WonjuJo_PlayerHandler wonjuPlayerHandler;
+    private EunjinHong_GameHandler eunjinPlayerHandler;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,16 @@ public class DaeunJeong_Pickups : MonoBehaviour
         {
             pickupType = PICKUP_TYPE.HEALTH;
             GameObject gameHandlerCanvas = GameObject.Find("WonjuJo_GameHandlerCanvas");
-            playerHandler = gameHandlerCanvas.gameObject.GetComponentInChildren<WonjuJo_PlayerHandler>();
+
+            if (gameHandlerCanvas == null)
+            {
+                gameHandlerCanvas = GameObject.Find("GameHandlerCanvas");
+                eunjinPlayerHandler = gameHandlerCanvas.gameObject.GetComponentInChildren<EunjinHong_GameHandler>();
+            }
+            else
+            {
+                wonjuPlayerHandler = gameHandlerCanvas.gameObject.GetComponentInChildren<WonjuJo_PlayerHandler>();
+            }
         }
         else if (gameObject.tag == "Jewel")
         {
@@ -56,7 +66,14 @@ public class DaeunJeong_Pickups : MonoBehaviour
 
             if (pickupType == PICKUP_TYPE.HEALTH)
             {
-                playerHandler.Heal(10);
+                if (wonjuPlayerHandler != null)
+                {
+                    wonjuPlayerHandler.Heal(10);
+                }
+                else if (eunjinPlayerHandler != null)
+                {
+                    eunjinPlayerHandler.Heal(10);
+                }
             }
 
             Destroy(gameObject);

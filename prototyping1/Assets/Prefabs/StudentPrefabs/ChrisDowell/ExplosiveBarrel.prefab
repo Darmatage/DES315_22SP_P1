@@ -184,7 +184,7 @@ MonoBehaviour:
   m_triggerType: 0
   m_stats:
     m_timerLength: 2
-    m_maxHP: 10
+    m_maxHP: 3
     m_damage: 25
     m_explosiveRadius: 2
     m_pushforce: 10
@@ -256,6 +256,7 @@ MonoBehaviour:
     m_Bits: 8192
   m_damageOtherBarrels: 1
   m_ignoreOtherBarrels: 0
+  m_lockPosition: 1
   m_triggered: 0
   m_indicator: {fileID: 8704763472087167412}
   m_renderer: {fileID: 2955012074025261690}
@@ -275,7 +276,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.71
+  m_Radius: 3.06
 --- !u!82 &6345630020965390310
 AudioSource:
   m_ObjectHideFlags: 0

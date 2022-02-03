@@ -153,7 +153,13 @@ public class MousePickupScript : MonoBehaviour
   {
     Vector3 vec = cursor_.transform.position;
     //offset for better placement
-    return new Vector3Int(Mathf.RoundToInt(vec.x - 0.8f), Mathf.RoundToInt(vec.y - 0.3f), (int)vec.z);
+    return Vec3toVec3Int(vec);
+  }
+
+  public Vector3Int Vec3toVec3Int(Vector3 vec)
+  {
+    //have the vec be in accordance to cursor
+    return new Vector3Int(Mathf.RoundToInt(vec.x - 0.8f), Mathf.RoundToInt(vec.y - 0.3f), (int)cursor_.transform.position.z);
   }
 
   public void CanLetGoToggle(bool status)

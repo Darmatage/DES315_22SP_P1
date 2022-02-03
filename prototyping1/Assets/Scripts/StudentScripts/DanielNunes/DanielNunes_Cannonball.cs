@@ -43,6 +43,9 @@ public class DanielNunes_Cannonball : MonoBehaviour
         //So, use the right vector of the cannon in this calculation.
         GetComponent<Rigidbody2D>().velocity = transform.parent.right * speed;
 
+        //we don't want to be a child of the cannon we were instantiated from anymore
+        transform.parent = null;
+
         //create cannon particles
         //cannonball creates these particles so you can't constantly create them when spamming shoot on the cannon itself
         GameObject p = Instantiate(cannonParticles, null);
@@ -90,6 +93,42 @@ public class DanielNunes_Cannonball : MonoBehaviour
             CreateParticles();
 
             //despawn
+            Destroy(gameObject);
+        }
+        //if we collided with one of Taro's switches
+        else if (collision.gameObject.GetComponent<Taro_ColorSwitchBehavior>())
+        {
+            //get the color manager from the player
+            Taro_ColorSwitchTrigger trigger = GameObject.FindGameObjectWithTag("Player").GetComponent<Taro_ColorSwitchTrigger>();
+            if (trigger != null && trigger.isActive)
+            {
+                //get the color of the switch we hit
+                Taro_ColorSwitchBehavior taroSwitch = collision.gameObject.GetComponent<Taro_ColorSwitchBehavior>();
+
+                Taro_ColorSwitchManager.SetActiveColor(taroSwitch.SwitchColor);
+
+                taroSwitch.ActiveSprite.SetActive(true);
+                taroSwitch.InactiveSprite.SetActive(false);
+
+                //get all cannons in the scene
+                DanielNunes_Cannon[] cannons = FindObjectsOfType<DanielNunes_Cannon>();
+                //go through all cannons and...
+                for (int i = 0; i < cannons.Length; ++i)
+                {
+                    //...briefly reset each of their raycast contacts
+                    cannons[i].ResetContacts();
+                }
+
+                //despawn cannonball
+                CreateParticles();
+                Destroy(gameObject);
+            }
+        }
+        //if we collided with one of Taro's tilemap blocks while it is on the default collision layer
+        else if (collision.gameObject.CompareTag("Taro_ColorBlock") && collision.gameObject.layer == LayerMask.NameToLayer("Color_Blocks"))
+        {
+            //despawn cannonball
+            CreateParticles();
             Destroy(gameObject);
         }
     }

@@ -25,6 +25,7 @@ public class B05_QTETrigger : MonoBehaviour
 
     //Set this to true if you want this specific actor to be destroyed when the player succeeds at the QTE triggered by this actor
     public bool DestroyOnTriggeredQTESuccess = true;
+    public bool GetsHitOnTriggeredQTESuccess = false;
 
     public float DestroyOnSuccessDelay = 0.5f;
 
@@ -76,6 +77,10 @@ public class B05_QTETrigger : MonoBehaviour
             {
                 destroying = true;
                 StartCoroutine(DestroyObjectAfterDelay(DestroyOnSuccessDelay));
+            }
+            else if(GetsHitOnTriggeredQTESuccess)
+            {
+                GetComponent<B05_EnemyMove>().HitEnemy();
             }
 
             triggeredQTE = false;

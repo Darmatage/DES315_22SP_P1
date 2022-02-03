@@ -195,7 +195,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -309,7 +309,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -423,7 +423,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -17503,7 +17503,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -17610,7 +17610,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -17780,7 +17780,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -17894,7 +17894,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -18008,7 +18008,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -18122,7 +18122,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -18236,7 +18236,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -18350,7 +18350,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -25536,7 +25536,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -25650,7 +25650,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -25764,7 +25764,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -25878,7 +25878,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -25992,7 +25992,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -26151,7 +26151,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -26265,7 +26265,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -26308,80 +26308,6 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11cc93131166a7b45938aa955f74fae1, type: 3}
---- !u!1001 &1485845102
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 139888408495466636, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: speed
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1640567903503703828, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_Name
-      value: WonjuJo_MainPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 22.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -20.009
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 3d75388a8210e3843afc7446651b7b4a, type: 3}
 --- !u!1001 &1531710495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26453,7 +26379,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -26496,7 +26422,81 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11cc93131166a7b45938aa955f74fae1, type: 3}
---- !u!1001 &1669791130
+--- !u!1001 &1608779358
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 139888408495466636, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: FireballCooldownImage
+      value: 
+      objectReference: {fileID: 1728735973}
+    - target: {fileID: 1640567903503703828, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_Name
+      value: WonjuJo_MainPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -19.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3775893618028871686, guid: 3d75388a8210e3843afc7446651b7b4a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d75388a8210e3843afc7446651b7b4a, type: 3}
+--- !u!1001 &1728735972
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -26506,7 +26506,7 @@ PrefabInstance:
     - target: {fileID: 779397158882633399, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
       propertyPath: m_Text
-      value: Daeun Jeong
+      value: Daeun Jeong [B12]
       objectReference: {fileID: 0}
     - target: {fileID: 1806154120203081548, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
         type: 3}
@@ -26570,11 +26570,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32bab4e55e3fce5458cd21ae1ebb1036, type: 3}
---- !u!1 &2032590147 stripped
+--- !u!114 &1728735973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4098146336419182154, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
+    type: 3}
+  m_PrefabInstance: {fileID: 1728735972}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1770529418 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 779397158702456569, guid: 32bab4e55e3fce5458cd21ae1ebb1036,
     type: 3}
-  m_PrefabInstance: {fileID: 1669791130}
+  m_PrefabInstance: {fileID: 1728735972}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2070328363
 PrefabInstance:
@@ -26647,7 +26659,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor
@@ -26761,7 +26773,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Canvas
       value: 
-      objectReference: {fileID: 2032590147}
+      objectReference: {fileID: 1770529418}
     - target: {fileID: 2705200810839189959, guid: 11cc93131166a7b45938aa955f74fae1,
         type: 3}
       propertyPath: shouldSpawnDoor

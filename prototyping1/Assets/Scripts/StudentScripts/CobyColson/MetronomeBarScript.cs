@@ -7,7 +7,8 @@ public class MetronomeBarScript : MonoBehaviour
     enum Direction { Left, Right };
     private Direction direction;
     private RectTransform rect;
-    public float barSpeed;
+    public static float barSpeed = 356f;
+    public static float initialBarSpeed;
     private float canvasHalfWidth = 640;
     private AudioSource[] audioSources;
     private MetronomeControllerScript controller;
@@ -18,6 +19,7 @@ public class MetronomeBarScript : MonoBehaviour
         rect = GetComponent<RectTransform>();
         audioSources = GameObject.Find("MetronomeController").GetComponents<AudioSource>();
         controller = GameObject.Find("MetronomeController").GetComponent<MetronomeControllerScript>();
+        initialBarSpeed = barSpeed;
         if (rect.anchoredPosition.x < 0)
         {
             direction = Direction.Right;
@@ -31,29 +33,32 @@ public class MetronomeBarScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool resetPosition = false;
         if (direction == Direction.Left)
         {
             rect.anchoredPosition = new Vector2(rect.anchoredPosition.x - barSpeed * Time.deltaTime, rect.anchoredPosition.y);
+            if (rect.anchoredPosition.x < 0)
+            {
+                resetPosition = true;
+                rect.anchoredPosition = new Vector2(canvasHalfWidth, rect.anchoredPosition.y);
+            }
         }
         else
         {
             rect.anchoredPosition = new Vector2(rect.anchoredPosition.x + barSpeed * Time.deltaTime, rect.anchoredPosition.y);
+            if (rect.anchoredPosition.x > 0)
+            {
+                resetPosition = true;
+                rect.anchoredPosition = new Vector2(-canvasHalfWidth, rect.anchoredPosition.y);
+            }
         }
-        if (Mathf.Abs(rect.anchoredPosition.x) < 5)
+        if (resetPosition)
         {
             if (!audioSources[1].isPlaying)
             {
                 audioSources[1].Play(0);
             }
-            if (direction == Direction.Left)
-            {
-                rect.anchoredPosition = new Vector2(canvasHalfWidth, rect.anchoredPosition.y);
-            }
-            else
-            {
-                rect.anchoredPosition = new Vector2(-canvasHalfWidth, rect.anchoredPosition.y);
-            }
-            controller.ResetActions();
+            controller.SwapOverlayPosition();
         }
     }
 }

@@ -14,7 +14,7 @@ public class ScottFadoBristow_MonsterMoveAttackSlow : MonoBehaviour
 	private GameHandler gameHandlerObj;
 	private Animator anim;
 
-	public float WanderOffset = 5.0f;
+	public float WanderOffset = 1.0f;
 	public float WanderSpeedMultiplier = 0.5f;
 	private float wanderRotation = 0.0f;
 

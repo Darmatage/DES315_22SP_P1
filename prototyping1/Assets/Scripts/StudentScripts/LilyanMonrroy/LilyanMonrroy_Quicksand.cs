@@ -15,6 +15,7 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
     private float playerMaxSpeed;
     private float playerMaxYScale;
     private Vector3 change;
+    private Vector3 currChange;
 
     //Quicksand variables.
     public float slowDownFactor = .5f; 
@@ -24,6 +25,13 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
     private GameObject myCanvas;
     private GameObject SinkingText;
     private GameObject MovingText;
+    private GameObject SinkingMask;
+    private GameObject MovingDust;
+    private float currMaskYPos = 0.0f;
+    private float maxMaskYPos = 2.3f;
+    public float maskSpeed = 0.0f;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +55,13 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             playerTransform = player.GetComponent<Transform>();
             playerMaxSpeed = player.GetComponent<PlayerMove>().speed;
             playerMaxYScale = playerTransform.localScale.y;
+
+            maxMaskYPos = 2.3f;
+            SinkingMask = playerTransform.Find("SinkingMask").gameObject;
+            SinkingMask.SetActive(false);
+
+            MovingDust = playerTransform.Find("MovingDust").gameObject;
+            MovingDust.SetActive(false);
         }
 
         //Initializing canvas from the one in the scene.
@@ -69,15 +84,14 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("LilyanMonrroy_Quicksand Log: Trigger start!");
-
         if (other.gameObject.tag == "Player")
         {
             inQuicksand = true;
 
-            //Get move direction that player was first going to.
-            change = Vector3.zero;
-            change.x = Input.GetAxisRaw("Horizontal");
-            change.y = Input.GetAxisRaw("Vertical");
+            SinkingMask.SetActive(true);
+            currMaskYPos = maxMaskYPos;
+            SinkingMask.transform.localPosition = new Vector3(0, 0-currMaskYPos, 0);
+
         }
         else
         {
@@ -97,14 +111,15 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
         //Give player back normal movement speed before entering quicksand.
         if(other.gameObject.tag == "Player")
         {
+            //Deactivating UI for quicksand
             SinkingText.SetActive(false);
             MovingText.SetActive(false);
+            SinkingMask.SetActive(false);
+            MovingDust.SetActive(false);
 
             inQuicksand = false;
 
             player.GetComponent<PlayerMove>().speed = playerMaxSpeed;
-            playerTransform.localScale = new Vector3(playerTransform.localScale.x, playerMaxYScale, playerTransform.localScale.z);
-            playerRigidbody.MovePosition(playerTransform.position + change * moveSpeed * 20 * Time.deltaTime);
         }
 
         //Debug.Log("LilyanMonrroy_Quicksand Log: Trigger end!");
@@ -113,6 +128,15 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
     //Update loop
     void FixedUpdate()
     {
+        currChange = Vector3.zero;
+        currChange.x = Input.GetAxisRaw("Horizontal");
+        currChange.y = Input.GetAxisRaw("Vertical");
+
+        if(currChange != Vector3.zero)
+        {
+            change = new Vector3(currChange.x, currChange.y, 0);
+        }
+
         if (inQuicksand)
         {
             //slow down any speed the player is currently until speed is at 0.
@@ -126,27 +150,76 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             //If there is any input, scale the player down and do damage.
             if (Input.anyKey && player.GetComponent<PlayerMove>().speed == 0)
             {
+                //Taking Damage from player
                 gameHandlerObj.TakeDamage(damage);
-                float newScale = Mathf.Lerp(0, playerTransform.localScale.y, .95f);
-                playerTransform.localScale = new Vector3(playerTransform.localScale.x, newScale, playerTransform.localScale.z);
-                MovingText.SetActive(false);
-                SinkingText.SetActive(true);
+
+                //Updating position of mask
+                currMaskYPos = Mathf.Lerp(0, currMaskYPos, maskSpeed);
+                SinkingMask.transform.localPosition = new Vector3(0, 0 - currMaskYPos, 0);
+
+                if(GameHandler.PlayerHealth <= 0)
+                {
+                    SinkingMask.SetActive(false);
+                }
+
+                //switching UI text display.
+                MovingDust.SetActive(false);
+
+                /*MovingText.SetActive(false);
+                SinkingText.SetActive(true);*/
             }
             else
             {
-                SinkingText.SetActive(false);
-                MovingText.SetActive(true);
-                //not moving then move the player out of the sand.
-                playerRigidbody.MovePosition(playerTransform.position + change *moveSpeed * Time.deltaTime);
+                if(player.GetComponent<PlayerMove>().speed == 0)
+                {
+                    UpdateParticleDust();
+                    /*SinkingText.SetActive(false);
+                    MovingText.SetActive(true);*/
+
+                    //not moving then move the player out of the sand.
+                    playerRigidbody.MovePosition(playerTransform.position + change * moveSpeed * Time.deltaTime);
+                }
             }
         }
 
-        UpdateTextPopUpPositions();
+        UpdateUIPositions();
     }
 
-    void UpdateTextPopUpPositions()
+    void UpdateUIPositions()
     {
         SinkingText.transform.localPosition = new Vector3(player.transform.position.x, player.transform.position.y + 100.0f, player.transform.position.z);
         MovingText.transform.localPosition = new Vector3(player.transform.position.x, player.transform.position.y + 100.0f, player.transform.position.z);
+    }
+
+    void UpdateParticleDust()
+    {
+        MovingDust.SetActive(true);
+
+        MovingDust.transform.localPosition = new Vector3(0, 0 , 0);
+        MovingDust.transform.rotation = Quaternion.identity;
+
+        if (change.x > 0)
+        {
+            MovingDust.transform.localPosition = new Vector3(0 + .85f, 0 , 0);
+            MovingDust.transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+
+        if (change.x < 0)
+        {
+            MovingDust.transform.localPosition = new Vector3(0 + .85f, 0, 0);
+            MovingDust.transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
+
+        if (change.y > 0)
+        {
+            MovingDust.transform.localPosition = new Vector3(0, 0 + 1.25f, 0);
+            MovingDust.transform.rotation = Quaternion.Euler(0, 0, 90);
+        }
+
+        if (change.y < 0)
+        {
+            MovingDust.transform.localPosition = new Vector3(0, 0 - 1.25f, 0);
+            MovingDust.transform.rotation = Quaternion.Euler(0, 0, -90);
+        }
     }
 }

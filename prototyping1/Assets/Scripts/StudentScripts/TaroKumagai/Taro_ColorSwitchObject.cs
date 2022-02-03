@@ -17,7 +17,7 @@ public class Taro_ColorSwitchObject : MonoBehaviour
         if (SwitchColor == Taro_ColorSwitchManager.GetActiveSwitchColor())
         {
             // Will now collide with the player
-            gameObject.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = LayerMask.NameToLayer("Color_Blocks");
 
             // Making the object opaque
             if (sprite)
@@ -38,7 +38,7 @@ public class Taro_ColorSwitchObject : MonoBehaviour
         else
         {
             // No longer collides with the player
-            gameObject.layer = LayerMask.NameToLayer("IgnorePlayer");
+            gameObject.layer = LayerMask.NameToLayer("IgnorePlayerAndEnemy");
 
             
             // Making the object opaque

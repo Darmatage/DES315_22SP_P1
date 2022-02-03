@@ -42,6 +42,9 @@ TagManager:
   - Jewel
   - VisionRange
   - PortalAllowed
+  - CC_StatusText
+  - Switch
+  - Taro_ColorBlock
   layers:
   - Default
   - TransparentFX
@@ -58,8 +61,8 @@ TagManager:
   - WaterSafe
   - IgnorePlayer
   - IgnorePlayerAndEnemy
-  - 
-  - 
+  - Wall
+  - PassableWall
   - BorderLayer_CEGP
   - BlockLayer_CEGP
   - FogOfWarMain
@@ -70,7 +73,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Color_Blocks
   - 
   - 
   - 
