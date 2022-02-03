@@ -1,6 +1,7 @@
 To add the mirror enemy to your level:
 
-- Drag and place the Mirror prefab into your level
+- Drag and place the Mirror prefab into your level wherever you want it
+- Add the "FreddyMartinPlayerScript" to the player and set CooldownPrefab on it to "FreddyMartinCooldownBar"
 
 That's it, but there's some properties on the mirror you can mess with to change how it works:
 
@@ -11,3 +12,5 @@ That's it, but there's some properties on the mirror you can mess with to change
 - Time Between Swaps: The number of seconds after which the player and the mirror enemy will swap
 - Shards Dropped Between Swaps: The number of mirror shards dropped between swaps
 - Shard Fade Time: The time in seconds it takes for the mirror shards to dissapear after spawning
+
+On the player you can change how often the player can force a swap.

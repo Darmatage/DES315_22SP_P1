@@ -78,10 +78,10 @@ public class FreddyMartinMirrorEnemy : MonoBehaviour
             shard.GetComponent<Lava>().damage = damage;
         }
 
-        // Swap player and mirror if enough time has passed
-        if (swapTimer >= timeBetweenSwaps)
+        // Swap player and mirror if enough time has passed or if the player forces a swap
+        if (FreddyMartinPlayerScript.Instance.forceSwap || swapTimer >= timeBetweenSwaps)
         {
-            swapTimer -= timeBetweenSwaps;
+            swapTimer = 0;
             droppedShards = 0;
             dropTimer = 0;
 
@@ -91,7 +91,9 @@ public class FreddyMartinMirrorEnemy : MonoBehaviour
             transform.position = player.transform.position;
             transform.localScale = player.transform.localScale;
 
+            Vector3 CameraOffset = Camera.main.transform.position - player.transform.position;
             player.transform.position = newPlayerPos;
+            Camera.main.transform.position = player.transform.position + CameraOffset;
             player.transform.localScale = newPlayerScale;
         }
 
