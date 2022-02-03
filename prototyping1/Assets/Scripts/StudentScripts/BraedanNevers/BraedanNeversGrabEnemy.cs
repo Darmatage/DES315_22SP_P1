@@ -20,6 +20,7 @@ public class BraedanNeversGrabEnemy : MonoBehaviour
     private SpriteRenderer rLine;
     private SpriteRenderer lLine;
     private SpriteRenderer dLine;
+    private bool directionSet = false;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +55,11 @@ public class BraedanNeversGrabEnemy : MonoBehaviour
             Color lineColor = new Color(rLine.color.r, rLine.color.g, rLine.color.b, 1.0f);
             Color transparent = new Color(rLine.color.r, rLine.color.b, rLine.color.b, 0.5f);
 
+            if (!directionSet)
+            {
+            }
+
+
             if (Input.GetKey(KeyCode.W))
             {
                 direction = Vector2.up;
@@ -74,23 +80,74 @@ public class BraedanNeversGrabEnemy : MonoBehaviour
             {
                 direction = Vector2.right;
                 rLine.color = lineColor;
-                dLine.color = transparent;
-                uLine.color = transparent;
                 lLine.color = transparent;
+                // Throw up-right
+                if (Input.GetKey(KeyCode.W))
+                {
+                    uLine.color = lineColor;
+                    dLine.color = transparent;
+                    direction += Vector2.up;
+                }
+                // Throw down-right
+                else if (Input.GetKey(KeyCode.S))
+                {
+                    uLine.color = transparent;
+                    dLine.color = lineColor;
+                    direction += Vector2.down;
+                }
+                // Just right
+                else
+                {
+                    uLine.color = transparent;
+                    dLine.color = transparent;
+                }
             }
             if(Input.GetKey(KeyCode.A))
             {
+                // Throw left
                 direction = Vector2.left;
+                rLine.color = lineColor;    // We're setting the rline because the sprite is inverted when facing left
                 lLine.color = transparent;
-                rLine.color = lineColor;
-                dLine.color = transparent;
-                uLine.color = transparent;
+
+                // Throw up-left
+                if(Input.GetKey(KeyCode.W))
+                {
+                    uLine.color = lineColor;
+                    dLine.color = transparent;
+                    direction += Vector2.up;
+                }
+                // Throw down-Left
+                else if(Input.GetKey(KeyCode.S))
+                {
+                    uLine.color = transparent;
+                    dLine.color = lineColor;
+                    direction += Vector2.down;
+                }
+                // Just left
+                else
+                {
+                    uLine.color = transparent;
+                    dLine.color = transparent;
+                }
+
             }
             
-
                 // Throw the enemy
             if(Input.GetMouseButton(1))
             {
+                if(direction == Vector2.zero)
+                {
+                    rLine.color = lineColor;
+                    lLine.color = transparent;
+                    uLine.color = transparent;
+                    dLine.color = transparent;
+                    if (transform.root.localScale.x == 1)
+                        direction = Vector2.right;
+                    else
+                        direction = Vector2.left; 
+
+                }    
+
                 IsHoldingEnemy = false;
                 projectileClone.GetComponent<BraedanProjectile>().isHeld = false;
                 Rigidbody2D rigidbody2D = projectileClone.GetComponent<Rigidbody2D>();
