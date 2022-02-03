@@ -92,7 +92,7 @@ public class B21_ProjectileTeleport : MonoBehaviour
                     shootDirection = shootDirection - projectile.transform.position;
 
                     projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(shootDirection.x * projectileSpeed,
-                        shootDirection.y * projectileSpeed);
+                        shootDirection.y * projectileSpeed).normalized * projectileSpeed * 5;
                 }
             }
             else if (projectile)
