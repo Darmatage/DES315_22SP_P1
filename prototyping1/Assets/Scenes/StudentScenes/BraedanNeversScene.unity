@@ -19088,7 +19088,7 @@ PrefabInstance:
     - target: {fileID: 503090289199649980, guid: b9d4fc1e776e1c14f9d78abbb5427c49,
         type: 3}
       propertyPath: multiplications
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 503090289199649980, guid: b9d4fc1e776e1c14f9d78abbb5427c49,
         type: 3}
@@ -20813,7 +20813,7 @@ PrefabInstance:
     - target: {fileID: -5271365824559425604, guid: 0cbfa04fa4c3ac54eaeea3d8bda57248,
         type: 3}
       propertyPath: spawnRange
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -5271365824559425604, guid: 0cbfa04fa4c3ac54eaeea3d8bda57248,
         type: 3}
@@ -33704,6 +33704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   damageTime: 0.5
+  canDamage: 1
 --- !u!4 &1610787852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8609728730540326881, guid: b8a6cace9f12055478438cbe2ebb46ff,
