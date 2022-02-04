@@ -6,6 +6,7 @@ using UnityEngine;
 public class HookShotFire_JonathanHamling : MonoBehaviour
 {
     LineRenderer line;
+    public bool debug = false;
 
     [SerializeField] 
     private LayerMask whatCanGrapple;
@@ -27,6 +28,7 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
     Vector2 mousPos;
     Vector2 target;
     GameObject targetObj;
+    Rigidbody2D targetRigid;
 
     [SerializeField] 
     private GameObject Player;
@@ -108,14 +110,15 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
                 // Is it grappleable?
                 if (hit.collider.tag == "Pullable")
                 {
+                    Physics2D.IgnoreCollision(hit.collider, Player.GetComponent<CircleCollider2D>());
 
                     Vector2 grapplePos = Vector2.Lerp(targetObj.transform.position, mousPos, shootSpeed * Time.deltaTime);
 
-                    targetObj.transform.position = grapplePos;
+                    targetRigid.velocity = (mousPos - new Vector2(targetObj.transform.position.x, targetObj.transform.position.y)) * shootSpeed * Time.deltaTime;
 
                     line.SetPosition(1, targetObj.transform.position);
                     handImage.transform.position = mousPos;
-                    handRend.sprite = hands[1];
+                    handRend.sprite = hands[3];
 
                     if ((Vector2.Distance(mousPos, targetObj.transform.position) < .25f) && !Input.GetButton("Fire1"))
                     {
@@ -129,6 +132,7 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
                     }
                     else if (Vector2.Distance(mousPos, targetObj.transform.position) < .25f)
                     {
+                        handRend.sprite = hands[1];
 
                         if (Input.GetButton("Fire2"))
                         {
@@ -142,6 +146,16 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
                         }
 
                         line.enabled = false;
+                    }
+                    else if (!Input.GetButton("Fire1"))
+                    {
+                        isPull = false;
+                        isGrappled = false;
+
+                        // are we ready to stop the rope?
+                        line.enabled = false;
+                        handImage.SetActive(false);
+                        handRend.sprite = hands[0];
                     }
                 }
                 else
@@ -214,6 +228,12 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
                 target = hit.collider.transform.position;
                 targetObj = hit.collider.gameObject;
 
+                if (hit.collider.attachedRigidbody)
+                {
+                    targetRigid = hit.collider.attachedRigidbody;
+                    debug = true;
+                }
+
                 // Grappled is now definitely true
                 isGrappled = true;
 
@@ -247,7 +267,7 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
 
             line.SetPosition(0, mousPos);
             line.SetPosition(1, newPos);
-            
+
             handImage.transform.position = mousPos;
 
             yield return null;
@@ -255,6 +275,7 @@ public class HookShotFire_JonathanHamling : MonoBehaviour
 
         line.SetPosition(1, target);
         isPull = true;
+        
     }
 
     IEnumerator Retract()

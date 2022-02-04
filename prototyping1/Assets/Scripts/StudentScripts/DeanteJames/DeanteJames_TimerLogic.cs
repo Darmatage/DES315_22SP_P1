@@ -194,7 +194,6 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         {
             // if the mins and secs match up the 
             MakeAllEnemiesStronger(mins, secs);
-            Time.timeScale = 0.0f;
         }
 
         int seconds_int = (int)secs;
@@ -312,6 +311,12 @@ public class DeanteJames_TimerLogic : MonoBehaviour
             {
                 JirakitJarusiripipat_Projectile proj = item.gameObject.GetComponent<JirakitJarusiripipat_Projectile>();
                 JirakitJarusiripipat_ShootMove skull = item.GetComponent<JirakitJarusiripipat_ShootMove>();
+
+                if (proj == null)
+                {
+                    continue;
+                }
+
                 if (midPointReached)
                 {
                     proj.damage = skull_medDmg;
