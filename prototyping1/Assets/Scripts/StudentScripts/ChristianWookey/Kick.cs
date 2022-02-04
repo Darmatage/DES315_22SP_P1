@@ -33,7 +33,6 @@ public class Kick : MonoBehaviour
         if (!UseOldKick)
         {
             // FixedUpdate updates at 0.02 sec/frame but stun decreases by only 0.01 sec/frame
-            StunTime /= 2;
             Force = 2f;
         }
     }
