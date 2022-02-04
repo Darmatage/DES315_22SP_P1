@@ -18,6 +18,11 @@ public class ScottFadoBristow_MonsterMoveAttackSlow : MonoBehaviour
 	public float WanderSpeedMultiplier = 0.5f;
 	private float wanderRotation = 0.0f;
 
+	//Binary state machine code
+	private bool idle;
+	private float stateTimer;
+	public float StateTime = 5.0f;
+
 	//The lowest value the speed can get to
 	private const float speedFloor = 1.0f;
 
@@ -41,6 +46,9 @@ public class ScottFadoBristow_MonsterMoveAttackSlow : MonoBehaviour
 		}
 
 		wanderRotation = Random.Range(0, 360.0f);
+
+		stateTimer = StateTime;
+		idle = true;
 	}
 
 	void Update()
@@ -64,10 +72,26 @@ public class ScottFadoBristow_MonsterMoveAttackSlow : MonoBehaviour
 			}
             else 
 			{
-				//Wander!
-				wanderRotation += Random.Range(-WanderOffset, WanderOffset);
-				Vector3 wanderDest = transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * wanderRotation), Mathf.Sin(Mathf.Deg2Rad * wanderRotation));
-				transform.position = Vector2.MoveTowards(transform.position, wanderDest, speed * WanderSpeedMultiplier  * Time.deltaTime);
+				if (idle)
+				{
+					//DO FUCKING NOTHING BABY
+				}
+				else
+				{
+					//Wander!
+					wanderRotation += Random.Range(-WanderOffset, WanderOffset);
+					Vector3 wanderDest = transform.position + new Vector3(Mathf.Cos(Mathf.Deg2Rad * wanderRotation), Mathf.Sin(Mathf.Deg2Rad * wanderRotation));
+					transform.position = Vector2.MoveTowards(transform.position, wanderDest, speed * WanderSpeedMultiplier * Time.deltaTime);
+				}
+
+				stateTimer -= Time.deltaTime;
+
+				if(stateTimer <= 0)
+                {
+					stateTimer = StateTime;
+					idle = !idle;
+					wanderRotation = Random.Range(0, 360.0f);
+				}
 			}
 		}
 	}
