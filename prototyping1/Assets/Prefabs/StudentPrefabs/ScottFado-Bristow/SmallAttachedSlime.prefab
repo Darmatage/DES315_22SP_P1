@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6920863695930567157}
   - component: {fileID: 3722396071827021330}
   - component: {fileID: 1817882444589693157}
+  - component: {fileID: 1090319383440004721}
   m_Layer: 0
   m_Name: SmallAttachedSlime
   m_TagString: Untagged
@@ -4895,3 +4896,19 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1090319383440004721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6597624310160798009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7126bed063229d543926535eec2789be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WiggleTime: 0.1
+  timer: 0
+  Wiggle: 0
+  WiggleOff: 0.5
