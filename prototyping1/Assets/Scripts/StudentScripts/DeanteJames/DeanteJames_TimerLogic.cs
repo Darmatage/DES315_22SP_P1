@@ -121,16 +121,20 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (Input.anyKeyDown && !GameHasStarted)
         { 
             GameHasStarted = true;
+
+            ShowDifficultyBar();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
             if (GameIsPaused)
             {
                 GameIsPaused = false;
                 unPauseGame();
             }
-
-            ShowDifficultyBar();
         }
 
         if (!GameHasStarted || GameIsPaused)
