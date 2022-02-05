@@ -36,22 +36,38 @@ public class JakobShumway_impactDamage : MonoBehaviour
         if (gameObject.GetComponent<JakobShumway_destroyBox>())
         {
             if (Mathf.Abs(col.gameObject.GetComponent<Rigidbody2D>().velocity.x) +
-                Mathf.Abs(col.gameObject.GetComponent<Rigidbody2D>().velocity.y) > forceRequired ||
-                Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.x) +
-                Mathf.Abs(gameObject.GetComponent<Rigidbody2D>().velocity.y) > forceRequired)
+                Mathf.Abs(col.gameObject.GetComponent<Rigidbody2D>().velocity.y) +
+                Mathf.Abs(    gameObject.GetComponent<Rigidbody2D>().velocity.x) +
+                Mathf.Abs(    gameObject.GetComponent<Rigidbody2D>().velocity.y) > forceRequired)
             {
                 gameObject.GetComponent<JakobShumway_destroyBox>().boxHealth -= dmgAmount;
             }
-        }
-
-        /*if (col.gameObject.GetComponent<EnemyHealth>())
-        {
-            if (Mathf.Abs(col.gameObject.GetComponent<Rigidbody2D>().velocity.x) + 
-                Mathf.Abs(col.gameObject.GetComponent<Rigidbody2D>().velocity.y) > forceRequired)
+            //else if (col.gameObject.name.Contains("TilemapWalls"))
+            //{
+            //    gameObject.GetComponent<JakobShumway_destroyBox>().boxHealth -= dmgAmount;
+            //}
+            else
             {
-                for (int i = 0; i < dmgAmount; i++)
-                    col.gameObject.GetComponent<EnemyHealth>().HitEnemy();
+                GameObject checkPlayer = GameObject.Find("Player");
+
+                if (checkPlayer != null)
+                {
+                    if (Mathf.Abs(checkPlayer.GetComponent<Rigidbody2D>().velocity.x) +
+                        Mathf.Abs(checkPlayer.GetComponent<Rigidbody2D>().velocity.y) > 2.2f)
+                    {
+                        gameObject.GetComponent<JakobShumway_destroyBox>().boxHealth -= dmgAmount;
+                    }
+                }
             }
-        }*/
+            //else
+            //{
+            //    JakobShumway_grabObject fixCol = GameObject.Find("Player").GetComponent<JakobShumway_grabObject>();
+            //    //GameObject oldHold = fixCol.grabbedObject;
+            //
+            //    if (Input.GetKeyDown(fixCol.grabButton))
+            //        if (fixCol.grabbedObject == gameObject)
+            //            gameObject.GetComponent<JakobShumway_destroyBox>().boxHealth -= dmgAmount;
+            //}
+        }
     }
 }

@@ -98,8 +98,8 @@ MonoBehaviour:
   attackSlow: 1
   AgroRange: 4
   EnemyLives: 3
-  WanderOffset: 5
-  WanderSpeedMultiplier: 0.5
+  WanderOffset: 1
+  WanderSpeedMultiplier: 0.25
   retreatTime: 3
 --- !u!114 &195869131716561109
 MonoBehaviour:

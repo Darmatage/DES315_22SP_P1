@@ -73,7 +73,8 @@ public class JakobShumway_grabObject : MonoBehaviour
             gameObject.GetComponent<PlayerMove>().speed = prevSpeed;
         }
 
-
+        if (grabbedObject == null)
+            holding = false;
 
             // Update direction
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
@@ -145,16 +146,19 @@ public class JakobShumway_grabObject : MonoBehaviour
                 if (throwX != 0 || throwY != 0)
                     afterFreezeTimer = afterFreezeDuration;
 
+                if (grabbedObject)
+                {
                     // Launch Object
-                grabbedObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(throwX, throwY), ForceMode2D.Impulse);
+                    grabbedObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(throwX, throwY), ForceMode2D.Impulse);
 
                     // Launch player in opposite direction
-                throwX *= playerThrowbackMultiplier;
-                throwY *= playerThrowbackMultiplier;
-                playerTrans.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-throwX, -throwY), ForceMode2D.Impulse);
+                    throwX *= playerThrowbackMultiplier;
+                    throwY *= playerThrowbackMultiplier;
+                    playerTrans.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(-throwX, -throwY), ForceMode2D.Impulse);
 
-                if (grabbedObject.GetComponent<EnemyHealth>())
-                    grabbedObject.GetComponent<EnemyHealth>().isStunned = false;
+                    if (grabbedObject.GetComponent<EnemyHealth>())
+                        grabbedObject.GetComponent<EnemyHealth>().isStunned = false;
+                }
 
                 // Set object down
                 grabbedObject = null;
