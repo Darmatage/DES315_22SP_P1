@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5415444128511414678
 Transform:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ ParticleSystem:
   m_GameObject: {fileID: 5415444128511414679}
   serializedVersion: 8
   lengthInSec: 1
-  simulationSpeed: 3
+  simulationSpeed: 4.5
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0

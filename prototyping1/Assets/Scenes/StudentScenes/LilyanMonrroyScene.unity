@@ -47336,11 +47336,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SinkingDust
       objectReference: {fileID: 0}
-    - target: {fileID: 5415444128511414679, guid: 74db0fcdc48b5f34c806069647d8e155,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74db0fcdc48b5f34c806069647d8e155, type: 3}
 --- !u!1001 &5756060997683176596
@@ -47388,7 +47383,7 @@ PrefabInstance:
     - target: {fileID: 5756060999568722472, guid: a1d84391e2da1a6479068ae482d908e6,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 457.2787
+      value: 522.08
       objectReference: {fileID: 0}
     - target: {fileID: 5756060999568722472, guid: a1d84391e2da1a6479068ae482d908e6,
         type: 3}
@@ -47433,7 +47428,7 @@ PrefabInstance:
     - target: {fileID: 5756060999568722472, guid: a1d84391e2da1a6479068ae482d908e6,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -404.3607
+      value: -371.961
       objectReference: {fileID: 0}
     - target: {fileID: 5756060999568722472, guid: a1d84391e2da1a6479068ae482d908e6,
         type: 3}
