@@ -15,7 +15,7 @@ public class MetronomePlayerControllerScript : PlayerMove
 
     protected override void FixedUpdate()
     {
-
+        
     }
 
 	protected override void UpdateAnimationAndMove() {

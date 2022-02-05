@@ -8,15 +8,31 @@ using System.Linq;
 public class DeanteJames_TimerLogic : MonoBehaviour
 {
     private Text timerText;
+
     [SerializeField]
     public GameObject flyingText;
+
+    // Children
+    public GameObject indicatorArrow;
+    public GameObject indicatorBar;
+    public float unitsToTheRight = 0.0f;
+
+
+
     //private List<GameObject> allEnemiesInScene = new List<GameObject>();
 
     private bool GameHasStarted = false;
+    private bool GameIsPaused = false;
+    private GameObject toDelete = null;
+
+    public float coinDeductionLength = 10.0f;
+    public float coinDeductionTimer = 0.0f;
     // Set in inspector
     public Color startColor = Color.green;
     public Color endColor = Color.red;
     private Color colorLastLerped;
+    private float origTimeScale = 0.0f;
+
     [SerializeField]
     public GameObject wave_manager;
 
@@ -97,19 +113,30 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         timerText.color = startColor;
         animationTimer = animationLength;
         colorLastLerped = timerText.color;
+        origTimeScale = Time.timeScale;
+
+        HideDifficultyBar();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.anyKeyDown)
-        { GameHasStarted = true; }
+        { 
+            GameHasStarted = true;
+            if (GameIsPaused)
+            {
+                GameIsPaused = false;
+                unPauseGame();
+            }
 
-        if (!GameHasStarted)
+            ShowDifficultyBar();
+        }
+
+        if (!GameHasStarted || GameIsPaused)
         { return; }
 
         timeElasped += Time.deltaTime - timeDeductions;
-        timeDeductions = 0.0f;
 
         UpdateFreezeData();
 
@@ -136,13 +163,29 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         if (!timeFreeze)
         {
             float totalTime = (getMinutes(timeForHardDifficulty) * 60) + getSeconds(timeForHardDifficulty);
-            speedToLerp = Mathf.Abs(totalTime - timeElasped) * (1.0f / 4000.0f);
+            speedToLerp = Mathf.Abs(totalTime - timeElasped) * (1.0f / 11000.0f);
             minutes += ((int)mins).ToString();
             seconds += ((int)secs).ToString();
             milliSeconds = Mathf.RoundToInt((timeElasped * 100) % 100).ToString();
 
             timerText.text = minutes + ":" + seconds + ":" + milliSeconds;
             timerText.color = Color.Lerp(colorLastLerped, endColor, speedToLerp * Time.deltaTime);
+
+            if (timeDeductions <= 0.0f)
+            {
+                updateIndicatorArrow(speedToLerp, unitsToTheRight);
+            }
+            else
+            {
+                // lerp the arrow indicator back for x amount of seconds
+                updateIndicatorArrow(speedToLerp, -(timeDeductions + unitsToTheRight));
+                coinDeductionTimer -= Time.deltaTime;
+                if (coinDeductionTimer <= 0.0f)
+                {
+                    timeDeductions = 0.0f;
+                }
+            }
+
             colorLastLerped = timerText.color;
         }
 
@@ -268,6 +311,12 @@ public class DeanteJames_TimerLogic : MonoBehaviour
             {
                 JirakitJarusiripipat_Projectile proj = item.gameObject.GetComponent<JirakitJarusiripipat_Projectile>();
                 JirakitJarusiripipat_ShootMove skull = item.GetComponent<JirakitJarusiripipat_ShootMove>();
+
+                if (proj == null)
+                {
+                    continue;
+                }
+
                 if (midPointReached)
                 {
                     proj.damage = skull_medDmg;
@@ -355,6 +404,8 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         rb.velocity = randVel;
         rb.gravityScale = 5.5f;
         rb.AddForce(new Vector3(2.0f, 2.0f));
+
+        coinDeductionTimer = coinDeductionLength;
     }
 
     public void FreezeTime(bool freeze)
@@ -394,5 +445,60 @@ public class DeanteJames_TimerLogic : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
         }
+    }
+
+    private void HideDifficultyBar()
+    {
+        Image arrow = indicatorArrow.GetComponent<Image>();
+        Image bar = indicatorBar.GetComponent<Image>();
+
+        // Hide the difficulty indicator
+        Color col = arrow.color;
+        col.a = 0;
+        arrow.color = col;
+
+        col = bar.color;
+        col.a = 0;
+        bar.color = col;
+    }
+
+    private void ShowDifficultyBar()
+    {
+        Image arrow = indicatorArrow.GetComponent<Image>();
+        Image bar = indicatorBar.GetComponent<Image>();
+
+        // Hide the difficulty indicator
+        Color col = arrow.color;
+        col.a = 1;
+        arrow.color = col;
+
+        col = bar.color;
+        col.a = 1;
+        bar.color = col;
+    }
+
+    // Other game objects are able to pause the game
+    public void pauseGame(GameObject obj)
+    {
+        GameIsPaused = true;
+        Time.timeScale = 0.0f;
+        
+        // Save the tool tip object to delete later
+        toDelete = obj;
+    }
+
+    private void unPauseGame()
+    {
+        GameIsPaused = false;
+        Time.timeScale = origTimeScale;
+        GameObject.Destroy(toDelete);
+    }
+
+    private void updateIndicatorArrow(float speed, float unitsToTheRight)
+    {
+        Vector3 right = indicatorArrow.transform.position;
+        right.x += unitsToTheRight;
+
+        indicatorArrow.transform.position = Vector3.Lerp(indicatorArrow.transform.position, right, speed * Time.deltaTime);
     }
 }

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 using UnityEngine;
+
 
 public class LilyanMonrroy_Quicksand : MonoBehaviour
 {
@@ -23,14 +25,17 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
     public int damage = 1;
     private bool inQuicksand;
     private GameObject myCanvas;
+    private GameObject ChangeDirText;
     private GameObject SinkingText;
     private GameObject MovingText;
     private GameObject SinkingMask;
     private GameObject MovingDust;
+    private GameObject SinkingDust;
     private float currMaskYPos = 0.0f;
     private float maxMaskYPos = 2.3f;
     public float maskSpeed = 0.0f;
-
+    public GameObject enemyExplosion;
+    private int chancesToChangeDir = 0;
 
 
     // Start is called before the first frame update
@@ -38,6 +43,7 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
     {
         inQuicksand = false;
         player = null;
+        chancesToChangeDir = 0;
 
         //Initialize Game Handler so we can use it to decrease player health.
         if (GameObject.FindGameObjectWithTag("GameHandler") != null)
@@ -62,6 +68,9 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
 
             MovingDust = playerTransform.Find("MovingDust").gameObject;
             MovingDust.SetActive(false);
+
+            SinkingDust = playerTransform.Find("SinkingDust").gameObject;
+            SinkingDust.SetActive(false);
         }
 
         //Initializing canvas from the one in the scene.
@@ -73,9 +82,11 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             {
                 SinkingText = myCanvas.transform.Find("SinkingPopUp").gameObject;
                 MovingText = myCanvas.transform.Find("MovingPopUp").gameObject;
+                ChangeDirText = myCanvas.transform.Find("ImageChangeDir").gameObject;
 
                 SinkingText.SetActive(false);
                 MovingText.SetActive(false);
+                ChangeDirText.SetActive(false);
             }
         }
     }
@@ -88,9 +99,12 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
         {
             inQuicksand = true;
 
+            ChangeDirText.SetActive(true);
             SinkingMask.SetActive(true);
             currMaskYPos = maxMaskYPos;
             SinkingMask.transform.localPosition = new Vector3(0, 0-currMaskYPos, 0);
+
+            chancesToChangeDir = 3;//Default number of chances.
 
         }
         else
@@ -98,6 +112,8 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             //If it is not a tile component delete it.
             if (other.gameObject.GetComponent<Tilemap>() == null)
             {
+                //Instantiate explosion effect
+                GameObject explosition = Instantiate(enemyExplosion, other.gameObject.transform.position, Quaternion.identity);
                 Destroy(other.gameObject);
                 Debug.Log("LilyanMonrroy_Quicksand Log: Destroyed object.");
             }
@@ -116,9 +132,11 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             MovingText.SetActive(false);
             SinkingMask.SetActive(false);
             MovingDust.SetActive(false);
+            SinkingDust.SetActive(false);
+            ChangeDirText.SetActive(false);
 
             inQuicksand = false;
-
+            chancesToChangeDir = 0;
             player.GetComponent<PlayerMove>().speed = playerMaxSpeed;
         }
 
@@ -132,9 +150,18 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
         currChange.x = Input.GetAxisRaw("Horizontal");
         currChange.y = Input.GetAxisRaw("Vertical");
 
-        if(currChange != Vector3.zero)
+        if(currChange != Vector3.zero && change != currChange)
         {
             change = new Vector3(currChange.x, currChange.y, 0);
+            if (inQuicksand)
+            {
+                --chancesToChangeDir;
+
+                if(chancesToChangeDir <= 0)
+                {
+                    chancesToChangeDir = 0;
+                }
+            }
         }
 
         if (inQuicksand)
@@ -150,16 +177,22 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             //If there is any input, scale the player down and do damage.
             if (Input.anyKey && player.GetComponent<PlayerMove>().speed == 0)
             {
-                //Taking Damage from player
-                gameHandlerObj.TakeDamage(damage);
-
-                //Updating position of mask
-                currMaskYPos = Mathf.Lerp(0, currMaskYPos, maskSpeed);
-                SinkingMask.transform.localPosition = new Vector3(0, 0 - currMaskYPos, 0);
-
-                if(GameHandler.PlayerHealth <= 0)
+                if(chancesToChangeDir <= 0)
                 {
-                    SinkingMask.SetActive(false);
+                    //Taking Damage from player
+                    gameHandlerObj.TakeDamage(damage);
+                    SinkingDust.SetActive(true);
+
+                    //Updating position of mask
+                    currMaskYPos = Mathf.Lerp(0, currMaskYPos, maskSpeed);
+                    SinkingMask.transform.localPosition = new Vector3(0, 0 - currMaskYPos, 0);
+
+                    if (GameHandler.PlayerHealth <= 0)
+                    {
+                        SinkingDust.SetActive(false);
+                        SinkingMask.SetActive(false);
+                    }
+
                 }
 
                 //switching UI text display.
@@ -172,6 +205,7 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             {
                 if(player.GetComponent<PlayerMove>().speed == 0)
                 {
+                    SinkingDust.SetActive(false);
                     UpdateParticleDust();
                     /*SinkingText.SetActive(false);
                     MovingText.SetActive(true);*/
@@ -187,6 +221,7 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
 
     void UpdateUIPositions()
     {
+        ChangeDirText.transform.Find("Text").gameObject.GetComponent<Text>().text = "Chance to change direction:" + chancesToChangeDir;
         SinkingText.transform.localPosition = new Vector3(player.transform.position.x, player.transform.position.y + 100.0f, player.transform.position.z);
         MovingText.transform.localPosition = new Vector3(player.transform.position.x, player.transform.position.y + 100.0f, player.transform.position.z);
     }
@@ -222,4 +257,5 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             MovingDust.transform.rotation = Quaternion.Euler(0, 0, -90);
         }
     }
+
 }

@@ -48,21 +48,7 @@ public class ErinScribner_IceNum : MonoBehaviour
         }
 
 
-        IceText.text = "Ice: " + currentNum + "/" + paint.numPower;  
+        IceText.text = "Ice: " + string.Format("{0:0.0}", currentNum) + "/" + string.Format("{0:0.0}", paint.numPower);   
     }
 }
 
-/*public class PlayerScript : MonoBehaviour
-{
-    public float Health = 100.0f;
-}
-
-public class Accessor : MonoBehaviour
-{
-    void Start()
-    {
-        GameObject thePlayer = GameObject.Find("ThePlayer");
-        PlayerScript playerScript = thePlayer.GetComponent<PlayerScript>();
-        playerScript.Health -= 10.0f;
-    }
-}*/
