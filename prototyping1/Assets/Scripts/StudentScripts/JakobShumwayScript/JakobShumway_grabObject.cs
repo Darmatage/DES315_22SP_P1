@@ -159,7 +159,6 @@ public class JakobShumway_grabObject : MonoBehaviour
                     if (grabbedObject.GetComponent<EnemyHealth>())
                         grabbedObject.GetComponent<EnemyHealth>().isStunned = false;
                 }
-                   
 
                 // Set object down
                 grabbedObject = null;

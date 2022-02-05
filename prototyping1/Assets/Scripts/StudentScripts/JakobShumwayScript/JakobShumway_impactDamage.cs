@@ -42,7 +42,23 @@ public class JakobShumway_impactDamage : MonoBehaviour
             {
                 gameObject.GetComponent<JakobShumway_destroyBox>().boxHealth -= dmgAmount;
             }
+            //else if (col.gameObject.name.Contains("TilemapWalls"))
+            //{
+            //    gameObject.GetComponent<JakobShumway_destroyBox>().boxHealth -= dmgAmount;
+            //}
+            else
+            {
+                GameObject checkPlayer = GameObject.Find("Player");
 
+                if (checkPlayer != null)
+                {
+                    if (Mathf.Abs(checkPlayer.GetComponent<Rigidbody2D>().velocity.x) +
+                        Mathf.Abs(checkPlayer.GetComponent<Rigidbody2D>().velocity.y) > 2.2f)
+                    {
+                        gameObject.GetComponent<JakobShumway_destroyBox>().boxHealth -= dmgAmount;
+                    }
+                }
+            }
             //else
             //{
             //    JakobShumway_grabObject fixCol = GameObject.Find("Player").GetComponent<JakobShumway_grabObject>();
