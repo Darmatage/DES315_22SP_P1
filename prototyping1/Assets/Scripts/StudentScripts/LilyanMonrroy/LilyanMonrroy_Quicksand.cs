@@ -156,11 +156,6 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             if (inQuicksand)
             {
                 --chancesToChangeDir;
-
-                if(chancesToChangeDir <= 0)
-                {
-                    chancesToChangeDir = 0;
-                }
             }
         }
 
@@ -177,7 +172,7 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
             //If there is any input, scale the player down and do damage.
             if (Input.anyKey && player.GetComponent<PlayerMove>().speed == 0)
             {
-                if(chancesToChangeDir <= 0)
+                if(chancesToChangeDir < 0)
                 {
                     //Taking Damage from player
                     gameHandlerObj.TakeDamage(damage);
@@ -221,7 +216,15 @@ public class LilyanMonrroy_Quicksand : MonoBehaviour
 
     void UpdateUIPositions()
     {
-        ChangeDirText.transform.Find("Text").gameObject.GetComponent<Text>().text = "Chance to change direction:" + chancesToChangeDir;
+        if(chancesToChangeDir <= 0)
+        {
+            ChangeDirText.transform.Find("Text").gameObject.GetComponent<Text>().text = "Chances left to change direction: 0";
+        }
+        else
+        {
+            ChangeDirText.transform.Find("Text").gameObject.GetComponent<Text>().text = "Chances left to change direction: " + chancesToChangeDir;
+        }
+
         SinkingText.transform.localPosition = new Vector3(player.transform.position.x, player.transform.position.y + 100.0f, player.transform.position.z);
         MovingText.transform.localPosition = new Vector3(player.transform.position.x, player.transform.position.y + 100.0f, player.transform.position.z);
     }
