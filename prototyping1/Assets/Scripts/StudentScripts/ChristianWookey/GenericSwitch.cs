@@ -9,6 +9,7 @@ public class GenericSwitch : MonoBehaviour
     public GameObject SwitchOffArt;
     public GameObject SwitchOnArt;
 
+
     // generic event can be assigned to do anything
     public UnityEvent OnSwitchOnEvent;
 
@@ -23,16 +24,21 @@ public class GenericSwitch : MonoBehaviour
 
     public bool VisualizeConnections = true;
 
+    public GameObject ConnectionArt;
+
     private bool on_internal = false;
 
 
     void Start()
     {
         on_internal = on;
+        bool temp = VisualizeConnections;
+        VisualizeConnections = false;
         if (on_internal)
             ArtSwitchOn();
         else
             ArtSwitchOff();
+        VisualizeConnections = temp;
 
         //InvokeRepeating("EmitConnections", 1f, 1f);
     }
@@ -109,6 +115,9 @@ public class GenericSwitch : MonoBehaviour
 
     private void EmitConnector(Object target)
     {
+        GameObject connectionArt = Instantiate(ConnectionArt);
+        connectionArt.transform.position = transform.position;
+
         Vector3 targetPosition;
         if (target is GameObject)
             targetPosition = ((GameObject)target).transform.position;
@@ -117,12 +126,10 @@ public class GenericSwitch : MonoBehaviour
         else
             return;
 
-        ParticleSystem.EmitParams particleParams = new ParticleSystem.EmitParams();
 
-        Vector3 offset = targetPosition - transform.position;
-        particleParams.position += new Vector3(0f, 0f, -0.01f);
-        particleParams.velocity = offset.normalized * 10f;
-        particleParams.startLifetime = offset.magnitude / 10f;
-        GetComponent<ParticleSystem>().Emit(particleParams, 1);
+        Vector3 offset = targetPosition - connectionArt.transform.position;
+        connectionArt.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg);
+        connectionArt.transform.localScale = new Vector2(offset.magnitude, 0.05f);
+        Destroy(connectionArt, 1.6f);
     }
 }

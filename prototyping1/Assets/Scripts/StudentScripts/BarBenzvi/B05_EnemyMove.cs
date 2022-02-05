@@ -22,6 +22,9 @@ public class B05_EnemyMove : MonoBehaviour
 
 	float stunTimer = 0.0f;
 
+	public float AggroRange = 10.0f;
+	public bool UsesAggroRange = false;
+
 	void Start()
 	{
 		anim = gameObject.GetComponentInChildren<Animator>();
@@ -48,6 +51,11 @@ public class B05_EnemyMove : MonoBehaviour
 		//int playerHealth = GameHandler.PlayerHealth; //access script directly in the case of a static variable 
 		if (target != null)
 		{
+			if(UsesAggroRange && Vector2.Distance(target.transform.position, transform.position) > AggroRange)
+            {
+				return;
+            }
+
 			//if ((attackPlayer == true) && (playerHealth >= 1)){
 			if (attackPlayer == true)
 			{
