@@ -15,8 +15,9 @@ public class HemieChoi_Boomerang : MonoBehaviour
     [SerializeField] private float MaxTimer = 5.0f;
     private float timer;
     Collider2D m_collider;
-    public static AudioClip boomerangDropSound;
-    static AudioSource audioSrc;
+    public AudioClip boomerangDropSound;
+    public AudioSource audioSrc;
+    public Transform particle;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +25,8 @@ public class HemieChoi_Boomerang : MonoBehaviour
         playerObj = GameObject.Find("Player");
         timer = 0;
         m_collider = GetComponent<Collider2D>();
-        boomerangDropSound = Resources.Load<AudioClip>("Media/StudentMedia/HemieChoi/Audio/Drop");
-        audioSrc = GetComponent<AudioSource>();
+        //boomerangDropSound = Resources.Load<AudioClip>("Media/StudentMedia/HemieChoi/Audio/Drop");
+        //audioSrc = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -53,6 +54,16 @@ public class HemieChoi_Boomerang : MonoBehaviour
             Vector3 offSetPos = new Vector3(playerObj.transform.position.x + 0.5f, playerObj.transform.position.y - 0.5f, 0);
             transform.position = offSetPos;
             isRotating = false;
+            isDropped = false;
+        }
+
+        if(!isDropped)
+        {
+            particle.GetComponent<ParticleSystem>().enableEmission = false;
+        }
+        else
+        {
+            particle.GetComponent<ParticleSystem>().enableEmission = true;
         }
 
         // make it return
@@ -106,6 +117,7 @@ public class HemieChoi_Boomerang : MonoBehaviour
         }
         if (other.gameObject.tag.Equals("monsterShooter") && !isHolding && !isDropped)
         {
+            audioSrc.PlayOneShot(boomerangDropSound);
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag.Equals("Walls") || other.gameObject.tag.Equals("Spikes"))
@@ -113,7 +125,6 @@ public class HemieChoi_Boomerang : MonoBehaviour
             isThrowing = false;
             isDropped = true;
             isRotating = false;
-            audioSrc.PlayOneShot(boomerangDropSound);
         }
     }
 }
