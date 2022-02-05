@@ -15,6 +15,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     // Children
     public GameObject indicatorArrow;
     public GameObject indicatorBar;
+    Vector3 endPoint;
     public float unitsToTheRight = 0.0f;
 
 
@@ -23,7 +24,9 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
     private bool GameHasStarted = false;
     private bool GameIsPaused = false;
+    private bool deductionsAdded = false;
     private GameObject toDelete = null;
+    private float lerpBackTimer = 0.0f;
 
     public float coinDeductionLength = 10.0f;
     public float coinDeductionTimer = 0.0f;
@@ -86,6 +89,8 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     // Lava tile spawning
     public Tilemap lavaMap;
     public Tile lavaTile;
+    //public List<Vector3Int> positions = new List<Vector3Int>();
+
     private int startNumOfTilesToSpawn = 1;
     public float spawnTilesIntervalPerSecond = 0;
     public int howManyTilesPerInterval = 1;
@@ -114,6 +119,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         animationTimer = animationLength;
         colorLastLerped = timerText.color;
         origTimeScale = Time.timeScale;
+        endPoint = indicatorArrow.GetComponent<RectTransform>().position + new Vector3(84.0f, 0.0f, 0.0f);
 
         HideDifficultyBar();
     }
@@ -140,7 +146,13 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         if (!GameHasStarted || GameIsPaused)
         { return; }
 
-        timeElasped += Time.deltaTime - timeDeductions;
+        if (deductionsAdded == false)
+        {
+            timeElasped += Time.deltaTime - timeDeductions;
+            deductionsAdded = true;
+        }
+        else
+            timeElasped += Time.deltaTime;
 
         UpdateFreezeData();
 
@@ -173,7 +185,15 @@ public class DeanteJames_TimerLogic : MonoBehaviour
             milliSeconds = Mathf.RoundToInt((timeElasped * 100) % 100).ToString();
 
             timerText.text = minutes + ":" + seconds + ":" + milliSeconds;
-            timerText.color = Color.Lerp(colorLastLerped, endColor, speedToLerp * Time.deltaTime);
+            if (lerpBackTimer <= 0.0f)
+            {
+                timerText.color = Color.Lerp(colorLastLerped, endColor, speedToLerp * Time.deltaTime);
+            }
+            else
+            {
+                lerpBackTimer -= Time.deltaTime;
+                timerText.color = Color.Lerp(colorLastLerped, Color.green, speedToLerp * Time.deltaTime);
+            }
 
             if (timeDeductions <= 0.0f)
             {
@@ -182,7 +202,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
             else
             {
                 // lerp the arrow indicator back for x amount of seconds
-                updateIndicatorArrow(speedToLerp, -(timeDeductions + unitsToTheRight));
+                updateIndicatorArrow(speedToLerp, -((2 * timeDeductions) + unitsToTheRight));
                 coinDeductionTimer -= Time.deltaTime;
                 if (coinDeductionTimer <= 0.0f)
                 {
@@ -382,9 +402,12 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         Grid tiles = lavaMap.GetComponent<Grid>();
         BoundsInt bound = lavaMap.cellBounds;
 
+        //lavaTile.gameObject.
         for (int i = 0; i < numOfTilesToSpawn; ++i)
         {
             Vector3Int vec = Random(new Vector3Int(bound.xMin, bound.yMin, bound.zMin), new Vector3Int(bound.xMax, bound.yMax, bound.zMax));
+            //positions.Add(vec);
+            //lavaTile.color = Color.green;
             lavaMap.SetTile(vec, lavaTile);
         }
 
@@ -396,7 +419,9 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
     public void AddDeduction(float toAdd)
     {
-        timeDeductions += toAdd;
+        timeDeductions = toAdd;
+        deductionsAdded = false;
+        lerpBackTimer += toAdd / 2.0f;
         GameObject obj = GameObject.Instantiate(flyingText, timerText.transform);
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
         Text numbers = obj.GetComponent<Text>();
@@ -430,24 +455,30 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
     private void StopBlinkAnimation()
     {
-        StopCoroutine(coroutineStarted);
+        if(coroutineStarted != null)
+            StopCoroutine(coroutineStarted);
     }
 
-    //private bool isItTimeYet(f
     IEnumerator Blink()
     {
         while (true)
         {
-            if (Mathf.Round(timerText.color.a) == 0.0f)
-            {
-                timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 1.0f);
-                yield return new WaitForSeconds(0.5f);
-            }
-            else
-            {
-                timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 0.0f);
-                yield return new WaitForSeconds(0.5f);
-            }
+            //if (Mathf.Round(timerText.color.a) == 0.0f)
+            //{
+            //    timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 1.0f);
+            //    yield return new WaitForSeconds(1.5f);
+            //}
+            //else
+            //{
+            //    timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 0.0f);
+            //    yield return new WaitForSeconds(1.5f);
+            //}
+
+            timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 0.0f);
+            yield return new WaitForSeconds(0.5f);
+
+            timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 1.0f);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -500,9 +531,18 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
     private void updateIndicatorArrow(float speed, float unitsToTheRight)
     {
-        Vector3 right = indicatorArrow.transform.position;
+        Vector3 right = indicatorArrow.GetComponent<RectTransform>().position;
+        
         right.x += unitsToTheRight;
 
-        indicatorArrow.transform.position = Vector3.Lerp(indicatorArrow.transform.position, right, speed * Time.deltaTime);
+
+        // so the indicator does not trail of the screen
+        
+        if (Mathf.Approximately(indicatorArrow.GetComponent<RectTransform>().position.x, endPoint.x))
+        {
+            return;
+        }
+
+        indicatorArrow.GetComponent<RectTransform>().position = Vector3.Lerp(indicatorArrow.GetComponent<RectTransform>().position, right, speed * Time.deltaTime);
     }
 }
