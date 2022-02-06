@@ -16,6 +16,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     public GameObject indicatorArrow;
     public GameObject indicatorBar;
     Vector3 endPoint;
+    Vector3 begPoint;
     public float unitsToTheRight = 0.0f;
 
 
@@ -120,6 +121,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         colorLastLerped = timerText.color;
         origTimeScale = Time.timeScale;
         endPoint = indicatorArrow.GetComponent<RectTransform>().position + new Vector3(84.0f, 0.0f, 0.0f);
+        begPoint = indicatorArrow.GetComponent<RectTransform>().position;
 
         HideDifficultyBar();
     }
@@ -128,7 +130,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     void Update()
     {
         if (Input.anyKeyDown && !GameHasStarted)
-        { 
+        {
             GameHasStarted = true;
 
             ShowDifficultyBar();
@@ -246,7 +248,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
     private void CheckAnimation(float secs, float mins)
     {
-        if ( (( (int)mins == (int)getMinutes(timeForMedDifficulty)) && (Mathf.Approximately(Mathf.Round(secs), getSeconds(timeForMedDifficulty))))
+        if ((((int)mins == (int)getMinutes(timeForMedDifficulty)) && (Mathf.Approximately(Mathf.Round(secs), getSeconds(timeForMedDifficulty))))
             && timesAnimationHasBeenPlayed == 0)
         {
             ++timesAnimationHasBeenPlayed;
@@ -255,7 +257,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
             play = true;
         }
 
-        if ( (Mathf.Approximately(Mathf.Round(mins), getMinutes(timeForHardDifficulty)) && Mathf.Approximately(Mathf.Round(secs), getSeconds(timeForHardDifficulty)))
+        if ((Mathf.Approximately(Mathf.Round(mins), getMinutes(timeForHardDifficulty)) && Mathf.Approximately(Mathf.Round(secs), getSeconds(timeForHardDifficulty)))
             && timesAnimationHasBeenPlayed == 1)
         {
             ++timesAnimationHasBeenPlayed;
@@ -425,7 +427,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         GameObject obj = GameObject.Instantiate(flyingText, timerText.transform);
         Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
         Text numbers = obj.GetComponent<Text>();
-        numbers.text = "-"+ toAdd.ToString();
+        numbers.text = "-" + toAdd.ToString();
         numbers.fontSize = 50;
         numbers.color = Color.yellow;
 
@@ -455,7 +457,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
     private void StopBlinkAnimation()
     {
-        if(coroutineStarted != null)
+        if (coroutineStarted != null)
             StopCoroutine(coroutineStarted);
     }
 
@@ -517,7 +519,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     {
         GameIsPaused = true;
         Time.timeScale = 0.0f;
-        
+
         // Save the tool tip object to delete later
         toDelete = obj;
     }
@@ -532,13 +534,14 @@ public class DeanteJames_TimerLogic : MonoBehaviour
     private void updateIndicatorArrow(float speed, float unitsToTheRight)
     {
         Vector3 right = indicatorArrow.GetComponent<RectTransform>().position;
-        
+
         right.x += unitsToTheRight;
 
 
         // so the indicator does not trail of the screen
-        
-        if (Mathf.Approximately(indicatorArrow.GetComponent<RectTransform>().position.x, endPoint.x))
+
+        if (Mathf.Approximately(indicatorArrow.GetComponent<RectTransform>().position.x, endPoint.x) ||
+            Mathf.Approximately(indicatorArrow.GetComponent<RectTransform>().position.x, begPoint.x))
         {
             return;
         }
