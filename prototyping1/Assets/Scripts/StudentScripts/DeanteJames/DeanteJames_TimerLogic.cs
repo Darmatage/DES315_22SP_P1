@@ -120,7 +120,7 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         animationTimer = animationLength;
         colorLastLerped = timerText.color;
         origTimeScale = Time.timeScale;
-        endPoint = indicatorArrow.GetComponent<RectTransform>().position + new Vector3(84.0f, 0.0f, 0.0f);
+        endPoint = indicatorArrow.GetComponent<RectTransform>().position + new Vector3(135f, 0.0f, 0.0f);
         begPoint = indicatorArrow.GetComponent<RectTransform>().position;
 
         HideDifficultyBar();
@@ -280,14 +280,16 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
     void MakeAllEnemiesStronger(float min, float sec)
     {
-        if ((int)min == (int)getMinutes(timeForMedDifficulty) && (int)sec == (int)getSeconds(timeForMedDifficulty))
+        if ((int)min >= (int)getMinutes(timeForMedDifficulty) && (int)sec >= (int)getSeconds(timeForMedDifficulty))
         {
             midPointReached = true;
+            hardestPointReached = false;
         }
 
-        if ((int)min == (int)getMinutes(timeForHardDifficulty) && (Mathf.Approximately(Mathf.Round(sec), getSeconds(timeForHardDifficulty))))
+        if ( (int)min >= (int)getMinutes(timeForHardDifficulty) && Mathf.Round(sec) >= getSeconds(timeForHardDifficulty) )
         {
             hardestPointReached = true;
+            midPointReached = false;
         }
 
         // Base enemies go faster
@@ -540,8 +542,8 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
         // so the indicator does not trail of the screen
 
-        if (Mathf.Approximately(indicatorArrow.GetComponent<RectTransform>().position.x, endPoint.x) ||
-            Mathf.Approximately(indicatorArrow.GetComponent<RectTransform>().position.x, begPoint.x))
+        if (indicatorArrow.GetComponent<RectTransform>().position.x + unitsToTheRight >= endPoint.x ||
+            indicatorArrow.GetComponent<RectTransform>().position.x + unitsToTheRight <= begPoint.x)
         {
             return;
         }
