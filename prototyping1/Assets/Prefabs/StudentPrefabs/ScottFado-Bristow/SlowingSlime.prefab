@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4140046716384529604}
   - component: {fileID: 5996552712492110064}
   - component: {fileID: 7043284390438583091}
+  - component: {fileID: 195869131716561109}
   m_Layer: 0
   m_Name: SlowingSlime
   m_TagString: Untagged
@@ -93,10 +94,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce0db91a8d3253409748b12f782dba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
+  speed: 4.5
   attackSlow: 1
+  AgroRange: 4
   EnemyLives: 3
+  WanderOffset: 1
+  WanderSpeedMultiplier: 0.25
   retreatTime: 3
+--- !u!114 &195869131716561109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873862612895352633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5d8f9309ea3d64b8176c6ce0bf3f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyLives: 3
+  isStunned: 0
+  stunTime: 5
 --- !u!1 &6086509125404768860
 GameObject:
   m_ObjectHideFlags: 0

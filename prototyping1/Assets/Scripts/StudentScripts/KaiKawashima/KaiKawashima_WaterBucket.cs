@@ -16,6 +16,8 @@ public class KaiKawashima_WaterBucket : MonoBehaviour
     public Sprite imageBucket;
     public Sprite imageWater;
     public Sprite imageUI;
+    public GameObject[] buckets;
+    public SpriteRenderer attatchedToPlayer;
     [HideInInspector]
     public bool hasBucket = false;
     [HideInInspector]
@@ -76,7 +78,21 @@ public class KaiKawashima_WaterBucket : MonoBehaviour
                 hasBucket = true;
                 Destroy(refBucket);
                 imageBucketEmpty.SetActive(true);
+                attatchedToPlayer.gameObject.SetActive(true);
+                
+                foreach (GameObject obj in buckets)
+                {
+                    Destroy(obj);
+                }
             }
+        }
+        if (hasWater)
+        {
+            attatchedToPlayer.sprite = imageWater;
+        }
+        else 
+        {
+            attatchedToPlayer.sprite = imageBucket;
         }
     }
 

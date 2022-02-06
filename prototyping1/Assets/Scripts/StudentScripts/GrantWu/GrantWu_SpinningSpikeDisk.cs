@@ -112,10 +112,16 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D collision)
-    { 
+    {
         if (collision.gameObject.tag == "Player")
         {
             gameHandlerObj.TakeDamage(damage);
+            audio.Play();
+            sprite.color = new Color(1, 0, 0);
+        }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject, 0.2f);
             audio.Play();
             sprite.color = new Color(1, 0, 0);
         }
@@ -124,6 +130,8 @@ public class GrantWu_SpinningSpikeDisk : MonoBehaviour
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
+            sprite.color = new Color(1, 1, 1, 1);
+        if (collision.gameObject.tag == "Enemy")
             sprite.color = new Color(1, 1, 1, 1);
     }
 }

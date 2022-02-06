@@ -45,7 +45,7 @@ public class BenThompson_TurnTNTSpawner : MonoBehaviour
                 {
                     barrel.m_stats.m_timerLength = 3.0f;
                     barrel.m_stats.m_explosiveRadius = 0.5f;
-                    barrel.TakeDamage(1);
+                    barrel.TakeDamage(1000);
                 }
                 //Invoke()
             }

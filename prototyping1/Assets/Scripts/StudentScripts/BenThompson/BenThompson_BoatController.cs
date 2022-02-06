@@ -113,6 +113,8 @@ public class BenThompson_BoatController : MonoBehaviour
         {
             boatChargeIndicator.transform.parent.parent.gameObject.SetActive(false);
         }
+
+        boatThrust = minThrust;
     }
 
     // Update is called once per frame
@@ -168,7 +170,7 @@ public class BenThompson_BoatController : MonoBehaviour
             Quaternion newRotation = new Quaternion();
 
             // Rotate from the current rotation to the right
-            newRotation.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z -  rotationChange);
+            newRotation.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z -  rotationChange * Time.deltaTime);
             
             // Apply the new rotation
             transform.rotation = newRotation;
@@ -188,7 +190,7 @@ public class BenThompson_BoatController : MonoBehaviour
             Quaternion newRotation = new Quaternion();
 
             // Rotate from the current rotation to the left
-            newRotation.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + rotationChange);
+            newRotation.eulerAngles = new Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z + rotationChange * Time.deltaTime);
 
             // Apply the new rotation
             transform.rotation = newRotation;
@@ -208,7 +210,7 @@ public class BenThompson_BoatController : MonoBehaviour
         if(Input.GetKey(KeyCode.W) && cooldownTimer <= 0.0f && boatBody.velocity.magnitude <= 0.25f)
         {
             // Increase the thrust of the boat
-            boatThrust += 0.5f;
+            boatThrust += boatThrust * Time.deltaTime;
 
             // If the boat reaches a maximum thrust
             if(boatThrust > maxThrust)

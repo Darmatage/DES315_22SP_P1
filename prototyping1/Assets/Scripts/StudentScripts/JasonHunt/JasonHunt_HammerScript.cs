@@ -10,12 +10,13 @@ public class JasonHunt_HammerScript : MonoBehaviour
     public bool SelfDestruct = false;
     private float timer = 2;
     bool hasHammer = false;
-    GameObject[] blocks;
+    //private GameObject[] blocks;
+    private List<GameObject> blocks;
 
     // Start is called before the first frame update
     void Start()
     {
-        blocks = GameObject.FindGameObjectsWithTag("JasonHuntBreakable");
+        blocks = new List<GameObject>(GameObject.FindGameObjectsWithTag("JasonHuntBreakable"));
 
         uiElement.SetActive(false);
 
@@ -49,8 +50,8 @@ public class JasonHunt_HammerScript : MonoBehaviour
                     block.GetComponent<JasonHunt_BlockScript>().ToggleHighlight(false);
                 }
             }
-
-            blocks = GameObject.FindGameObjectsWithTag("JasonHuntBreakable");
+            
+            //blocks = GameObject.FindGameObjectsWithTag("JasonHuntBreakable");
         }
         if (SelfDestruct)
         {

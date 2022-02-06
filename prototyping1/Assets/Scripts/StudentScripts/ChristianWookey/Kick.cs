@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Kick : MonoBehaviour
 {
@@ -8,14 +9,32 @@ public class Kick : MonoBehaviour
     public Animator PlayerAnimator;
     public SpriteRenderer PlayerSprite;
 
-    private bool InCombo = false;
-    private float KickPower = 0f;
-    private float KickComboTimer = 0f;
-    private float KickComboMin = 1f;
-    private float KickComboMax = 0f;
+    [Tooltip("Use the original kick behavior that doesn't stop the player or build up power by holding down LMB.")]
+    public bool UseOldKick = true;
+
+    [Tooltip("Sets the enemy stunned state when kicked.")]
+    public bool StunEnemies = false;
+    [Tooltip("The amount of time to stun enemies, in seconds.")]
+    public float StunTime = 2f;
+
+    [Tooltip("The speed, size, and distance of the kick whoosh. 3 is the default for the original kick behavior.")]
+    public float Force = 3f;
+    [Tooltip("When using the new kick behavior, how high can the force go?")]
+    public float MaxForce = 8f;
+
+    private bool kicking = false;
+
+    private Text text;
 
     void Start()
     {
+        text = GetComponentInChildren<Text>();
+        text.text = "";
+        if (!UseOldKick)
+        {
+            // FixedUpdate updates at 0.02 sec/frame but stun decreases by only 0.01 sec/frame
+            Force = 2f;
+        }
     }
 
     void Update()
@@ -26,54 +45,69 @@ public class Kick : MonoBehaviour
         else
            transform.localScale = new Vector3(1, 1);
 
-        if (InCombo)
-        {
-            if (KickComboTimer >= KickComboMin && KickComboTimer <= KickComboMax)
-            {
-                PlayerSprite.color = new Color(4f, 2f, 0f);
-            }
-            else
-            {
-                PlayerSprite.color = Color.white;
-            }
-        }
-
+        
         if (Input.GetMouseButtonDown(0))
         {
-            if (InCombo)
+            if (UseOldKick)
             {
-                if (KickComboTimer >= KickComboMin && KickComboTimer <= KickComboMax)
-                {
-                    KickPower = Mathf.Clamp(KickPower + 0.5f, 0f, 2.5f);
-                }
-                else
-                {
-                    InCombo = false;
-                    KickPower = 0f;
-                    PlayerSprite.color = Color.white;
-                }
+                GameObject kickInst = GameObject.Instantiate(KickInstance, transform, false);
+
+                Vector2 off = Camera.main.WorldToScreenPoint(transform.position) - Input.mousePosition;
+                float z = Mathf.Atan2(off.y, off.x) * Mathf.Rad2Deg + 180f;
+
+                kickInst.transform.eulerAngles = new Vector3(0f, 0f, z);
+                kickInst.transform.localPosition = new Vector3(0f, 0f, 0f);
+                kickInst.GetComponent<KickWhoosh>().SetPower(Force / 3f + 0.5f);
+                EnemyPusher enemyPusher = kickInst.GetComponentInChildren<EnemyPusher>();
+                enemyPusher.StunEnemies = StunEnemies;
+                enemyPusher.StunTime = StunTime;
+                PlayerAnimator.SetTrigger("Kick");
             }
             else
             {
-                InCombo = true;
+                kicking = true;
+                transform.parent.GetComponent<PlayerMove>().speed = 1f;
             }
-
-            GameObject kickInst = GameObject.Instantiate(KickInstance, transform, false);
-
-            Vector2 off = Camera.main.WorldToScreenPoint(transform.position) - Input.mousePosition;
-            float z = Mathf.Atan2(off.y, off.x) * Mathf.Rad2Deg + 180f;
-
-            kickInst.transform.eulerAngles = new Vector3(0f, 0f, z);
-            kickInst.transform.localPosition = new Vector3(0f, 0f, 0f);
-            kickInst.GetComponent<KickWhoosh>().SetPower(KickPower + 0.5f);
-
-            PlayerAnimator.SetTrigger("Kick");
-            KickComboTimer = 0f;
-            PlayerSprite.color = Color.white;
         }
 
-        if (InCombo)
-            KickComboTimer += Time.deltaTime;
+        if (kicking)
+        {
+            PlayerAnimator.SetTrigger("Kick");
+            PlayerAnimator.speed = 0f;
+            Force += Time.deltaTime * 4f;
+            Force = Mathf.Clamp(Force, 0.8f, MaxForce);
+            int pow = Mathf.RoundToInt(Force - 2f);
+            text.text = pow.ToString();
+        }
+        
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (!UseOldKick)
+            {
+                text.text = "";
+                PlayerAnimator.speed = 1f;
+
+                GameObject kickInst = GameObject.Instantiate(KickInstance, transform, true);
+
+                Vector2 off = Camera.main.WorldToScreenPoint(transform.position) - Input.mousePosition;
+                float z = Mathf.Atan2(off.y, off.x) * Mathf.Rad2Deg + 180f;
+
+                kickInst.transform.eulerAngles = new Vector3(0f, 0f, z);
+                kickInst.transform.position = transform.position;
+                kickInst.GetComponent<KickWhoosh>().SetPower(Force / 3f);
+                EnemyPusher enemyPusher = kickInst.GetComponentInChildren<EnemyPusher>();
+                enemyPusher.StunEnemies = StunEnemies;
+                enemyPusher.StunTime = StunTime;
+                enemyPusher.Force = 2f * Force;
+                enemyPusher.LinearPush = true;
+                enemyPusher.LinearPushDir = -off.normalized;
+                
+                Force = 2f;
+                transform.parent.GetComponent<PlayerMove>().speed = 3f;
+                kicking = false;
+            }
+        }
+
     }
 
 }

@@ -53,6 +53,21 @@ public class B05_QTETrigger : MonoBehaviour
         rend = GetComponentInChildren<Renderer>();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(TargetTag) && !destroying)
+        {
+            triggeredQTE = true;
+            //Spawn QTE object
+            if (QuickTimeEventPrefab != null)
+            {
+                GameObject.Instantiate(QuickTimeEventPrefab, SpawnParent.transform);
+            }
+            Time.timeScale = QTETimescale;
+            B05_EventManager.CallQTEStarted();
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag(TargetTag) && !destroying)

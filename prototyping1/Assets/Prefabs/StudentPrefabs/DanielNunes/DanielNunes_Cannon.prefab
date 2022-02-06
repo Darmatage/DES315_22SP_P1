@@ -123,8 +123,8 @@ MonoBehaviour:
     type: 3}
   usable: 0
   whereIsPlayer: 0
-  maxMoveTime: 1
-  speed: 1
+  maxMoveTime: 0.75
+  speed: 1.25
   proximity: 1.175
 --- !u!61 &4088271260030370637
 BoxCollider2D:
