@@ -9,6 +9,7 @@ public class MetronomeControllerScript : MonoBehaviour
     public GameObject metronomeMarkerPrefab;
     private GameObject metronomeMarker;
     private GameObject canvas;
+    private GameObject overlayTiles;
     private List<GameObject> barsList;
     private MetronomeStatusScript status;
     private GameHandler handler;
@@ -24,6 +25,7 @@ public class MetronomeControllerScript : MonoBehaviour
     private bool actionThisBeat = false;
     private bool actionStartedThisRound = false;
     private float actionCooldownTime = 0.0f;
+    private float swapCooldownTime = 0.0f;
     void Awake()
     {
         canvas = GameObject.Find("Canvas");
@@ -41,6 +43,7 @@ public class MetronomeControllerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        overlayTiles = GameObject.Find("TilemapOverlay");
         handler = GameObject.FindGameObjectWithTag("GameHandler").GetComponent<GameHandler>();
         player = GameObject.Find("Player");
         if (player.GetComponent<PlayerMove>() != null)
@@ -75,8 +78,10 @@ public class MetronomeControllerScript : MonoBehaviour
         if (Time.timeScale >= 1.0f)
         {
             actionCooldownTime -= Time.deltaTime;
+            swapCooldownTime -= Time.deltaTime;
             EnableUI();
             FadeInMusic();
+            FixPlayerLocation();
 
             bool valid = false;
             MetronomeStatusScript.StatusPreset preset = MetronomeStatusScript.presets[2];
@@ -125,7 +130,7 @@ public class MetronomeControllerScript : MonoBehaviour
                 {
                     audioSources[2].Play(0);
                     pAnim.SetTrigger("Hurt");
-                    handler.TakeDamage(5);
+                    handler.TakeDamage(1);
                 }
                 status.SetTextToPreset(preset);
                 actionCooldownTime = 0.33f;
@@ -141,11 +146,6 @@ public class MetronomeControllerScript : MonoBehaviour
             DisableUI();
             FadeOutMusic();
         }
-    }
-
-    public void ResetActions()
-    {
-        actionThisBeat = false;
     }
 
     private void ResetBarPositions()
@@ -246,6 +246,24 @@ public class MetronomeControllerScript : MonoBehaviour
         else if (audioSources[3].isPlaying)
         {
             audioSources[3].Stop();
+        }
+    }
+
+    private void FixPlayerLocation()
+    {
+        player.transform.position = new Vector3(Mathf.Round(player.transform.position.x),
+         Mathf.Round(player.transform.position.y),
+          Mathf.Round(player.transform.position.z));
+    }
+
+    public void SwapOverlayPosition()
+    {
+        if (swapCooldownTime <= 0.0f)
+        {
+            overlayTiles.transform.position = new Vector3(2 - overlayTiles.transform.position.x,
+            overlayTiles.transform.position.y,
+            overlayTiles.transform.position.z);
+            swapCooldownTime = 0.33f;
         }
     }
 }

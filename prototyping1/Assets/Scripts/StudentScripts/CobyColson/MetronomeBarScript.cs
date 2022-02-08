@@ -58,7 +58,7 @@ public class MetronomeBarScript : MonoBehaviour
             {
                 audioSources[1].Play(0);
             }
-            //controller.ResetActions();
+            controller.SwapOverlayPosition();
         }
     }
 }

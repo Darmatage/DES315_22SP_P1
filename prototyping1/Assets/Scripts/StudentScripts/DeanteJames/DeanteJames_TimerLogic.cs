@@ -3,49 +3,107 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Linq;
 
 public class DeanteJames_TimerLogic : MonoBehaviour
 {
     private Text timerText;
-    private List<GameObject> allEnemiesInScene = new List<GameObject>();
 
+    [SerializeField]
+    public GameObject flyingText;
+
+    // Children
+    public GameObject indicatorArrow;
+    public GameObject indicatorBar;
+    Vector3 endPoint;
+    Vector3 begPoint;
+    public float unitsToTheRight = 0.0f;
+
+
+
+    //private List<GameObject> allEnemiesInScene = new List<GameObject>();
+
+    private bool GameHasStarted = false;
+    private bool GameIsPaused = false;
+    private bool deductionsAdded = false;
+    private GameObject toDelete = null;
+    private float lerpBackTimer = 0.0f;
+
+    public float coinDeductionLength = 10.0f;
+    public float coinDeductionTimer = 0.0f;
     // Set in inspector
     public Color startColor = Color.green;
     public Color endColor = Color.red;
+    private Color colorLastLerped;
+    private float origTimeScale = 0.0f;
+
+    [SerializeField]
+    public GameObject wave_manager;
 
     // format MM::SS
-    public string timeLevelStopsGettingHard;
+    public string timeForHardDifficulty;
+    public string timeForMedDifficulty;
     private float timeDeductions = 0.0f;
-    //public float mediumPoint = 1.75f;
-    //public float hardPoint = 2.50f;
+    private float timeElasped = 0.0f;
 
-    //private float pointToLerpTo = 0.0f;
+
     private float speedToLerp = 0.05f;
 
     // skull characteristics to change
-    public float skull_hardestSpeed = 5.0f;
-    public float skull_hardestStoppingDistance = 5.0f;
-    public float skull_hardestStartTimeBtwShots = 0.55f;
-    public int skull_hardestDmg = 6;
+    public float skull_hardSpeed = 5.0f;
+    public float skull_hardStoppingDistance = 5.0f;
+    public float skull_hardStartTimeBtwShots = 0.55f;
+    public int skull_hardDmg = 6;
+
+    public float skull_medSpeed = 5.0f;
+    public float skull_medStoppingDistance = 5.0f;
+    public float skull_medStartTimeBtwShots = 0.55f;
+    public int skull_medDmg = 6;
+
     public GameObject skull_projectile;
 
+
+
     // slime characteristics to change
-    public float slime_hardestSpeed = 6.5f;
-    public int slime_hardestDmg = 6;
-    public float slime_retreatDist = 1.0f;
+    // The default values is easy mode
+    public float slime_hardSpeed = 6.5f;
+    public int slime_hardDmg = 6;
+    public float slime_hardRetreatTime = 1.0f;
+
+    public float slime_medSpeed = 6.5f;
+    public int slime_medDmg = 6;
+    public float slime_medRetreatTime = 1.0f;
+
 
     private bool midPointReached = false;
     private bool hardestPointReached = false;
 
+    // Boss slime characteristics
+    public float bossSlime_hardSpeed = 6.5f;
+    public int bossSlime_hardDmg = 6;
+    public float bossSlime_hardRetreatTime = 1.0f;
+
+    public float bossSlime_medSpeed = 6.5f;
+    public int bossSlime_medDmg = 6;
+    public float bossSlime_medRetreatTime = 1.0f;
+
     // Lava tile spawning
     public Tilemap lavaMap;
     public Tile lavaTile;
+    //public List<Vector3Int> positions = new List<Vector3Int>();
+
     private int startNumOfTilesToSpawn = 1;
     public float spawnTilesIntervalPerSecond = 0;
     public int howManyTilesPerInterval = 1;
     public bool increment_HowManyTiles_WhenSpawned = false;
     private int prev = 0;
 
+
+    // abilites
+    private bool timeFreeze = false;
+    public float timeFreezeDuration = 0.0f;
+    private float timer = 0.0f;
+    public Color freezeColor = Color.cyan;
 
     public float animationLength = 1.5f;
     private float animationTimer = 1.5f;
@@ -60,19 +118,46 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         timerText = gameObject.GetComponent<Text>();
         timerText.color = startColor;
         animationTimer = animationLength;
-        // All the enemies in the scene
-        allEnemiesInScene.Add(GameObject.Find("MonsterSkull"));
-        allEnemiesInScene.Add(GameObject.Find("MonsterSlime"));
+        colorLastLerped = timerText.color;
+        origTimeScale = Time.timeScale;
+        endPoint = indicatorArrow.GetComponent<RectTransform>().position + new Vector3(135f, 0.0f, 0.0f);
+        begPoint = indicatorArrow.GetComponent<RectTransform>().position;
 
-        allEnemiesInScene.Add(GameObject.Find("MonsterSkull (1)"));
-        //Time.timeScale = startingScale;
-        //pointToLerpTo = mediumPoint;
+        HideDifficultyBar();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float timeElasped = (Time.timeSinceLevelLoad) - timeDeductions;
+        if (Input.anyKeyDown && !GameHasStarted)
+        {
+            GameHasStarted = true;
+
+            ShowDifficultyBar();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (GameIsPaused)
+            {
+                GameIsPaused = false;
+                unPauseGame();
+            }
+        }
+
+        if (!GameHasStarted || GameIsPaused)
+        { return; }
+
+        if (deductionsAdded == false)
+        {
+            timeElasped += Time.deltaTime - timeDeductions;
+            deductionsAdded = true;
+        }
+        else
+            timeElasped += Time.deltaTime;
+
+        UpdateFreezeData();
+
         if (timeElasped < 0.0f)
         {
             timeElasped = 0.0f;
@@ -93,18 +178,49 @@ public class DeanteJames_TimerLogic : MonoBehaviour
             minutes = "0";
         }
 
-        float totalTime = (getMinutes() * 60) + getSeconds();
-        speedToLerp = Mathf.Abs(totalTime - timeElasped) * (1.0f / 4000.0f);
-        minutes += ((int)mins).ToString();
-        seconds += ((int)secs).ToString();
-        milliSeconds = Mathf.RoundToInt((timeElasped * 100) % 100).ToString();
+        if (!timeFreeze)
+        {
+            float totalTime = (getMinutes(timeForHardDifficulty) * 60) + getSeconds(timeForHardDifficulty);
+            speedToLerp = Mathf.Abs(totalTime - timeElasped) * (1.0f / 11000.0f);
+            minutes += ((int)mins).ToString();
+            seconds += ((int)secs).ToString();
+            milliSeconds = Mathf.RoundToInt((timeElasped * 100) % 100).ToString();
 
-        timerText.text = minutes + ":" + seconds + ":" + milliSeconds;
-        timerText.color = Color.Lerp(timerText.color, endColor, speedToLerp * Time.deltaTime);
+            timerText.text = minutes + ":" + seconds + ":" + milliSeconds;
+            if (lerpBackTimer <= 0.0f)
+            {
+                timerText.color = Color.Lerp(colorLastLerped, endColor, speedToLerp * Time.deltaTime);
+            }
+            else
+            {
+                lerpBackTimer -= Time.deltaTime;
+                timerText.color = Color.Lerp(colorLastLerped, Color.green, speedToLerp * Time.deltaTime);
+            }
 
-        // if the mins and secs match up the 
-        MakeAllEnemiesStronger(mins, secs);
-        lerpCharacteristics(speedToLerp);
+            if (timeDeductions <= 0.0f)
+            {
+                updateIndicatorArrow(speedToLerp, unitsToTheRight);
+            }
+            else
+            {
+                // lerp the arrow indicator back for x amount of seconds
+                updateIndicatorArrow(speedToLerp, -((2 * timeDeductions) + unitsToTheRight));
+                coinDeductionTimer -= Time.deltaTime;
+                if (coinDeductionTimer <= 0.0f)
+                {
+                    timeDeductions = 0.0f;
+                }
+            }
+
+            colorLastLerped = timerText.color;
+        }
+
+        // are there any enemies left in the wave?
+        if (Enumerable.Any(wave_manager.GetComponent<JirakitJarusiripipat_GameManager>().allEnemy))
+        {
+            // if the mins and secs match up the 
+            MakeAllEnemiesStronger(mins, secs);
+        }
 
         int seconds_int = (int)secs;
         if (seconds_int % spawnTilesIntervalPerSecond == 0 && seconds_int != prev)
@@ -116,9 +232,24 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         CheckAnimation(secs, mins);
     }
 
+    private void UpdateFreezeData()
+    {
+        if (timeFreeze)
+        {
+            timer -= Time.deltaTime;
+            timerText.color = Color.Lerp(timerText.color, freezeColor, 0.5f * Time.deltaTime);
+        }
+
+        if (timer <= 0.0f)
+        {
+            timeFreeze = false;
+        }
+    }
+
     private void CheckAnimation(float secs, float mins)
     {
-        if (Mathf.Approximately(18.0f, Mathf.Round(secs)) && timesAnimationHasBeenPlayed == 0)
+        if ((((int)mins == (int)getMinutes(timeForMedDifficulty)) && (Mathf.Approximately(Mathf.Round(secs), getSeconds(timeForMedDifficulty))))
+            && timesAnimationHasBeenPlayed == 0)
         {
             ++timesAnimationHasBeenPlayed;
             animationTimer = animationLength;
@@ -126,7 +257,8 @@ public class DeanteJames_TimerLogic : MonoBehaviour
             play = true;
         }
 
-        if (Mathf.Approximately(1.0f, Mathf.Round(mins * 10.0f) * 0.1f) && timesAnimationHasBeenPlayed == 1)
+        if ((Mathf.Approximately(Mathf.Round(mins), getMinutes(timeForHardDifficulty)) && Mathf.Approximately(Mathf.Round(secs), getSeconds(timeForHardDifficulty)))
+            && timesAnimationHasBeenPlayed == 1)
         {
             ++timesAnimationHasBeenPlayed;
             animationTimer = animationLength;
@@ -148,93 +280,124 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
     void MakeAllEnemiesStronger(float min, float sec)
     {
-        if ((Mathf.Approximately(min, getMinutes()/ 2.0f)) && (Mathf.Approximately(sec, getSeconds()/ 2.0f)))
+        if ((int)min >= (int)getMinutes(timeForMedDifficulty) && (int)sec >= (int)getSeconds(timeForMedDifficulty))
         {
             midPointReached = true;
+            hardestPointReached = false;
         }
 
-        if ((Mathf.Approximately(min, getMinutes())) && (Mathf.Approximately(sec, getSeconds())))
+        if ( (int)min >= (int)getMinutes(timeForHardDifficulty) && Mathf.Round(sec) >= getSeconds(timeForHardDifficulty) )
         {
             hardestPointReached = true;
+            midPointReached = false;
         }
-
-
-        //if (!(Mathf.Approximately(min, getMinutes())) && !(Mathf.Approximately(sec, getSeconds())))
-        //{ return; }
 
         // Base enemies go faster
         // 1. Increase the speed of the
         // 2. Decrease time inbetween shots
-        foreach (GameObject item in allEnemiesInScene)
+        foreach (GameObject item in wave_manager.GetComponent<JirakitJarusiripipat_GameManager>().allEnemy)
         {
-            if (item.name.Contains("Slime"))
+            if (item == null)
             {
-                MonsterMoveHit slimeDMG = item.GetComponent<MonsterMoveHit>();
+                continue;
+            }
+
+            // boss slime
+            if (item.name.Contains("Slime2"))
+            {
+                JirakitJarusiripipat_MonsterMoveHit slimeDMG = item.GetComponent<JirakitJarusiripipat_MonsterMoveHit>();
                 if (midPointReached)
                 {
-                    slimeDMG.damage = slime_hardestDmg / 2;
+                    slimeDMG.damage = slime_medDmg;
+                    slimeDMG.speed = slime_medSpeed;
+                    slimeDMG.retreatTime = slime_medRetreatTime;
                 }
                 else if (hardestPointReached)
                 {
-                    slimeDMG.damage = slime_hardestDmg;
+                    slimeDMG.damage = slime_hardDmg;
+                    slimeDMG.speed = slime_hardSpeed;
+                    slimeDMG.retreatTime = slime_hardRetreatTime;
                 }
             }
-
-            if (item.name.Contains("Skull"))
+            else if (item.name.Contains("Slime"))
             {
-                Projectile proj = item.gameObject.GetComponent<Projectile>();
+                JirakitJarusiripipat_MonsterMoveHit slimeDMG = item.GetComponent<JirakitJarusiripipat_MonsterMoveHit>();
                 if (midPointReached)
                 {
-                    proj.damage = skull_hardestDmg / 2;
+                    slimeDMG.damage = bossSlime_medDmg;
+                    slimeDMG.speed = bossSlime_medSpeed;
+                    slimeDMG.retreatTime = bossSlime_medRetreatTime;
                 }
                 else if (hardestPointReached)
                 {
-                    proj.damage = skull_hardestDmg;    
+                    slimeDMG.damage = bossSlime_hardDmg;
+                    slimeDMG.speed = bossSlime_hardSpeed;
+                    slimeDMG.retreatTime = bossSlime_hardRetreatTime;
+                }
+            }
+            else if (item.name.Contains("Skull"))
+            {
+                JirakitJarusiripipat_Projectile proj = item.gameObject.GetComponent<JirakitJarusiripipat_Projectile>();
+                JirakitJarusiripipat_ShootMove skull = item.GetComponent<JirakitJarusiripipat_ShootMove>();
+
+                if (proj == null)
+                {
+                    continue;
+                }
+
+                if (midPointReached)
+                {
+                    proj.damage = skull_medDmg;
+                    skull.stoppingDistance = skull_medStoppingDistance;
+                    skull.startTimeBtwShots = skull_medStartTimeBtwShots;
+                    skull.speed = skull_medSpeed;
+                }
+                else if (hardestPointReached)
+                {
+                    proj.damage = skull_hardDmg;
+                    skull.stoppingDistance = skull_hardStoppingDistance;
+                    skull.startTimeBtwShots = skull_hardStartTimeBtwShots;
+                    skull.speed = skull_hardSpeed;
                 }
             }
         }
-
-        if (midPointReached)
-        {
-            midPointReached = false;
-        }
-
-        if (hardestPointReached)
-        {
-            hardestPointReached = false;
-        }
     }
 
-    private void lerpCharacteristics(float t)
-    {
-        foreach (GameObject item in allEnemiesInScene)
-        {
-            if (item.name.Contains("Slime"))
-            {
-                MonsterMoveHit slime = item.GetComponent<MonsterMoveHit>();
-                slime.speed = Mathf.Lerp(slime.speed, slime_hardestDmg, speedToLerp * Time.deltaTime);
-                slime.retreatTime = Mathf.Lerp(slime.retreatTime, slime_retreatDist, speedToLerp * Time.deltaTime);
-            }
+    //private void lerpCharacteristics(float t)
+    //{
+    //    foreach (GameObject item in wave_manager.GetComponent<JirakitJarusiripipat_GameManager>().allEnemy)
+    //    {
+    //        if (item == null)
+    //        {
+    //            continue;
+    //        }
 
-            if (item.name.Contains("Skull"))
-            {
-                MonsterShootMove skull = item.gameObject.GetComponent<MonsterShootMove>();
-                skull.speed = Mathf.Lerp(skull.speed, skull_hardestDmg, speedToLerp * Time.deltaTime);
-                skull.startTimeBtwShots = Mathf.Lerp(skull.startTimeBtwShots, skull_hardestStartTimeBtwShots, speedToLerp * Time.deltaTime);
-                skull.stoppingDistance = Mathf.Lerp(skull.stoppingDistance, skull_hardestStoppingDistance, speedToLerp * Time.deltaTime);
-            }
-        }
-    }
+    //        if (item.name.Contains("Slime"))
+    //        {
+    //            JirakitJarusiripipat_MonsterMoveHit slime = item.GetComponent<JirakitJarusiripipat_MonsterMoveHit>();
+    //            slime.speed = Mathf.Lerp(slime.speed, slime_hardestSpeed, speedToLerp * Time.deltaTime);
+    //            slime.retreatTime = Mathf.Lerp(slime.retreatTime, slime_hardRetreatDist, speedToLerp * Time.deltaTime);
+    //        }
 
-    private float getMinutes()
+    //        if (item.name.Contains("Skull"))
+    //        {
+    //            JirakitJarusiripipat_ShootMove skull = item.gameObject.GetComponent<JirakitJarusiripipat_ShootMove>();
+    //            skull.speed = Mathf.Lerp(skull.speed, skull_hardestDmg, speedToLerp * Time.deltaTime);
+    //            skull.startTimeBtwShots = Mathf.Lerp(skull.startTimeBtwShots, skull_hardestStartTimeBtwShots, speedToLerp * Time.deltaTime);
+    //            skull.stoppingDistance = Mathf.Lerp(skull.stoppingDistance, skull_hardestStoppingDistance, speedToLerp * Time.deltaTime);
+    //        }
+    //    }
+    //}
+
+    private float getMinutes(string time)
     {
-        float min = float.Parse(timeLevelStopsGettingHard.Substring(0, 2));
+        float min = float.Parse(time.Substring(0, 2));
         return min;
     }
 
-    private float getSeconds()
+    private float getSeconds(string time)
     {
-        float sec = float.Parse(timeLevelStopsGettingHard.Substring(3, 2));
+        float sec = float.Parse(time.Substring(3, 2));
         return sec;
     }
 
@@ -243,9 +406,12 @@ public class DeanteJames_TimerLogic : MonoBehaviour
         Grid tiles = lavaMap.GetComponent<Grid>();
         BoundsInt bound = lavaMap.cellBounds;
 
+        //lavaTile.gameObject.
         for (int i = 0; i < numOfTilesToSpawn; ++i)
         {
             Vector3Int vec = Random(new Vector3Int(bound.xMin, bound.yMin, bound.zMin), new Vector3Int(bound.xMax, bound.yMax, bound.zMax));
+            //positions.Add(vec);
+            //lavaTile.color = Color.green;
             lavaMap.SetTile(vec, lavaTile);
         }
 
@@ -257,8 +423,30 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
     public void AddDeduction(float toAdd)
     {
-        timeDeductions += toAdd;       
+        timeDeductions = toAdd;
+        deductionsAdded = false;
+        lerpBackTimer += toAdd / 2.0f;
+        GameObject obj = GameObject.Instantiate(flyingText, timerText.transform);
+        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+        Text numbers = obj.GetComponent<Text>();
+        numbers.text = "-" + toAdd.ToString();
+        numbers.fontSize = 50;
+        numbers.color = Color.yellow;
+
+        Vector3 randVel = new Vector3(20.0f, 45.0f);
+        rb.velocity = randVel;
+        rb.gravityScale = 5.5f;
+        rb.AddForce(new Vector3(2.0f, 2.0f));
+
+        coinDeductionTimer = coinDeductionLength;
     }
+
+    public void FreezeTime(bool freeze)
+    {
+        timeFreeze = freeze;
+        timer = timeFreezeDuration;
+    }
+
     public Vector3Int Random(Vector3Int min, Vector3Int max)
     {
         return new Vector3Int(UnityEngine.Random.Range(min.x, max.x), UnityEngine.Random.Range(min.y, max.y), UnityEngine.Random.Range(min.z, max.z));
@@ -271,23 +459,95 @@ public class DeanteJames_TimerLogic : MonoBehaviour
 
     private void StopBlinkAnimation()
     {
-        StopCoroutine(coroutineStarted);
+        if (coroutineStarted != null)
+            StopCoroutine(coroutineStarted);
     }
 
     IEnumerator Blink()
     {
         while (true)
         {
-            if (Mathf.Round(timerText.color.a) == 0.0f)
-            {
-                timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 1.0f);
-                yield return new WaitForSeconds(0.5f);
-            }
-            else
-            {
-                timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 0.0f);
-                yield return new WaitForSeconds(0.5f);
-            }
+            //if (Mathf.Round(timerText.color.a) == 0.0f)
+            //{
+            //    timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 1.0f);
+            //    yield return new WaitForSeconds(1.5f);
+            //}
+            //else
+            //{
+            //    timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 0.0f);
+            //    yield return new WaitForSeconds(1.5f);
+            //}
+
+            timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 0.0f);
+            yield return new WaitForSeconds(0.5f);
+
+            timerText.color = new Color(timerText.color.r, timerText.color.g, timerText.color.b, 1.0f);
+            yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    private void HideDifficultyBar()
+    {
+        Image arrow = indicatorArrow.GetComponent<Image>();
+        Image bar = indicatorBar.GetComponent<Image>();
+
+        // Hide the difficulty indicator
+        Color col = arrow.color;
+        col.a = 0;
+        arrow.color = col;
+
+        col = bar.color;
+        col.a = 0;
+        bar.color = col;
+    }
+
+    private void ShowDifficultyBar()
+    {
+        Image arrow = indicatorArrow.GetComponent<Image>();
+        Image bar = indicatorBar.GetComponent<Image>();
+
+        // Hide the difficulty indicator
+        Color col = arrow.color;
+        col.a = 1;
+        arrow.color = col;
+
+        col = bar.color;
+        col.a = 1;
+        bar.color = col;
+    }
+
+    // Other game objects are able to pause the game
+    public void pauseGame(GameObject obj)
+    {
+        GameIsPaused = true;
+        Time.timeScale = 0.0f;
+
+        // Save the tool tip object to delete later
+        toDelete = obj;
+    }
+
+    private void unPauseGame()
+    {
+        GameIsPaused = false;
+        Time.timeScale = origTimeScale;
+        GameObject.Destroy(toDelete);
+    }
+
+    private void updateIndicatorArrow(float speed, float unitsToTheRight)
+    {
+        Vector3 right = indicatorArrow.GetComponent<RectTransform>().position;
+
+        right.x += unitsToTheRight;
+
+
+        // so the indicator does not trail of the screen
+
+        if (indicatorArrow.GetComponent<RectTransform>().position.x + unitsToTheRight >= endPoint.x ||
+            indicatorArrow.GetComponent<RectTransform>().position.x + unitsToTheRight <= begPoint.x)
+        {
+            return;
+        }
+
+        indicatorArrow.GetComponent<RectTransform>().position = Vector3.Lerp(indicatorArrow.GetComponent<RectTransform>().position, right, speed * Time.deltaTime);
     }
 }

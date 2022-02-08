@@ -47,7 +47,6 @@ MonoBehaviour:
   Distance: 2.5
   Speed: 7
   Size: 1.2
-  Damage: 0
 --- !u!1 &3300565836634237502
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,7 +90,7 @@ GameObject:
   - component: {fileID: 3463892633090671898}
   - component: {fileID: 5827127866143287668}
   - component: {fileID: 8610358244359535100}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,3 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Force: 15
+  StunEnemies: 0
+  StunTime: 2
+  LinearPush: 0
+  LinearPushDir: {x: 0, y: 0, z: 0}

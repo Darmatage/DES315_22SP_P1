@@ -7951,6 +7951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   damageTime: 0.5
+  canDamage: 1
 --- !u!66 &1169737177
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -35482,6 +35483,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 435529608}
     m_Modifications:
+    - target: {fileID: 5778523244670572452, guid: a643864fb56098e419f46cfdd6a668fd,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778523244670572452, guid: a643864fb56098e419f46cfdd6a668fd,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778523244670572452, guid: a643864fb56098e419f46cfdd6a668fd,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.08235294
+      objectReference: {fileID: 0}
     - target: {fileID: 5778523244670572454, guid: a643864fb56098e419f46cfdd6a668fd,
         type: 3}
       propertyPath: m_Name

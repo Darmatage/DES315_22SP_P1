@@ -14,7 +14,7 @@ public class FrankieCamarilloFireBlast : MonoBehaviour
 
     private float cooldown = 0.0f;
 	
-	public float deleteFireDelay = 2f;
+	public float deleteFireDelay = 1.0f;
 	
     // Start is called before the first frame update
     void Start()

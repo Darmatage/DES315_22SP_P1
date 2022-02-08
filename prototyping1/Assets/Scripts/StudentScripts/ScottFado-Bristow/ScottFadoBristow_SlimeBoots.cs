@@ -9,6 +9,8 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
     public Vector2 BootsOffset;
     public Vector2 SlimeOffset;
 
+    private GameHandler gameHandlerObj;
+
     public int MashAmount = 20;
 
     public GameObject MashToggle;
@@ -19,6 +21,10 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
     private int wiggleCount = 0;
     private GameObject player;
 
+    public int DamageThreshold = 5;
+    public float DamageRate = 1.0f;
+    private float timer = 0;
+
     private float originalScaleX;
 
     // Start is called before the first frame update
@@ -26,6 +32,12 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
     {
         slimes = new Stack<(GameObject, float)>();
         originalScaleX = MashToggle.transform.localScale.x;
+
+        GameObject gameHandlerLocation = GameObject.FindWithTag("GameHandler");
+        if (gameHandlerLocation != null)
+        {
+            gameHandlerObj = gameHandlerLocation.GetComponent<GameHandler>();
+        }
     }
 
     // Update is called once per frame
@@ -46,6 +58,10 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
             //SpriteRenderer sr = MashToggle.GetComponent<SpriteRenderer>();
             //sr.sprite = ToggleOn;
             wiggleCount++;
+            foreach((GameObject, float) gf in slimes)
+            {
+                 gf.Item1.GetComponent<ScottFadoBristow_Wiggle>().StartWiggle();
+            }
         }
         else
         {
@@ -58,7 +74,17 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
             Detach();
             wiggleCount = 0;
         }
-        
+
+        if (slimes.Count > DamageThreshold)
+        {
+            timer -= Time.deltaTime;
+
+            if(timer <= 0)
+            {
+                gameHandlerObj.TakeDamage(1);
+                timer = DamageRate;
+            }
+        }
     }
 
 
@@ -80,8 +106,6 @@ public class ScottFadoBristow_SlimeBoots : MonoBehaviour
 
         slimes.Push((newSlime, speedDiff));
         player = p;
-
-        
 
     }
 
