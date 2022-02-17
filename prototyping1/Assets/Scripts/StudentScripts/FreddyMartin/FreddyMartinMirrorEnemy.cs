@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FreddyMartinMirrorEnemy : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class FreddyMartinMirrorEnemy : MonoBehaviour
     public GameObject swapBeam;
 
     GameObject player;
+    GameObject swapTimerText;
     SpriteRenderer playerRenderer;
     SpriteRenderer sR;
 
@@ -32,6 +34,9 @@ public class FreddyMartinMirrorEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Set swap timer text
+        swapTimerText = GameObject.Find("SwapTimer");
+
         // Set player vars
         player = GameObject.FindGameObjectWithTag("Player");
         playerRenderer = player.GetComponentInChildren<SpriteRenderer>();
@@ -78,10 +83,10 @@ public class FreddyMartinMirrorEnemy : MonoBehaviour
             shard.GetComponent<Lava>().damage = damage;
         }
 
-        // Swap player and mirror if enough time has passed
-        if (swapTimer >= timeBetweenSwaps)
+        // Swap player and mirror if enough time has passed or if the player forces a swap
+        if (FreddyMartinPlayerScript.Instance.forceSwap || swapTimer >= timeBetweenSwaps)
         {
-            swapTimer -= timeBetweenSwaps;
+            swapTimer = 0;
             droppedShards = 0;
             dropTimer = 0;
 
@@ -91,7 +96,9 @@ public class FreddyMartinMirrorEnemy : MonoBehaviour
             transform.position = player.transform.position;
             transform.localScale = player.transform.localScale;
 
+            Vector3 CameraOffset = Camera.main.transform.position - player.transform.position;
             player.transform.position = newPlayerPos;
+            Camera.main.transform.position = player.transform.position + CameraOffset;
             player.transform.localScale = newPlayerScale;
         }
 
@@ -121,6 +128,19 @@ public class FreddyMartinMirrorEnemy : MonoBehaviour
         {
             main.startColor = (swapTimer / (timeBetweenSwaps - 0.75f)) * Color.yellow +
                 (1 - swapTimer / (timeBetweenSwaps - 0.75f)) * Color.cyan;
+        }
+
+        if (swapTimerText)
+        {
+            swapTimerText.GetComponent<Text>().text = ((timeBetweenSwaps - swapTimer) - ((timeBetweenSwaps - swapTimer) % 0.1f)).ToString();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (swapTimerText)
+        {
+            swapTimerText.GetComponent<Text>().text = "";
         }
     }
 }

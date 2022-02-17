@@ -17,11 +17,17 @@ public class DeanteJames_HealthLogic : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             GameObject timer = GameObject.Find("GameHandler");
+            if (timer.gameObject.GetComponent<JirakitJarusiripipat_GameHandler>().PlayerHealthStart == JirakitJarusiripipat_GameHandler.PlayerHealth)
+            {
+                return;
+            }
+
             timer.gameObject.GetComponent<JirakitJarusiripipat_GameHandler>().Heal(HealthRegain);
             GameObject.Destroy(gameObject);
         }
